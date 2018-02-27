@@ -11,8 +11,8 @@ cache:
 notifications: #启用通知
   email:
     recipients:
-      - snippet@91h5.cc #接收构建消息的邮件 不需要可设置为false
-    on_success: never #部署成功时，可设置alway never change
+      - jiwenkangatech@foxmail.com #接收构建消息的邮件 不需要可设置为false
+    on_success: change #部署成功时，可设置alway never change
     on_failure: always #部署失败时，同上
 
 # S: Build Lifecycle
