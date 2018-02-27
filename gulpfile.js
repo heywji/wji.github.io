@@ -90,7 +90,7 @@
         }))
         .pipe(gulp.dest('./public'));
     });
-    
+
     // 添加版本号
     gulp.task('rev', function() {
         return gulp.src('./public/**/*.html')
@@ -100,9 +100,10 @@
 
     // 同步执行task
     gulp.task('deploy',sequence(['minify-css','minify-js'],'rev','minify-html'));
-    
+
     // 部署前代码处理
     gulp.task('default',['deploy'],function(e){
        console.log("[complete] please execute： hexo d");
     })
 })();
+
