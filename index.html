@@ -1,4 +1,45 @@
-<h1> It's run </h1>
-<script>document.write(5 + 6);
-
-  </script>
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>ITXDM (゜-゜)つロ 干杯~ Jump To ITXDM</title>
+	<script>window.location.href='http://www.cnblogs.com/itxdm';</script>
+ 	<style>
+	*{
+		margin: 0 auto;
+		margin-top: 50px;
+	}
+	
+	@keyframes run{
+		from{ transform:rotateY(0deg) rotateZ(45deg); }
+		to{ transform:rotateY(360deg) rotateZ(360deg);}
+	}
+	
+	.square{
+		width: 100px;
+		height: 100px;
+		background-color: blue;
+		border-radius:25px;
+	}
+	
+	.animation{
+		animation: run 5s infinite;
+	}
+	
+	.forward{
+		display: flex;
+		justify-content: space-between;
+	}
+	</style>
+</head>
+<body>
+<div class="animation">
+	<div class="square"></div>
+</div>
+<div class="forward">
+	<a href='http://www.cnblogs.com/itxdm'>
+		<h1>Forwarding...</h1>
+	</a>
+</div>
+</body>
+</html>
