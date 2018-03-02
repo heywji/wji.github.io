@@ -1280,3 +1280,6 @@ pre .javascript .function {
 #lv-container {
     display: none;
 }
+body > a[title="51.La 网站流量统计系统"]{
+    display: none;
+}
