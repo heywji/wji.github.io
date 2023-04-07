@@ -39,10 +39,18 @@
 - [Linux 下 Shell 脚本几种基本命令替换区别](https://www.cnblogs.com/itxdm/p/something_of_shellscirpt.html)
 - [Linux 下 Shell 脚本的基础/高级编程](https://cdn.jiwenkang.com/BashShell/index.html)
 
-### 5. OpenPLC
+
+### 5. Program
+
+- [一文让你明白C语言中的指针 ](https://www.cnblogs.com/itxdm/p/c_pointer2.html)
+
+- [C 语言中指针的指针究竟是个啥](https://www.cnblogs.com/itxdm/p/c_pointer_of_pointer.html)
+- [C 语言 struct 结构体](https://www.cnblogs.com/itxdm/p/C_language_struct_structure.html)
+
+- [C 语言之函数访问 ](https://www.cnblogs.com/itxdm/p/c_visiting_from_function.html)
+### 6. Others
 
 - [OpenPLC RealTime tests](https://www.bilibili.com/video/BV1eT411C7qA/)
-
 
 
 
