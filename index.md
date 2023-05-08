@@ -1,6 +1,6 @@
 # <center>Wenkang</center>
 
-> 生活，工作，记录 
+> 生活 Life，工作 Red Hat，记录 Recoding 
 >
 >  🐰
 >
@@ -12,7 +12,7 @@
 
 ## <center>Tech</center>
 
-### 1) Linux
+### Linux
 
 - [文件系统基础版](https://www.cnblogs.com/itxdm/p/filesystem_base_version.html)
 - [Linux 的启动流程图](http://pic.jiwenkang.com/typora/202208281647545.png)
@@ -20,19 +20,19 @@
 - [如何将 Linux 系统转移至 LVM 卷](https://linux.cn/article-7718-1.html)
 - [Linux 意外操作后如何进行数据抢救](https://www.cnblogs.com/itxdm/p/linuxdate_recover.html)
 
-### 2) Network
+### Network
 
 - [网络基础：IP地址子网划分](https://www.cnblogs.com/itxdm/p/6087727.html)
 - [记一次在黑盒环境下使用网络设备寻找主机](https://www.cnblogs.com/itxdm/p/Remember_to_use_a_network_device_to_find_a_host_in_a_black_box_environment.html)
 
-### 3) Virtualization
+### Virtualization
 
 - [虚拟化介绍](https://www.bilibili.com/video/BV12G411p7JW)
 - [虚拟化文字稿](https://cdn.jiwenkang.com/QEMU.html)
 - [OpenShift CNV](https://www.bilibili.com/video/BV1cd4y1D7MW)
 - [OpenShift 介绍](https://www.bilibili.com/video/BV1TV4y1u7hg/)
 
-### 4) Commond Line
+### Commond Line
 
 - [Linux 下 find 命令](https://www.cnblogs.com/itxdm/p/5936907.html)
 - [Linux 下 OpenSSH 高级运用两则](https://linux.cn/article-7475-1.html)
@@ -40,7 +40,7 @@
 - [Linux 下 Shell 脚本的基础/高级编程](https://cdn.jiwenkang.com/BashShell/index.html)
 
 
-### 5) Program
+### Programing
 
 - [一文让你明白C语言中的指针 ](https://www.cnblogs.com/itxdm/p/c_pointer2.html)
 
@@ -48,7 +48,7 @@
 - [C 语言 struct 结构体](https://www.cnblogs.com/itxdm/p/C_language_struct_structure.html)
 
 - [C 语言之函数访问 ](https://www.cnblogs.com/itxdm/p/c_visiting_from_function.html)
-### 6) Others
+### Others
 
 - [OpenPLC RealTime tests](https://www.bilibili.com/video/BV1eT411C7qA/)
 
@@ -57,10 +57,10 @@
 
 ## <center>Document</center>
 
-### 1) Linux 帮助文档
+### Linux
 [Manpages](https://man.cx/)
 
-### 2) Red Hat 帮助文档
+### Red Hat
 [Product Documentation for Red Hat Enterprise Linux 9](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9)
 [How to download rpm packages manually from the Customer Portal?](https://access.redhat.com/downloads/content/package-browser)
 
@@ -68,10 +68,19 @@
 
 ## <center>About me</center>
 
-- ~~兔兔铲屎官 🐰~~（养过一只叫小白的兔兔，寿命三年半）
-- Bilibili：[文康的读书经历 ](https://www.bilibili.com/video/BV1iR4y1c7o4)(欢迎一键三连)
+- ~~兔兔铲屎官 🐰~~
+- Bilibili：[文康的读书经历 ](https://www.bilibili.com/video/BV1iR4y1c7o4)（欢迎一键三连）
 - 95后，皖籍 base 沪，交大 sjtu 讲师，linux.cn 开发组成员，Red Hat 虚拟化 KVM 团队员工（IBM 为 Red Hat 母公司）
-- 拥有博客园 6 年撰稿经验，50w 阅读量技术博主。具有 HCIP RHCA 等职业认证，多门满分/接近满分通过。多年来，已培训超 1w 名工程师，遍布各大高校、电信等行业。
+- 一线城市培训机构 5 年讲师。目前已培训超 1w 名工程师，遍布各大高校、电信、金融、电商等相关行业。
+- 拥有[博客园](https://www.cnblogs.com/itxdm) 6 年撰稿经验，50w 阅读量技术博主。具有 HCIP RHCA 等职业认证，多门满分/接近满分通过。
+
+
+
+## <center>Patch</center>
+
+- [Linux 社区翻译](https://github.com/LCTT/TranslateProject/pull/4084)
+- [K8S 文档修复](https://github.com/heywji/ovn-kubernetes/commit/8c149e5ecbf49d96f2dc95af4d5fdad3f74b18df)
+- [OpenPLC RT 支持](https://github.com/thiagoralves/OpenPLC_v3/pull/201)
 
 
 
