@@ -61,8 +61,9 @@
 [Manpages](https://man.cx/)
 
 ### Red Hat
-[Product Documentation for Red Hat Enterprise Linux 9](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9)
-[How to download rpm packages manually from the Customer Portal?](https://access.redhat.com/downloads/content/package-browser)
+[Red Hat 软件包](https://access.redhat.com/downloads/content/package-browser)
+
+[所有红帽产品和文档](https://access.redhat.com/products/)
 
 
 
@@ -79,7 +80,7 @@
 ## <center>Patch</center>
 
 - [Linux 社区翻译](https://github.com/LCTT/TranslateProject/pull/4084)
-- [K8S 文档修复](https://github.com/heywji/ovn-kubernetes/commit/8c149e5ecbf49d96f2dc95af4d5fdad3f74b18df)
+- [K8S 文档修复](https://github.com/ovn-org/ovn-kubernetes/commit/8c149e5ecbf49d96f2dc95af4d5fdad3f74b18df)
 - [OpenPLC RT 支持](https://github.com/thiagoralves/OpenPLC_v3/pull/201)
 
 
