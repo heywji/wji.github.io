@@ -88,7 +88,6 @@
 ## <center>Other</center>
 
 - 梦想开始的地方：[2015年全国职业院校技能大赛网络搭建与应用竞赛](guosai/国赛-compressed.pdf)
-- 公司年会舞蹈视频：[2022 GCG year end party whole video年会舞蹈视频](http://img.jiwenkang.com/2022%20GCG%20year%20end%20party%20whole%20video%E5%B9%B4%E4%BC%9A%E8%88%9E%E8%B9%88%E8%A7%86%E9%A2%91.mp4)
 
 
 
