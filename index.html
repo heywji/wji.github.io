@@ -3,7 +3,7 @@
 <head>
 <meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
 
-<style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color: #ffffff; --text-color: #333333; --select-text-bg-color: #B5D6FC; --select-text-font-color: auto; --monospace: "Lucida Console",Consolas,"Courier",monospace; --title-bar-height: 20px; }
+<link href='https://fonts.googleapis.com/css?family=Didact+Gothic&display=swap&subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color: #ffffff; --text-color: #333333; --select-text-bg-color: #B5D6FC; --select-text-font-color: auto; --monospace: "Lucida Console",Consolas,"Courier",monospace; --title-bar-height: 20px; }
 .mac-os-11 { --title-bar-height: 28px; }
 html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
 h1, h2, h3, h4, h5 { white-space: pre-wrap; }
@@ -27,7 +27,7 @@ body.typora-export { padding-left: 30px; padding-right: 30px; }
 #write li > figure:last-child { margin-bottom: 0.5rem; }
 #write ol, #write ul { position: relative; }
 img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
-button, input, select, textarea { color: inherit; font-style: inherit; font-variant-caps: inherit; font-weight: inherit; font-stretch: inherit; font-size: inherit; line-height: inherit; font-family: inherit; font-size-adjust: inherit; font-kerning: inherit; font-variant-alternates: inherit; font-variant-ligatures: inherit; font-variant-numeric: inherit; font-variant-east-asian: inherit; font-variant-position: inherit; font-feature-settings: inherit; font-optical-sizing: inherit; font-variation-settings: inherit; }
+button, input, select, textarea { color: inherit; font-style: inherit; font-variant-caps: inherit; font-weight: inherit; font-stretch: inherit; font-size: inherit; line-height: inherit; font-family: inherit; font-size-adjust: inherit; font-kerning: inherit; font-variant-alternates: inherit; font-variant-ligatures: inherit; font-variant-numeric: inherit; font-variant-east-asian: inherit; font-variant-position: inherit; font-variant-emoji: inherit; font-feature-settings: inherit; font-optical-sizing: inherit; font-variation-settings: inherit; }
 input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
 *, ::after, ::before { box-sizing: border-box; }
 #write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
@@ -203,215 +203,67 @@ mark .md-meta { color: rgb(0, 0, 0); }
 .typora-export-show-outline .outline-item-active > .outline-item .outline-label { font-weight: 700; }
 .md-inline-math-container mjx-container { zoom: 0.95; }
 mjx-container { break-inside: avoid; }
+.md-alert.md-alert-note { border-left-color: rgb(9, 105, 218); }
+.md-alert.md-alert-important { border-left-color: rgb(130, 80, 223); }
+.md-alert.md-alert-warning { border-left-color: rgb(154, 103, 0); }
+.md-alert.md-alert-tip { border-left-color: rgb(31, 136, 61); }
+.md-alert.md-alert-caution { border-left-color: rgb(207, 34, 46); }
+.md-alert { padding: 0px 1em; margin-bottom: 16px; color: inherit; border-left-width: 0.25em; border-left-style: solid; border-left-color: rgb(0, 0, 0); }
+.md-alert-text-note { color: rgb(9, 105, 218); }
+.md-alert-text-important { color: rgb(130, 80, 223); }
+.md-alert-text-warning { color: rgb(154, 103, 0); }
+.md-alert-text-tip { color: rgb(31, 136, 61); }
+.md-alert-text-caution { color: rgb(207, 34, 46); }
+.md-alert-text { font-size: 0.9rem; font-weight: 700; }
+.md-alert-text svg { fill: currentcolor; position: relative; top: 0.125em; margin-right: 1ch; overflow: visible; }
+.md-alert-text-container::after { content: attr(data-text); text-transform: capitalize; pointer-events: none; margin-right: 1ch; }
 
 
+@include-when-export url(https://fonts.googleapis.com/css?family=Didact+Gothic&display=swap&subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext);
+
+/* cyrillic-ext */
+/* cyrillic */
 :root {
-  --mermaid-theme: night;
+	--window-border: none;
+	--typora-center-window-title: true;
+	--active-file-bg-color: #f3f3f3;
+	--bg-color: #fcfcfc;
+	--control-text-color: #777;
 }
 
-[lang='mermaid'] .label {
-  color: #333;
-}
-
-/* CSS Document */
-
-/** code highlight */
-
-.cm-s-inner .cm-variable,
-.cm-s-inner .cm-operator,
-.cm-s-inner .cm-property {
-    color: #b8bfc6;
-}
-
-.cm-s-inner .cm-keyword {
-    color: #C88FD0;
-}
-
-.cm-s-inner .cm-tag {
-    color: #7DF46A;
-}
-
-.cm-s-inner .cm-attribute {
-    color: #7575E4;
-}
-
-.CodeMirror div.CodeMirror-cursor {
-    border-left: 1px solid #b8bfc6;
-    z-index: 3;
-}
-
-.cm-s-inner .cm-string {
-    color: #D26B6B;
-}
-
-.cm-s-inner .cm-comment,
-.cm-s-inner.cm-comment {
-    color: #DA924A;
-}
-
-.cm-s-inner .cm-header,
-.cm-s-inner .cm-def,
-.cm-s-inner.cm-header,
-.cm-s-inner.cm-def {
-    color: #8d8df0;
-}
-
-.cm-s-inner .cm-quote,
-.cm-s-inner.cm-quote {
-    color: #57ac57;
-}
-
-.cm-s-inner .cm-hr {
-    color: #d8d5d5;
-}
-
-.cm-s-inner .cm-link {
-    color: #d3d3ef;
-}
-
-.cm-s-inner .cm-negative {
-    color: #d95050;
-}
-
-.cm-s-inner .cm-positive {
-    color: #50e650;
-}
-
-.cm-s-inner .cm-string-2 {
-    color: #f50;
-}
-
-.cm-s-inner .cm-meta,
-.cm-s-inner .cm-qualifier {
-    color: #b7b3b3;
-}
-
-.cm-s-inner .cm-builtin {
-    color: #f3b3f8;
-}
-
-.cm-s-inner .cm-bracket {
-    color: #997;
-}
-
-.cm-s-inner .cm-atom,
-.cm-s-inner.cm-atom {
-    color: #84B6CB;
-}
-
-.cm-s-inner .cm-number {
-    color: #64AB8F;
-}
-
-.cm-s-inner .cm-variable {
-    color: #b8bfc6;
-}
-
-.cm-s-inner .cm-variable-2 {
-    color: #9FBAD5;
-}
-
-.cm-s-inner .cm-variable-3 {
-    color: #1cc685;
-}
-
-.CodeMirror-selectedtext,
-.CodeMirror-selected {
-    background: #4a89dc;
-    color: #fff !important;
-    text-shadow: none;
-}
-
-.CodeMirror-gutters {
-    border-right: none;
-}
-
-/* CSS Document */
-
-/** markdown source **/
-.cm-s-typora-default .cm-header, 
-.cm-s-typora-default .cm-property
-{
-    color: #cebcca;
-}
-
-.CodeMirror.cm-s-typora-default div.CodeMirror-cursor{
-    border-left: 3px solid #b8bfc6;
-}
-
-.cm-s-typora-default .cm-comment {
-    color: #9FB1FF;
-}
-
-.cm-s-typora-default .cm-string {
-    color: #A7A7D9
-}
-
-.cm-s-typora-default .cm-atom, .cm-s-typora-default .cm-number {
-    color: #848695;
-    font-style: italic;
-}
-
-.cm-s-typora-default .cm-link {
-    color: #95B94B;
-}
-
-.cm-s-typora-default .CodeMirror-activeline-background {
-    background: rgba(51, 51, 51, 0.72);
-}
-
-.cm-s-typora-default .cm-comment, .cm-s-typora-default .cm-code {
-	color: #8aa1e1;
-}@import "";
-@import "";
-@import "";
-
-:root {
-    --bg-color:  #363B40;
-    --side-bar-bg-color: #2E3033;
-    --text-color: #b8bfc6;
-
-    --select-text-bg-color:#4a89dc;
-
-    --item-hover-bg-color: #0a0d16;
-    --control-text-color: #b7b7b7;
-    --control-text-hover-color: #eee;
-    --window-border: 1px solid #555;
-
-    --active-file-bg-color: rgb(34, 34, 34);
-    --active-file-border-color: #8d8df0;
-
-    --primary-color: #a3d5fe;
-
-    --active-file-text-color: white;
-    --item-hover-bg-color: #70717d;
-    --item-hover-text-color: white;
-    --primary-color: #6dc1e7;
-
-    --rawblock-edit-panel-bd: #333;
-
-    --search-select-bg-color: #428bca;
-}
-
-html {
-    font-size: 16px;
-    -webkit-font-smoothing: antialiased;
+.mac-seamless-mode #typora-sidebar {
+	top: 20px;
+	padding-top: 0;
+	height: auto;
 }
 
 html,
-body {
-    -webkit-text-size-adjust: 100%;
-    -ms-text-size-adjust: 100%;
-    background: #363B40;
-    background: var(--bg-color);
-    fill: currentColor;
-    line-height: 1.625rem;
+body,
+#write{
+	background: #fcfcfc;
+	background: var(--bg-color);
+	font-family: 'TeXGyreAdventor', "Century Gothic", "Didact Gothic", "Yu Gothic", 'Segoe UI Emoji', sans-serif;
+	font-weight: 300;
+	-webkit-font-smoothing: antialiased;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	color: #111;
+	font-family: 'TeXGyreAdventor', "Century Gothic", "Didact Gothic", "Yu Gothic", sans-serif;
+}
+
+html {
+	font-size:16px;
 }
 
 #write {
-    max-width: 914px;
+	max-width: 914px;
+	text-align: justify;
 }
-
 
 @media only screen and (min-width: 1400px) {
 	#write {
@@ -419,977 +271,324 @@ body {
 	}
 }
 
-@media only screen and (min-width: 1800px) {
-	#write {
-		max-width: 1200px;
+#write>h1:first-child {
+	margin-top: 2.75rem;
+}
+#write>h2:first-child {
+	margin-top: 1.75rem;
+}
+#write>h3:first-child {
+	margin-top: 1rem;
+}
+#write>h4:first-child {
+	margin-top: 0.5rem;
+}
+h1 {
+	font-weight: normal;
+	line-height: 4rem;
+	margin: 0 0 1.75rem;
+	padding: 20px 30px;
+	text-align: center;
+	text-transform: uppercase;
+	margin-top: 4rem;
+}
+h2 {
+	font-weight: normal;
+	line-height: 3rem;
+	margin: 0 0 1.9375rem;
+	padding: 0 30px;
+	text-align: center;
+	text-transform: uppercase;
+	margin-top: 3rem
+}
+h3 {
+	font-weight: normal;
+}
+h4 {
+	font-weight: normal;
+}
+h5 {
+	font-size: 1.125rem;
+	font-weight: normal;
+}
+h6 {
+	font-size: 1rem;
+	font-weight: bold;
+}
+p {
+	color: #111;
+	font-size: 1rem;
+	line-height: 1.75rem;
+	margin: 0 0 1.25rem;
+}
+#write>h3.md-focus:before {
+	left: -1.875rem;
+	top: 0.5rem;
+	padding: 2px;
+}
+#write>h4.md-focus:before {
+	left: -1.875rem;
+	top: 0.3125rem;
+	padding: 2px;
+}
+#write>h5.md-focus:before {
+	left: -1.875rem;
+	top: 0.25rem;
+	padding: 2px;
+}
+#write>h6.md-focus:before {
+	left: -1.875rem;
+	top: .125rem;
+	padding: 2px;
+}
+@media screen and (max-width: 48em) {
+	blockquote {
+		margin-left: 1rem;
+		margin-right: 0;
+		padding: 0.5em;
+	}
+	.h1,
+	h1 {
+		font-size: 2.827rem;
+	}
+	.h2,
+	h2 {
+		font-size: 1.999rem;
+	}
+	.h3,
+	h3 {
+		font-size: 1.413rem;
+	}
+	.h4,
+	h4 {
+		font-size: 1.250rem;
+	}
+	.h5,
+	h5 {
+		font-size: 1.150rem;
+	}
+	.h6,
+	h6 {
+		font-size: 1rem;
 	}
 }
-
-html,
-body,
-button,
-input,
-select,
-textarea,
-div.code-tooltip-content {
-    color: #b8bfc6;
-    border-color: transparent;
+a,
+.md-def-url {
+	color: #990000;
+	text-decoration: none;
 }
-
-div.code-tooltip,
-.md-hover-tip .md-arrow:after {
-    background: #333;
-}
-
-.native-window #md-notification {
-    border: 1px solid #70717d;
-}
-
-.popover.bottom > .arrow:after {
-    border-bottom-color: #333;
-}
-
-html,
-body,
-button,
-input,
-select,
-textarea {
-    font-family: "Helvetica Neue", Helvetica, Arial, 'Segoe UI Emoji', sans-serif;
-}
-
-hr {
-    height: 2px;
-    border: 0;
-    margin: 24px 0 !important;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    font-family: "Lucida Grande", "Corbel", sans-serif;
-    font-weight: normal;
-    clear: both;
-    -ms-word-wrap: break-word;
-    word-wrap: break-word;
-    margin: 0;
-    padding: 0;
-    color: #DEDEDE
-}
-
-h1 {
-    font-size: 2.5rem;
-    /* 36px */
-    line-height: 2.75rem;
-    /* 40px */
-    margin-bottom: 1.5rem;
-    /* 24px */
-    letter-spacing: -1.5px;
-}
-
-h2 {
-    font-size: 1.63rem;
-    /* 24px */
-    line-height: 1.875rem;
-    /* 30px */
-    margin-bottom: 1.5rem;
-    /* 24px */
-    letter-spacing: -1px;
-    font-weight: bold;
-}
-
-h3 {
-    font-size: 1.17rem;
-    /* 18px */
-    line-height: 1.5rem;
-    /* 24px */
-    margin-bottom: 1.5rem;
-    /* 24px */
-    letter-spacing: -1px;
-    font-weight: bold;
-}
-
-h4 {
-    font-size: 1.12rem;
-    /* 16px */
-    line-height: 1.375rem;
-    /* 22px */
-    margin-bottom: 1.5rem;
-    /* 24px */
-    color: white;
-}
-
-h5 {
-    font-size: 0.97rem;
-    /* 16px */
-    line-height: 1.25rem;
-    /* 22px */
-    margin-bottom: 1.5rem;
-    /* 24px */
-    font-weight: bold;
-}
-
-h6 {
-    font-size: 0.93rem;
-    /* 16px */
-    line-height: 1rem;
-    /* 16px */
-    margin-bottom: 0.75rem;
-    color: white;
-}
-
-@media (min-width: 980px) {
-    h3.md-focus:before,
-    h4.md-focus:before,
-    h5.md-focus:before,
-    h6.md-focus:before {
-        color: #ddd;
-        border: 1px solid #ddd;
-        border-radius: 3px;
-        position: absolute;
-        left: -1.642857143rem;
-        top: .357142857rem;
-        float: left;
-        font-size: 9px;
-        padding-left: 2px;
-        padding-right: 2px;
-        vertical-align: bottom;
-        font-weight: normal;
-        line-height: normal;
-    }
-
-    h3.md-focus:before {
-        content: 'h3';
-    }
-
-    h4.md-focus:before {
-        content: 'h4';
-    }
-
-    h5.md-focus:before {
-        content: 'h5';
-        top: 0px;
-    }
-
-    h6.md-focus:before {
-        content: 'h6';
-        top: 0px;
-    }
-}
-
-a {
-    text-decoration: none;
-    outline: 0;
-}
-
 a:hover {
-    outline: 0;
+	text-decoration: underline;
 }
-
-a:focus {
-    outline: thin dotted;
-}
-
-sup.md-footnote {
-    background-color: #555;
-    color: #ddd;
-}
-
-p {
-    -ms-word-wrap: break-word;
-    word-wrap: break-word;
-}
-
-p,
-ul,
-dd,
-ol,
-hr,
-address,
-pre,
-table,
-iframe,
-.wp-caption,
-.wp-audio-shortcode,
-.wp-video-shortcode {
-    margin-top: 0;
-    margin-bottom: 1.5rem;
-    /* 24px */
-}
-
-audio:not([controls]) {
-    display: none;
-}
-
-[hidden] {
-    display: none;
-}
-
-::-moz-selection {
-    background: #4a89dc;
-    color: #fff;
-    text-shadow: none;
-}
-
-*.in-text-selection,
-::selection {
-    background: #4a89dc;
-    color: #fff;
-    text-shadow: none;
-}
-
-ul,
-ol {
-    padding: 0 0 0 1.875rem;
-    /* 30px */
-}
-
-ul {
-    list-style: square;
-}
-
-ol {
-    list-style: decimal;
-}
-
-ul ul,
-ol ol,
-ul ol,
-ol ul {
-    margin: 0;
-}
-
-b,
-th,
-dt,
-strong {
-    font-weight: bold;
-}
-
-i,
-em,
-dfn,
-cite {
-    font-style: italic;
-}
-
-blockquote {
-    padding-left: 1.875rem;
-    margin: 0 0 1.875rem 1.875rem;
-    border-left: solid 2px #474d54;
-    padding-left: 30px;
-    margin-top: 35px;
-}
-
-pre,
-code,
-kbd,
-tt,
-var {
-    font-size: 0.875em;
-    font-family: Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
-}
-
-code,
-tt,
-var {
-    background: rgba(0, 0, 0, 0.05);
-}
-
-kbd {
-    padding: 2px 4px;
-    font-size: 90%;
-    color: #fff;
-    background-color: #333;
-    border-radius: 3px;
-    box-shadow: inset 0 -1px 0 rgba(0,0,0,.25);
-}
-
-pre.md-fences {
-    padding: 10px 10px 10px 30px;
-    margin-bottom: 20px;
-    background: #333;
-}
-
-.CodeMirror-gutters {
-    background: #333;
-    border-right: 1px solid transparent;
-}
-
-.enable-diagrams pre.md-fences[lang="sequence"] .code-tooltip,
-.enable-diagrams pre.md-fences[lang="flow"] .code-tooltip,
-.enable-diagrams pre.md-fences[lang="mermaid"] .code-tooltip {
-    bottom: -2.2em;
-    right: 4px;
-}
-
-code,
-kbd,
-tt,
-var {
-    padding: 2px 5px;
-}
-
 table {
-    max-width: 100%;
-    width: 100%;
-    border-collapse: collapse;
-    border-spacing: 0;
+	margin-bottom: 20px
+}
+table th,
+table td {
+	padding: 8px;
+	line-height: 1.25rem;
+	vertical-align: top;
+	border-top: 1px solid #ddd
+}
+table th {
+	font-weight: bold
+}
+table thead th {
+	vertical-align: bottom
+}
+table caption+thead tr:first-child th,
+table caption+thead tr:first-child td,
+table colgroup+thead tr:first-child th,
+table colgroup+thead tr:first-child td,
+table thead:first-child tr:first-child th,
+table thead:first-child tr:first-child td {
+	border-top: 0
+}
+table tbody+tbody {
+	border-top: 2px solid #ddd
+}
+code, .md-fences {
+	padding: .5em;
+	/*background: #f0f0f0;*/
+	border: 1px solid #ccc;
+	padding: .1em;
+	font-size: 0.9em;
+	margin-left: 0.2em;
+	margin-right: 0.2em;
+}
+.md-fences {
+	margin: 0 0 20px;
+	font-size: 1em;
+	padding: 0.3em 1em;
+  	padding-top: 0.4em;
+}
+.task-list{
+	padding-left: 0;
 }
 
-th,
-td {
-    padding: 5px 10px;
-    vertical-align: top;
+.task-list-item {
+	padding-left:2.125rem;
 }
 
-a {
-    -webkit-transition: all .2s ease-in-out;
-    transition: all .2s ease-in-out;
+input {
+	border-style: ridge;
 }
 
-hr {
-    background: #474d54;
-    /* variable */
+.task-list-item input {
+	top: 3px;
 }
 
-h1 {
-    margin-top: 2em;
+.md-task-list-item input {
+	margin-left: -1.5em;
 }
 
-a {
-    color: #e0e0e0;
-    text-decoration: underline;
+.task-list-item input:before {
+	content: "";
+	display: inline-block;
+	width: 1rem;
+	height: 1rem;
+	vertical-align: middle;
+	text-align: center;
+	border: 1px solid gray;
+	background-color: #fdfdfd;
+	margin-left: 0;
+	-webkit-appearance: none;
+	margin-top: -1rem;
 }
 
-a:hover {
-    color: #fff;
+.typora-node .task-list-item input:before {
+	top: 0.3ex;
+	position: absolute;
 }
 
-.md-inline-math script {
-    color: #81b1db;
+.task-list-item input:checked:before,
+.task-list-item input[checked]:before{
+	content: '\25FC';
+	/*◘*/
+	font-size: 0.8125rem;
+	line-height: 0.9375rem;
 }
 
-b,
-th,
-dt,
-strong {
-    color: #DEDEDE;
-    /* variable */
+/* Chrome 29+ */
+.task-list-item input:before {
+	margin-top: -0.2rem;
 }
 
-mark {
-    background: #D3D40E;
+.task-list-item input:checked:before,
+.task-list-item input[checked]:before {
+	margin-top: -0.2rem;
+}
+
+.html-for-mac .task-list-item input:checked:before,
+.html-for-mac .task-list-item input[checked]:before {
+	margin-top: -0.8rem;
 }
 
 blockquote {
-    color: #9DA2A6;
+	margin: 0 0 1.11111rem;
+	padding: 0.5rem 1.11111rem 0 1.05556rem;
+	border-left: 1px solid gray;
 }
-
-table a {
-    color: #DEDEDE;
-    /* variable */
+blockquote,
+blockquote p {
+	line-height: 1.6;
+	color: #6f6f6f;
 }
-
-th,
-td {
-    border: solid 1px #474d54;
-    /* variable */
-}
-
-.task-list {
-    padding-left: 0;
-}
-
-.md-task-list-item {
-    padding-left: 1.25rem;
-}
-
-.md-task-list-item > input {
-    top: auto;
-}
-
-.md-task-list-item > input:before {
-    content: "";
-    display: inline-block;
-    width: 0.875rem;
-    height: 0.875rem;
-    vertical-align: middle;
-    text-align: center;
-    border: 1px solid #b8bfc6;
-    background-color: #363B40;
-    margin-top: -0.4rem;
-}
-
-.md-task-list-item > input:checked:before,
-.md-task-list-item > input[checked]:before {
-    content: '\221A';
-    /*◘*/
-    font-size: 0.625rem;
-    line-height: 0.625rem;
-    color: #DEDEDE;
-}
-
-/** quick open **/
-.auto-suggest-container {
-    border: 0px;
-    background-color: #525C65;
-}
-
-#typora-quick-open {
-    background-color: #525C65;
-}
-
-#typora-quick-open input{
-    background-color: #525C65;
-    border: 0;
-    border-bottom: 1px solid grey;
-}
-
-.typora-quick-open-item {
-    background-color: inherit;
-    color: inherit;
-}
-
-.typora-quick-open-item.active,
-.typora-quick-open-item:hover {
-    background-color: #4D8BDB;
-    color: white;
-}
-
-.typora-quick-open-item:hover {
-    background-color: rgba(77, 139, 219, 0.8);
-}
-
-.typora-search-spinner > div {
-  background-color: #fff;
-}
-
 #write pre.md-meta-block {
-    border-bottom: 1px dashed #ccc;
-    background: transparent;
-    padding-bottom: 0.6em;
-    line-height: 1.6em;
+	min-height: 30px;
+	background: #f8f8f8;
+	padding: 1.5em;
+	font-weight: 300;
+	font-size: 1em;
+	padding-bottom: 1.5em;
+	padding-top: 3em;
+    margin-top: -1.5em;
+	color: #999;
+	
+	width: 100vw;
+	max-width: calc(100% + 60px);
+	margin-left: -30px;
+	border-left: 30px #f8f8f8 solid;
+	border-right: 30px #f8f8f8 solid;
 }
-
-.btn,
-.btn .btn-default {
-    background: transparent;
-    color: #b8bfc6;
+.MathJax_Display {
+	font-size: 0.9em;
+	margin-top: 0.5em;
+	margin-bottom: 0;
 }
-
-.ty-table-edit {
-    border-top: 1px solid gray;
-    background-color: #363B40;
+p.mathjax-block,
+.mathjax-block {
+	padding-bottom: 0;
 }
-
-.popover-title {
-    background: transparent;
+.mathjax-block>.code-tooltip {
+	bottom: 5px;
+	box-shadow: none;
 }
-
 .md-image>.md-meta {
-    color: #BBBBBB;
-    background: transparent;
+	padding-left: 0.5em;
+	padding-right: 0.5em;
+}
+.md-image>img {
+	margin-top: 2px;
+}
+.md-image>.md-meta:first-of-type:before {
+	padding-left: 4px;
 }
 
-.md-expand.md-image>.md-meta {
-    color: #DDD;
+#typora-source {
+	color: #555;
 }
 
-#write>h3:before,
-#write>h4:before,
-#write>h5:before,
-#write>h6:before {
-    border: none;
-    border-radius: 0px;
-    color: #888;
-    text-decoration: underline;
-    left: -1.4rem;
-    top: 0.2rem;
-}
-
-#write>h3.md-focus:before {
-    top: 2px;
-}
-
-#write>h4.md-focus:before {
-    top: 2px;
-}
-
-.md-toc-item {
-    color: #A8C2DC;
-}
-
-#write div.md-toc-tooltip {
-    background-color: #363B40;
-}
-
-.dropdown-menu .btn:hover,
-.dropdown-menu .btn:focus,
-.md-toc .btn:hover,
-.md-toc .btn:focus {
-    color: white;
-    background: black;
-}
-
-#toc-dropmenu {
-    background: rgba(50, 54, 59, 0.93);
-    border: 1px solid rgba(253, 253, 253, 0.15);
-}
-
-#toc-dropmenu .divider {
-    background-color: #9b9b9b;
-}
-
-.outline-expander:before {
-    top: 2px;
-}
-
-#typora-sidebar {
-    box-shadow: none;
-    border-right: 1px dashed;
-    border-right: none;
-}
-
-.sidebar-tabs {
-    border-bottom:0;
-}
-
-#typora-sidebar:hover .outline-title-wrapper {
-    border-left: 1px dashed;
-}
-
-.outline-title-wrapper .btn {
-    color: inherit;
-}
-
-.outline-item:hover {
-    border-color: #363B40;
-    background-color: #363B40;
-    color: white;
-}
-
-h1.md-focus .md-attr,
-h2.md-focus .md-attr,
-h3.md-focus .md-attr,
-h4.md-focus .md-attr,
-h5.md-focus .md-attr,
-h6.md-focus .md-attr,
-.md-header-span .md-attr {
-    color: #8C8E92;
-    display: inline;
-}
-
-.md-comment {
-    color: #5a95e3;
-    opacity: 0.8;
-}
-
-.md-inline-math svg {
-    color: #b8bfc6;
-}
-
-#math-inline-preview .md-arrow:after {
-    background: black;
-}
-
-.modal-content {
-    background: var(--bg-color);
-    border: 0;
-}
-
-.modal-title {
-    font-size: 1.5em;
-}
-
-.modal-content input {
-    background-color: rgba(26, 21, 21, 0.51);
-    color: white;
-}
-
-.modal-content .input-group-addon {
-    color: white;
-}
-
-.modal-backdrop {
-    background-color: rgba(174, 174, 174, 0.7);
-}
-
-.modal-content .btn-primary {
-    border-color: var(--primary-color);
-}
-
-.md-table-resize-popover {
-    background-color: #333;
-}
-
-.form-inline .input-group .input-group-addon {
-    color: white;
-}
-
+/** ui for windows **/
 #md-searchpanel {
-    border-bottom: 1px dashed grey;
+    border-bottom: 1px solid #ccc;
 }
 
-/** UI for electron */
-
-.context-menu,
-#spell-check-panel,
-#footer-word-count-info {
-    background-color: #42464A;
+#md-searchpanel .btn {
+    border: 1px solid #ccc;
 }
 
-.context-menu.dropdown-menu .divider,
-.dropdown-menu .divider {
-    background-color: #777777;
-    opacity: 1;
+#md-notification:before {
+	top: 14px;
 }
 
-footer {
-    color: inherit;
-}
-
-@media (max-width: 1000px) {
-    footer {
-        border-top: none;
-    }
-    footer:hover {
-        color: inherit;
-    }
-}
-
-#file-info-file-path .file-info-field-value:hover {
-    background-color: #555;
-    color: #dedede;
-}
-
-.megamenu-content,
-.megamenu-opened header {
-    background: var(--bg-color);
-}
-
-.megamenu-menu-panel h2,
-.megamenu-menu-panel h1,
-.long-btn {
-    color: inherit;
-}
-
-.megamenu-menu-panel input[type='text'] {
-    background: inherit;
-    border: 0;
-    border-bottom: 1px solid;
-}
-
-#recent-file-panel-action-btn {
-    background: inherit;
-    border: 1px grey solid;
-}
-
-.megamenu-menu-panel .dropdown-menu > li > a {
-    color: inherit;
-    background-color: #2F353A;
-    text-decoration: none;
-}
-
-.megamenu-menu-panel table td:nth-child(1) {
-    color: inherit;
-    font-weight: bold;
-}
-
-.megamenu-menu-panel tbody tr:hover td:nth-child(1) {
-    color: white;
-}
-
-.modal-footer .btn-default, 
-.modal-footer .btn-primary,
-.modal-footer .btn-default:not(:hover) {
-    border: 1px solid;
-    border-color: transparent;
-}
-
-.btn-primary {
-    color: white;
-}
-
-.btn-default:hover, .btn-default:focus, .btn-default.focus, .btn-default:active, .btn-default.active, .open > .dropdown-toggle.btn-default {
-    color: white;
-    border: 1px solid #ddd;
-    background-color: inherit;
-}
-
-.modal-header {
-    border-bottom: 0;
-}
-
-.modal-footer {
-    border-top: 0;
-}
-
-#recent-file-panel tbody tr:nth-child(2n-1) {
-    background-color: transparent !important;
-}
-
-.megamenu-menu-panel tbody tr:hover td:nth-child(2) {
-    color: inherit;
+#md-notification {
+	background: #eee;
 }
 
 .megamenu-menu-panel .btn {
-    border: 1px solid #eee;
-    background: transparent;
+	border: 1px solid #ccc;
 }
 
-.mouse-hover .toolbar-icon.btn:hover,
-#w-full.mouse-hover,
-#w-pin.mouse-hover {
-    background-color: inherit;
+#typora-sidebar {
+	box-shadow: none;
 }
 
-.typora-node::-webkit-scrollbar {
-    width: 5px;
-}
-
-.typora-node::-webkit-scrollbar-thumb:vertical {
-    background: rgba(250, 250, 250, 0.3);
-}
-
-.typora-node::-webkit-scrollbar-thumb:vertical:active {
-    background: rgba(250, 250, 250, 0.5);
-}
-
-#w-unpin {
-    background-color: #4182c4;
-}
-
-#top-titlebar, #top-titlebar * {
-    color: var(--item-hover-text-color);
-}
-
-.typora-sourceview-on #toggle-sourceview-btn,
-#footer-word-count:hover,
-.ty-show-word-count #footer-word-count {
-    background: #333333;
-}
-
-#toggle-sourceview-btn:hover {
-    color: #eee;
-    background: #333333;
-}
-
-/** focus mode */
-.on-focus-mode .md-end-block:not(.md-focus):not(.md-focus-container) * {
-    color: #686868 !important;
-}
-
-.on-focus-mode .md-end-block:not(.md-focus) img,
-.on-focus-mode .md-task-list-item:not(.md-focus-container)>input {
-    opacity: #686868 !important;
-}
-
-.on-focus-mode li[cid]:not(.md-focus-container){
-    color: #686868;
-}
-
-.on-focus-mode .md-fences.md-focus .CodeMirror-code>*:not(.CodeMirror-activeline) *,
-.on-focus-mode .CodeMirror.cm-s-inner:not(.CodeMirror-focused) * {
-    color: #686868 !important;
-}
-
-.on-focus-mode .md-focus,
-.on-focus-mode .md-focus-container {
-    color: #fff;
-}
-
-.on-focus-mode #typora-source .CodeMirror-code>*:not(.CodeMirror-activeline) * {
-    color: #686868 !important;
-}
-
-
-/*diagrams*/
-#write .md-focus .md-diagram-panel {
-    border: 1px solid #ddd;
-    margin-left: -1px;
-    width: calc(100% + 2px);
-}
-
-/*diagrams*/
-#write .md-focus.md-fences-with-lineno .md-diagram-panel {
-    margin-left: auto;
-}
-
-.md-diagram-panel-error {
-    color: #f1908e;
-}
-
-.active-tab-files #info-panel-tab-file,
-.active-tab-files #info-panel-tab-file:hover,
-.active-tab-outline #info-panel-tab-outline,
-.active-tab-outline #info-panel-tab-outline:hover {
-    color: #eee;
-}
-
-.sidebar-footer-item:hover,
-.footer-item:hover {
-    background: inherit;
-    color: white;
-}
-
-.ty-side-sort-btn.active,
-.ty-side-sort-btn:hover,
-.selected-folder-menu-item a:after {
-    color: white;
-}
-
-#sidebar-files-menu {
-    border:solid 1px;
-    box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.79);
-    background-color: var(--bg-color);
-}
-
-.file-list-item {
-    border-bottom:none;
+.file-list-item ,
+.show-folder-name .file-list-item {
+	padding-top: 20px;
+	padding-bottom: 20px;
+	line-height: 20px;
 }
 
 .file-list-item-summary {
-    opacity: 1;
+	height: 40px;
+	line-height: 20px;
 }
 
-.file-list-item.active:first-child {
-    border-top: none;
+.ty-table-edit {
+	background: #ededed;
 }
 
-.file-node-background {
-    height: 32px;
+.dropdown-menu .divider {
+	border-color: #e5e5e5;
 }
-
-.file-library-node.active>.file-node-content,
-.file-list-item.active {
-    color: white;
-    color: var(--active-file-text-color);
-}
-
-.file-library-node.active>.file-node-background{
-    background-color: rgb(34, 34, 34);
-    background-color: var(--active-file-bg-color);
-}
-.file-list-item.active {
-    background-color: rgb(34, 34, 34);
-    background-color: var(--active-file-bg-color);
-}
-
-#ty-tooltip {
-    background-color: black;
-    color: #eee;
-}
-
-.md-task-list-item>input {
-    margin-left: -1.3em;
-    margin-top: 0.3rem;
-    -webkit-appearance: none;
-}
-
-.md-mathjax-midline {
-    background-color: #57616b;
-    border-bottom: none;
-}
-
-footer.ty-footer {
-    border-color: #656565;
-}
-
-.ty-preferences .btn-default {
-    background: transparent;
-}
-.ty-preferences .btn-default:hover {
-    background: #57616b;
-}
-
-.ty-preferences select {
-    border: 1px solid #989698;
-    height: 21px;
-}
-
-.ty-preferences .nav-group-item.active,
-.export-item.active,
-.export-items-list-control,
-.export-detail {
-    background: var(--item-hover-bg-color);
-}
-
-.ty-preferences input[type="search"] {
-    border-color: #333;
-    background: #333;
-    line-height: 22px;
-    border-radius: 6px;
-    color: white;
-}
-
-.ty-preferences input[type="search"]:focus {
-    box-shadow: none;
-}
-
-[data-is-directory="true"] .file-node-content {
-    margin-bottom: 0;
-}
-
-.file-node-title {
-    line-height: 22px;
-}
-
-.html-for-mac .file-node-open-state, .html-for-mac .file-node-icon {
-    line-height: 26px;
-}
-
-::-webkit-scrollbar-thumb {
-    background: rgba(230, 230, 230, 0.30);
-}
-
-::-webkit-scrollbar-thumb:active {
-    background: rgba(230, 230, 230, 0.50);
-}
-
-#typora-sidebar:hover div.sidebar-content-content::-webkit-scrollbar-thumb:horizontal {
-    background: rgba(230, 230, 230, 0.30);
-}
-
-.nav-group-item:active {
-    background-color: #474d54 !important;
-}
-
-.md-search-hit {
-    background: rgba(199, 140, 60, 0.81);
-    color: #eee;
-}
-
-.md-search-hit * {
-    color: #eee;
-}
-
-#md-searchpanel input {
-    color: white;
-}
-
-.modal-backdrop.in {
-    opacity: 1;
-    backdrop-filter: blur(1px);
-}
-
-.clear-btn-icon {
-    top: 8px;
-}
-
-/* try fix https://github.com/typora/typora-issues/issues/5253 */
-.file-node-expanded>.file-node-children {
-    display: grid;
-  }
 
  @media print { @page {margin: 0 0 0 0;} body.typora-export {padding-left: 0; padding-right: 0;} #write {padding:0;}}
 </style><title>index</title>
 </head>
 <body class='typora-export'><div class='typora-export-content'>
-<div id='write'  class=''><h1 id='centerwenkangcenter'><center><span>Wenkang</span></center></h1><blockquote><p><span>生活 Life，工作 Red Hat，记录 Recoding </span></p><p><span>兔兔 🐰 冲冲冲</span></p><p><span>大脑为高速缓存有缓存失效期(Expiraion Time)，本博客为磁盘持久化存储，写给失忆的自己 ：）</span></p></blockquote><hr /><div class='md-toc' mdtype='toc'><p class="md-toc-content" role="list"><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n266"><a class="md-toc-inner" style="" href="#centerwenkangcenter">Wenkang</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n274"><a class="md-toc-inner" style="" href="#centertechcenter">Tech</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n275"><a class="md-toc-inner" style="" href="#linux">Linux</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n287"><a class="md-toc-inner" style="" href="#commond-line">Commond Line</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n298"><a class="md-toc-inner" style="" href="#programing">Programing</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n307"><a class="md-toc-inner" style="" href="#network">Network</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n314"><a class="md-toc-inner" style="" href="#virtualization">Virtualization</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n325"><a class="md-toc-inner" style="" href="#centerdocumentcenter">Document</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n326"><a class="md-toc-inner" style="" href="#linux-2">Linux</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n330"><a class="md-toc-inner" style="" href="#red-hat">Red Hat</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n337"><a class="md-toc-inner" style="" href="#centerabout-mecenter">About me</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n360"><a class="md-toc-inner" style="" href="#centerpatchcenter">Patch</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n382"><a class="md-toc-inner" style="" href="#centerothercenter">Other</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n392"><a class="md-toc-inner" style="" href="#centerlinkscenter">Links</a></span></p></div><h2 id='centertechcenter'><center><span>Tech</span></center></h2><h3 id='linux'><span>Linux</span></h3><ul><li><p><a href='https://www.cnblogs.com/itxdm/p/filesystem_base_version.html'><span>文件系统基础版</span></a></p></li><li><p><a href='http://pic.jiwenkang.com/typora/202208281647545.png'><span>Linux 的启动流程图</span></a></p></li><li><p><a href='http://pic.jiwenkang.com/typora/202208221147727.png'><span>Linux 下 grub 引导修复</span></a></p></li><li><p><a href='https://linux.cn/article-7718-1.html'><span>如何将 Linux 系统转移至 LVM 卷</span></a></p></li><li><p><a href='https://www.cnblogs.com/itxdm/p/linuxdate_recover.html'><span>Linux 意外操作后如何进行数据抢救</span></a></p></li></ul><h3 id='commond-line'><span>Commond Line</span></h3><ul><li><p><a href='https://www.cnblogs.com/itxdm/p/5936907.html'><span>Linux 下 find 命令</span></a></p></li><li><p><a href='https://linux.cn/article-7475-1.html'><span>Linux 下 OpenSSH 高级运用两则</span></a></p></li><li><p><a href='https://www.cnblogs.com/itxdm/p/something_of_shellscirpt.html'><span>Linux 下 Shell 脚本几种基本命令替换区别</span></a></p></li><li><p><a href='https://cdn.jiwenkang.com/BashShell/index.html'><span>Linux 下 Shell 脚本的基础/高级编程</span></a></p></li></ul><h3 id='programing'><span>Programing</span></h3><ul><li><p><a href='https://www.cnblogs.com/itxdm/p/c_pointer2.html'><span>一文让你明白C语言中的指针 </span></a></p></li><li><p><a href='https://www.cnblogs.com/itxdm/p/c_pointer_of_pointer.html'><span>C 语言中指针的指针究竟是个啥</span></a></p></li><li><p><a href='https://www.cnblogs.com/itxdm/p/C_language_struct_structure.html'><span>C 语言 struct 结构体</span></a></p></li><li><p><a href='https://www.cnblogs.com/itxdm/p/c_visiting_from_function.html'><span>C 语言之函数访问 </span></a></p></li></ul><h3 id='network'><span>Network</span></h3><ul><li><p><a href='https://www.cnblogs.com/itxdm/p/6087727.html'><span>网络基础：IP地址子网划分</span></a></p></li><li><p><a href='https://www.cnblogs.com/itxdm/p/Remember_to_use_a_network_device_to_find_a_host_in_a_black_box_environment.html'><span>记一次在黑盒环境下使用网络设备寻找主机</span></a></p></li></ul><h3 id='virtualization'><span>Virtualization</span></h3><ul><li><p><a href='https://www.bilibili.com/video/BV12G411p7JW'><span>虚拟化介绍</span></a></p></li><li><p><a href='https://cdn.jiwenkang.com/QEMU.html'><span>虚拟化文字稿</span></a></p></li><li><p><a href='https://www.bilibili.com/video/BV1cd4y1D7MW'><span>OpenShift CNV</span></a></p></li><li><p><a href='https://www.bilibili.com/video/BV1TV4y1u7hg/'><span>OpenShift 介绍</span></a></p></li></ul><p>&nbsp;</p><h2 id='centerdocumentcenter'><center><span>Document</span></center></h2><h3 id='linux-2'><span>Linux</span></h3><ul><li><p><a href='https://man.cx/'><span>Manpages</span></a></p></li></ul><h3 id='red-hat'><span>Red Hat</span></h3><ul><li><p><a href='https://access.redhat.com/downloads/content/package-browser'><span>Red Hat 软件包</span></a></p></li><li><p><a href='https://access.redhat.com/products/'><span>所有红帽产品和文档</span></a></p></li></ul><p>&nbsp;</p><h2 id='centerabout-mecenter'><center><span>About me</span></center></h2><ul><li><p><del><span>四年兔兔铲屎官 🐰</span></del></p><ul><li><p><span>Tips：兔子是非常聪明的宠物，饲养需要多喂水，大量供草，尽早绝育。</span></p></li></ul></li><li><p><span>99后，沪342，</span><del><span>前交大 sjtu 讲师</span></del><span>，</span><del><span>前 linux.cn 开发组成员</span></del><span>，现 Red Hat 虚拟化团队员工（IBM 为 Red Hat 母公司）</span></p><ul><li><p><span>Bilibili：</span><a href='https://www.bilibili.com/video/BV1iR4y1c7o4'><span>文康的读书经历 </span></a><span>（欢迎一键三连）</span></p></li></ul></li><li><p><span>拥有</span><a href='https://www.cnblogs.com/itxdm'><span>博客园</span></a><span> 6 年撰稿经验，50w 阅读量技术博主。</span></p></li><li><p><del><span>一线城市培训机构 5 年讲师（截止23年）</span></del><span>。</span></p><ul><li><p><span>目前已培训超 1w 名工程师，遍布各大高校、电信、金融、电商等相关行业。</span></p></li><li><p><span>具有 HCIP RHCA ISTQB 等职业认证，多门满分通过。</span></p></li></ul></li><li><p><span>恋爱中 —— 莎莎。</span></p></li></ul><p>&nbsp;</p><h2 id='centerpatchcenter'><center><span>Patch</span></center></h2><ul><li><p><span>人生第一个 Patch：</span><a href='https://github.com/LCTT/TranslateProject/pull/4084'><span>Linux 社区翻译</span></a></p></li><li><p><span>技术第一个 Patch：</span><a href='https://github.com/ovn-org/ovn-kubernetes/commit/8c149e5ecbf49d96f2dc95af4d5fdad3f74b18df'><span>K8S 文档修复</span></a></p></li><li><p><span>合作第一个 Patch：</span><a href='https://github.com/thiagoralves/OpenPLC_v3/pull/201'><span>OpenPLC RT 支持</span></a></p><ul><li><p><a href='https://www.bilibili.com/video/BV1eT411C7qA/'><span>OpenPLC RealTime tests</span></a></p></li></ul></li><li><p><span>目前主要工作在以下项目中：</span></p><ul><li><p><a href='https://github.com/avocado-framework/avocado-vt/'><span>avocado-framework</span></a></p></li><li><p><a href='https://github.com/autotest/tp-qemu/'><span>tp-qemu</span></a></p></li><li><p><a href='https://github.com/virtio-win/'><span>virtio-win</span></a></p></li></ul></li></ul><p>&nbsp;</p><h2 id='centerothercenter'><center><span>Other</span></center></h2><ul><li><p><span>这是我梦想开始的地方：星光杯 &amp; 红亚杯</span></p><ul><li><p><a href='guosai/国赛-compressed.pdf'><span>2015年全国职业院校技能大赛网络搭建与应用竞赛</span></a></p></li></ul></li><li><p><span>衷心感谢上海科技管理学校——饶文老师</span></p></li></ul><p>&nbsp;</p><h2 id='centerlinkscenter'><center><span>Links</span></center></h2><ul><li><p><a href='https://ccav.me/'><span>CCAV</span></a></p></li><li><p><a href='https://www.h0u5er.com/'><span>h0u5er</span></a></p></li><li><p><a href='https://www.ssout.top/'><span>fishstar</span></a></p></li><li><p><a href='https://www.gaoxinming.com/'><span>xiaoming</span></a></p></li></ul><hr /><div>
+<div id='write'  class=''><h1 id='centerwenkang--wecomcenter'><center><span>Wenkang / Wecom</span></center></h1><blockquote><p><span>生活 Life，工作 Red Hat，记录 Recoding </span></p><p><span>兔兔 🐰 冲冲冲</span></p><p><span>大脑为高速缓存有缓存失效期(Expiraion Time)，本博客为磁盘持久化存储，写给失忆的自己 ：）</span></p></blockquote><hr /><div class='md-toc' mdtype='toc'><p class="md-toc-content" role="list"><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n0"><a class="md-toc-inner" style="" href="#centerwenkang--wecomcenter">Wenkang / Wecom</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n8"><a class="md-toc-inner" style="" href="#centertechcenter">Tech</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n9"><a class="md-toc-inner" style="" href="#linux">Linux</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n21"><a class="md-toc-inner" style="" href="#commond-line">Commond Line</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n32"><a class="md-toc-inner" style="" href="#programing">Programing</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n41"><a class="md-toc-inner" style="" href="#network">Network</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n48"><a class="md-toc-inner" style="" href="#virtualization">Virtualization</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n59"><a class="md-toc-inner" style="" href="#centerdocumentcenter">Document</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n60"><a class="md-toc-inner" style="" href="#linux-2">Linux</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n64"><a class="md-toc-inner" style="" href="#red-hat">Red Hat</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n78"><a class="md-toc-inner" style="" href="#centerabout-mecenter">About me</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n102"><a class="md-toc-inner" style="" href="#centerpatchescenter">Patches</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n124"><a class="md-toc-inner" style="" href="#centerotherscenter">Others</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n140"><a class="md-toc-inner" style="" href="#centerlinkscenter">Links</a></span></p></div><h2 id='centertechcenter'><center><span>Tech</span></center></h2><h3 id='linux'><span>Linux</span></h3><ul><li><p><a href='https://www.cnblogs.com/itxdm/p/filesystem_base_version.html'><span>文件系统基础版</span></a></p></li><li><p><a href='http://pic.jiwenkang.com/typora/202208281647545.png'><span>Linux 的启动流程图</span></a></p></li><li><p><a href='http://pic.jiwenkang.com/typora/202208221147727.png'><span>Linux 下 grub 引导修复</span></a></p></li><li><p><a href='https://linux.cn/article-7718-1.html'><span>如何将 Linux 系统转移至 LVM 卷</span></a></p></li><li><p><a href='https://www.cnblogs.com/itxdm/p/linuxdate_recover.html'><span>Linux 意外操作后如何进行数据抢救</span></a></p></li></ul><h3 id='commond-line'><span>Commond Line</span></h3><ul><li><p><a href='https://www.cnblogs.com/itxdm/p/5936907.html'><span>Linux 下 find 命令</span></a></p></li><li><p><a href='https://linux.cn/article-7475-1.html'><span>Linux 下 OpenSSH 高级运用两则</span></a></p></li><li><p><a href='https://www.cnblogs.com/itxdm/p/something_of_shellscirpt.html'><span>Linux 下 Shell 脚本几种基本命令替换区别</span></a></p></li><li><p><a href='https://cdn.jiwenkang.com/BashShell/index.html'><span>Linux 下 Shell 脚本的基础/高级编程</span></a></p></li></ul><h3 id='programing'><span>Programing</span></h3><ul><li><p><a href='https://www.cnblogs.com/itxdm/p/c_pointer2.html'><span>一文让你明白C语言中的指针 </span></a></p></li><li><p><a href='https://www.cnblogs.com/itxdm/p/c_pointer_of_pointer.html'><span>C 语言中指针的指针究竟是个啥</span></a></p></li><li><p><a href='https://www.cnblogs.com/itxdm/p/C_language_struct_structure.html'><span>C 语言 struct 结构体</span></a></p></li><li><p><a href='https://www.cnblogs.com/itxdm/p/c_visiting_from_function.html'><span>C 语言之函数访问 </span></a></p></li></ul><h3 id='network'><span>Network</span></h3><ul><li><p><a href='https://www.cnblogs.com/itxdm/p/6087727.html'><span>网络基础：IP地址子网划分</span></a></p></li><li><p><a href='https://www.cnblogs.com/itxdm/p/Remember_to_use_a_network_device_to_find_a_host_in_a_black_box_environment.html'><span>记一次在黑盒环境下使用网络设备寻找主机</span></a></p></li></ul><h3 id='virtualization'><span>Virtualization</span></h3><ul><li><p><a href='https://www.bilibili.com/video/BV12G411p7JW'><span>虚拟化介绍</span></a></p></li><li><p><a href='https://cdn.jiwenkang.com/QEMU.html'><span>虚拟化文字稿</span></a></p></li><li><p><a href='https://www.bilibili.com/video/BV1cd4y1D7MW'><span>OpenShift CNV</span></a></p></li><li><p><a href='https://www.bilibili.com/video/BV1TV4y1u7hg/'><span>OpenShift 介绍</span></a></p></li></ul><p>&nbsp;</p><h2 id='centerdocumentcenter'><center><span>Document</span></center></h2><h3 id='linux-2'><span>Linux</span></h3><ul><li><p><a href='https://man.cx/'><span>Manpages</span></a></p></li></ul><h3 id='red-hat'><span>Red Hat</span></h3><ul><li><p><a href='https://access.redhat.com/products/'><span>所有红帽产品和文档</span></a></p></li><li><p><a href='https://access.redhat.com/downloads/content/package-browser'><span>Red Hat 软件包</span></a></p><ul><li><p><a href='https://access.redhat.com/management/subscriptions'><span>付费订阅查询</span></a></p></li><li><p><a href='https://access.redhat.com/downloads/content/rhel'><span>操作系统下载</span></a></p></li></ul></li><li><p><a href='https://www.credly.com/earner/earned'><span>证书查询</span></a></p></li></ul><div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="fd817161-668d-40ed-9dd3-3678cdb35a6c" data-share-badge-host="https://www.credly.com"></div><script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script><h2 id='centerabout-mecenter'><center><span>About me</span></center></h2><ul><li><p><del><span>四年兔兔铲屎官 🐰</span></del></p><ul><li><p><span>Tips：兔子是非常聪明的宠物，饲养需要多喂水，大量供草，尽早绝育。</span></p></li></ul></li><li><p><span>95后，沪342，</span><del><span>前交大 sjtu 讲师</span></del><span>，</span><del><span>前 </span><a href='https://linux.cn'><span>linux.cn</span></a><span> 开发组成员</span></del><span>，现 Red Hat 虚拟化团队员工（IBM 为 Red Hat 母公司）</span></p><ul><li><p><span>Bilibili：</span><a href='https://www.bilibili.com/video/BV1iR4y1c7o4'><span>文康的读书经历 </span></a><span>（欢迎一键三连）</span></p></li></ul></li><li><p><span>拥有</span><a href='https://www.cnblogs.com/itxdm'><span>博客园</span></a><span> 6 年撰稿经验，50w 阅读量技术博主。</span></p></li><li><p><del><span>一线城市培训机构 5 年讲师（截止23年）</span></del><span>。</span></p><ul><li><p><span>目前已培训超 1w 名工程师，遍布各大高校、电信、金融、电商等相关行业。</span></p></li><li><p><span>具有 HCIP RHCA ISTQB 等职业认证，多门满分通过。</span></p></li></ul></li><li><p><span>恋爱中 —— 莎莎。</span></p></li></ul><h2 id='centerpatchescenter'><center><span>Patches</span></center></h2><ul><li><p><span>人生第一个 Patch：</span><a href='https://github.com/LCTT/TranslateProject/pull/4084'><span>Linux 社区翻译</span></a></p></li><li><p><span>第一个技术 Patch：</span><a href='https://github.com/ovn-org/ovn-kubernetes/commit/8c149e5ecbf49d96f2dc95af4d5fdad3f74b18df'><span>K8S 文档修复</span></a></p></li><li><p><span>合作研究的 Patch：</span><a href='https://github.com/thiagoralves/OpenPLC_v3/pull/201'><span>OpenPLC RT 支持</span></a></p><ul><li><p><span>OpenPLC 介绍：[OpenPLC RealTime tests](</span><a href='https://www.bilibili.com/video/BV1eT411C7qA/' target='_blank' class='url'>https://www.bilibili.com/video/BV1eT411C7qA/</a></p></li></ul></li><li><p><span>工作在以下项目中：</span></p><ul><li><p><a href='https://github.com/avocado-framework/avocado-vt/'><span>avocado-framework</span></a></p></li><li><p><a href='https://github.com/autotest/tp-qemu/'><span>tp-qemu</span></a></p></li><li><p><a href='https://github.com/virtio-win/'><span>virtio-win</span></a></p></li></ul></li></ul><p>&nbsp;</p><h2 id='centerotherscenter'><center><span>Others</span></center></h2><ul><li><p><span>梦想开始的地方：星光杯 &amp; 红亚杯</span></p><ul><li><p><a href='guosai/国赛-compressed.pdf'><span>2015年全国职业院校技能大赛网络搭建与应用竞赛</span></a></p></li></ul></li><li><p><span>衷心感谢的师傅：饶文老师 &amp; 贺老师</span></p><ul><li><p><span>上海科技管理学校——饶文老师，带领我进入 Linux 的世界。</span></p></li><li><p><span>红帽 GLS 团队——贺老师，指引我进入 Red Hat 公司。</span></p></li></ul></li></ul><p>&nbsp;</p><h2 id='centerlinkscenter'><center><span>Links</span></center></h2><ul><li><p><a href='https://ccav.me/'><span>CCAV</span></a></p></li><li><p><a href='https://www.h0u5er.com/'><span>h0u5er</span></a></p></li><li><p><a href='https://www.ssout.top/'><span>fishstar</span></a></p></li><li><p><a href='https://www.gaoxinming.com/'><span>xiaoming</span></a></p></li></ul><hr /><div>
         <a class="banquan" style="color:#000; text-decoration:none;" href="https://beian.miit.gov.cn/#/Integrated/index" target="_blank">沪ICP备18021942号-2</a>
         <div class="footer-support"><span>本网站由</span><a class="footer-support-logo" href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referral" target="blank" title="又拍云"><img height="30" src="https://cdn.yunyoujun.cn/img/logo/upyun-logo.png" alt="又拍云"></a><span>提供 CDN 加速</span></div><p>&nbsp;</p></div></div>
 </body>

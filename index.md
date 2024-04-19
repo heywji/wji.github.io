@@ -1,4 +1,4 @@
-# <center>Wenkang</center>
+# <center>Wenkang / Wecom</center>
 
 > 生活 Life，工作 Red Hat，记录 Recoding 
 >
@@ -56,18 +56,21 @@
 - [Manpages](https://man.cx/)
 
 ### Red Hat
-- [Red Hat 软件包](https://access.redhat.com/downloads/content/package-browser)
 - [所有红帽产品和文档](https://access.redhat.com/products/)
+- [Red Hat 软件包](https://access.redhat.com/downloads/content/package-browser)
+  - [付费订阅查询](https://access.redhat.com/management/subscriptions)
+  - [操作系统下载](https://access.redhat.com/downloads/content/rhel)
 
+- [证书查询](https://www.credly.com/earner/earned)
 
+<div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="fd817161-668d-40ed-9dd3-3678cdb35a6c" data-share-badge-host="https://www.credly.com"></div><script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
 
 ## <center>About me</center>
 
 - ~~四年兔兔铲屎官 🐰~~
   - Tips：兔子是非常聪明的宠物，饲养需要多喂水，大量供草，尽早绝育。
-- 99后，沪342，~~前交大 sjtu 讲师~~，~~前 linux.cn 开发组成员~~，现 Red Hat 虚拟化团队员工（IBM 为 Red Hat 母公司）
+- 95后，沪342，~~前交大 sjtu 讲师~~，~~前 [linux.cn](https://linux.cn) 开发组成员~~，现 Red Hat 虚拟化团队员工（IBM 为 Red Hat 母公司）
   - Bilibili：[文康的读书经历 ](https://www.bilibili.com/video/BV1iR4y1c7o4)（欢迎一键三连）
-
 - 拥有[博客园](https://www.cnblogs.com/itxdm) 6 年撰稿经验，50w 阅读量技术博主。
 - ~~一线城市培训机构 5 年讲师（截止23年）~~。
   - 目前已培训超 1w 名工程师，遍布各大高校、电信、金融、电商等相关行业。
@@ -75,15 +78,13 @@
 - 恋爱中 —— 莎莎。
 
 
-
-## <center>Patch</center>
+## <center>Patches</center>
 
 - 人生第一个 Patch：[Linux 社区翻译](https://github.com/LCTT/TranslateProject/pull/4084)
-- 技术第一个 Patch：[K8S 文档修复](https://github.com/ovn-org/ovn-kubernetes/commit/8c149e5ecbf49d96f2dc95af4d5fdad3f74b18df)
-- 合作第一个 Patch：[OpenPLC RT 支持](https://github.com/thiagoralves/OpenPLC_v3/pull/201)
-  - [OpenPLC RealTime tests](https://www.bilibili.com/video/BV1eT411C7qA/)
-
-- 目前主要工作在以下项目中：
+- 第一个技术 Patch：[K8S 文档修复](https://github.com/ovn-org/ovn-kubernetes/commit/8c149e5ecbf49d96f2dc95af4d5fdad3f74b18df)
+- 合作研究的 Patch：[OpenPLC RT 支持](https://github.com/thiagoralves/OpenPLC_v3/pull/201)
+  - OpenPLC 介绍：[OpenPLC RealTime tests](https://www.bilibili.com/video/BV1eT411C7qA/
+- 工作在以下项目中：
   - [avocado-framework](https://github.com/avocado-framework/avocado-vt/)
   - [tp-qemu](https://github.com/autotest/tp-qemu/)
   - [virtio-win](https://github.com/virtio-win/)
@@ -91,12 +92,16 @@
 
 
 
-## <center>Other</center>
+## <center>Others</center>
 
-- 这是我梦想开始的地方：星光杯 & 红亚杯
+- 梦想开始的地方：星光杯 & 红亚杯
   - [2015年全国职业院校技能大赛网络搭建与应用竞赛](guosai/国赛-compressed.pdf)
 
-- 衷心感谢上海科技管理学校——饶文老师
+- 衷心感谢的师傅：饶文老师 & 贺老师
+  - 上海科技管理学校——饶文老师，带领我进入 Linux 的世界。
+
+  - 红帽 GLS 团队——贺老师，指引我进入 Red Hat 公司。
+
 
 
 
