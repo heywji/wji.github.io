@@ -3,11 +3,11 @@
 <head>
 <meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
 
-<style type='text/css'>html {overflow-x: initial !important;}:root { --mermaid-theme: default; --mermaid-sequence-numbers: off; --mermaid-flowchart-curve: linear; --mermaid--gantt-left-padding: 75; --sequence-theme: simple; }
+<link href='https://fonts.googleapis.com/css?family=Didact+Gothic&display=swap&subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --mermaid-theme: default; --mermaid-sequence-numbers: off; --mermaid-flowchart-curve: linear; --mermaid--gantt-left-padding: 75; --sequence-theme: simple; }
 .tooltip[data-v-70836592] { cursor: pointer; position: relative; display: block; width: 100%; text-align: center; z-index: 10; }
 .tooltip span[data-v-70836592] { border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: currentcolor; }
 .tooltip[data-v-70836592]::after { display: none; content: attr(data-tooltip); background: rgb(232, 233, 233); max-width: 500px; width: 200px; position: absolute; left: -200px; right: 0px; margin: auto; opacity: 0; height: auto; font-size: 14px; padding: 10px; border-radius: 4px; color: rgb(17, 17, 17); text-align: left; }
-.tooltip.bottom[data-v-70836592]::after { top: 80%; transition: opacity 0.3s 0.3s, top 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.3s; }
+.tooltip.bottom[data-v-70836592]::after { top: 80%; transition: opacity 0.3s ease 0.3s, top 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.3s; }
 .tooltip.bottom[data-v-70836592]:hover::after { display: block; top: 130%; opacity: 1; }
 .lifeline .line[data-v-6efc771f] { background-size: 1px 20px; }
 .zenuml .interaction { border: 0px dashed transparent; }
@@ -44,9 +44,7 @@
 .theme-anz .fragment .header { color: rgb(255, 255, 255); }
 .theme-nab { --color-bg-canvas: #f2f4f6; --color-bg-participant: #c30000; --color-text-participant: #ffffff; --color-border-participant: #c30000; --color-text-message: #c30000; --color-bg-fragment-header: #c30000; --color-text-fragment-header: #ffffff; }
 .theme-google { --color-white: #ffffff; --color-red-google: #db4437; --color-blue-google: #4285f4; --color-green-google: #0f9d58; --color-yellow-google: #f4b400; --color-bg-canvas: var(--color-white); --color-bg-frame: #f2f4f6; --color-border-frame: #4285f4; --color-bg-title: #4285f4; --color-text-title: #ffffff; --color-bg-participant: var(--color-red-google); --color-text-participant: #ffffff; --color-border-participant: #4285f4; --color-text-message: var(--color-red-google); --color-message-arrow: var(--color-red-google); --color-bg-message-hover: #fffefb; --color-text-message-hover: #ffffff; --color-text-comment: #000000; --color-bg-fragment-header: var(--color-green-google); --color-text-fragment: #ffffff; --color-border-fragment: #4285f4; --color-bg-occurrence: #f4b400; --color-border-occurrence: #4285f4; --color-text-link: #c9d8e7; --color-text-control: #335c80; }
-*, ::before, ::after { --tw-border-spacing-x: 0; --tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / 0.5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; }
-::-webkit-backdrop { --tw-border-spacing-x: 0; --tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / 0.5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; }
-::backdrop { --tw-border-spacing-x: 0; --tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / 0.5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; }
+:root { --tw-border-spacing-x: 0; --tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / 0.5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; }
 .container { width: 100%; }
 @media (min-width: 640px) {
   .container { max-width: 640px; }
@@ -334,7 +332,7 @@
 .zenuml ::-webkit-inner-spin-button, .zenuml ::-webkit-outer-spin-button { height: auto; }
 .zenuml [type="search"] { appearance: textfield; outline-offset: -2px; }
 .zenuml ::-webkit-search-decoration { appearance: none; }
-.zenuml ::-webkit-file-upload-button { appearance: button; font-style: inherit; font-variant-caps: inherit; font-weight: inherit; font-stretch: inherit; font-size: inherit; line-height: inherit; font-family: inherit; font-size-adjust: inherit; font-kerning: inherit; font-variant-alternates: inherit; font-variant-ligatures: inherit; font-variant-numeric: inherit; font-variant-east-asian: inherit; font-variant-position: inherit; font-feature-settings: inherit; font-optical-sizing: inherit; font-variation-settings: inherit; }
+.zenuml ::-webkit-file-upload-button { appearance: button; font-style: inherit; font-variant-caps: inherit; font-weight: inherit; font-stretch: inherit; font-size: inherit; line-height: inherit; font-family: inherit; font-size-adjust: inherit; font-kerning: inherit; font-variant-alternates: inherit; font-variant-ligatures: inherit; font-variant-numeric: inherit; font-variant-east-asian: inherit; font-variant-position: inherit; font-variant-emoji: inherit; font-feature-settings: inherit; font-optical-sizing: inherit; font-variation-settings: inherit; }
 .zenuml summary { display: list-item; }
 .zenuml blockquote, .zenuml dl, .zenuml dd, .zenuml h1, .zenuml h2, .zenuml h3, .zenuml h4, .zenuml h5, .zenuml h6, .zenuml hr, .zenuml figure, .zenuml p, .zenuml pre { margin: 0px; }
 .zenuml fieldset { margin: 0px; padding: 0px; }
@@ -475,7 +473,7 @@ body.typora-export { padding-left: 30px; padding-right: 30px; }
 #write li > figure:last-child { margin-bottom: 0.5rem; }
 #write ol, #write ul { position: relative; }
 img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
-button, input, select, textarea { color: inherit; font-style: inherit; font-variant-caps: inherit; font-weight: inherit; font-stretch: inherit; font-size: inherit; line-height: inherit; font-family: inherit; font-size-adjust: inherit; font-kerning: inherit; font-variant-alternates: inherit; font-variant-ligatures: inherit; font-variant-numeric: inherit; font-variant-east-asian: inherit; font-variant-position: inherit; font-feature-settings: inherit; font-optical-sizing: inherit; font-variation-settings: inherit; }
+button, input, select, textarea { color: inherit; font-style: inherit; font-variant-caps: inherit; font-weight: inherit; font-stretch: inherit; font-size: inherit; line-height: inherit; font-family: inherit; font-size-adjust: inherit; font-kerning: inherit; font-variant-alternates: inherit; font-variant-ligatures: inherit; font-variant-numeric: inherit; font-variant-east-asian: inherit; font-variant-position: inherit; font-variant-emoji: inherit; font-feature-settings: inherit; font-optical-sizing: inherit; font-variation-settings: inherit; }
 input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
 *, ::after, ::before { box-sizing: border-box; }
 #write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
@@ -651,6 +649,20 @@ mark .md-meta { color: rgb(0, 0, 0); }
 .typora-export-show-outline .outline-item-active > .outline-item .outline-label { font-weight: 700; }
 .md-inline-math-container mjx-container { zoom: 0.95; }
 mjx-container { break-inside: avoid; }
+.md-alert.md-alert-note { border-left-color: rgb(9, 105, 218); }
+.md-alert.md-alert-important { border-left-color: rgb(130, 80, 223); }
+.md-alert.md-alert-warning { border-left-color: rgb(154, 103, 0); }
+.md-alert.md-alert-tip { border-left-color: rgb(31, 136, 61); }
+.md-alert.md-alert-caution { border-left-color: rgb(207, 34, 46); }
+.md-alert { padding: 0px 1em; margin-bottom: 16px; color: inherit; border-left-width: 0.25em; border-left-style: solid; border-left-color: rgb(0, 0, 0); }
+.md-alert-text-note { color: rgb(9, 105, 218); }
+.md-alert-text-important { color: rgb(130, 80, 223); }
+.md-alert-text-warning { color: rgb(154, 103, 0); }
+.md-alert-text-tip { color: rgb(31, 136, 61); }
+.md-alert-text-caution { color: rgb(207, 34, 46); }
+.md-alert-text { font-size: 0.9rem; font-weight: 700; }
+.md-alert-text svg { fill: currentcolor; position: relative; top: 0.125em; margin-right: 1ch; overflow: visible; }
+.md-alert-text-container::after { content: attr(data-text); text-transform: capitalize; pointer-events: none; margin-right: 1ch; }
 
 
 .CodeMirror { height: auto; }
@@ -734,213 +746,51 @@ span.cm-strikethrough { text-decoration: line-through; }
 }
 
 
+@include-when-export url(https://fonts.googleapis.com/css?family=Didact+Gothic&display=swap&subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext);
+
+/* cyrillic-ext */
+/* cyrillic */
 :root {
-  --mermaid-theme: night;
+	--window-border: none;
+	--typora-center-window-title: true;
+	--active-file-bg-color: #f3f3f3;
+	--bg-color: #fcfcfc;
+	--control-text-color: #777;
 }
 
-[lang='mermaid'] .label {
-  color: #333;
-}
-
-/* CSS Document */
-
-/** code highlight */
-
-.cm-s-inner .cm-variable,
-.cm-s-inner .cm-operator,
-.cm-s-inner .cm-property {
-    color: #b8bfc6;
-}
-
-.cm-s-inner .cm-keyword {
-    color: #C88FD0;
-}
-
-.cm-s-inner .cm-tag {
-    color: #7DF46A;
-}
-
-.cm-s-inner .cm-attribute {
-    color: #7575E4;
-}
-
-.CodeMirror div.CodeMirror-cursor {
-    border-left: 1px solid #b8bfc6;
-    z-index: 3;
-}
-
-.cm-s-inner .cm-string {
-    color: #D26B6B;
-}
-
-.cm-s-inner .cm-comment,
-.cm-s-inner.cm-comment {
-    color: #DA924A;
-}
-
-.cm-s-inner .cm-header,
-.cm-s-inner .cm-def,
-.cm-s-inner.cm-header,
-.cm-s-inner.cm-def {
-    color: #8d8df0;
-}
-
-.cm-s-inner .cm-quote,
-.cm-s-inner.cm-quote {
-    color: #57ac57;
-}
-
-.cm-s-inner .cm-hr {
-    color: #d8d5d5;
-}
-
-.cm-s-inner .cm-link {
-    color: #d3d3ef;
-}
-
-.cm-s-inner .cm-negative {
-    color: #d95050;
-}
-
-.cm-s-inner .cm-positive {
-    color: #50e650;
-}
-
-.cm-s-inner .cm-string-2 {
-    color: #f50;
-}
-
-.cm-s-inner .cm-meta,
-.cm-s-inner .cm-qualifier {
-    color: #b7b3b3;
-}
-
-.cm-s-inner .cm-builtin {
-    color: #f3b3f8;
-}
-
-.cm-s-inner .cm-bracket {
-    color: #997;
-}
-
-.cm-s-inner .cm-atom,
-.cm-s-inner.cm-atom {
-    color: #84B6CB;
-}
-
-.cm-s-inner .cm-number {
-    color: #64AB8F;
-}
-
-.cm-s-inner .cm-variable {
-    color: #b8bfc6;
-}
-
-.cm-s-inner .cm-variable-2 {
-    color: #9FBAD5;
-}
-
-.cm-s-inner .cm-variable-3 {
-    color: #1cc685;
-}
-
-.CodeMirror-selectedtext,
-.CodeMirror-selected {
-    background: #4a89dc;
-    color: #fff !important;
-    text-shadow: none;
-}
-
-.CodeMirror-gutters {
-    border-right: none;
-}
-
-/* CSS Document */
-
-/** markdown source **/
-.cm-s-typora-default .cm-header, 
-.cm-s-typora-default .cm-property
-{
-    color: #cebcca;
-}
-
-.CodeMirror.cm-s-typora-default div.CodeMirror-cursor{
-    border-left: 3px solid #b8bfc6;
-}
-
-.cm-s-typora-default .cm-comment {
-    color: #9FB1FF;
-}
-
-.cm-s-typora-default .cm-string {
-    color: #A7A7D9
-}
-
-.cm-s-typora-default .cm-atom, .cm-s-typora-default .cm-number {
-    color: #848695;
-    font-style: italic;
-}
-
-.cm-s-typora-default .cm-link {
-    color: #95B94B;
-}
-
-.cm-s-typora-default .CodeMirror-activeline-background {
-    background: rgba(51, 51, 51, 0.72);
-}
-
-.cm-s-typora-default .cm-comment, .cm-s-typora-default .cm-code {
-	color: #8aa1e1;
-}@import "";
-@import "";
-@import "";
-
-:root {
-    --bg-color:  #363B40;
-    --side-bar-bg-color: #2E3033;
-    --text-color: #b8bfc6;
-
-    --select-text-bg-color:#4a89dc;
-
-    --item-hover-bg-color: #0a0d16;
-    --control-text-color: #b7b7b7;
-    --control-text-hover-color: #eee;
-    --window-border: 1px solid #555;
-
-    --active-file-bg-color: rgb(34, 34, 34);
-    --active-file-border-color: #8d8df0;
-
-    --primary-color: #a3d5fe;
-
-    --active-file-text-color: white;
-    --item-hover-bg-color: #70717d;
-    --item-hover-text-color: white;
-    --primary-color: #6dc1e7;
-
-    --rawblock-edit-panel-bd: #333;
-
-    --search-select-bg-color: #428bca;
-}
-
-html {
-    font-size: 16px;
-    -webkit-font-smoothing: antialiased;
+.mac-seamless-mode #typora-sidebar {
+	top: 20px;
+	padding-top: 0;
+	height: auto;
 }
 
 html,
-body {
-    -webkit-text-size-adjust: 100%;
-    -ms-text-size-adjust: 100%;
-    background: #363B40;
-    background: var(--bg-color);
-    fill: currentColor;
-    line-height: 1.625rem;
+body,
+#write{
+	background: #fcfcfc;
+	background: var(--bg-color);
+	font-family: 'TeXGyreAdventor', "Century Gothic", "Didact Gothic", "Yu Gothic", 'Segoe UI Emoji', sans-serif;
+	font-weight: 300;
+	-webkit-font-smoothing: antialiased;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	color: #111;
+	font-family: 'TeXGyreAdventor', "Century Gothic", "Didact Gothic", "Yu Gothic", sans-serif;
+}
+
+html {
+	font-size:16px;
 }
 
 #write {
-    max-width: 914px;
+	max-width: 914px;
+	text-align: justify;
 }
-
 
 @media only screen and (min-width: 1400px) {
 	#write {
@@ -948,976 +798,323 @@ body {
 	}
 }
 
-@media only screen and (min-width: 1800px) {
-	#write {
-		max-width: 1200px;
+#write>h1:first-child {
+	margin-top: 2.75rem;
+}
+#write>h2:first-child {
+	margin-top: 1.75rem;
+}
+#write>h3:first-child {
+	margin-top: 1rem;
+}
+#write>h4:first-child {
+	margin-top: 0.5rem;
+}
+h1 {
+	font-weight: normal;
+	line-height: 4rem;
+	margin: 0 0 1.75rem;
+	padding: 20px 30px;
+	text-align: center;
+	text-transform: uppercase;
+	margin-top: 4rem;
+}
+h2 {
+	font-weight: normal;
+	line-height: 3rem;
+	margin: 0 0 1.9375rem;
+	padding: 0 30px;
+	text-align: center;
+	text-transform: uppercase;
+	margin-top: 3rem
+}
+h3 {
+	font-weight: normal;
+}
+h4 {
+	font-weight: normal;
+}
+h5 {
+	font-size: 1.125rem;
+	font-weight: normal;
+}
+h6 {
+	font-size: 1rem;
+	font-weight: bold;
+}
+p {
+	color: #111;
+	font-size: 1rem;
+	line-height: 1.75rem;
+	margin: 0 0 1.25rem;
+}
+#write>h3.md-focus:before {
+	left: -1.875rem;
+	top: 0.5rem;
+	padding: 2px;
+}
+#write>h4.md-focus:before {
+	left: -1.875rem;
+	top: 0.3125rem;
+	padding: 2px;
+}
+#write>h5.md-focus:before {
+	left: -1.875rem;
+	top: 0.25rem;
+	padding: 2px;
+}
+#write>h6.md-focus:before {
+	left: -1.875rem;
+	top: .125rem;
+	padding: 2px;
+}
+@media screen and (max-width: 48em) {
+	blockquote {
+		margin-left: 1rem;
+		margin-right: 0;
+		padding: 0.5em;
+	}
+	.h1,
+	h1 {
+		font-size: 2.827rem;
+	}
+	.h2,
+	h2 {
+		font-size: 1.999rem;
+	}
+	.h3,
+	h3 {
+		font-size: 1.413rem;
+	}
+	.h4,
+	h4 {
+		font-size: 1.250rem;
+	}
+	.h5,
+	h5 {
+		font-size: 1.150rem;
+	}
+	.h6,
+	h6 {
+		font-size: 1rem;
 	}
 }
-
-html,
-body,
-button,
-input,
-select,
-textarea,
-div.code-tooltip-content {
-    color: #b8bfc6;
-    border-color: transparent;
+a,
+.md-def-url {
+	color: #990000;
+	text-decoration: none;
 }
-
-div.code-tooltip,
-.md-hover-tip .md-arrow:after {
-    background: #333;
-}
-
-.native-window #md-notification {
-    border: 1px solid #70717d;
-}
-
-.popover.bottom > .arrow:after {
-    border-bottom-color: #333;
-}
-
-html,
-body,
-button,
-input,
-select,
-textarea {
-    font-family: "Helvetica Neue", Helvetica, Arial, 'Segoe UI Emoji', sans-serif;
-}
-
-hr {
-    height: 2px;
-    border: 0;
-    margin: 24px 0 !important;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    font-family: "Lucida Grande", "Corbel", sans-serif;
-    font-weight: normal;
-    clear: both;
-    -ms-word-wrap: break-word;
-    word-wrap: break-word;
-    margin: 0;
-    padding: 0;
-    color: #DEDEDE
-}
-
-h1 {
-    font-size: 2.5rem;
-    /* 36px */
-    line-height: 2.75rem;
-    /* 40px */
-    margin-bottom: 1.5rem;
-    /* 24px */
-    letter-spacing: -1.5px;
-}
-
-h2 {
-    font-size: 1.63rem;
-    /* 24px */
-    line-height: 1.875rem;
-    /* 30px */
-    margin-bottom: 1.5rem;
-    /* 24px */
-    letter-spacing: -1px;
-    font-weight: bold;
-}
-
-h3 {
-    font-size: 1.17rem;
-    /* 18px */
-    line-height: 1.5rem;
-    /* 24px */
-    margin-bottom: 1.5rem;
-    /* 24px */
-    letter-spacing: -1px;
-    font-weight: bold;
-}
-
-h4 {
-    font-size: 1.12rem;
-    /* 16px */
-    line-height: 1.375rem;
-    /* 22px */
-    margin-bottom: 1.5rem;
-    /* 24px */
-    color: white;
-}
-
-h5 {
-    font-size: 0.97rem;
-    /* 16px */
-    line-height: 1.25rem;
-    /* 22px */
-    margin-bottom: 1.5rem;
-    /* 24px */
-    font-weight: bold;
-}
-
-h6 {
-    font-size: 0.93rem;
-    /* 16px */
-    line-height: 1rem;
-    /* 16px */
-    margin-bottom: 0.75rem;
-    color: white;
-}
-
-@media (min-width: 980px) {
-    h3.md-focus:before,
-    h4.md-focus:before,
-    h5.md-focus:before,
-    h6.md-focus:before {
-        color: #ddd;
-        border: 1px solid #ddd;
-        border-radius: 3px;
-        position: absolute;
-        left: -1.642857143rem;
-        top: .357142857rem;
-        float: left;
-        font-size: 9px;
-        padding-left: 2px;
-        padding-right: 2px;
-        vertical-align: bottom;
-        font-weight: normal;
-        line-height: normal;
-    }
-
-    h3.md-focus:before {
-        content: 'h3';
-    }
-
-    h4.md-focus:before {
-        content: 'h4';
-    }
-
-    h5.md-focus:before {
-        content: 'h5';
-        top: 0px;
-    }
-
-    h6.md-focus:before {
-        content: 'h6';
-        top: 0px;
-    }
-}
-
-a {
-    text-decoration: none;
-    outline: 0;
-}
-
 a:hover {
-    outline: 0;
+	text-decoration: underline;
 }
-
-a:focus {
-    outline: thin dotted;
-}
-
-sup.md-footnote {
-    background-color: #555;
-    color: #ddd;
-}
-
-p {
-    -ms-word-wrap: break-word;
-    word-wrap: break-word;
-}
-
-p,
-ul,
-dd,
-ol,
-hr,
-address,
-pre,
-table,
-iframe,
-.wp-caption,
-.wp-audio-shortcode,
-.wp-video-shortcode {
-    margin-top: 0;
-    margin-bottom: 1.5rem;
-    /* 24px */
-}
-
-audio:not([controls]) {
-    display: none;
-}
-
-[hidden] {
-    display: none;
-}
-
-::-moz-selection {
-    background: #4a89dc;
-    color: #fff;
-    text-shadow: none;
-}
-
-*.in-text-selection,
-::selection {
-    background: #4a89dc;
-    color: #fff;
-    text-shadow: none;
-}
-
-ul,
-ol {
-    padding: 0 0 0 1.875rem;
-    /* 30px */
-}
-
-ul {
-    list-style: square;
-}
-
-ol {
-    list-style: decimal;
-}
-
-ul ul,
-ol ol,
-ul ol,
-ol ul {
-    margin: 0;
-}
-
-b,
-th,
-dt,
-strong {
-    font-weight: bold;
-}
-
-i,
-em,
-dfn,
-cite {
-    font-style: italic;
-}
-
-blockquote {
-    padding-left: 1.875rem;
-    margin: 0 0 1.875rem 1.875rem;
-    border-left: solid 2px #474d54;
-    padding-left: 30px;
-    margin-top: 35px;
-}
-
-pre,
-code,
-kbd,
-tt,
-var {
-    font-size: 0.875em;
-    font-family: Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
-}
-
-code,
-tt,
-var {
-    background: rgba(0, 0, 0, 0.05);
-}
-
-kbd {
-    padding: 2px 4px;
-    font-size: 90%;
-    color: #fff;
-    background-color: #333;
-    border-radius: 3px;
-    box-shadow: inset 0 -1px 0 rgba(0,0,0,.25);
-}
-
-pre.md-fences {
-    padding: 10px 10px 10px 30px;
-    margin-bottom: 20px;
-    background: #333;
-}
-
-.CodeMirror-gutters {
-    background: #333;
-    border-right: 1px solid transparent;
-}
-
-.enable-diagrams pre.md-fences[lang="sequence"] .code-tooltip,
-.enable-diagrams pre.md-fences[lang="flow"] .code-tooltip,
-.enable-diagrams pre.md-fences[lang="mermaid"] .code-tooltip {
-    bottom: -2.2em;
-    right: 4px;
-}
-
-code,
-kbd,
-tt,
-var {
-    padding: 2px 5px;
-}
-
 table {
-    max-width: 100%;
-    width: 100%;
-    border-collapse: collapse;
-    border-spacing: 0;
+	margin-bottom: 20px
+}
+table th,
+table td {
+	padding: 8px;
+	line-height: 1.25rem;
+	vertical-align: top;
+	border-top: 1px solid #ddd
+}
+table th {
+	font-weight: bold
+}
+table thead th {
+	vertical-align: bottom
+}
+table caption+thead tr:first-child th,
+table caption+thead tr:first-child td,
+table colgroup+thead tr:first-child th,
+table colgroup+thead tr:first-child td,
+table thead:first-child tr:first-child th,
+table thead:first-child tr:first-child td {
+	border-top: 0
+}
+table tbody+tbody {
+	border-top: 2px solid #ddd
+}
+code, .md-fences {
+	padding: .5em;
+	/*background: #f0f0f0;*/
+	border: 1px solid #ccc;
+	padding: .1em;
+	font-size: 0.9em;
+	margin-left: 0.2em;
+	margin-right: 0.2em;
+}
+.md-fences {
+	margin: 0 0 20px;
+	font-size: 1em;
+	padding: 0.3em 1em;
+  	padding-top: 0.4em;
+}
+.task-list{
+	padding-left: 0;
 }
 
-th,
-td {
-    padding: 5px 10px;
-    vertical-align: top;
+.task-list-item {
+	padding-left:2.125rem;
 }
 
-a {
-    -webkit-transition: all .2s ease-in-out;
-    transition: all .2s ease-in-out;
+input {
+	border-style: ridge;
 }
 
-hr {
-    background: #474d54;
-    /* variable */
+.task-list-item input {
+	top: 3px;
 }
 
-h1 {
-    margin-top: 2em;
+.md-task-list-item input {
+	margin-left: -1.5em;
 }
 
-a {
-    color: #e0e0e0;
-    text-decoration: underline;
+.task-list-item input:before {
+	content: "";
+	display: inline-block;
+	width: 1rem;
+	height: 1rem;
+	vertical-align: middle;
+	text-align: center;
+	border: 1px solid gray;
+	background-color: #fdfdfd;
+	margin-left: 0;
+	-webkit-appearance: none;
+	margin-top: -1rem;
 }
 
-a:hover {
-    color: #fff;
+.typora-node .task-list-item input:before {
+	top: 0.3ex;
+	position: absolute;
 }
 
-.md-inline-math script {
-    color: #81b1db;
+.task-list-item input:checked:before,
+.task-list-item input[checked]:before{
+	content: '\25FC';
+	/*◘*/
+	font-size: 0.8125rem;
+	line-height: 0.9375rem;
 }
 
-b,
-th,
-dt,
-strong {
-    color: #DEDEDE;
-    /* variable */
+/* Chrome 29+ */
+.task-list-item input:before {
+	margin-top: -0.2rem;
 }
 
-mark {
-    background: #D3D40E;
+.task-list-item input:checked:before,
+.task-list-item input[checked]:before {
+	margin-top: -0.2rem;
+}
+
+.html-for-mac .task-list-item input:checked:before,
+.html-for-mac .task-list-item input[checked]:before {
+	margin-top: -0.8rem;
 }
 
 blockquote {
-    color: #9DA2A6;
+	margin: 0 0 1.11111rem;
+	padding: 0.5rem 1.11111rem 0 1.05556rem;
+	border-left: 1px solid gray;
 }
-
-table a {
-    color: #DEDEDE;
-    /* variable */
+blockquote,
+blockquote p {
+	line-height: 1.6;
+	color: #6f6f6f;
 }
-
-th,
-td {
-    border: solid 1px #474d54;
-    /* variable */
-}
-
-.task-list {
-    padding-left: 0;
-}
-
-.md-task-list-item {
-    padding-left: 1.25rem;
-}
-
-.md-task-list-item > input {
-    top: auto;
-}
-
-.md-task-list-item > input:before {
-    content: "";
-    display: inline-block;
-    width: 0.875rem;
-    height: 0.875rem;
-    vertical-align: middle;
-    text-align: center;
-    border: 1px solid #b8bfc6;
-    background-color: #363B40;
-    margin-top: -0.4rem;
-}
-
-.md-task-list-item > input:checked:before,
-.md-task-list-item > input[checked]:before {
-    content: '\221A';
-    /*◘*/
-    font-size: 0.625rem;
-    line-height: 0.625rem;
-    color: #DEDEDE;
-}
-
-/** quick open **/
-.auto-suggest-container {
-    border: 0px;
-    background-color: #525C65;
-}
-
-#typora-quick-open {
-    background-color: #525C65;
-}
-
-#typora-quick-open input{
-    background-color: #525C65;
-    border: 0;
-    border-bottom: 1px solid grey;
-}
-
-.typora-quick-open-item {
-    background-color: inherit;
-    color: inherit;
-}
-
-.typora-quick-open-item.active,
-.typora-quick-open-item:hover {
-    background-color: #4D8BDB;
-    color: white;
-}
-
-.typora-quick-open-item:hover {
-    background-color: rgba(77, 139, 219, 0.8);
-}
-
-.typora-search-spinner > div {
-  background-color: #fff;
-}
-
 #write pre.md-meta-block {
-    border-bottom: 1px dashed #ccc;
-    background: transparent;
-    padding-bottom: 0.6em;
-    line-height: 1.6em;
+	min-height: 30px;
+	background: #f8f8f8;
+	padding: 1.5em;
+	font-weight: 300;
+	font-size: 1em;
+	padding-bottom: 1.5em;
+	padding-top: 3em;
+    margin-top: -1.5em;
+	color: #999;
+	
+	width: 100vw;
+	max-width: calc(100% + 60px);
+	margin-left: -30px;
+	border-left: 30px #f8f8f8 solid;
+	border-right: 30px #f8f8f8 solid;
 }
-
-.btn,
-.btn .btn-default {
-    background: transparent;
-    color: #b8bfc6;
+.MathJax_Display {
+	font-size: 0.9em;
+	margin-top: 0.5em;
+	margin-bottom: 0;
 }
-
-.ty-table-edit {
-    border-top: 1px solid gray;
-    background-color: #363B40;
+p.mathjax-block,
+.mathjax-block {
+	padding-bottom: 0;
 }
-
-.popover-title {
-    background: transparent;
+.mathjax-block>.code-tooltip {
+	bottom: 5px;
+	box-shadow: none;
 }
-
 .md-image>.md-meta {
-    color: #BBBBBB;
-    background: transparent;
+	padding-left: 0.5em;
+	padding-right: 0.5em;
+}
+.md-image>img {
+	margin-top: 2px;
+}
+.md-image>.md-meta:first-of-type:before {
+	padding-left: 4px;
 }
 
-.md-expand.md-image>.md-meta {
-    color: #DDD;
+#typora-source {
+	color: #555;
 }
 
-#write>h3:before,
-#write>h4:before,
-#write>h5:before,
-#write>h6:before {
-    border: none;
-    border-radius: 0px;
-    color: #888;
-    text-decoration: underline;
-    left: -1.4rem;
-    top: 0.2rem;
-}
-
-#write>h3.md-focus:before {
-    top: 2px;
-}
-
-#write>h4.md-focus:before {
-    top: 2px;
-}
-
-.md-toc-item {
-    color: #A8C2DC;
-}
-
-#write div.md-toc-tooltip {
-    background-color: #363B40;
-}
-
-.dropdown-menu .btn:hover,
-.dropdown-menu .btn:focus,
-.md-toc .btn:hover,
-.md-toc .btn:focus {
-    color: white;
-    background: black;
-}
-
-#toc-dropmenu {
-    background: rgba(50, 54, 59, 0.93);
-    border: 1px solid rgba(253, 253, 253, 0.15);
-}
-
-#toc-dropmenu .divider {
-    background-color: #9b9b9b;
-}
-
-.outline-expander:before {
-    top: 2px;
-}
-
-#typora-sidebar {
-    box-shadow: none;
-    border-right: 1px dashed;
-    border-right: none;
-}
-
-.sidebar-tabs {
-    border-bottom:0;
-}
-
-#typora-sidebar:hover .outline-title-wrapper {
-    border-left: 1px dashed;
-}
-
-.outline-title-wrapper .btn {
-    color: inherit;
-}
-
-.outline-item:hover {
-    border-color: #363B40;
-    background-color: #363B40;
-    color: white;
-}
-
-h1.md-focus .md-attr,
-h2.md-focus .md-attr,
-h3.md-focus .md-attr,
-h4.md-focus .md-attr,
-h5.md-focus .md-attr,
-h6.md-focus .md-attr,
-.md-header-span .md-attr {
-    color: #8C8E92;
-    display: inline;
-}
-
-.md-comment {
-    color: #5a95e3;
-    opacity: 0.8;
-}
-
-.md-inline-math svg {
-    color: #b8bfc6;
-}
-
-#math-inline-preview .md-arrow:after {
-    background: black;
-}
-
-.modal-content {
-    background: var(--bg-color);
-    border: 0;
-}
-
-.modal-title {
-    font-size: 1.5em;
-}
-
-.modal-content input {
-    background-color: rgba(26, 21, 21, 0.51);
-    color: white;
-}
-
-.modal-content .input-group-addon {
-    color: white;
-}
-
-.modal-backdrop {
-    background-color: rgba(174, 174, 174, 0.7);
-}
-
-.modal-content .btn-primary {
-    border-color: var(--primary-color);
-}
-
-.md-table-resize-popover {
-    background-color: #333;
-}
-
-.form-inline .input-group .input-group-addon {
-    color: white;
-}
-
+/** ui for windows **/
 #md-searchpanel {
-    border-bottom: 1px dashed grey;
+    border-bottom: 1px solid #ccc;
 }
 
-/** UI for electron */
-
-.context-menu,
-#spell-check-panel,
-#footer-word-count-info {
-    background-color: #42464A;
+#md-searchpanel .btn {
+    border: 1px solid #ccc;
 }
 
-.context-menu.dropdown-menu .divider,
-.dropdown-menu .divider {
-    background-color: #777777;
-    opacity: 1;
+#md-notification:before {
+	top: 14px;
 }
 
-footer {
-    color: inherit;
-}
-
-@media (max-width: 1000px) {
-    footer {
-        border-top: none;
-    }
-    footer:hover {
-        color: inherit;
-    }
-}
-
-#file-info-file-path .file-info-field-value:hover {
-    background-color: #555;
-    color: #dedede;
-}
-
-.megamenu-content,
-.megamenu-opened header {
-    background: var(--bg-color);
-}
-
-.megamenu-menu-panel h2,
-.megamenu-menu-panel h1,
-.long-btn {
-    color: inherit;
-}
-
-.megamenu-menu-panel input[type='text'] {
-    background: inherit;
-    border: 0;
-    border-bottom: 1px solid;
-}
-
-#recent-file-panel-action-btn {
-    background: inherit;
-    border: 1px grey solid;
-}
-
-.megamenu-menu-panel .dropdown-menu > li > a {
-    color: inherit;
-    background-color: #2F353A;
-    text-decoration: none;
-}
-
-.megamenu-menu-panel table td:nth-child(1) {
-    color: inherit;
-    font-weight: bold;
-}
-
-.megamenu-menu-panel tbody tr:hover td:nth-child(1) {
-    color: white;
-}
-
-.modal-footer .btn-default, 
-.modal-footer .btn-primary,
-.modal-footer .btn-default:not(:hover) {
-    border: 1px solid;
-    border-color: transparent;
-}
-
-.btn-primary {
-    color: white;
-}
-
-.btn-default:hover, .btn-default:focus, .btn-default.focus, .btn-default:active, .btn-default.active, .open > .dropdown-toggle.btn-default {
-    color: white;
-    border: 1px solid #ddd;
-    background-color: inherit;
-}
-
-.modal-header {
-    border-bottom: 0;
-}
-
-.modal-footer {
-    border-top: 0;
-}
-
-#recent-file-panel tbody tr:nth-child(2n-1) {
-    background-color: transparent !important;
-}
-
-.megamenu-menu-panel tbody tr:hover td:nth-child(2) {
-    color: inherit;
+#md-notification {
+	background: #eee;
 }
 
 .megamenu-menu-panel .btn {
-    border: 1px solid #eee;
-    background: transparent;
+	border: 1px solid #ccc;
 }
 
-.mouse-hover .toolbar-icon.btn:hover,
-#w-full.mouse-hover,
-#w-pin.mouse-hover {
-    background-color: inherit;
+#typora-sidebar {
+	box-shadow: none;
 }
 
-.typora-node::-webkit-scrollbar {
-    width: 5px;
-}
-
-.typora-node::-webkit-scrollbar-thumb:vertical {
-    background: rgba(250, 250, 250, 0.3);
-}
-
-.typora-node::-webkit-scrollbar-thumb:vertical:active {
-    background: rgba(250, 250, 250, 0.5);
-}
-
-#w-unpin {
-    background-color: #4182c4;
-}
-
-#top-titlebar, #top-titlebar * {
-    color: var(--item-hover-text-color);
-}
-
-.typora-sourceview-on #toggle-sourceview-btn,
-#footer-word-count:hover,
-.ty-show-word-count #footer-word-count {
-    background: #333333;
-}
-
-#toggle-sourceview-btn:hover {
-    color: #eee;
-    background: #333333;
-}
-
-/** focus mode */
-.on-focus-mode .md-end-block:not(.md-focus):not(.md-focus-container) * {
-    color: #686868 !important;
-}
-
-.on-focus-mode .md-end-block:not(.md-focus) img,
-.on-focus-mode .md-task-list-item:not(.md-focus-container)>input {
-    opacity: #686868 !important;
-}
-
-.on-focus-mode li[cid]:not(.md-focus-container){
-    color: #686868;
-}
-
-.on-focus-mode .md-fences.md-focus .CodeMirror-code>*:not(.CodeMirror-activeline) *,
-.on-focus-mode .CodeMirror.cm-s-inner:not(.CodeMirror-focused) * {
-    color: #686868 !important;
-}
-
-.on-focus-mode .md-focus,
-.on-focus-mode .md-focus-container {
-    color: #fff;
-}
-
-.on-focus-mode #typora-source .CodeMirror-code>*:not(.CodeMirror-activeline) * {
-    color: #686868 !important;
-}
-
-
-/*diagrams*/
-#write .md-focus .md-diagram-panel {
-    border: 1px solid #ddd;
-    margin-left: -1px;
-    width: calc(100% + 2px);
-}
-
-/*diagrams*/
-#write .md-focus.md-fences-with-lineno .md-diagram-panel {
-    margin-left: auto;
-}
-
-.md-diagram-panel-error {
-    color: #f1908e;
-}
-
-.active-tab-files #info-panel-tab-file,
-.active-tab-files #info-panel-tab-file:hover,
-.active-tab-outline #info-panel-tab-outline,
-.active-tab-outline #info-panel-tab-outline:hover {
-    color: #eee;
-}
-
-.sidebar-footer-item:hover,
-.footer-item:hover {
-    background: inherit;
-    color: white;
-}
-
-.ty-side-sort-btn.active,
-.ty-side-sort-btn:hover,
-.selected-folder-menu-item a:after {
-    color: white;
-}
-
-#sidebar-files-menu {
-    border:solid 1px;
-    box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.79);
-    background-color: var(--bg-color);
-}
-
-.file-list-item {
-    border-bottom:none;
+.file-list-item ,
+.show-folder-name .file-list-item {
+	padding-top: 20px;
+	padding-bottom: 20px;
+	line-height: 20px;
 }
 
 .file-list-item-summary {
-    opacity: 1;
+	height: 40px;
+	line-height: 20px;
 }
 
-.file-list-item.active:first-child {
-    border-top: none;
+.ty-table-edit {
+	background: #ededed;
 }
 
-.file-node-background {
-    height: 32px;
+.dropdown-menu .divider {
+	border-color: #e5e5e5;
 }
-
-.file-library-node.active>.file-node-content,
-.file-list-item.active {
-    color: white;
-    color: var(--active-file-text-color);
-}
-
-.file-library-node.active>.file-node-background{
-    background-color: rgb(34, 34, 34);
-    background-color: var(--active-file-bg-color);
-}
-.file-list-item.active {
-    background-color: rgb(34, 34, 34);
-    background-color: var(--active-file-bg-color);
-}
-
-#ty-tooltip {
-    background-color: black;
-    color: #eee;
-}
-
-.md-task-list-item>input {
-    margin-left: -1.3em;
-    margin-top: 0.3rem;
-    -webkit-appearance: none;
-}
-
-.md-mathjax-midline {
-    background-color: #57616b;
-    border-bottom: none;
-}
-
-footer.ty-footer {
-    border-color: #656565;
-}
-
-.ty-preferences .btn-default {
-    background: transparent;
-}
-.ty-preferences .btn-default:hover {
-    background: #57616b;
-}
-
-.ty-preferences select {
-    border: 1px solid #989698;
-    height: 21px;
-}
-
-.ty-preferences .nav-group-item.active,
-.export-item.active,
-.export-items-list-control,
-.export-detail {
-    background: var(--item-hover-bg-color);
-}
-
-.ty-preferences input[type="search"] {
-    border-color: #333;
-    background: #333;
-    line-height: 22px;
-    border-radius: 6px;
-    color: white;
-}
-
-.ty-preferences input[type="search"]:focus {
-    box-shadow: none;
-}
-
-[data-is-directory="true"] .file-node-content {
-    margin-bottom: 0;
-}
-
-.file-node-title {
-    line-height: 22px;
-}
-
-.html-for-mac .file-node-open-state, .html-for-mac .file-node-icon {
-    line-height: 26px;
-}
-
-::-webkit-scrollbar-thumb {
-    background: rgba(230, 230, 230, 0.30);
-}
-
-::-webkit-scrollbar-thumb:active {
-    background: rgba(230, 230, 230, 0.50);
-}
-
-#typora-sidebar:hover div.sidebar-content-content::-webkit-scrollbar-thumb:horizontal {
-    background: rgba(230, 230, 230, 0.30);
-}
-
-.nav-group-item:active {
-    background-color: #474d54 !important;
-}
-
-.md-search-hit {
-    background: rgba(199, 140, 60, 0.81);
-    color: #eee;
-}
-
-.md-search-hit * {
-    color: #eee;
-}
-
-#md-searchpanel input {
-    color: white;
-}
-
-.modal-backdrop.in {
-    opacity: 1;
-    backdrop-filter: blur(1px);
-}
-
-.clear-btn-icon {
-    top: 8px;
-}
-
-/* try fix https://github.com/typora/typora-issues/issues/5253 */
-.file-node-expanded>.file-node-children {
-    display: grid;
-  }
 
  @media print { @page {margin: 0 0 0 0;} body.typora-export {padding-left: 0; padding-right: 0;} #write {padding:0;}}
 </style><title>QEMU</title>
 </head>
 <body class='typora-export'><div class='typora-export-content'>
-<div id='write'  class=''><h1 id='virtualization-introduction---only-x86'><span>Virtualization Introduction - only x86</span></h1><div class='md-toc' mdtype='toc'><p class="md-toc-content" role="list"><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n15"><a class="md-toc-inner" style="" href="#virtualization-introduction---only-x86">Virtualization Introduction - only x86</a></span><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n65"><a class="md-toc-inner" style="" href="#why">Why</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n68"><a class="md-toc-inner" style="" href="#hypervisor-基础">Hypervisor 基础</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n75"><a class="md-toc-inner" style="" href="#hypervisor-类型">Hypervisor 类型</a></span><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n88"><a class="md-toc-inner" style="" href="#what">What</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n93"><a class="md-toc-inner" style="" href="#虚拟化分类">虚拟化分类</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n130"><a class="md-toc-inner" style="" href="#硬件仿真-vs-半虚拟化">硬件仿真 VS 半虚拟化</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n135"><a class="md-toc-inner" style="" href="#虚拟化详细">虚拟化详细</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n172"><a class="md-toc-inner" style="" href="#虚拟化实现原理">虚拟化实现原理</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n184"><a class="md-toc-inner" style="" href="#virtualbox-的实现">VirtualBox 的实现</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n191"><a class="md-toc-inner" style="" href="#xen-的实现">XEN 的实现</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n210"><a class="md-toc-inner" style="" href="#硬件辅助虚拟化技术hvm）">硬件辅助虚拟化技术（HVM）</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n214"><a class="md-toc-inner" style="" href="#硬件辅助的cpu技术vt-x--amd-v）">硬件辅助的CPU技术（VT-x / AMD-V）</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n223"><a class="md-toc-inner" style="" href="#guest-os-是如何运行的">Guest OS 是如何运行的</a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n226"><a class="md-toc-inner" style="" href="#vm-entry--vm-exit">vm entry / vm exit</a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n230"><a class="md-toc-inner" style="" href="#vmcsvirtual-machine-control-structure）">VMCS（virtual machine control structure）</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n246"><a class="md-toc-inner" style="" href="#硬件辅助的内存技术ept--npt）">硬件辅助的内存技术（EPT / NPT）</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n249"><a class="md-toc-inner" style="" href="#硬件辅助的io技术vt-d--iommu）">硬件辅助的I/O技术（VT-d / IOMMU）</a></span><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n257"><a class="md-toc-inner" style="" href="#how">How</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n260"><a class="md-toc-inner" style="" href="#q--a">Q &amp; A</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n274"><a class="md-toc-inner" style="" href="#qemu">QEMU</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n283"><a class="md-toc-inner" style="" href="#qemu-模拟器">QEMU 模拟器</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n302"><a class="md-toc-inner" style="" href="#qemu-虚拟器">QEMU 虚拟器</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n312"><a class="md-toc-inner" style="" href="#更多内容">更多内容</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n315"><a class="md-toc-inner" style="" href="#总结时刻">总结时刻</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n317"><a class="md-toc-inner" style="" href="#kvm">KVM</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n328"><a class="md-toc-inner" style="" href="#qemu-kvm-介绍">QEMU-KVM 介绍</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n334"><a class="md-toc-inner" style="" href="#qemu-kvm-架构">QEMU-KVM 架构</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n340"><a class="md-toc-inner" style="" href="#组件图">组件图</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n350"><a class="md-toc-inner" style="" href="#框架图">框架图</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n367"><a class="md-toc-inner" style="" href="#总结时刻-2">总结时刻</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n382"><a class="md-toc-inner" style="" href="#libvirt">Libvirt</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n391"><a class="md-toc-inner" style="" href="#通用层">通用层</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n432"><a class="md-toc-inner" style="" href="#通用接口">通用接口</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n435"><a class="md-toc-inner" style="" href="#组件图-2">组件图</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n438"><a class="md-toc-inner" style="" href="#架构图">架构图</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n442"><a class="md-toc-inner" style="" href="#总结时刻-3">总结时刻</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n446"><a class="md-toc-inner" style="" href="#setting-up-the-environment">Setting up the environment</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n447"><a class="md-toc-inner" style="" href="#手动">手动</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n448"><a class="md-toc-inner" style="" href="#1创建镜像">1、创建镜像</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n450"><a class="md-toc-inner" style="" href="#2创建虚拟机">2、创建虚拟机</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n452"><a class="md-toc-inner" style="" href="#3启用虚拟机">3、启用虚拟机</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n454"><a class="md-toc-inner" style="" href="#4配置虚拟机网络">4、配置虚拟机网络</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n457"><a class="md-toc-inner" style="" href="#自动">自动</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n458"><a class="md-toc-inner" style="" href="#cockpit">cockpit</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n461"><a class="md-toc-inner" style="" href="#virt-manager">virt-manager</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n463"><a class="md-toc-inner" style="" href="#virt-install">virt-install</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n466"><a class="md-toc-inner" style="" href="#virsh">virsh</a></span><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n468"><a class="md-toc-inner" style="" href="#reference">Reference</a></span></p></div><p><span>首先我们来看没有虚拟化，操作系统是如何运行的</span></p><p><span>操作系统上的程序分为两种，一种是</span><strong><span>用户态</span></strong><span>的程序，例如 Word、Excel 等，一种是</span><strong><span>内核态</span></strong><span>的程序，例如内核代码、驱动程序等。</span></p><p><img src="http://pic.itxdm.com/typora/202206281507921.png" alt="image-20220628150719806"  /></p><p><img src="http://pic.itxdm.com/typora/202206281554370.png" alt="image-20220628155427309" style="zoom:67%;" /></p><p><span>为了区分内核态和用户态，CPU 专门设置四个特权等级 0、1、2、3 来做这个事情。@季文康</span></p><figure class='table-figure'><table><thead><tr><th><img src="http://pic.itxdm.com/typora/202204281801553.png" style="zoom:25%;" /></th><th><img src="http://pic.itxdm.com/typora/202206292107420.png" referrerpolicy="no-referrer"></th></tr></thead><tbody></tbody></table></figure><blockquote><p><span>关于 </span><strong><span>Ring</span></strong><span> 环的介绍（早期版本的硬件只支持2个保护等级）：</span></p><p><span>Level 0</span></p><ul><li><p><span>The inner most layer of the rings</span></p></li><li><p><span>Contains</span></p><ul><li><p><span>Security kernel</span></p></li><li><p><span>Memory-resident components</span></p></li></ul></li></ul><p><span>Level 1</span></p><ul><li><p><span>Less important code or processes than level 0</span></p><ul><li><p><span>&quot;As-needed&quot;OS components other than Kernel</span></p></li><li><p><span>Loaded into the memory when necessary</span></p></li></ul></li></ul><p><span>Level 2</span></p><ul><li><p><span>System utilities</span></p></li><li><p><span>l/O drivers</span></p></li><li><p><span>Protocols</span></p></li></ul><p><span>Level 3:User Mode</span></p><ul><li><p><span>User application processes</span></p></li></ul></blockquote><p><span>大牛们在写 Linux 内核的时候，如果用户态程序做事情，就将扳手掰到第 3 等级，一旦要申请使用更多的资源，就需要申请将扳手掰到第 0 等级，内核才能在高权限访问这些资源，申请完资源，返回到用户态，扳手再掰回去。通常只使用这两个环：用于内核模式的ring 0 和用于用户模式的 ring 3.</span></p><blockquote><p><span>应用程序是运行在 Ring3上的，如果应用程序需要访问磁盘，比如写文件，那就需要通过执行系统调用（函数），执行系统调用的时候，CPU 运行级别将从 Ring 3 切换到 Ring 0，并跳转到系统调用对应的内核代码位置执行，这样内核就为你完成了设备的访问，完成之后再从 Ring0 切换到 Ring3，</span><strong><span>这个过程称之为 用户态 和 内核态 的切换。</span></strong></p></blockquote><p><span>这个程序一直非常顺利地运行着，直到虚拟机出现了。</span></p><h1 id='why'><span>Why</span></h1><p><span>通过虚拟化，可以将单台计算机划分成多台虚拟机，每台虚拟机拥有自己的操作系统。从物理机角度上看，它们彼此是独立的。具体来说就是具有自己的网络接口和IP地址、文件系统以及其他外围设备。（特指完全虚拟化环境下）从每个操作系统的角度来看，他们运行在自己的专有硬件（虚拟出来的硬件）上。它们认为自己是和硬件直接在打交道，但其实是同 </span><code>qemu</code><span> 模拟出来的硬件打交道，并且 </span><code>qemu</code><span> 会将这些指令 </span><strong><span>转译（中间人）</span></strong><span>给真正的硬件。</span></p><hr /><h2 id='hypervisor-基础'><span>Hypervisor 基础</span></h2><blockquote><p><span>关于 Hypervisor 的介绍：</span></p><p><span>每一个操作系统都有一个内核 kernel ，而这个 kernel 是需要对 CPU 的 ring0 进行操作的。如果没有任何限制，运行多台虚拟机则会出现多个操作系统</span><strong><span>同时</span></strong><span>抢占 CPU。所以运行多台虚拟机就需要一个调度程序去进行调度，它被称为 hypervisor （</span><strong><span>虚拟机控制软件</span></strong><span>）。通过这样处理以后，我们就得到了虚拟机，而虚机运行在 ring3 环。反过来说。在 ring3 称为用户模式下的 </span><strong><span>全虚拟化</span></strong><span> 虚拟机。</span></p><p><span>目前市场主要厂商及产品：VMware vSphere、微软Hyper-V、Citrix XenServer 、IBM PowerVM、Red Hat Enterprise Virtulization、Huawei FusionSphere、开源的KVM、Xen、VirtualBSD等。</span></p></blockquote><p><code>hypervisor</code><span> 是管理和支持虚拟化环境的软件，可为每个操作系统运行虚拟机，并且为每个虚拟机提供虚拟 CPU、内存、磁盘、网络和其他外围设备的访问权限。同时限制虚拟机，使其无法直接访问实际硬件以及互相直接访问。</span></p><p><span>提供 </span><code>hypervisor</code><span> 的物理计算机或操作系统称为 </span><code>host</code><span> 计算节点。客户机 </span><code>guest</code><span> 是在 </span><code>hypervisor</code><span> 上运行的虚拟机。</span></p><h2 id='hypervisor-类型'><span>Hypervisor 类型</span></h2><p><img src="http://pic.itxdm.com/typora/202206291759198.png" referrerpolicy="no-referrer" alt="img"></p><p><span>一般来说我们分为俩类，一种是 </span><code>Bare Metal</code><span>，直接在硬件上来控制硬件和管理虚拟机的操作系统 ；另外一种是安装在 </span><code>hosted OS</code><span> 上的 </span><code>hypervisor</code><span>，运行在传统的操作系统上，就像其他计算机程序那样运行。他们都有其代表产品。@季文康</span></p><figure class='table-figure'><table><thead><tr><th><span>Type 1 (Bare Metal) Hypervisors</span></th><th><span>Type 2 (Hosted) Hypervisors</span></th></tr></thead><tbody><tr><td><span>Xen， Oracle VM Server， Hyper-V， ESXi， IBM z/VM</span></td><td><span>VMware Workstation， VirtualBox， Parallels Desktop， QEMU</span></td></tr></tbody></table></figure><blockquote><p><strong><span>KVM is a virtualization module in Linux kernel that works  similar to a hypervisor, while Xen is a type 1 hypervisor that allows  multiple operating systems to execute on the same computer hardware,  simultaneously.</span></strong></p></blockquote><p><span>传统的 Type 1 是优于 Type 2 性能的。但随着虚拟化技术的发展，在有些产品上这个界限并不十分清晰。Linux 系统上的 KVM(Kernel-based Virtual Machine)和 FreeBSD 系统上的 bhyve 都是</span><strong><span>内核模块</span></strong><span>，它们可以很高效地将主机操作系统转化为 Type-1 类型的虚拟机监视器。同时，因为 Linux 发行版和 FreeBSD 都是非常通用的操作系统，且运行其上的</span><strong><span>其他应用程序会跟虚拟机抢占资源</span></strong><span>，因此 KVM 和 bhyve 也可以归类为 Type-2 类型的虚拟机监视器。@季文康</span></p><h1 id='what'><span>What</span></h1><p><span>虚拟化主要分为三种类型：</span><strong><span>完全</span></strong><span>虚拟化、</span><strong><span>半</span></strong><span>虚拟化和</span><strong><span>软件</span></strong><span>虚拟化。</span><strong><span>同时这三种分类也是不同厂商的产品，他们的区别所在。</span></strong></p><p><span>简单理解：完全虚拟化，就是对虚拟机不做任何修改即可运行。如果我的 CPU 具有 vmx|svm 的 flag 标志，则允许开启硬件辅助支持而具有更好的效能；如果我的 CPU 没有这个标志，我可以使用软件仿真做二进制转换来启动虚拟机。但这种方式速度极慢，并且 Host 是 32位系统，则 Guest 也只能是 32位系统等等限制。如果你嫌弃这样太慢，可以将虚拟机的 kernel 部分做一定修改（这一要求也使得无法运行 Windows 这种闭源操作系统），使得虚拟机知道自己是虚拟机从而更好的被 Host 运行，这就是半虚拟化。现在很少有人会在生产环境中使用半虚拟化了，但这并不代表完全虚拟化就和半虚拟化处在对立面。比如说我们可以在 VMware 中安装 vmware tools 以实现更好的性能，而这个 vmware tools 就是一个半虚拟化的东西。</span></p><p><img src="http://pic.itxdm.com/typora/202207081321220.png" referrerpolicy="no-referrer" alt="image-20220708132115125"></p><hr /><h2 id='虚拟化分类'><span>虚拟化分类</span></h2><figure class='table-figure'><table><thead><tr><th><span>类型</span></th><th><span>别名</span></th><th><span>Ring</span></th><th><span>性能</span></th><th><span>支持</span></th><th><span>原因</span></th></tr></thead><tbody><tr><td><span>硬件仿真(Hardware Emulation)</span></td><td><span>软件虚拟化</span></td><td><span>3</span></td><td><span>🌟</span></td><td><span>❌</span></td><td><span>不支持 32位的 Host 安装 64 位的 Guest</span></td></tr><tr><td><span>完全虚拟化(Full Virtualization)</span></td><td><span>全虚拟化</span></td><td>&nbsp;</td><td>&nbsp;</td><td><span>⭕️</span></td><td><span>全平台支持。</span></td></tr><tr><td><span>硬件辅助完全虚拟化(Hardware-assisted Full Virtualization)</span></td><td><span>原生虚拟化(native virtualization)</span></td><td><span>-1</span></td><td><span>🌟🌟🌟</span></td><td><span>⭕️</span></td><td><span>全平台支持，是目前通用方案。</span></td></tr><tr><td><span>半虚拟化(Paravirtualization)</span></td><td><span>超虚拟化</span></td><td>&nbsp;</td><td><span>🌟🌟🌟🌟</span></td><td><span>❌</span></td><td><span>由于需要修改操作系统，因此对闭源系统相当不友好。</span></td></tr></tbody></table></figure><h3 id='硬件仿真-vs-半虚拟化'><span>硬件仿真 VS 半虚拟化</span></h3><figure class='table-figure'><table><thead><tr><th><img src="http://pic.itxdm.com/typora/202207101303104.png" referrerpolicy="no-referrer" alt="img"></th><th><img src="http://pic.itxdm.com/typora/202207101303772.png" referrerpolicy="no-referrer" alt="img"></th></tr></thead><tbody></tbody></table></figure><h2 id='虚拟化详细'><span>虚拟化详细</span></h2><figure class='table-figure'><table><thead><tr><th><span>虚拟化类型</span></th><th><span>介绍</span></th><th>&nbsp;</th><th><span>Hypervisor</span></th><th><span>其他</span></th><th>&nbsp;</th></tr></thead><tbody><tr><td><span>硬件仿真（Hardware Emulation）</span></td><td><span>硬件仿真虚拟化使用较慢的二进制转换和其他仿真技术来运行未经修改的操作系统。</span></td><td>&nbsp;</td><td><span>一切就像没有 hypervisior 在运行一样，软件虚拟化主要问题在于如何拦截虚拟机内核所做的事情。</span></td><td><span>Oracle VM VirtualBox 用到了 Qemu 进行软件仿真。</span></td><td>&nbsp;</td></tr><tr><td><span>完全虚拟化(Full Virtualization)</span></td><td><span>通过 hypervisior 在客户操作系统与底层硬件之间进行必要的“协调”。</span></td><td><span>配备虚拟外围设备后，虚拟机环境看起来就像是裸机一样。</span></td><td><span>物理硬件的访问权限由 hypervisor 控制，因此虚拟机之间不会互相干扰。</span></td><td>&nbsp;</td><td><span>它的效率远远高于硬件仿真，并且无需修改客户操作系统。但由于特权指令需要经过VMM的处理，因此其性能仍然远低于物理硬件本身。</span></td></tr><tr><td><span>硬件辅助完全虚拟化(hardware-assisted fullvirtualization)</span></td><td><span>硬件辅助完全虚拟化使用系统 CPU 的硬件特性，为虚拟客户提供底层物理系统的完全抽象。</span></td><td>&nbsp;</td><td><span>hypervisior 只需在代码在使用</span><strong><span>干涉系统管理程序的状态</span></strong><span>或其</span><strong><span>支持环境的敏感指令</span></strong><span>时介入。</span></td><td>&nbsp;</td><td><span>Intel和AMD的CPU都提供了能使 hypervisor 存取Ring 0硬件的 x86虚拟化 指令集。x86虚拟化创建了一个叫Ring -1的Ring，所以虚拟机操作系统可以直接运行在Ring 0上</span><strong><span>而不影响其他虚拟机或者宿主系统</span></strong></td></tr><tr><td><span>半虚拟化(Paravirtualization)</span></td><td><span>通过将虚拟化相关代码集成到客户操作系统中，完成对内核的修改。</span></td><td><span>允许hypervisor为客户机操作系统提供特殊接口，以便其更有效地与hypervisor进行通信。通常，这需要对客户机操作系统或特殊 hypervisor 感知型驱动程序的安装进行</span><strong><span>修改</span></strong><span>。</span></td><td><span>经过修改的系统可以与虚拟化平台紧密协作，因此VMM无需处理特权指令，执行效率与物理硬件相近。</span></td><td><span>Xen是一个第一类管理程序，提供的服务允许多个计算机操作系统在同一计算机硬件上同时执行。</span></td><td><span>半虚拟化包含整个内核，就像 Xen 准虚拟机，或者虚拟化 I/O 设备的驱动程序一样。但由于需要修改操作系统，因此对闭源系统相当不友好。</span></td></tr></tbody></table></figure><h2 id='虚拟化实现原理'><span>虚拟化实现原理</span></h2><p><a href='https://docs.google.com/presentation/d/1aqBbd_Qk5Yj7VzKeQ7xJlYwLSPHU9wc--93mXs28RpM/edit#slide=id.g4f15f900b1_0_305'><span>pass, details in slides</span></a></p><ul><li><p><span>“特权解除”（De-privileging），简单说就是直接由 VMM 模拟 VM 的</span><strong><span>特权指令</span></strong><span>，模拟出效果从而将特权指令的特权解除。</span></p></li><li><p><span>“陷入模拟”（Trap-And-Emulate），对 VM 发起的</span><strong><span>非特权的敏感指令</span></strong><span>，VMM 采用扫描、翻译，再模拟的方式。@季文康</span></p><ul><li><p><span>VMware 提前发现，插入断点并截断，再交给 VMM 来解释执行。</span></p></li><li><p><span>XEN 直接修改 VM 的敏感指令，修改为主动通知 VMM 来处理。</span></p></li></ul></li></ul><h3 id='virtualbox-的实现'><span>VirtualBox 的实现</span></h3><p><span>在没有硬件虚拟化支持的x86 CPU上实现虚拟化是一项异常复杂的任务，因为CPU架构不是为虚拟化而设计的。这些问题通常可以得到解决，但要以降低性能为代价。因此，在虚拟化性能和准确性之间存在着持续的冲突。</span></p><ul><li><p><span>一切就像没有 hypervisior 在运行一样，软件虚拟化主要问题在于如何</span><strong><span>拦截虚拟机内核所做的事情</span></strong><span>。</span></p></li><li><p><span>对于 VB 来说，完整的软件仿真，通常涉及重新编译。也就是说，所有要由来宾运行的代码都经过分析，转换为不允许 guest 修改或查看 CPU 真实状态的形式，然后才执行。就性能而言，这个过程显然非常复杂且成本高昂。</span></p></li></ul><h3 id='xen-的实现'><span>XEN 的实现</span></h3><p><span>GuestOS 的内核进行修改过，明确知道自己运行在虚拟化环境中，在进行系统调用时，直接通过 Host 的内核对CPU 进行调用，因为中间少了虚拟化捕获异常，翻译的过程，性能会大大的提升。代表之一：XEN</span></p><blockquote><p><strong><span>半虚拟化的思想就是，修改操作系统内核，替换掉不能虚拟化的指令</span></strong><span>，通过超级调用（hypercall）直接和底层的虚拟化层hypervisor来通讯，hypervisor同时也提供了超级调用接口来满足其他关键内核操作，比如内存管理、中断和时间保持。</span></p><p><span>这种做法省去了全虚拟化中的捕获和模拟，大大提高了效率。所以像XEN这种半虚拟化技术，客户机操作系统都是有一个专门的定制内核版本，和x86、mips、arm这些内核版本等价。这样以来，就不会有捕获异常、翻译、模拟的过程了，性能损耗非常低。这就是XEN这种半虚拟化架构的优势。这也是为什么XEN只支持虚拟化Linux，无法虚拟化windows原因，微软不改代码啊。</span></p></blockquote><ul><li><p><strong><span>Domain0</span></strong><span>: 这是Xen在初期引入的一个特权Dom，Xen  Hypervisor在收到IO请求后，需要先把请求投递到Domain0，完成调度处理后，通过grant copy或者grant  map转发到对应的虚拟机，相比KVM, 整个IO处理路径几乎被拉长了一倍。其次,  x86_64的ring模型相比早期的x86_32也发生了较大变换，从而导致ring压缩，进一步恶化了中断处理的性能。</span></p></li><li><p><strong><span>必须重复造轮子：</span></strong><span>  最新10年来，CPU已经从单核逐步走向了双核，四核，甚至是几十核心，NUMA技术，TB级内存也基本成为现代服务器的标配，众多厂商和Linux社区在内存和CPU调度和管理上做了大量的工作，而Xen Hypervisor采用独立的CPU和内存调度管理，核心实现还停留在Linux  2.4时代，经过了10年的发展后，根本无力去同步这么多的更新，我们今天会发现，Xen已经落后的太多了，比如：</span></p><ol start='' ><li><p><span>hugepage：Xen只能提供2M物理页面，而DPDK需要1G的连续物理内存，这是DPDK不能支持Xen的最主要原因。</span></p></li><li><p><span>KSM：透明页面共享。</span></p></li><li><p><span>多核(&gt;128 CPU)调度: 虽然宣称能支持最大192+ core, 但是实际我们发现如果在128  core的4P服务器上创建大规格虚拟机并在其中使用高精度时钟，导致虚拟机频繁陷入陷出调度cpu，Xen就会出现严重问题，这显然是Xen没有经过大规模商业实践的表现。</span></p></li></ol></li></ul><p><img src="http://pic.itxdm.com/typora/202207051454356.jpg" referrerpolicy="no-referrer" alt="img"></p><hr /><h2 id='硬件辅助虚拟化技术hvm）'><span>硬件辅助虚拟化技术（HVM）</span></h2><p><strong><span>原生虚拟化，性能更好</span></strong><span>。允许几乎所有的代码都可未经更改地由 CPU 直接运行，从而提高效率。</span></p><p><span>也是工程师不断的在改进的地方，要更好的支持</span><strong><span>原生虚拟化</span></strong><span>。让虚拟化的速度和物理机一样，无论是 CPU 还是 IO or RAM。@季文康</span></p><p><span>为了</span><strong><span>让虚拟机达到原生虚拟化</span></strong><span>的目的，需要使用硬件辅助虚拟化技术（HVM）。</span></p><h3 id='硬件辅助的cpu技术vt-x--amd-v）'><span>硬件辅助的CPU技术（VT-x / AMD-V）</span></h3><figure class='table-figure'><table><thead><tr><th><img src="http://pic.itxdm.com/typora/202206292107420.png" referrerpolicy="no-referrer"></th><th><img src="http://pic.itxdm.com/typora/202206292228623.png" alt="img" style="zoom: 150%;" /></th></tr></thead><tbody></tbody></table></figure><p><span>2005年后，CPU 厂商 Intel 和 AMD 开始支持虚拟化了。 Intel 引入了 Intel-VT （Virtualization Technology）技术。 这种 CPU，有 </span><strong><span>VMX root operation 和 VMX non-root operation两种模式</span></strong><span>，两种模式都支持Ring 0 ~ Ring 3 共 4 个运行级别。这样，VMM 可以运行在 VMX root operation模式下，客户 OS 运行在VMX non-root operation模式下。</span></p><blockquote><p><span>在第一代技术中，支持 </span><code>Intel VT/AMD-V</code><span> 的 CPU 上提供新处理器指令，可将 CPU 置入新的执行模式。为硬件辅助虚拟机执行指令时， CPU将切换到非 root 或客户机模式，在该模式下虚拟机的内核能够以级别0运行，而用户空间能够以级别3运行。</span></p><p><span>对于虚拟机内核来讲，只要将标志位设为虚拟机状态，我们就可以直接在 CPU 上执行大部分的指令，得益于硬件辅助技术，VMM不再需要对指令进行复杂的模拟。不需要虚拟化软件在中间转述，除非遇到特别敏感的指令，才需要将标志位设为物理机内核态运行，这样大大提高了效率。</span></p></blockquote><h4 id='guest-os-是如何运行的'><span>Guest OS 是如何运行的</span></h4><p><img src="http://pic.itxdm.com/typora/202207101723446.png" referrerpolicy="no-referrer" alt="image-20220710172348364"></p><p><img src="http://pic.itxdm.com/typora/202207101739612.png" referrerpolicy="no-referrer" alt="img"></p><h5 id='vm-entry--vm-exit'><span>vm entry / vm exit</span></h5><p><span>对 KVM 虚机来说，运行在 VMX Root Mode 下的 VMM 在需要执行 Guest OS 指令时执行 VMLAUNCH 指令将 CPU 转换到 VMX non-root mode，开始执行客户机代码，即 VM entry 过程；在 Guest OS 需要退出该 mode 时，CPU 自动切换到 VMX Root mode，即 VM exit 过程。</span></p><blockquote><p><span>这两种操作模式可以相互转换。运行在 VMX root operation 模式下的 VMM 通过显式调用 VMLAUNCH 或 VMRESUME 指令切换到 VMX non-root operation 模式，硬件自动加载 Guest OS 的上下文，于是 Guest OS 获得运行，这种转换称为 VM entry。Guest OS 运行过程中遇到需要 VMM 处理的事件，例如外部中断或缺页异常，或者主动调用 VMCALL 指令调用 VMM 的服务的时候（与系统调用类似），硬件自动挂起 Guest OS，切换到 VMX root operation 模式，恢复 VMM 的运行，这种转换称为 VM exit。VMX root operation 模式下软件的行为与在没有 VT-x 技术的处理器上的行为基本一致；而VMX non-root operation 模式则有很大不同，最主要的区别是此时运行某些指令或遇到某些事件时，发生 VM exit。</span></p></blockquote><h5 id='vmcsvirtual-machine-control-structure）'><span>VMCS（virtual machine control structure）</span></h5><p><strong><span>一个普通的 Linux 内核有两种执行模式：内核模式（Kernel）和用户模式 （User）。为了支持带有虚拟化功能的 CPU，KVM 向 Linux 内核增加了第三种模式即客户机模式（Guest），该模式对应于 CPU 的 VMX non-root mode。</span></strong></p><ul><li><p><span>Guest 模式：执行客户机系统非 I/O 代码，并在需要的时候驱动 CPU 退出该模式；</span></p></li><li><p><span>Kernel 模式：负责将 CPU 切换到 Guest mode 执行 Guest OS 代码，并在 CPU 退出 Guest mode 时回到 Kernel 模式</span></p></li><li><p><span>User 模式：代表客户机系统执行 I/O 操作</span></p></li></ul><p><span>User mode 中的 QEMU-KVM 会通过 ICOTL 命令来运行虚拟机。KVM 内核模块收到该请求后，它先做一些准备工作，比如将 vcpu 上下文加载到 VMCS（virtual machine control structure）等，然后驱动 CPU 进入 VMX non-root 模式，开始执行客户机代码。</span></p><p>&nbsp;</p><p>&nbsp;</p><p><img src="http://pic.itxdm.com/typora/202207101733135.png" referrerpolicy="no-referrer" alt="img"></p><p>&nbsp;</p><p>&nbsp;</p><p><strong><span>这样操作以后，就出现了 CPU 快而 RAM 慢的情况。</span></strong></p><h3 id='硬件辅助的内存技术ept--npt）'><span>硬件辅助的内存技术（EPT / NPT）</span></h3><p><span>第二代x86 硬件虚拟化支持内存管理单元(MMU)虚拟化。通常，CPU需要花费很多周期来处理内存页面与虚拟机的映射。MMU 虚拟化允许将工作负载转移到特殊硬件，从而提高性能。Intel将此技术称为扩展页表(ERT)，在Nehalem微型架构处理器中引入。AMD将此技术称为快速虚拟化索引(RVi)， 于2007年在四核Opteron处理器中引入。</span></p><p><strong><span>这样 CPU 和 RAM 就都解决掉了。</span></strong><span>@季文康</span></p><h3 id='硬件辅助的io技术vt-d--iommu）'><span>硬件辅助的I/O技术（VT-d / IOMMU）</span></h3><p><span>第三代x86 硬件虚拟化支持集中于 I/O 虚拟化。主板芯片集上的使能技术为安全PCI穿透，允许将物理PCI设备直接连接到虚拟机。该技术可为虚拟机提供近似原生的I/O性能。在Intel中，这称为直接 I/O虚拟化技术 (VT-d)；在AMD中，称为 I/0虚拟化技术 (AMD- Vi)(最初称为IOMMU)</span></p><p><img src="http://pic.itxdm.com/typora/202207112132947.png" referrerpolicy="no-referrer" alt="Vfio-设备分配-dpdk.png"></p><p><span>Abort NIC：之前，网卡 nic 还是要通过 hypervsor 交给虚拟机来用 ，造成到了千兆后速度上不去。现在，通过新技术 </span><strong><span>SR-IOV</span></strong><span> ，将网卡划 48 个口，跨过 hypervisor 直接给 vm 调用。通过多通道的处理，让流量直接交给网卡自己来做。</span></p><blockquote><p><span>可以使用 SR-IOV 规范在虚拟环境中共享单个物理</span><a href='https://en.wikipedia.org/wiki/PCI_Express'><span>PCI Express总线。</span></a><span>[</span><a href='https://en.wikipedia.org/wiki/Single-root_input/output_virtualization#cite_note-1'><span>1</span><span>]</span><span> </span></a><span>[</span><a href='https://en.wikipedia.org/wiki/Single-root_input/output_virtualization#cite_note-2'><span>2</span><span>]</span></a><span> SR-IOV 为物理服务器机器上的不同虚拟组件（例如</span><a href='https://en.wikipedia.org/wiki/Network_adapter'><span>网络适配器）提供不同的</span></a><a href='https://en.wikipedia.org/wiki/Network_function_virtualization'><span>虚拟功能。</span></a><span>SR-IOV 使用物理和虚拟功能来控制或配置 PCIe 设备。物理功能能够将数据移入和移出设备，而虚拟功能是轻量级的 PCIe 功能，支持数据流动，但也具有一组受限的配置资源。</span><a href='https://en.wikipedia.org/wiki/Hypervisor'><span>虚拟机管理程序</span></a><span>或客户操作系统可用的虚拟或物理功能取决于 PCIe 设备。[</span><a href='https://en.wikipedia.org/wiki/Single-root_input/output_virtualization#cite_note-3'><span>3</span><span>]</span></a></p><p><span>SR-IOV 允许虚拟环境中的不同</span><a href='https://en.wikipedia.org/wiki/Virtual_machines'><span>虚拟机</span></a><span>(VM) 共享单个</span><a href='https://en.wikipedia.org/wiki/PCI_Express'><span>PCI Express</span></a><span>硬件接口。相比之下，MR-IOV 允许 I/O PCI Express 在不同物理机上的不同 VM 之间共享资源。</span></p></blockquote><p><strong><span>通过这种技术，就解决了 IO 性能问题</span></strong><span>。</span></p><p><span>补充说明，以下来自红帽虚拟化团队 YangHang Liu 工程师：</span></p><div class="md-diagram-panel md-fences-adv-panel" lang="mermaid"><svg id="mermaidChart2" width="100%" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="max-width: 912.703125px; margin: auto;" viewBox="-8 -8 912.703125 57" role="graphics-document document" aria-roledescription="flowchart-v2"><style>#mermaidChart2{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;fill:#333;}#mermaidChart2 .error-icon{fill:#e8e8e8;}#mermaidChart2 .error-text{fill:#f1908e;stroke:#f1908e;}#mermaidChart2 .edge-thickness-normal{stroke-width:2px;}#mermaidChart2 .edge-thickness-thick{stroke-width:3.5px;}#mermaidChart2 .edge-pattern-solid{stroke-dasharray:0;}#mermaidChart2 .edge-pattern-dashed{stroke-dasharray:3;}#mermaidChart2 .edge-pattern-dotted{stroke-dasharray:2;}#mermaidChart2 .marker{fill:#9370DB;stroke:#9370DB;}#mermaidChart2 .marker.cross{stroke:#9370DB;}#mermaidChart2 svg{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;}#mermaidChart2 .label{font-family:"trebuchet ms",verdana,arial,sans-serif;color:#333;}#mermaidChart2 .cluster-label text{fill:#b8bfc6;}#mermaidChart2 .cluster-label span,#mermaidChart2 p{color:#b8bfc6;}#mermaidChart2 .label text,#mermaidChart2 span,#mermaidChart2 p{fill:#333;color:#333;}#mermaidChart2 .node rect,#mermaidChart2 .node circle,#mermaidChart2 .node ellipse,#mermaidChart2 .node polygon,#mermaidChart2 .node path{fill:#BDD5EA;stroke:hsl(208, 11.724137931%, 72.9411764706%);stroke-width:1px;}#mermaidChart2 .flowchart-label text{text-anchor:middle;}#mermaidChart2 .node .label{text-align:center;}#mermaidChart2 .node.clickable{cursor:pointer;}#mermaidChart2 .arrowheadPath{fill:#b8bfc6;}#mermaidChart2 .edgePath .path{stroke:#9370DB;stroke-width:2.0px;}#mermaidChart2 .flowchart-link{stroke:#9370DB;fill:none;}#mermaidChart2 .edgeLabel{background-color:#f4f4f4;text-align:center;}#mermaidChart2 .edgeLabel rect{opacity:0.5;background-color:#f4f4f4;fill:#f4f4f4;}#mermaidChart2 .labelBkg{background-color:rgba(244, 244, 244, 0.5);}#mermaidChart2 .cluster rect{fill:#e8e8e8;stroke:hsl(0, 0%, 80.9803921569%);stroke-width:1px;}#mermaidChart2 .cluster text{fill:#b8bfc6;}#mermaidChart2 .cluster span,#mermaidChart2 p{color:#b8bfc6;}#mermaidChart2 div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:12px;background:#e8e8e8;border:1px solid hsl(0, 0%, 80.9803921569%);border-radius:2px;pointer-events:none;z-index:100;}#mermaidChart2 .flowchartTitleText{text-anchor:middle;font-size:18px;fill:#333;}#mermaidChart2 :root{--mermaid-alt-font-family:sans-serif;}</style><g><marker id="flowchart-pointEnd" class="marker flowchart" viewBox="0 0 10 10" refX="10" refY="5" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path></marker><marker id="flowchart-pointStart" class="marker flowchart" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" orient="auto"><path d="M 0 5 L 10 10 L 10 0 z" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path></marker><marker id="flowchart-circleEnd" class="marker flowchart" viewBox="0 0 10 10" refX="11" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><circle cx="5" cy="5" r="5" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></circle></marker><marker id="flowchart-circleStart" class="marker flowchart" viewBox="0 0 10 10" refX="-1" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><circle cx="5" cy="5" r="5" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></circle></marker><marker id="flowchart-crossEnd" class="marker cross flowchart" viewBox="0 0 11 11" refX="12" refY="5.2" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><path d="M 1,1 l 9,9 M 10,1 l -9,9" class="arrowMarkerPath" style="stroke-width: 2; stroke-dasharray: 1, 0;"></path></marker><marker id="flowchart-crossStart" class="marker cross flowchart" viewBox="0 0 11 11" refX="-1" refY="5.2" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><path d="M 1,1 l 9,9 M 10,1 l -9,9" class="arrowMarkerPath" style="stroke-width: 2; stroke-dasharray: 1, 0;"></path></marker><g class="root"><g class="clusters"></g><g class="edgePaths"><path d="M35.75,20.5L75.9609375,20.5L116.171875,20.5" id="L-VM-VirtualNic-0" class=" edge-thickness-normal edge-pattern-solid flowchart-link LS-VM LE-VirtualNic" style="fill:none;" marker-end="url(#flowchart-pointEnd)"></path><path d="M208.328125,20.5L257.9296875,20.5L307.53125,20.5" id="L-VirtualNic-VirtLayer-0" class=" edge-thickness-normal edge-pattern-solid flowchart-link LS-VirtualNic LE-VirtLayer" style="fill:none;" marker-end="url(#flowchart-pointEnd)"></path><path d="M392.9375,20.5L459.546875,20.5L526.15625,20.5" id="L-VirtLayer-KernelBridge-0" class=" edge-thickness-normal edge-pattern-solid flowchart-link LS-VirtLayer LE-KernelBridge" style="fill:none;" marker-end="url(#flowchart-pointEnd)"></path><path d="M637.328125,20.5L716.5390625,20.5L795.75,20.5" id="L-KernelBridge-PhysicalNic-0" class=" edge-thickness-normal edge-pattern-solid flowchart-link LS-KernelBridge LE-PhysicalNic" style="fill:none;" marker-end="url(#flowchart-pointEnd)"></path></g><g class="edgeLabels"><g class="edgeLabel" transform="translate(75.9609375, 20.5)"><g class="label" transform="translate(-15.2109375, -13)"><foreignObject width="30.421875" height="26"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="edgeLabel">uses</span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(257.9296875, 20.5)"><g class="label" transform="translate(-24.6015625, -13)"><foreignObject width="49.203125" height="26"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="edgeLabel">part of</span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(459.546875, 20.5)"><g class="label" transform="translate(-41.609375, -13)"><foreignObject width="83.21875" height="26"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="edgeLabel">connects to</span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(716.5390625, 20.5)"><g class="label" transform="translate(-54.2109375, -13)"><foreignObject width="108.421875" height="26"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="edgeLabel">interfaces with</span></div></foreignObject></g></g></g><g class="nodes"><g class="node default default flowchart-label" id="flowchart-VM-16" transform="translate(17.875, 20.5)"><rect class="basic label-container" style="" rx="0" ry="0" x="-17.875" y="-20.5" width="35.75" height="41"></rect><g class="label" style="" transform="translate(-10.375, -13)"><rect></rect><foreignObject width="20.75" height="26"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="nodeLabel">VM</span></div></foreignObject></g></g><g class="node default default flowchart-label" id="flowchart-VirtualNic-17" transform="translate(162.25, 20.5)"><rect class="basic label-container" style="" rx="0" ry="0" x="-46.078125" y="-20.5" width="92.15625" height="41"></rect><g class="label" style="" transform="translate(-38.578125, -13)"><rect></rect><foreignObject width="77.15625" height="26"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="nodeLabel">Virtual NIC</span></div></foreignObject></g></g><g class="node default default flowchart-label" id="flowchart-VirtLayer-19" transform="translate(350.234375, 20.5)"><rect class="basic label-container" style="" rx="0" ry="0" x="-42.703125" y="-20.5" width="85.40625" height="41"></rect><g class="label" style="" transform="translate(-35.203125, -13)"><rect></rect><foreignObject width="70.40625" height="26"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="nodeLabel">Virt Layer</span></div></foreignObject></g></g><g class="node default default flowchart-label" id="flowchart-KernelBridge-21" transform="translate(581.7421875, 20.5)"><rect class="basic label-container" style="" rx="0" ry="0" x="-55.5859375" y="-20.5" width="111.171875" height="41"></rect><g class="label" style="" transform="translate(-48.0859375, -13)"><rect></rect><foreignObject width="96.171875" height="26"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="nodeLabel">Kernel Bridge</span></div></foreignObject></g></g><g class="node default default flowchart-label" id="flowchart-PhysicalNic-23" transform="translate(846.2265625, 20.5)"><rect class="basic label-container" style="" rx="0" ry="0" x="-50.4765625" y="-20.5" width="100.953125" height="41"></rect><g class="label" style="" transform="translate(-42.9765625, -13)"><rect></rect><foreignObject width="85.953125" height="26"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="nodeLabel">Physical NIC</span></div></foreignObject></g></g></g></g></g></svg></div><p><span>概念层面：全虚拟化网卡的设计意味着数据传输过程中会经历上述五个步骤。而virtio网卡对全虚拟化网卡进行了改进，使其在数据传输时无需经过类似于“virt layer”这一层，从而提高了效率。</span></p><p><span>代码层面：在虚拟网卡的数据传输过程中，经过的协议栈越少，其资源消耗就越低，性能也相应更优。</span></p><p><span>从虚拟机到宿主机的数据路径，网络优化方案包括：</span></p><ul><li><p><span>virtio 模型类型</span></p></li><li><p><span>vhost 驱动</span></p></li><li><p><span>macvtap 接口</span></p></li><li><p><span>vfio-vf（SR-IOV）/ vfio-pf</span></p></li></ul><h1 id='how'><span>How</span></h1><p><span>首先简单说下思路，首先我会介绍 qemu 是一个二进制转换的</span><strong><span>模拟器</span></strong><span>，而 kvm 是一个</span><strong><span>内核模块</span></strong><span>。但这俩相结合就是具有 HVM 能力的 </span><strong><span>hypervisor</span></strong><span> （单独的 kvm 并不具备虚拟机的功能，需要跟 qemu 进行结合）。然后我会介绍一下 libvirt 并使用 libvirt 搭建一个虚拟机，我们会指出它们三者之间的</span><strong><span>调用关系</span></strong><span>。</span></p><p><span>在本文的范围内，我们的目标是 KVM 虚拟化技术。因此，最好是用 QEMU/KVM hypervisor 而不是 其他hypervisor 的场景来考虑与libvirtd 的通信。你可能会对使用 QEMU/KVM 而不是 QEMU 或 KVM 作为底层 hypervisor 的名称有些困惑。但别担心，一切都会在适当的时候变得明了。下面会讨论 QEMU 和 KVM 之间的联系。目前你只需了解该 hypervisor 同时用到了QEMU 和 KVM 技术。</span></p><h2 id='q--a'><span>Q &amp; A</span></h2><p><span>开始之前，让我们尝试提出一些问题并试图回答看看：</span></p><p><span>Q1：KVM 和 QEMU 有什么区别？</span></p><p><span>A1：QEMU 使用仿真；KVM 使用处理器扩展 (HVM) 进行虚拟化。</span></p><p><span>Q2：QEMU 和 KVM 是独立的吗？</span></p><p><span>A2：是，但不完全是。KVM 模块的职责就是打开并初始化 VMX 功能，提供相应的接口以支持虚拟机的运行。 QEMU（quick emulator) 本身并不包含或依赖 KVM 模块，而 是一套由 Fabrice Bellard 编写的模拟计算机的自由软件。 QEMU 模拟器是一个纯软件的实现，可以在没有 KVM 模块的情况下独立运行，但是性能比较低。</span></p><p><span>Q3：那为何还会有 qemu-kvm 这个名词？</span></p><p><span>A3：单纯的使用 Qemu 属于完全虚拟化，性能特别低。所以 Qemu 将 KVM 整合进来，将有关 CPU 指令的部分交由内核模块来做，就是 qemu-kvm (qemu-system-XXX)。另外 Qemu 还会模拟其他的硬件，如网络和硬盘。同样，全虚拟化的方式也会影响这些设备的性能。这个时候就需要让 GuestOS 知道自己是虚拟机，需要加载特殊的半虚拟化驱动来提高性能。总之 qemu-kvm 就是这样的一种技术。它补充了 kvm 技术的不足，而且在性能上对 kvm 进行了优化。</span></p><p><span>Q4：QEMU-KVM 相比原生 QEMU 的改动？</span></p><p><span>A：原生的 QEMU 通过指令翻译实现 CPU 的完全虚拟化，但是修改后的 QEMU-KVM 会调用 ICOTL 命令来调用 KVM 模块；原生的 QEMU 是单线程实现，QEMU-KVM 是多线程实现。</span></p><p><span>Q5：QEMU 和 KVM 与 Libvirt 有什么联系？</span></p><p><span>A：KVM 只是内核模块，用户并没法直接跟内核模块交互，需要借助用户空间的管理工具，而这个工具就是 Libvirt。而 KVM 和 QEMU 相辅相成，QEMU 通过 KVM 达到了硬件虚拟化的速度，而 KVM 则通过 QEMU 来模拟设备。简单直接的理解就是：QEMU 是个计算机模拟器，而 KVM 为计算机的模拟提供加速功能，Libvirt 是一个位于最终用户和 qemu-kvm 之间的中间层。</span></p><hr /><p><span>还是很困惑的话，这非常正常。让我们开始吧！</span></p><h2 id='qemu'><span>QEMU</span></h2><ul><li><p><span>QEMU 实际上是一个执行硬件虚拟化的 Hypervisor/VMM。QEMU 既可以充当模拟器（Emulator）也可以用作虚拟机（Virtualizer），所以说它是一个通用的开源机器模拟器和虚拟器。</span></p><ul><li><p><strong><span>Qemu as an Emulator：</span></strong><span>当QEMU作为一个仿真器运行时，它能够在一种机器架构（x86）运行另外的架构（ARM）中的 OS/APP。它使用到了二进制转译的方法。在这种模式下，QEMU 通过将 Guest 的代码运行在 Host CPU 上来进行动态的二进制转译，实现 CPU  模拟。具体是通过二进制转译程序 Tiny Code Generator（TCG）来完成这项工作的，它是一个即时编译器。</span></p></li><li><p><strong><span>QEMU as virtualizer：</span></strong><span>这种模式 QEMU 直接在主机 CPU 上执行 Guest 的代码，从而达到了原生性能。例如，当在 Xen/KVM hypervisor 下工作时，QEMU 可以在这种模式下运行。如果 KVM 是底层 hypervisor，那么 QEMU 可以对嵌入式客户机进行虚拟化，如 Power PC、S390、x86 等。@季文康</span></p></li></ul></li></ul><h3 id='qemu-模拟器'><span>QEMU 模拟器</span></h3><p><img src="http://pic.itxdm.com/typora/202207021557343.png" referrerpolicy="no-referrer" alt="image-20220702155704221"></p><p><img src="http://pic.itxdm.com/typora/202207022128659.png" referrerpolicy="no-referrer" alt="image-20220702212837595"></p><ul><li><p><span>QEMU 有整套的虚拟机实现，由以下部分构成</span></p><ul><li><p><span>处理器模拟器（x86、IBM Z、PowerPC、Sparc）</span></p></li><li><p><span>模拟的设备（显卡、网卡、硬盘、鼠标）</span></p></li><li><p><span>用于将被模拟设备连接到相关主机设备的通用设备</span></p></li><li><p><span>被模拟计算机（PC、Power Mac）的说明</span></p></li><li><p><span>调试程序</span></p></li><li><p><span>用来与模拟器交互的用户界面</span></p></li></ul></li></ul><h3 id='qemu-虚拟器'><span>QEMU 虚拟器</span></h3><p><img src="http://pic.itxdm.com/typora/202207021600303.png" referrerpolicy="no-referrer" alt="image-20220702160040196"></p><p><img src="http://pic.itxdm.com/typora/202207022132353.png" referrerpolicy="no-referrer" alt="image-20220702213258269"></p><ul><li><p><span>QEMU 是一个</span><strong><span>用户空间</span></strong><span>的进程，需要通过</span><strong><span>特定的接口</span></strong><span>才能调用到 KVM 模块提供的功能。</span></p></li><li><p><span>从 QEMU 角度来看，虚拟机运行期间，QEMU 通过 KVM 模块提供的系统调用接口进行内核设置，由 KVM 模块负责将虚拟机置于处理器的特殊模式运行。</span><strong><span>QEMU 使用了 KVM 模块的虚拟化功能，为自己的虚拟机提供硬件虚拟化加速以提高虚拟机的性能。</span></strong></p></li><li><p><strong><span>当用作虚拟器时，QEMU 通过直接在主机 CPU 上执行来宾代码来实现接近原生的性能。</span></strong><span>在 Xen 管理程序下执行或在 Linux 中使用 KVM 内核模块时，QEMU 支持虚拟化。使用 KVM 时，QEMU 可以虚拟化 x86、服务器和嵌入式 PowerPC、64 位 POWER、S390、32 位和 64 位 ARM 以及 MIPS 客户机。</span></p></li></ul><h3 id='更多内容'><span>更多内容</span></h3><blockquote><p><span>QEMU 包括一个通用的系统调用转换器，也可以重定向主机和程序之间的 POSIX 信号。QEMU 使用基于 JSON 的 QMP 协议控制虚拟机，利用 virtio 技术，实现了 IO 虚拟化。在虚拟机和主机之间使用 vmchannel 技术实现简单通信，比如说共享剪贴板。内存方面：利用 KSM 内存页合并技术降低内存消耗。利用 virtio-pmen 直接调用主机页面缓存；将决策交给主机本身，并降低虚机内存。还可以利用 /dev/shm/ivshmem 在虚拟机之间内存后端。网络方面：利用 virtio-net-failover 技术，实现一个 pci 设备和一个 net 设备之间数据路径的接管。使用 VhostNet 技术，实现了比 e1000 提供了更好的延迟和比 virtio 更快的吞吐量(7~8Gib/sec)。同时支持磁盘仿真，输出文件包括了 qcow2、raw 等格式，也包括了 vmdk、vdi，甚至是一些少见的格式比如说 dmg、cloop、luks，另外包括一些 iscsi、光盘、软盘、USB、PXE boot 能力。测试方面：虚拟机支持热拔插，包括了 CPU、PCI 设备. 虚拟机迁移能力、虚拟机嵌套能力等。此外，时间问题可以在 guest 内查到 kvm-clock 输出。</span></p></blockquote><h3 id='总结时刻'><span>总结时刻</span></h3><p><span>简而言之，QEMU 可以在没有 KVM 的情况下，以前文提到的二进制转译的方式运行。与启用 KVM 的硬件辅助虚拟化相比，这种方式的执行速度会慢一些。</span><strong><span>无论在哪种模式下，QEMU 不仅模拟处理器，还模拟了不同的外围设备，如磁盘、网络、VGA、PCI、串口和并行端口、USB 等。</span></strong><span>除了 I/O 设备的模拟，在使用 KVM 时，QEMU-KVM 创建并初始化虚拟机。它还为每个 vCPU 初始化不同的 posix 线程。此外，它还提供了一个框架，在 QEMU-KVM 用户模式地址空间中，模拟虚拟机的物理地址空间。</span></p><h2 id='kvm'><span>KVM</span></h2><p><span>对于 </span><strong><span>KVM</span></strong><span>（英文 Kernel-based Virtual Machine 的缩写） 来说，其是一款支持虚拟机技术，而且是 linux 内核中的一个</span><strong><span>功能模块</span></strong><span>。它在 linux2.6.20 之后的任何 linux 分支中都被支持。@季文康</span></p><p><strong><span>当您安装了 KVM 内核模块，KVM 轻松的将 Linux 内核转换为一个 hypervisor。</span></strong><span>尽管如此，由于 hypervisor 是</span><strong><span>一个标准的 Linux 内核，使得它可以从标准内核的更新中受益（内存支持，调度等）</span></strong><span>。对这些 Linux 组件的优化，不仅让 hypervisor 从中受益，也有利于 Linux Guest OS。在I/O仿真方面，KVM 使用了一个用户态软件 QEMU；Qemu 是一个负责硬件仿真的用户程序。</span></p><p><img src="http://pic.itxdm.com/typora/202207011047663.png" referrerpolicy="no-referrer" alt="image-20220701104733572"></p><ul><li><p><span>KVM 项目由 Qumranet(现属于红帽) 于2006年10月启动。</span></p></li><li><p><span>从 RHEL 5.4 开始，在 x86-64 架构上运行的红帽企业 Linux 中完全支持 KVM</span></p></li><li><p><span>KVM 设计性能十分优异，hypervisor 所需的许多功能都已通过 Linux 内核实施，如处理器调度、内存管理、物理设备驱动程序等</span></p></li></ul><h3 id='qemu-kvm-介绍'><span>QEMU-KVM 介绍</span></h3><p><span>要启动虚拟机，仅仅加载 KVM 模块还不够。您需要 emulator 来模拟虚拟机的外围硬件设备。</span></p><p><span>QEMU 是一个开源机器仿真软件。这个模拟器将帮助您在一个架构上运行为另一种架构设计的的操作系统。例如，QEMU 可以在 x86 平台上运行为 ARM 平台设计的操作系统。然而，这里有一个问题。由于QEMU使用二进制转译（一种用于在主机上执行虚拟机指令的技术），因此</span><strong><span>VM运行会比较缓慢</span></strong><span>。</span></p><p><span>如果 QEMU 运行缓慢，那它如何能以接近物理机的速度运行基于 KVM 的虚拟机呢？KVM 开发人员考虑到了这个问题，并修改了 QEMU作为解决方案。这个修改后的 QEMU 被称为 QEMU-KVM，它可以直接与 KVM 模块交互，并在</span><strong><span>不使用动态转译</span></strong><span>的情况下，</span><strong><span>直接在CPU上执行指令</span></strong><span>。简而言之，我们使用 qemu-kvm 来运行基于 KVM 的虚拟机。      </span></p><p><span>Q：如果qemu-kvm可以运行虚拟机，那么为什么还需要libvirt</span></p><p><span>A：</span><strong><span>libvirt管理qemu-kvm，qemu-kvm运行KVM虚拟机</span></strong><span>，这点我们会在 </span><a href='#setting-up-the-environment'><span>Setting up the environment</span></a><span> 有更具体的介绍。</span></p><h3 id='qemu-kvm-架构'><span>QEMU-KVM 架构</span></h3><p><img src="http://pic.itxdm.com/typora/202207011057796.png" referrerpolicy="no-referrer" alt="image-20220701105735781"></p><p><span>KVM 开发者遵循了和 </span><code>Linux kernel</code><span> 开发者的一样的理念：</span><strong><span>不要重新发明轮子</span></strong><span>。也就是说，他们并没有尝试改变内核代码来创建一个hypervisor；相反，代码是围绕硬件供应商的虚拟化（VMX和SVM）的新硬件支持，用可加载的内核模块的形式开发的。</span></p><p><span>有一个通用的内核模块 kvm.ko 和其他硬件相关的</span><strong><span>内核模块</span></strong><span>，如 kvm-intel.ko（基于Intel CPU系统）或 kvm-amd.ko（基于AMD CPU系统）。相应的，KVM将载入 kvm-intel.ko（如果存在vmx标志）或 kvm-amd.ko（如果存在svm标志）模块。这将 Linux内核 变成了一个 hypervisor，从而实现了虚拟化。@季文康</span></p><p><img src="http://pic.itxdm.com/typora/202207011058228.png" referrerpolicy="no-referrer" alt="img"></p><p><span>KVM暴露设备文件 /dev/kvm 供应用程序调用 ioctls()。QEMU 利用这个设备文件与 KVM通信，并创建、初始化和管理 VM 的内核模式上下文。KVM帮助实现用户空间在 QEMU-KVM 的用户模式地址空间内，提供 VM 的物理地址空间，其中包括 memory-mapped I/O。</span></p><h4 id='组件图'><span>组件图</span></h4><p><img src="http://pic.itxdm.com/typora/202207010915174.png" alt="img" style="zoom: 33%;" /></p><p><img src="http://pic.itxdm.com/typora/202207101728703.png" referrerpolicy="no-referrer" alt="img"></p><blockquote><p><span>（1）qemu-kvm 通过对 /dev/kvm 的 一系列 ICOTL 命令控制虚机；</span></p><p><span>（2）一个 KVM 虚机即一个 Linux qemu-kvm 进程，与其他 Linux 进程一样被Linux 进程调度器调度；</span></p><p><span>（3）KVM 虚机包括虚拟内存、虚拟CPU和虚机 I/O设备，其中，</span><strong><span>内存和 CPU 的虚拟化由 KVM 内核模块负责实现，I/O 设备的虚拟化由 QEMU 负责实现；</span></strong></p><p><span>（4）KVM虚机系统的内存是 qemu-kvm 进程的地址空间的一部分；</span></p><p><span>（5）KVM 虚机的 vCPU 作为 线程运行在 qemu-kvm 进程的上下文中。</span></p></blockquote><p><span>VMM 完成 Vcpu、内存的初始化后，通过 ioctl 调用KVM 接口，完成虚拟机的创建，并创建一个线程来运行 VM，由于VM在前期初始化的时候会设置各种寄存器来帮助KVM查找到需要加载的指令的入口（main函数）。所以线程在调用了KVM接口后，物理CPU的控制权就交给了VM。VM运行在VMX non-root模式，这是Intel-V或者AMD-V提供的一种特殊的CPU执行模式。然后当VM执行了特殊指令的时候，CPU将当前VM的上下文保存到VMCS寄存器（这个寄存器是一个指针，保存了实际的上下文地址），然后执行权切换到VMM。VMM 获取 VM 返回原因，并做处理。如果是IO请求，VMM 可以直接读取VM的内存并将IO操作模拟出来，然后再调用VMRESUME指令，VM继续执行，此时在VM看来，IO操作的指令被CPU执行了。@季文康</span></p><h4 id='框架图'><span>框架图</span></h4><p><img src="http://pic.itxdm.com/typora/202207061458151.png" referrerpolicy="no-referrer" alt="image-20220706145831049"></p><p><img src="http://pic.itxdm.com/typora/202206301427114.png" referrerpolicy="no-referrer" alt="img"></p><p><span>为了在物理 CPU 中执行 Guest 代码，QEMU 使用了 posix 线程。也就是说，Guest 虚拟CPU 在主机内核中作为 posix线程 执行。这本身就带来了许多好处，因为从上层来看它们只是主机内核的一些进程。从另一个角度看，KVM hypervisor 的用户空间部分由 QEMU 提供。QEMU 通过 KVM 内核模块运行客户代码。在使用 KVM 时，QEMU 也执行 I/O仿真、I/O设备设置、实时迁移等。</span></p><p><span>可见，KVM 客户机代码是受 VMM 控制直接运行在物理 CPU 上的。QEMU 只是通过 KVM 控制虚机的代码被 CPU 执行，但是它们本身并不执行其代码。</span><strong><span>也就是说，CPU 并没有真正的被虚拟化成虚拟的 CPU 给客户机使用。</span></strong></p><p><img src="http://pic.itxdm.com/typora/202207101729988.png" referrerpolicy="no-referrer" alt="img"></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="shell" style="break-inside: unset;"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="shell"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 11px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: currentcolor;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: currentcolor;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment"># 通过 qemu-kvm 创建一个 2 核心的虚机</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">[root@localhost ~]<span class="cm-comment"># qemu-kvm -cpu host -smp 2 -m 512m -drive file=/root/cirros-0.3.5-i386-disk.img -daemonize</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">VNC server running on <span class="cm-quote">`::1:5900'</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment"># 查看 qemu-kvm 主进程</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">[root@localhost ~]<span class="cm-comment"># ps -ef | egrep qemu</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">root &nbsp; &nbsp; <span class="cm-number">24066</span> &nbsp; &nbsp; <span class="cm-number">1</span> <span class="cm-number">56</span> <span class="cm-number">13</span>:59 ? &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-number">00</span>:00:10 qemu-kvm <span class="cm-attribute">-cpu</span> host <span class="cm-attribute">-smp</span> <span class="cm-number">2</span> <span class="cm-attribute">-m</span> 512m <span class="cm-attribute">-drive</span> <span class="cm-def">file</span><span class="cm-operator">=</span>/root/cirros-0.3.5-i386-disk.img <span class="cm-attribute">-daemonize</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">root &nbsp; &nbsp; <span class="cm-number">24077</span> <span class="cm-number">24041</span> &nbsp;<span class="cm-number">0</span> <span class="cm-number">13</span>:59 pts/0 &nbsp; &nbsp;<span class="cm-number">00</span>:00:00 <span class="cm-builtin">grep</span> <span class="cm-attribute">-E</span> <span class="cm-attribute">--color</span><span class="cm-operator">=</span>auto qemu</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment"># 查看 qemu-kvm 子线程</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">[root@localhost ~]<span class="cm-comment"># ps -Tp 24066</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  PID  SPID TTY &nbsp; &nbsp; &nbsp; &nbsp;  TIME CMD</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-number">24066</span> <span class="cm-number">24066</span> ? &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-number">00</span>:00:00 qemu-kvm</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-number">24066</span> <span class="cm-number">24067</span> ? &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-number">00</span>:00:00 qemu-kvm</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-number">24066</span> <span class="cm-number">24070</span> ? &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-number">00</span>:00:07 qemu-kvm</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-number">24066</span> <span class="cm-number">24071</span> ? &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-number">00</span>:00:02 qemu-kvm</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-number">24066</span> <span class="cm-number">24073</span> ? &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-number">00</span>:00:00 qemu-kvm</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment"># 通过 gdb 查看子线程的作用</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">(gdb) thread <span class="cm-number">1</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">[Switching to thread <span class="cm-number">1</span> (Thread 0x7fb830cb2ac0 (LWP <span class="cm-number">24066</span>))]</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">#0  0x00007fb829eaebcd in poll () from /lib64/libc.so.6</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">(gdb) thread <span class="cm-number">2</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">[Switching to thread <span class="cm-number">2</span> (Thread 0x7fb7fddff700 (LWP <span class="cm-number">24073</span>))]</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">#0  0x00007fb82de0e6d5 in pthread_cond_wait@@GLIBC_2.3.2 () from /lib64/libpthread.so.0</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">(gdb) thread <span class="cm-number">3</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">[Switching to thread <span class="cm-number">3</span> (Thread 0x7fb81fe6e700 (LWP <span class="cm-number">24071</span>))]</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">#0  0x00007fb829eb02a7 in ioctl () from /lib64/libc.so.6</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">(gdb) thread <span class="cm-number">4</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">[Switching to thread <span class="cm-number">4</span> (Thread 0x7fb82066f700 (LWP <span class="cm-number">24070</span>))]</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">#0  0x00007fb829eb02a7 in ioctl () from /lib64/libc.so.6</span></span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 806px;"></div><div class="CodeMirror-gutters" style="display: none; height: 806px;"></div></div></div></pre><p><span>通过上面的数据得出：1 个 2 核心的虚拟机，4个子线程</span></p><ul><li><p><span>thread-1：主线程 loop 循环，循环操作 select 查看有无读写文件描述符，有的话进行读写操作；</span></p></li><li><p><span>thread-2：子线程 异步 I/O 操作，主要针对磁盘映像操作（block drive）；</span></p></li><li><p><span>thread-3：子线程 vcpu 线程，kvm_run 启动和运行虚拟机；</span></p></li><li><p><span>thread-4：同 thread-3</span></p></li></ul><h3 id='总结时刻-2'><span>总结时刻</span></h3><p><span>QEMU 访问 KVM 模块创建的设备文件（/dev/kvm），并执行 ioctls() . 最后，KVM 利用 QEMU 成为一个完整的 hypervisor，而 KVM 是利用 CPU 提供的硬件虚拟化扩展(VMX或SVM，与CPU架构紧密耦合。</span><strong><span>间接地，这表明VM也必须使用相同的架构以使用硬件虚拟化扩展/功能。</span></strong><span>一旦启用KVM，它肯定会比其他技术(如二进制转译)提供更好的性能。</span></p><ul><li><p><span>基于内核的虚拟机（KVM）代表了最新的开源虚拟化技术。这个项目的目标是创建一个现代化的 hypervisor，它建立在前几代技术的经验之上，并利用当今可用的现代硬件技术(VT-x，AMD-v)。</span></p></li><li><p><span>KVM 需要芯片支持虚拟化技术（英特尔的 VT 扩展或者 AMD 的 AMD-V 扩展）</span></p><ul><li><p><span>对于是否支持也可以通过命令行查看：egrep &#39;(vmx|svm)&#39; --color=always /proc/cpuinfo</span></p></li><li><p><span>在 bios 中是默认设置不打开该功能的，要去 bios 设置其为 enable</span></p></li><li><p><span>如果有任何内容则说明当期硬件架构是支持 kvm 的，否则就不支持。 </span></p></li></ul></li></ul><h2 id='libvirt'><span>Libvirt</span></h2><p><span>Q：为什么还要 </span><code>yum install libvirt</code><span> 呢？</span></p><p><span>A：</span><strong><span>操作系统装以后，天生就可以安装虚拟机了。</span></strong><span>但是，内核支持虚拟化，不代表应用就能直接访问虚拟化。应用需要调用 lib 来使用虚拟化，这是免费的。</span><strong><span>Libvirt将负责存储、网络和虚拟硬件需求，以启动虚拟机和VM生命周期管理。</span></strong></p><hr /><p><span>在系统管理实用程序 (如 virsh 和 virt-manager) 的请求下，libvirtd 为每个虚拟机启动了一个单独的 qemu-kvm </span><strong><span>进程</span></strong><span>。虚拟机的属性 (cpu数量、内存大小、I/O设备配置) 是在单独的 </span><strong><span>XML 文件</span></strong><span>中定义的，这些文件位于 /etc/libvirt/qemu目录中，libvirtd使用这些 XML 文件的详细信息来传递给 qemu-kvm 进程的参数列表。@季文康</span></p><p><span>进程：</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="shell"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="shell"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 11px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: currentcolor;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: currentcolor;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">qemu &nbsp; &nbsp; <span class="cm-number">14644</span> &nbsp;<span class="cm-number">9</span>.8 &nbsp;<span class="cm-number">6</span>.8 <span class="cm-number">6138068</span> <span class="cm-number">1078400</span> ? &nbsp; &nbsp; Sl &nbsp; <span class="cm-number">03</span>:14 &nbsp;<span class="cm-number">97</span>:29 /usr/bin/qemu-system-x86_64 <span class="cm-attribute">-machine</span> <span class="cm-def">accel</span><span class="cm-operator">=</span>kvm <span class="cm-attribute">-name</span> guest1 <span class="cm-attribute">-S</span> <span class="cm-attribute">-machine</span> pc--m <span class="cm-number">5000</span> <span class="cm-attribute">-realtime</span> <span class="cm-def">mlock</span><span class="cm-operator">=</span>off <span class="cm-attribute">-smp</span> <span class="cm-number">4</span><span class="cm-def">,sockets</span><span class="cm-operator">=</span><span class="cm-number">4</span><span class="cm-def">,cores</span><span class="cm-operator">=</span><span class="cm-number">1</span><span class="cm-def">,threads</span><span class="cm-operator">=</span><span class="cm-number">1</span> <span class="cm-attribute">-uuid</span> 7a615914-ea0d-7dab-e709-0533c00b921f <span class="cm-attribute">-no-user-config</span> <span class="cm-attribute">-nodefaults</span> <span class="cm-attribute">-chardev</span> socket<span class="cm-def">,id</span><span class="cm-operator">=</span>charmonitor-drive <span class="cm-def">file</span><span class="cm-operator">=</span>/dev/vms/hypervisor2<span class="cm-def">,if</span><span class="cm-operator">=</span>none<span class="cm-def">,id</span><span class="cm-operator">=</span>drive-virtio-disk0<span class="cm-def">,format</span><span class="cm-operator">=</span>raw<span class="cm-def">,cache</span><span class="cm-operator">=</span>none<span class="cm-def">,aio</span><span class="cm-operator">=</span>native <span class="cm-attribute">-device</span> <span class="cm-def">id</span><span class="cm-operator">=</span>net0<span class="cm-def">,mac</span><span class="cm-operator">=</span><span class="cm-number">52</span>:54:00:5d:be:06</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 182px;"></div><div class="CodeMirror-gutters" style="display: none; height: 182px;"></div></div></div></pre><p><span>XML 文件：</span></p><p><img src="http://pic.itxdm.com/typora/202207011115798.png" referrerpolicy="no-referrer" alt="image-20220701111534750"></p><h3 id='通用层'><span>通用层</span></h3><ul><li><p><span>libvirt 是一组位于最终用户和 hypervisor 之间的API。</span></p></li><li><p><span>一个稳定的</span><strong><span>通用层</span></strong><span>来安全地管理主机上的虚拟机。</span></p></li><li><p><span>管理工具可以位于独立于主机的物理机上，并通过安全协议和主机进行交流。</span></p></li><li><p><span>hypervisor 可以基于任何 libvirt 支持的虚拟化技术来构建</span></p><ul><li><p><span>libvirt 支持下列 hypervisor：</span></p><ul><li><p><span>The KVM/QEMU Linux hypervisor</span></p></li><li><p><span>The Xen hypervisor on Linux and Solaris hosts</span></p></li><li><p><span>The LXC Linux container system</span></p></li><li><p><span>The OpenVZ Linux container system</span></p></li><li><p><span>The User Mode Linux paravirtualized kernel</span></p></li><li><p><span>The VirtualBox hypervisor</span></p></li><li><p><span>The VMware ESX and GSX hypervisors</span></p></li><li><p><span>The VMware Workstation and Player hypervisors</span></p></li><li><p><span>The Microsoft Hyper-V hypervisor</span></p></li><li><p><span>The IBM PowerVM hypervisor</span></p></li><li><p><span>The Parallels hypervisor</span></p></li><li><p><span>The Bhyve hypervisor</span></p></li></ul></li></ul></li></ul><hr /><p><span>libvirt 是一个透明层，它接受用户的命令，根据底层虚拟化技术修改它们，然后在 hypervisor 上执行它们。这意味着，如果您知道如何使用基于 libvirt 的管理工具，您就能够管理前面提到的 hypervisor，</span><strong><span>而不需要一一了解它们</span></strong><span>。您可以选择任何虚拟化管理技术。他们都使用 libvirt 作为后端基础设施管理层，尽管前端工具看起来不同；例如，oVirt、RHEV（Red Hat企业虚拟化技术）、OpenStack、Eucalyptus等。而作为红帽，</span><strong><span>我们会重点讲解 kvm/qemu 这部分。</span></strong></p><h3 id='通用接口'><span>通用接口</span></h3><p><span>尽管 </span><strong><span>libvirt</span></strong><span> 可同时访问多个主机，但 API 只限于</span><strong><span>单节点操作</span></strong><span>。libvirt 通过 hypervisor 提供的 API 来列举、监测和使用管理节点上的可用资源，其中包括 CPU、内存、储存、网络和非一致性内存访问（NUMA）分区。部署、创建、修改、监测、控制、迁移以及停止虚拟机操作都需要这些 API。</span></p><p><span>一个管理本地系统和连网主机的</span><strong><span>通用接口</span></strong><span>。很多人以为libvirt只能在单个节点或者运行libvirt的本地节点上运行，这并不正确。libvirt库支持远程功能。因此，任何libvirt工具（例如virt-manager）都可以通过传递一个额外的--connect参数，远程连接到网络上的libvirt守护进程。Fedora，CentOS等绝大多数发行版都安装了libvirt的客户端virsh（由libvirt -client package提供）。</span></p><h3 id='组件图-2'><span>组件图</span></h3><p><img src="http://pic.itxdm.com/typora/202206301729505.png" referrerpolicy="no-referrer" alt="img"></p><p>&nbsp;</p><h3 id='架构图'><span>架构图</span></h3><p><img src="http://pic.itxdm.com/typora/202207011126627.png" referrerpolicy="no-referrer" alt="image-20220701112614589"></p><center>架构设计思想</center><p><span>从该图可以看出，libvirt 的设计理念，是面向驱动的架构设计。对任何一种虚拟机技术都开发设计相对于该技术的驱动。在 libvirt api 之上会有很多个 driver，对于每一种虚拟机技术都会有一种 driver，用来充当该虚拟机技术与 libvirt 之间的包装接口。如此设计就可以避免 libvirt 需要设计各种针对不同虚拟机技术的接口，它主要关注底层的实现，提供对外接口调用，而不同的虚拟机技术通过调用 libvirt 提供的接口来完成自己所需要的功能。不同虚拟机技术就可以使用不同驱动，而且相互直接不会影响，方便扩展。而且 libvirt 提供了多种语言的编程接口，可以直接通过编程，调用 libvirt 提供的对外接口实现对虚拟机的操作。</span></p><h3 id='总结时刻-3'><span>总结时刻</span></h3><p><span>简而言之，作为管理层，它负责提供执行管理任务的API，如虚拟机置备、创建、修改、监视、控制、迁移等。在Linux中，您会注意到一些进程成为了守护进程。libvirt进程也有一个守护进程，叫做libvirtd。与其他守护进程一样，libvirtd为其client发起的请求提供服务。</span></p><p><span>libvirt 根据客户端传递的连接URI，前一个（qemu://xxxx/system）请求以root身份连接到本地管理的QEMU和KVM域，或者VM的守护进程。后一个（qemu://xxxx/session）请求以普通用户身份连接到它自身的QEMU和KVM域。libvirtd 建立起与 hypervisor的连接。</span></p><p><span>客户端程序 virsh 或 virt-manager 就是通过这样的方式使 libvirtd 与 hypervisor 建立通信的。</span></p><h2 id='setting-up-the-environment'><span>Setting up the environment</span></h2><h2 id='手动'><span>手动</span></h2><h3 id='1创建镜像'><span>1、创建镜像</span></h3><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="shell"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="shell"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 11px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: currentcolor;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: currentcolor;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">在 KVM 中，创建一个虚拟机镜像，大小为 8G，其中 qcow2 格式为动态分配，raw 格式为固定大小。</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment"># qemu-img create -f qcow2 ubuntutest.img 8G</span></span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 78px;"></div><div class="CodeMirror-gutters" style="display: none; height: 78px;"></div></div></div></pre><h3 id='2创建虚拟机'><span>2、创建虚拟机</span></h3><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="shell"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="shell"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 11px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: currentcolor;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: currentcolor;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">创建虚拟机：名字叫 ubuntutest，内存大小为 1024M，使用动态分配的 8g 大小的磁盘，挂载 Ubuntu 的 ISO 光盘，VNC 端口为 <span class="cm-number">5919</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment"># /usr/libexec/qemu-kvm -enable-kvm -name ubuntutest  -m 2048 -hda ubuntutest.img -cdrom ubuntu-14.04-server-amd64.iso -boot d -vnc :19</span></span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 104px;"></div><div class="CodeMirror-gutters" style="display: none; height: 104px;"></div></div></div></pre><h3 id='3启用虚拟机'><span>3、启用虚拟机</span></h3><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="shell"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="shell"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 11px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: currentcolor;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: currentcolor;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment"># /usr/libexec/qemu-kvm -enable-kvm -name centos7 -m 2048 -hda /home/centos7 -vnc :19 &nbsp; -device virtio-net,netdev=network0 -netdev tap,id=network0,ifname=tap0,script=no,downscript=no,vhost=on</span></span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 78px;"></div><div class="CodeMirror-gutters" style="display: none; height: 78px;"></div></div></div></pre><h3 id='4配置虚拟机网络'><span>4、配置虚拟机网络</span></h3><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="shell"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="shell"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 11px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: currentcolor;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: currentcolor;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment"># ip link set tap0 up</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment"># brctl addif br0 tap0</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment"># ifconfig br0 192.168.57.1/24 # 虚拟机启动后，网卡没有配置，所以无法连接外网，先给 br0 设置一个 ip。</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment"># sysctl -w net.ipv4.ip_forward=1</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment"># sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE # 在 Host 上设置 NAT，并且 enable ip forwarding</span></span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 182px;"></div><div class="CodeMirror-gutters" style="display: none; height: 182px;"></div></div></div></pre><p><img src="http://pic.itxdm.com/typora/202207012144063.png" referrerpolicy="no-referrer" alt="image-20220701214411918"></p><h2 id='自动'><span>自动</span></h2><h3 id='cockpit'><span>cockpit</span></h3><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="shell"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="shell"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 11px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: currentcolor;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: currentcolor;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">yum install <span class="cm-attribute">-y</span> cockpit-machines cockpit</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">systemctl enable <span class="cm-attribute">--now</span> cockpit.service</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 52px;"></div><div class="CodeMirror-gutters" style="display: none; height: 52px;"></div></div></div></pre><p><img src="http://pic.itxdm.com/typora/202207012239879.png" referrerpolicy="no-referrer" alt="image-20220701223944816"></p><h3 id='virt-manager'><span>virt-manager</span></h3><p><img src="http://pic.itxdm.com/typora/202207012229990.png" referrerpolicy="no-referrer" alt="image-20220701222921926"></p><h3 id='virt-install'><span>virt-install</span></h3><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="shell"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="shell"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 11px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: currentcolor;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: currentcolor;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">virt-install \</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-attribute">--name</span> centos7 \</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-attribute">--import</span> \</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-attribute">--graphics</span> vnc<span class="cm-def">,listen</span><span class="cm-operator">=</span><span class="cm-number">0</span>.0.0.0 \</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-attribute">--memory</span> <span class="cm-number">4096</span> \</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-attribute">--disk</span> /home/centos7 \</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-attribute">--os-variant</span> rhel7.0</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 182px;"></div><div class="CodeMirror-gutters" style="display: none; height: 182px;"></div></div></div></pre><p><img src="http://pic.itxdm.com/typora/202207012208853.png" referrerpolicy="no-referrer" alt="image-20220701220802794"></p><h3 id='virsh'><span>virsh</span></h3><p><img src="http://pic.itxdm.com/typora/202207012247146.png" referrerpolicy="no-referrer" alt="image-20220701224720102"></p><h1 id='reference'><span>Reference</span></h1><p><span>概览式了解：</span></p><p><a href='https://docs.google.com/presentation/d/1aqBbd_Qk5Yj7VzKeQ7xJlYwLSPHU9wc--93mXs28RpM/edit#slide=id.g4f15f900b1_0_305'><span>推荐：内部 docs 虚拟化分享</span></a></p><p><a href='https://weread.qq.com/web/reader/707323107230073770737a2'><span>书籍：《Mastering KVM Virtualization》</span></a></p><p><a href='https://www.cnblogs.com/echo1937/category/1045922.html'><span>书籍：《Mastering KVM Virtualization》</span></a></p><p><a href='https://www.cnblogs.com/hukey/p/11138768.html'><span>博客园：KVM 相关总结</span></a></p><p><span>名词性了解：</span></p><p><a href='https://en.wikipedia.org/wiki/Protection_ring'><span>wiki：保护环</span></a></p><p><a href='https://en.wikipedia.org/wiki/Hypervisor'><span>wiki：Hypervisor</span></a></p><p><span>半虚拟化：</span></p><p><a href='https://rcore-os.github.io/rCore-Tutorial-Book-v3/chapter9/2device-driver-2.html'><span>GitHub IO：virtio</span></a></p><p><a href='https://wiki.qemu.org/Features/VT-d#With_Virtio_Devices'><span>QEMU：virtio 设备</span></a></p><p><a href='https://www.researchgate.net/publication/221436288_Unobservable_Intrusion_Detection_based_on_Call_Traces_in_Paravirtualized_Systems'><span>博士论文：半虚拟化中入侵检测</span></a></p><p><span>虚拟化产品：</span></p><p><a href='https://zhuanlan.zhihu.com/p/33324585'><span>知乎专栏：XEN</span></a></p><p><a href='https://pediaa.com/what-is-the-difference-between-kvm-and-xen/'><span>外文：kvm 与 xen 的不同</span></a></p><hr /><p><a href='https://gitlab.cee.redhat.com/wji/learningmd/-/blob/master/qemu-kvm/libvirt%20and%20QEMU.md'><span>更多查看内部旧文参考</span></a></p><p><a href='https://gitlab.cee.redhat.com/wji/learningmd/-/tree/master/qemu-kvm'><span>更多相关文章参考</span></a></p><p>&nbsp;</p></div></div>
+<div id='write'  class=''><h1 id='virtualization-introduction---only-x86'><span>Virtualization Introduction - only x86</span></h1><div class='md-toc' mdtype='toc'><p class="md-toc-content" role="list"><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n0"><a class="md-toc-inner" href="#virtualization-introduction---only-x86">Virtualization Introduction - only x86</a></span><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n50"><a class="md-toc-inner" href="#why">Why</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n53"><a class="md-toc-inner" href="#hypervisor-基础">Hypervisor 基础</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n60"><a class="md-toc-inner" href="#hypervisor-类型">Hypervisor 类型</a></span><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n73"><a class="md-toc-inner" href="#what">What</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n78"><a class="md-toc-inner" href="#虚拟化分类">虚拟化分类</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n115"><a class="md-toc-inner" href="#硬件仿真-vs-半虚拟化">硬件仿真 VS 半虚拟化</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n120"><a class="md-toc-inner" href="#虚拟化详细">虚拟化详细</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n157"><a class="md-toc-inner" href="#虚拟化实现原理">虚拟化实现原理</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n169"><a class="md-toc-inner" href="#virtualbox-的实现">VirtualBox 的实现</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n176"><a class="md-toc-inner" href="#xen-的实现">XEN 的实现</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n195"><a class="md-toc-inner" href="#硬件辅助虚拟化技术hvm）">硬件辅助虚拟化技术（HVM）</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n199"><a class="md-toc-inner" href="#硬件辅助的cpu技术vt-x--amd-v）">硬件辅助的CPU技术（VT-x / AMD-V）</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n208"><a class="md-toc-inner" href="#guest-os-是如何运行的">Guest OS 是如何运行的</a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n211"><a class="md-toc-inner" href="#vm-entry--vm-exit">vm entry / vm exit</a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n215"><a class="md-toc-inner" href="#vmcsvirtual-machine-control-structure）">VMCS（virtual machine control structure）</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n231"><a class="md-toc-inner" href="#硬件辅助的内存技术ept--npt）">硬件辅助的内存技术（EPT / NPT）</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n234"><a class="md-toc-inner" href="#硬件辅助的io技术vt-d--iommu）">硬件辅助的I/O技术（VT-d / IOMMU）</a></span><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n256"><a class="md-toc-inner" href="#how">How</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n259"><a class="md-toc-inner" href="#q--a">Q &amp; A</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n273"><a class="md-toc-inner" href="#qemu">QEMU</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n282"><a class="md-toc-inner" href="#qemu-模拟器">QEMU 模拟器</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n301"><a class="md-toc-inner" href="#qemu-虚拟器">QEMU 虚拟器</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n311"><a class="md-toc-inner" href="#更多内容">更多内容</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n314"><a class="md-toc-inner" href="#总结时刻">总结时刻</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n316"><a class="md-toc-inner" href="#kvm">KVM</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n327"><a class="md-toc-inner" href="#qemu-kvm-介绍">QEMU-KVM 介绍</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n333"><a class="md-toc-inner" href="#qemu-kvm-架构">QEMU-KVM 架构</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n339"><a class="md-toc-inner" href="#组件图">组件图</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n349"><a class="md-toc-inner" href="#框架图">框架图</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n366"><a class="md-toc-inner" href="#总结时刻-2">总结时刻</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n381"><a class="md-toc-inner" href="#libvirt">Libvirt</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n390"><a class="md-toc-inner" href="#通用层">通用层</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n431"><a class="md-toc-inner" href="#通用接口">通用接口</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n434"><a class="md-toc-inner" href="#组件图-2">组件图</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n437"><a class="md-toc-inner" href="#架构图">架构图</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n441"><a class="md-toc-inner" href="#总结时刻-3">总结时刻</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n445"><a class="md-toc-inner" href="#setting-up-the-environment">Setting up the environment</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n446"><a class="md-toc-inner" href="#手动">手动</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n447"><a class="md-toc-inner" href="#1创建镜像">1、创建镜像</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n449"><a class="md-toc-inner" href="#2创建虚拟机">2、创建虚拟机</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n451"><a class="md-toc-inner" href="#3启用虚拟机">3、启用虚拟机</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n453"><a class="md-toc-inner" href="#4配置虚拟机网络">4、配置虚拟机网络</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n456"><a class="md-toc-inner" href="#自动">自动</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n457"><a class="md-toc-inner" href="#cockpit">cockpit</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n460"><a class="md-toc-inner" href="#virt-manager">virt-manager</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n462"><a class="md-toc-inner" href="#virt-install">virt-install</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n465"><a class="md-toc-inner" href="#virsh">virsh</a></span><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n467"><a class="md-toc-inner" href="#reference">Reference</a></span></p></div><p><span>首先我们来看没有虚拟化，操作系统是如何运行的</span></p><p><span>操作系统上的程序分为两种，一种是</span><strong><span>用户态</span></strong><span>的程序，例如 Word、Excel 等，一种是</span><strong><span>内核态</span></strong><span>的程序，例如内核代码、驱动程序等。</span></p><p><img src="./typora/202206281507921.png" alt="image-20220628150719806"  /></p><p><img src="./typora/202206281554370.png" alt="image-20220628155427309" style="zoom:67%;" /></p><p><span>为了区分内核态和用户态，CPU 专门设置四个特权等级 0、1、2、3 来做这个事情。@季文康</span></p><figure class='table-figure'><table><thead><tr><th><img src="./typora/202204281801553.png" style="zoom:25%;" /></th><th><img src="./typora/202206292107420.png" referrerpolicy="no-referrer"></th></tr></thead><tbody></tbody></table></figure><blockquote><p><span>关于 </span><strong><span>Ring</span></strong><span> 环的介绍（早期版本的硬件只支持2个保护等级）：</span></p><p><span>Level 0</span></p><ul><li><p><span>The inner most layer of the rings</span></p></li><li><p><span>Contains</span></p><ul><li><p><span>Security kernel</span></p></li><li><p><span>Memory-resident components</span></p></li></ul></li></ul><p><span>Level 1</span></p><ul><li><p><span>Less important code or processes than level 0</span></p><ul><li><p><span>&quot;As-needed&quot;OS components other than Kernel</span></p></li><li><p><span>Loaded into the memory when necessary</span></p></li></ul></li></ul><p><span>Level 2</span></p><ul><li><p><span>System utilities</span></p></li><li><p><span>l/O drivers</span></p></li><li><p><span>Protocols</span></p></li></ul><p><span>Level 3:User Mode</span></p><ul><li><p><span>User application processes</span></p></li></ul></blockquote><p><span>大牛们在写 Linux 内核的时候，如果用户态程序做事情，就将扳手掰到第 3 等级，一旦要申请使用更多的资源，就需要申请将扳手掰到第 0 等级，内核才能在高权限访问这些资源，申请完资源，返回到用户态，扳手再掰回去。通常只使用这两个环：用于内核模式的ring 0 和用于用户模式的 ring 3.</span></p><blockquote><p><span>应用程序是运行在 Ring3上的，如果应用程序需要访问磁盘，比如写文件，那就需要通过执行系统调用（函数），执行系统调用的时候，CPU 运行级别将从 Ring 3 切换到 Ring 0，并跳转到系统调用对应的内核代码位置执行，这样内核就为你完成了设备的访问，完成之后再从 Ring0 切换到 Ring3，</span><strong><span>这个过程称之为 用户态 和 内核态 的切换。</span></strong></p></blockquote><p><span>这个程序一直非常顺利地运行着，直到虚拟机出现了。</span></p><h1 id='why'><span>Why</span></h1><p><span>通过虚拟化，可以将单台计算机划分成多台虚拟机，每台虚拟机拥有自己的操作系统。从物理机角度上看，它们彼此是独立的。具体来说就是具有自己的网络接口和IP地址、文件系统以及其他外围设备。（特指完全虚拟化环境下）从每个操作系统的角度来看，他们运行在自己的专有硬件（虚拟出来的硬件）上。它们认为自己是和硬件直接在打交道，但其实是同 </span><code>qemu</code><span> 模拟出来的硬件打交道，并且 </span><code>qemu</code><span> 会将这些指令 </span><strong><span>转译（中间人）</span></strong><span>给真正的硬件。</span></p><hr /><h2 id='hypervisor-基础'><span>Hypervisor 基础</span></h2><blockquote><p><span>关于 Hypervisor 的介绍：</span></p><p><span>每一个操作系统都有一个内核 kernel ，而这个 kernel 是需要对 CPU 的 ring0 进行操作的。如果没有任何限制，运行多台虚拟机则会出现多个操作系统</span><strong><span>同时</span></strong><span>抢占 CPU。所以运行多台虚拟机就需要一个调度程序去进行调度，它被称为 hypervisor （</span><strong><span>虚拟机控制软件</span></strong><span>）。通过这样处理以后，我们就得到了虚拟机，而虚机运行在 ring3 环。反过来说。在 ring3 称为用户模式下的 </span><strong><span>全虚拟化</span></strong><span> 虚拟机。</span></p><p><span>目前市场主要厂商及产品：VMware vSphere、微软Hyper-V、Citrix XenServer 、IBM PowerVM、Red Hat Enterprise Virtulization、Huawei FusionSphere、开源的KVM、Xen、VirtualBSD等。</span></p></blockquote><p><code>hypervisor</code><span> 是管理和支持虚拟化环境的软件，可为每个操作系统运行虚拟机，并且为每个虚拟机提供虚拟 CPU、内存、磁盘、网络和其他外围设备的访问权限。同时限制虚拟机，使其无法直接访问实际硬件以及互相直接访问。</span></p><p><span>提供 </span><code>hypervisor</code><span> 的物理计算机或操作系统称为 </span><code>host</code><span> 计算节点。客户机 </span><code>guest</code><span> 是在 </span><code>hypervisor</code><span> 上运行的虚拟机。</span></p><h2 id='hypervisor-类型'><span>Hypervisor 类型</span></h2><p><img src="./typora/202206291759198.png" referrerpolicy="no-referrer" alt="img"></p><p><span>一般来说我们分为俩类，一种是 </span><code>Bare Metal</code><span>，直接在硬件上来控制硬件和管理虚拟机的操作系统 ；另外一种是安装在 </span><code>hosted OS</code><span> 上的 </span><code>hypervisor</code><span>，运行在传统的操作系统上，就像其他计算机程序那样运行。他们都有其代表产品。@季文康</span></p><figure class='table-figure'><table><thead><tr><th><span>Type 1 (Bare Metal) Hypervisors</span></th><th><span>Type 2 (Hosted) Hypervisors</span></th></tr></thead><tbody><tr><td><span>Xen， Oracle VM Server， Hyper-V， ESXi， IBM z/VM</span></td><td><span>VMware Workstation， VirtualBox， Parallels Desktop， QEMU</span></td></tr></tbody></table></figure><blockquote><p><strong><span>KVM is a virtualization module in Linux kernel that works  similar to a hypervisor, while Xen is a type 1 hypervisor that allows  multiple operating systems to execute on the same computer hardware,  simultaneously.</span></strong></p></blockquote><p><span>传统的 Type 1 是优于 Type 2 性能的。但随着虚拟化技术的发展，在有些产品上这个界限并不十分清晰。Linux 系统上的 KVM(Kernel-based Virtual Machine)和 FreeBSD 系统上的 bhyve 都是</span><strong><span>内核模块</span></strong><span>，它们可以很高效地将主机操作系统转化为 Type-1 类型的虚拟机监视器。同时，因为 Linux 发行版和 FreeBSD 都是非常通用的操作系统，且运行其上的</span><strong><span>其他应用程序会跟虚拟机抢占资源</span></strong><span>，因此 KVM 和 bhyve 也可以归类为 Type-2 类型的虚拟机监视器。@季文康</span></p><h1 id='what'><span>What</span></h1><p><span>虚拟化主要分为三种类型：</span><strong><span>完全</span></strong><span>虚拟化、</span><strong><span>半</span></strong><span>虚拟化和</span><strong><span>软件</span></strong><span>虚拟化。</span><strong><span>同时这三种分类也是不同厂商的产品，他们的区别所在。</span></strong></p><p><span>简单理解：完全虚拟化，就是对虚拟机不做任何修改即可运行。如果我的 CPU 具有 vmx|svm 的 flag 标志，则允许开启硬件辅助支持而具有更好的效能；如果我的 CPU 没有这个标志，我可以使用软件仿真做二进制转换来启动虚拟机。但这种方式速度极慢，并且 Host 是 32位系统，则 Guest 也只能是 32位系统等等限制。如果你嫌弃这样太慢，可以将虚拟机的 kernel 部分做一定修改（这一要求也使得无法运行 Windows 这种闭源操作系统），使得虚拟机知道自己是虚拟机从而更好的被 Host 运行，这就是半虚拟化。现在很少有人会在生产环境中使用半虚拟化了，但这并不代表完全虚拟化就和半虚拟化处在对立面。比如说我们可以在 VMware 中安装 vmware tools 以实现更好的性能，而这个 vmware tools 就是一个半虚拟化的东西。</span></p><p><img src="./typora/202207081321220.png" referrerpolicy="no-referrer" alt="image-20220708132115125"></p><hr /><h2 id='虚拟化分类'><span>虚拟化分类</span></h2><figure class='table-figure'><table><thead><tr><th><span>类型</span></th><th><span>别名</span></th><th><span>Ring</span></th><th><span>性能</span></th><th><span>支持</span></th><th><span>原因</span></th></tr></thead><tbody><tr><td><span>硬件仿真(Hardware Emulation)</span></td><td><span>软件虚拟化</span></td><td><span>3</span></td><td><span>🌟</span></td><td><span>❌</span></td><td><span>不支持 32位的 Host 安装 64 位的 Guest</span></td></tr><tr><td><span>完全虚拟化(Full Virtualization)</span></td><td><span>全虚拟化</span></td><td>&nbsp;</td><td>&nbsp;</td><td><span>⭕️</span></td><td><span>全平台支持。</span></td></tr><tr><td><span>硬件辅助完全虚拟化(Hardware-assisted Full Virtualization)</span></td><td><span>原生虚拟化(native virtualization)</span></td><td><span>-1</span></td><td><span>🌟🌟🌟</span></td><td><span>⭕️</span></td><td><span>全平台支持，是目前通用方案。</span></td></tr><tr><td><span>半虚拟化(Paravirtualization)</span></td><td><span>超虚拟化</span></td><td>&nbsp;</td><td><span>🌟🌟🌟🌟</span></td><td><span>❌</span></td><td><span>由于需要修改操作系统，因此对闭源系统相当不友好。</span></td></tr></tbody></table></figure><h3 id='硬件仿真-vs-半虚拟化'><span>硬件仿真 VS 半虚拟化</span></h3><figure class='table-figure'><table><thead><tr><th><img src="./typora/202207101303104.png" referrerpolicy="no-referrer" alt="img"></th><th><img src="./typora/202207101303772.png" referrerpolicy="no-referrer" alt="img"></th></tr></thead><tbody></tbody></table></figure><h2 id='虚拟化详细'><span>虚拟化详细</span></h2><figure class='table-figure'><table><thead><tr><th><span>虚拟化类型</span></th><th><span>介绍</span></th><th>&nbsp;</th><th><span>Hypervisor</span></th><th><span>其他</span></th><th>&nbsp;</th></tr></thead><tbody><tr><td><span>硬件仿真（Hardware Emulation）</span></td><td><span>硬件仿真虚拟化使用较慢的二进制转换和其他仿真技术来运行未经修改的操作系统。</span></td><td>&nbsp;</td><td><span>一切就像没有 hypervisior 在运行一样，软件虚拟化主要问题在于如何拦截虚拟机内核所做的事情。</span></td><td><span>Oracle VM VirtualBox 用到了 Qemu 进行软件仿真。</span></td><td>&nbsp;</td></tr><tr><td><span>完全虚拟化(Full Virtualization)</span></td><td><span>通过 hypervisior 在客户操作系统与底层硬件之间进行必要的“协调”。</span></td><td><span>配备虚拟外围设备后，虚拟机环境看起来就像是裸机一样。</span></td><td><span>物理硬件的访问权限由 hypervisor 控制，因此虚拟机之间不会互相干扰。</span></td><td>&nbsp;</td><td><span>它的效率远远高于硬件仿真，并且无需修改客户操作系统。但由于特权指令需要经过VMM的处理，因此其性能仍然远低于物理硬件本身。</span></td></tr><tr><td><span>硬件辅助完全虚拟化(hardware-assisted fullvirtualization)</span></td><td><span>硬件辅助完全虚拟化使用系统 CPU 的硬件特性，为虚拟客户提供底层物理系统的完全抽象。</span></td><td>&nbsp;</td><td><span>hypervisior 只需在代码在使用</span><strong><span>干涉系统管理程序的状态</span></strong><span>或其</span><strong><span>支持环境的敏感指令</span></strong><span>时介入。</span></td><td>&nbsp;</td><td><span>Intel和AMD的CPU都提供了能使 hypervisor 存取Ring 0硬件的 x86虚拟化 指令集。x86虚拟化创建了一个叫Ring -1的Ring，所以虚拟机操作系统可以直接运行在Ring 0上</span><strong><span>而不影响其他虚拟机或者宿主系统</span></strong></td></tr><tr><td><span>半虚拟化(Paravirtualization)</span></td><td><span>通过将虚拟化相关代码集成到客户操作系统中，完成对内核的修改。</span></td><td><span>允许hypervisor为客户机操作系统提供特殊接口，以便其更有效地与hypervisor进行通信。通常，这需要对客户机操作系统或特殊 hypervisor 感知型驱动程序的安装进行</span><strong><span>修改</span></strong><span>。</span></td><td><span>经过修改的系统可以与虚拟化平台紧密协作，因此VMM无需处理特权指令，执行效率与物理硬件相近。</span></td><td><span>Xen是一个第一类管理程序，提供的服务允许多个计算机操作系统在同一计算机硬件上同时执行。</span></td><td><span>半虚拟化包含整个内核，就像 Xen 准虚拟机，或者虚拟化 I/O 设备的驱动程序一样。但由于需要修改操作系统，因此对闭源系统相当不友好。</span></td></tr></tbody></table></figure><h2 id='虚拟化实现原理'><span>虚拟化实现原理</span></h2><p><a href='https://docs.google.com/presentation/d/1aqBbd_Qk5Yj7VzKeQ7xJlYwLSPHU9wc--93mXs28RpM/edit#slide=id.g4f15f900b1_0_305'><span>pass, details in slides</span></a></p><ul><li><p><span>“特权解除”（De-privileging），简单说就是直接由 VMM 模拟 VM 的</span><strong><span>特权指令</span></strong><span>，模拟出效果从而将特权指令的特权解除。</span></p></li><li><p><span>“陷入模拟”（Trap-And-Emulate），对 VM 发起的</span><strong><span>非特权的敏感指令</span></strong><span>，VMM 采用扫描、翻译，再模拟的方式。@季文康</span></p><ul><li><p><span>VMware 提前发现，插入断点并截断，再交给 VMM 来解释执行。</span></p></li><li><p><span>XEN 直接修改 VM 的敏感指令，修改为主动通知 VMM 来处理。</span></p></li></ul></li></ul><h3 id='virtualbox-的实现'><span>VirtualBox 的实现</span></h3><p><span>在没有硬件虚拟化支持的x86 CPU上实现虚拟化是一项异常复杂的任务，因为CPU架构不是为虚拟化而设计的。这些问题通常可以得到解决，但要以降低性能为代价。因此，在虚拟化性能和准确性之间存在着持续的冲突。</span></p><ul><li><p><span>一切就像没有 hypervisior 在运行一样，软件虚拟化主要问题在于如何</span><strong><span>拦截虚拟机内核所做的事情</span></strong><span>。</span></p></li><li><p><span>对于 VB 来说，完整的软件仿真，通常涉及重新编译。也就是说，所有要由来宾运行的代码都经过分析，转换为不允许 guest 修改或查看 CPU 真实状态的形式，然后才执行。就性能而言，这个过程显然非常复杂且成本高昂。</span></p></li></ul><h3 id='xen-的实现'><span>XEN 的实现</span></h3><p><span>GuestOS 的内核进行修改过，明确知道自己运行在虚拟化环境中，在进行系统调用时，直接通过 Host 的内核对CPU 进行调用，因为中间少了虚拟化捕获异常，翻译的过程，性能会大大的提升。代表之一：XEN</span></p><blockquote><p><strong><span>半虚拟化的思想就是，修改操作系统内核，替换掉不能虚拟化的指令</span></strong><span>，通过超级调用（hypercall）直接和底层的虚拟化层hypervisor来通讯，hypervisor同时也提供了超级调用接口来满足其他关键内核操作，比如内存管理、中断和时间保持。</span></p><p><span>这种做法省去了全虚拟化中的捕获和模拟，大大提高了效率。所以像XEN这种半虚拟化技术，客户机操作系统都是有一个专门的定制内核版本，和x86、mips、arm这些内核版本等价。这样以来，就不会有捕获异常、翻译、模拟的过程了，性能损耗非常低。这就是XEN这种半虚拟化架构的优势。这也是为什么XEN只支持虚拟化Linux，无法虚拟化windows原因，微软不改代码啊。</span></p></blockquote><ul><li><p><strong><span>Domain0</span></strong><span>: 这是Xen在初期引入的一个特权Dom，Xen  Hypervisor在收到IO请求后，需要先把请求投递到Domain0，完成调度处理后，通过grant copy或者grant  map转发到对应的虚拟机，相比KVM, 整个IO处理路径几乎被拉长了一倍。其次,  x86_64的ring模型相比早期的x86_32也发生了较大变换，从而导致ring压缩，进一步恶化了中断处理的性能。</span></p></li><li><p><strong><span>必须重复造轮子：</span></strong><span>  最新10年来，CPU已经从单核逐步走向了双核，四核，甚至是几十核心，NUMA技术，TB级内存也基本成为现代服务器的标配，众多厂商和Linux社区在内存和CPU调度和管理上做了大量的工作，而Xen Hypervisor采用独立的CPU和内存调度管理，核心实现还停留在Linux  2.4时代，经过了10年的发展后，根本无力去同步这么多的更新，我们今天会发现，Xen已经落后的太多了，比如：</span></p><ol start='' ><li><p><span>hugepage：Xen只能提供2M物理页面，而DPDK需要1G的连续物理内存，这是DPDK不能支持Xen的最主要原因。</span></p></li><li><p><span>KSM：透明页面共享。</span></p></li><li><p><span>多核(&gt;128 CPU)调度: 虽然宣称能支持最大192+ core, 但是实际我们发现如果在128  core的4P服务器上创建大规格虚拟机并在其中使用高精度时钟，导致虚拟机频繁陷入陷出调度cpu，Xen就会出现严重问题，这显然是Xen没有经过大规模商业实践的表现。</span></p></li></ol></li></ul><p><img src="./typora/202207051454356.jpg" referrerpolicy="no-referrer" alt="img"></p><hr /><h2 id='硬件辅助虚拟化技术hvm）'><span>硬件辅助虚拟化技术（HVM）</span></h2><p><strong><span>原生虚拟化，性能更好</span></strong><span>。允许几乎所有的代码都可未经更改地由 CPU 直接运行，从而提高效率。</span></p><p><span>也是工程师不断的在改进的地方，要更好的支持</span><strong><span>原生虚拟化</span></strong><span>。让虚拟化的速度和物理机一样，无论是 CPU 还是 IO or RAM。@季文康</span></p><p><span>为了</span><strong><span>让虚拟机达到原生虚拟化</span></strong><span>的目的，需要使用硬件辅助虚拟化技术（HVM）。</span></p><h3 id='硬件辅助的cpu技术vt-x--amd-v）'><span>硬件辅助的CPU技术（VT-x / AMD-V）</span></h3><figure class='table-figure'><table><thead><tr><th><img src="./typora/202206292107420.png" referrerpolicy="no-referrer"></th><th><img src="./typora/202206292228623.png" alt="img" style="zoom: 150%;" /></th></tr></thead><tbody></tbody></table></figure><p><span>2005年后，CPU 厂商 Intel 和 AMD 开始支持虚拟化了。 Intel 引入了 Intel-VT （Virtualization Technology）技术。 这种 CPU，有 </span><strong><span>VMX root operation 和 VMX non-root operation两种模式</span></strong><span>，两种模式都支持Ring 0 ~ Ring 3 共 4 个运行级别。这样，VMM 可以运行在 VMX root operation模式下，客户 OS 运行在VMX non-root operation模式下。</span></p><blockquote><p><span>在第一代技术中，支持 </span><code>Intel VT/AMD-V</code><span> 的 CPU 上提供新处理器指令，可将 CPU 置入新的执行模式。为硬件辅助虚拟机执行指令时， CPU将切换到非 root 或客户机模式，在该模式下虚拟机的内核能够以级别0运行，而用户空间能够以级别3运行。</span></p><p><span>对于虚拟机内核来讲，只要将标志位设为虚拟机状态，我们就可以直接在 CPU 上执行大部分的指令，得益于硬件辅助技术，VMM不再需要对指令进行复杂的模拟。不需要虚拟化软件在中间转述，除非遇到特别敏感的指令，才需要将标志位设为物理机内核态运行，这样大大提高了效率。</span></p></blockquote><h4 id='guest-os-是如何运行的'><span>Guest OS 是如何运行的</span></h4><p><img src="./typora/202207101723446.png" referrerpolicy="no-referrer" alt="image-20220710172348364"></p><p><img src="./typora/202207101739612.png" referrerpolicy="no-referrer" alt="img"></p><h5 id='vm-entry--vm-exit'><span>vm entry / vm exit</span></h5><p><span>对 KVM 虚机来说，运行在 VMX Root Mode 下的 VMM 在需要执行 Guest OS 指令时执行 VMLAUNCH 指令将 CPU 转换到 VMX non-root mode，开始执行客户机代码，即 VM entry 过程；在 Guest OS 需要退出该 mode 时，CPU 自动切换到 VMX Root mode，即 VM exit 过程。</span></p><blockquote><p><span>这两种操作模式可以相互转换。运行在 VMX root operation 模式下的 VMM 通过显式调用 VMLAUNCH 或 VMRESUME 指令切换到 VMX non-root operation 模式，硬件自动加载 Guest OS 的上下文，于是 Guest OS 获得运行，这种转换称为 VM entry。Guest OS 运行过程中遇到需要 VMM 处理的事件，例如外部中断或缺页异常，或者主动调用 VMCALL 指令调用 VMM 的服务的时候（与系统调用类似），硬件自动挂起 Guest OS，切换到 VMX root operation 模式，恢复 VMM 的运行，这种转换称为 VM exit。VMX root operation 模式下软件的行为与在没有 VT-x 技术的处理器上的行为基本一致；而VMX non-root operation 模式则有很大不同，最主要的区别是此时运行某些指令或遇到某些事件时，发生 VM exit。</span></p></blockquote><h5 id='vmcsvirtual-machine-control-structure）'><span>VMCS（virtual machine control structure）</span></h5><p><strong><span>一个普通的 Linux 内核有两种执行模式：内核模式（Kernel）和用户模式 （User）。为了支持带有虚拟化功能的 CPU，KVM 向 Linux 内核增加了第三种模式即客户机模式（Guest），该模式对应于 CPU 的 VMX non-root mode。</span></strong></p><ul><li><p><span>Guest 模式：执行客户机系统非 I/O 代码，并在需要的时候驱动 CPU 退出该模式；</span></p></li><li><p><span>Kernel 模式：负责将 CPU 切换到 Guest mode 执行 Guest OS 代码，并在 CPU 退出 Guest mode 时回到 Kernel 模式</span></p></li><li><p><span>User 模式：代表客户机系统执行 I/O 操作</span></p></li></ul><p><span>User mode 中的 QEMU-KVM 会通过 ICOTL 命令来运行虚拟机。KVM 内核模块收到该请求后，它先做一些准备工作，比如将 vcpu 上下文加载到 VMCS（virtual machine control structure）等，然后驱动 CPU 进入 VMX non-root 模式，开始执行客户机代码。</span></p><p>&nbsp;</p><p>&nbsp;</p><p><img src="./typora/202207101733135.png" referrerpolicy="no-referrer" alt="img"></p><p>&nbsp;</p><p>&nbsp;</p><p><strong><span>这样操作以后，就出现了 CPU 快而 RAM 慢的情况。</span></strong></p><h3 id='硬件辅助的内存技术ept--npt）'><span>硬件辅助的内存技术（EPT / NPT）</span></h3><p><span>第二代x86 硬件虚拟化支持内存管理单元(MMU)虚拟化。通常，CPU需要花费很多周期来处理内存页面与虚拟机的映射。MMU 虚拟化允许将工作负载转移到特殊硬件，从而提高性能。Intel将此技术称为扩展页表(ERT)，在Nehalem微型架构处理器中引入。AMD将此技术称为快速虚拟化索引(RVi)， 于2007年在四核Opteron处理器中引入。</span></p><p><strong><span>这样 CPU 和 RAM 就都解决掉了。</span></strong><span>@季文康</span></p><h3 id='硬件辅助的io技术vt-d--iommu）'><span>硬件辅助的I/O技术（VT-d / IOMMU）</span></h3><p><span>第三代x86 硬件虚拟化支持集中于 I/O 虚拟化。主板芯片集上的使能技术为安全PCI穿透，允许将物理PCI设备直接连接到虚拟机。该技术可为虚拟机提供近似原生的I/O性能。在Intel中，这称为直接 I/O虚拟化技术 (VT-d)；在AMD中，称为 I/0虚拟化技术 (AMD- Vi)(最初称为IOMMU)</span></p><p><img src="./typora/202207112132947.png" referrerpolicy="no-referrer" alt="Vfio-设备分配-dpdk.png"></p><p><span>Abort NIC：之前，网卡 nic 还是要通过 hypervsor 交给虚拟机来用 ，造成到了千兆后速度上不去。现在，通过新技术 </span><strong><span>SR-IOV</span></strong><span> ，将网卡划 48 个口，跨过 hypervisor 直接给 vm 调用。通过多通道的处理，让流量直接交给网卡自己来做。</span></p><blockquote><p><span>可以使用 SR-IOV 规范在虚拟环境中共享单个物理</span><a href='https://en.wikipedia.org/wiki/PCI_Express'><span>PCI Express总线。</span></a><span>[</span><a href='https://en.wikipedia.org/wiki/Single-root_input/output_virtualization#cite_note-1'><span>1</span><span>]</span><span> </span></a><span>[</span><a href='https://en.wikipedia.org/wiki/Single-root_input/output_virtualization#cite_note-2'><span>2</span><span>]</span></a><span> SR-IOV 为物理服务器机器上的不同虚拟组件（例如</span><a href='https://en.wikipedia.org/wiki/Network_adapter'><span>网络适配器）提供不同的</span></a><a href='https://en.wikipedia.org/wiki/Network_function_virtualization'><span>虚拟功能。</span></a><span>SR-IOV 使用物理和虚拟功能来控制或配置 PCIe 设备。物理功能能够将数据移入和移出设备，而虚拟功能是轻量级的 PCIe 功能，支持数据流动，但也具有一组受限的配置资源。</span><a href='https://en.wikipedia.org/wiki/Hypervisor'><span>虚拟机管理程序</span></a><span>或客户操作系统可用的虚拟或物理功能取决于 PCIe 设备。[</span><a href='https://en.wikipedia.org/wiki/Single-root_input/output_virtualization#cite_note-3'><span>3</span><span>]</span></a></p><p><span>SR-IOV 允许虚拟环境中的不同</span><a href='https://en.wikipedia.org/wiki/Virtual_machines'><span>虚拟机</span></a><span>(VM) 共享单个</span><a href='https://en.wikipedia.org/wiki/PCI_Express'><span>PCI Express</span></a><span>硬件接口。相比之下，MR-IOV 允许 I/O PCI Express 在不同物理机上的不同 VM 之间共享资源。</span></p></blockquote><p><strong><span>通过这种技术，就解决了 IO 性能问题</span></strong><span>。</span></p><p><span>补充说明，以下来自红帽虚拟化团队 YangHang Liu 工程师：</span></p><div class="md-diagram-panel md-fences-adv-panel" lang="mermaid"><svg id="mermaidChart0" width="100%" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="max-width: 916.109375px; margin: auto;" viewBox="-8 -8 916.109375 53" role="graphics-document document" aria-roledescription="flowchart-v2"><style>#mermaidChart0{font-family:sans-serif;font-size:16px;fill:#333;}#mermaidChart0 .error-icon{fill:#552222;}#mermaidChart0 .error-text{fill:#552222;stroke:#552222;}#mermaidChart0 .edge-thickness-normal{stroke-width:2px;}#mermaidChart0 .edge-thickness-thick{stroke-width:3.5px;}#mermaidChart0 .edge-pattern-solid{stroke-dasharray:0;}#mermaidChart0 .edge-pattern-dashed{stroke-dasharray:3;}#mermaidChart0 .edge-pattern-dotted{stroke-dasharray:2;}#mermaidChart0 .marker{fill:#333333;stroke:#333333;}#mermaidChart0 .marker.cross{stroke:#333333;}#mermaidChart0 svg{font-family:sans-serif;font-size:16px;}#mermaidChart0 .label{font-family:sans-serif;color:#333;}#mermaidChart0 .cluster-label text{fill:#333;}#mermaidChart0 .cluster-label span,#mermaidChart0 p{color:#333;}#mermaidChart0 .label text,#mermaidChart0 span,#mermaidChart0 p{fill:#333;color:#333;}#mermaidChart0 .node rect,#mermaidChart0 .node circle,#mermaidChart0 .node ellipse,#mermaidChart0 .node polygon,#mermaidChart0 .node path{fill:#ECECFF;stroke:#9370DB;stroke-width:1px;}#mermaidChart0 .flowchart-label text{text-anchor:middle;}#mermaidChart0 .node .label{text-align:center;}#mermaidChart0 .node.clickable{cursor:pointer;}#mermaidChart0 .arrowheadPath{fill:#333333;}#mermaidChart0 .edgePath .path{stroke:#333333;stroke-width:2.0px;}#mermaidChart0 .flowchart-link{stroke:#333333;fill:none;}#mermaidChart0 .edgeLabel{background-color:#e8e8e8;text-align:center;}#mermaidChart0 .edgeLabel rect{opacity:0.5;background-color:#e8e8e8;fill:#e8e8e8;}#mermaidChart0 .labelBkg{background-color:rgba(232, 232, 232, 0.5);}#mermaidChart0 .cluster rect{fill:#ffffde;stroke:#aaaa33;stroke-width:1px;}#mermaidChart0 .cluster text{fill:#333;}#mermaidChart0 .cluster span,#mermaidChart0 p{color:#333;}#mermaidChart0 div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:sans-serif;font-size:12px;background:hsl(80, 100%, 96.2745098039%);border:1px solid #aaaa33;border-radius:2px;pointer-events:none;z-index:100;}#mermaidChart0 .flowchartTitleText{text-anchor:middle;font-size:18px;fill:#333;}#mermaidChart0 :root{--mermaid-alt-font-family:sans-serif;}</style><g><marker id="mermaidChart0_flowchart-pointEnd" class="marker flowchart" viewBox="0 0 10 10" refX="6" refY="5" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path></marker><marker id="mermaidChart0_flowchart-pointStart" class="marker flowchart" viewBox="0 0 10 10" refX="4.5" refY="5" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" orient="auto"><path d="M 0 5 L 10 10 L 10 0 z" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path></marker><marker id="mermaidChart0_flowchart-circleEnd" class="marker flowchart" viewBox="0 0 10 10" refX="11" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><circle cx="5" cy="5" r="5" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></circle></marker><marker id="mermaidChart0_flowchart-circleStart" class="marker flowchart" viewBox="0 0 10 10" refX="-1" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><circle cx="5" cy="5" r="5" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></circle></marker><marker id="mermaidChart0_flowchart-crossEnd" class="marker cross flowchart" viewBox="0 0 11 11" refX="12" refY="5.2" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><path d="M 1,1 l 9,9 M 10,1 l -9,9" class="arrowMarkerPath" style="stroke-width: 2; stroke-dasharray: 1, 0;"></path></marker><marker id="mermaidChart0_flowchart-crossStart" class="marker cross flowchart" viewBox="0 0 11 11" refX="-1" refY="5.2" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><path d="M 1,1 l 9,9 M 10,1 l -9,9" class="arrowMarkerPath" style="stroke-width: 2; stroke-dasharray: 1, 0;"></path></marker><g class="root"><g class="clusters"></g><g class="edgePaths"><path d="M38.109,18.5L80.008,18.5L116.606,18.5" id="L-VM-VirtualNic-0" class=" edge-thickness-normal edge-pattern-solid flowchart-link LS-VM LE-VirtualNic" style="fill:none;" marker-end="url(#mermaidChart0_flowchart-pointEnd)"></path><path d="M213.359,18.5L261.625,18.5L304.591,18.5" id="L-VirtualNic-VirtLayer-0" class=" edge-thickness-normal edge-pattern-solid flowchart-link LS-VirtualNic LE-VirtLayer" style="fill:none;" marker-end="url(#mermaidChart0_flowchart-pointEnd)"></path><path d="M392.469,18.5L459.281,18.5L520.794,18.5" id="L-VirtLayer-KernelBridge-0" class=" edge-thickness-normal edge-pattern-solid flowchart-link LS-VirtLayer LE-KernelBridge" style="fill:none;" marker-end="url(#mermaidChart0_flowchart-pointEnd)"></path><path d="M640.078,18.5L716.805,18.5L788.231,18.5" id="L-KernelBridge-PhysicalNic-0" class=" edge-thickness-normal edge-pattern-solid flowchart-link LS-KernelBridge LE-PhysicalNic" style="fill:none;" marker-end="url(#mermaidChart0_flowchart-pointEnd)"></path></g><g class="edgeLabels"><g class="edgeLabel" transform="translate(80.0078125, 18.5)"><g class="label" transform="translate(-16.8984375, -11)"><foreignObject width="33.796875" height="22"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="edgeLabel">uses</span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(261.625, 18.5)"><g class="label" transform="translate(-23.265625, -11)"><foreignObject width="46.53125" height="22"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="edgeLabel">part of</span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(459.28125, 18.5)"><g class="label" transform="translate(-41.8125, -11)"><foreignObject width="83.625" height="22"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="edgeLabel">connects to</span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(716.8046875, 18.5)"><g class="label" transform="translate(-51.7265625, -11)"><foreignObject width="103.453125" height="22"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="edgeLabel">interfaces with</span></div></foreignObject></g></g></g><g class="nodes"><g class="node default default flowchart-label" id="flowchart-VM-0" transform="translate(19.0546875, 18.5)"><rect class="basic label-container" style="" rx="0" ry="0" x="-19.0546875" y="-18.5" width="38.109375" height="37"></rect><g class="label" style="" transform="translate(-11.5546875, -11)"><rect></rect><foreignObject width="23.109375" height="22"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="nodeLabel">VM</span></div></foreignObject></g></g><g class="node default default flowchart-label" id="flowchart-VirtualNic-1" transform="translate(167.6328125, 18.5)"><rect class="basic label-container" style="" rx="0" ry="0" x="-45.7265625" y="-18.5" width="91.453125" height="37"></rect><g class="label" style="" transform="translate(-38.2265625, -11)"><rect></rect><foreignObject width="76.453125" height="22"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="nodeLabel">Virtual NIC</span></div></foreignObject></g></g><g class="node default default flowchart-label" id="flowchart-VirtLayer-3" transform="translate(351.1796875, 18.5)"><rect class="basic label-container" style="" rx="0" ry="0" x="-41.2890625" y="-18.5" width="82.578125" height="37"></rect><g class="label" style="" transform="translate(-33.7890625, -11)"><rect></rect><foreignObject width="67.578125" height="22"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="nodeLabel">Virt Layer</span></div></foreignObject></g></g><g class="node default default flowchart-label" id="flowchart-KernelBridge-5" transform="translate(583.0859375, 18.5)"><rect class="basic label-container" style="" rx="0" ry="0" x="-56.9921875" y="-18.5" width="113.984375" height="37"></rect><g class="label" style="" transform="translate(-49.4921875, -11)"><rect></rect><foreignObject width="98.984375" height="22"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="nodeLabel">Kernel Bridge</span></div></foreignObject></g></g><g class="node default default flowchart-label" id="flowchart-PhysicalNic-7" transform="translate(846.8203125, 18.5)"><rect class="basic label-container" style="" rx="0" ry="0" x="-53.2890625" y="-18.5" width="106.578125" height="37"></rect><g class="label" style="" transform="translate(-45.7890625, -11)"><rect></rect><foreignObject width="91.578125" height="22"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="nodeLabel">Physical NIC</span></div></foreignObject></g></g></g></g></g></svg></div><p><span>概念层面：全虚拟化网卡的设计意味着数据传输过程中会经历上述五个步骤。而virtio网卡对全虚拟化网卡进行了改进，使其在数据传输时无需经过类似于“virt layer”这一层，从而提高了效率。</span></p><p><span>代码层面：在虚拟网卡的数据传输过程中，经过的协议栈越少，其资源消耗就越低，性能也相应更优。</span></p><p><span>从虚拟机到宿主机的数据路径，网络优化方案包括：</span></p><ul><li><p><span>virtio 模型类型</span></p></li><li><p><span>vhost 驱动</span></p></li><li><p><span>macvtap 接口</span></p></li><li><p><span>vfio-vf（SR-IOV）/ vfio-pf</span></p></li></ul><h1 id='how'><span>How</span></h1><p><span>首先简单说下思路，首先我会介绍 qemu 是一个二进制转换的</span><strong><span>模拟器</span></strong><span>，而 kvm 是一个</span><strong><span>内核模块</span></strong><span>。但这俩相结合就是具有 HVM 能力的 </span><strong><span>hypervisor</span></strong><span> （单独的 kvm 并不具备虚拟机的功能，需要跟 qemu 进行结合）。然后我会介绍一下 libvirt 并使用 libvirt 搭建一个虚拟机，我们会指出它们三者之间的</span><strong><span>调用关系</span></strong><span>。</span></p><p><span>在本文的范围内，我们的目标是 KVM 虚拟化技术。因此，最好是用 QEMU/KVM hypervisor 而不是 其他hypervisor 的场景来考虑与libvirtd 的通信。你可能会对使用 QEMU/KVM 而不是 QEMU 或 KVM 作为底层 hypervisor 的名称有些困惑。但别担心，一切都会在适当的时候变得明了。下面会讨论 QEMU 和 KVM 之间的联系。目前你只需了解该 hypervisor 同时用到了QEMU 和 KVM 技术。</span></p><h2 id='q--a'><span>Q &amp; A</span></h2><p><span>开始之前，让我们尝试提出一些问题并试图回答看看：</span></p><p><span>Q1：KVM 和 QEMU 有什么区别？</span></p><p><span>A1：QEMU 使用仿真；KVM 使用处理器扩展 (HVM) 进行虚拟化。</span></p><p><span>Q2：QEMU 和 KVM 是独立的吗？</span></p><p><span>A2：是，但不完全是。KVM 模块的职责就是打开并初始化 VMX 功能，提供相应的接口以支持虚拟机的运行。 QEMU（quick emulator) 本身并不包含或依赖 KVM 模块，而 是一套由 Fabrice Bellard 编写的模拟计算机的自由软件。 QEMU 模拟器是一个纯软件的实现，可以在没有 KVM 模块的情况下独立运行，但是性能比较低。</span></p><p><span>Q3：那为何还会有 qemu-kvm 这个名词？</span></p><p><span>A3：单纯的使用 Qemu 属于完全虚拟化，性能特别低。所以 Qemu 将 KVM 整合进来，将有关 CPU 指令的部分交由内核模块来做，就是 qemu-kvm (qemu-system-XXX)。另外 Qemu 还会模拟其他的硬件，如网络和硬盘。同样，全虚拟化的方式也会影响这些设备的性能。这个时候就需要让 GuestOS 知道自己是虚拟机，需要加载特殊的半虚拟化驱动来提高性能。总之 qemu-kvm 就是这样的一种技术。它补充了 kvm 技术的不足，而且在性能上对 kvm 进行了优化。</span></p><p><span>Q4：QEMU-KVM 相比原生 QEMU 的改动？</span></p><p><span>A：原生的 QEMU 通过指令翻译实现 CPU 的完全虚拟化，但是修改后的 QEMU-KVM 会调用 ICOTL 命令来调用 KVM 模块；原生的 QEMU 是单线程实现，QEMU-KVM 是多线程实现。</span></p><p><span>Q5：QEMU 和 KVM 与 Libvirt 有什么联系？</span></p><p><span>A：KVM 只是内核模块，用户并没法直接跟内核模块交互，需要借助用户空间的管理工具，而这个工具就是 Libvirt。而 KVM 和 QEMU 相辅相成，QEMU 通过 KVM 达到了硬件虚拟化的速度，而 KVM 则通过 QEMU 来模拟设备。简单直接的理解就是：QEMU 是个计算机模拟器，而 KVM 为计算机的模拟提供加速功能，Libvirt 是一个位于最终用户和 qemu-kvm 之间的中间层。</span></p><hr /><p><span>还是很困惑的话，这非常正常。让我们开始吧！</span></p><h2 id='qemu'><span>QEMU</span></h2><ul><li><p><span>QEMU 实际上是一个执行硬件虚拟化的 Hypervisor/VMM。QEMU 既可以充当模拟器（Emulator）也可以用作虚拟机（Virtualizer），所以说它是一个通用的开源机器模拟器和虚拟器。</span></p><ul><li><p><strong><span>Qemu as an Emulator：</span></strong><span>当QEMU作为一个仿真器运行时，它能够在一种机器架构（x86）运行另外的架构（ARM）中的 OS/APP。它使用到了二进制转译的方法。在这种模式下，QEMU 通过将 Guest 的代码运行在 Host CPU 上来进行动态的二进制转译，实现 CPU  模拟。具体是通过二进制转译程序 Tiny Code Generator（TCG）来完成这项工作的，它是一个即时编译器。</span></p></li><li><p><strong><span>QEMU as virtualizer：</span></strong><span>这种模式 QEMU 直接在主机 CPU 上执行 Guest 的代码，从而达到了原生性能。例如，当在 Xen/KVM hypervisor 下工作时，QEMU 可以在这种模式下运行。如果 KVM 是底层 hypervisor，那么 QEMU 可以对嵌入式客户机进行虚拟化，如 Power PC、S390、x86 等。@季文康</span></p></li></ul></li></ul><h3 id='qemu-模拟器'><span>QEMU 模拟器</span></h3><p><img src="./typora/202207021557343.png" referrerpolicy="no-referrer" alt="image-20220702155704221"></p><p><img src="./typora/202207022128659.png" referrerpolicy="no-referrer" alt="image-20220702212837595"></p><ul><li><p><span>QEMU 有整套的虚拟机实现，由以下部分构成</span></p><ul><li><p><span>处理器模拟器（x86、IBM Z、PowerPC、Sparc）</span></p></li><li><p><span>模拟的设备（显卡、网卡、硬盘、鼠标）</span></p></li><li><p><span>用于将被模拟设备连接到相关主机设备的通用设备</span></p></li><li><p><span>被模拟计算机（PC、Power Mac）的说明</span></p></li><li><p><span>调试程序</span></p></li><li><p><span>用来与模拟器交互的用户界面</span></p></li></ul></li></ul><h3 id='qemu-虚拟器'><span>QEMU 虚拟器</span></h3><p><img src="./typora/202207021600303.png" referrerpolicy="no-referrer" alt="image-20220702160040196"></p><p><img src="./typora/202207022132353.png" referrerpolicy="no-referrer" alt="image-20220702213258269"></p><ul><li><p><span>QEMU 是一个</span><strong><span>用户空间</span></strong><span>的进程，需要通过</span><strong><span>特定的接口</span></strong><span>才能调用到 KVM 模块提供的功能。</span></p></li><li><p><span>从 QEMU 角度来看，虚拟机运行期间，QEMU 通过 KVM 模块提供的系统调用接口进行内核设置，由 KVM 模块负责将虚拟机置于处理器的特殊模式运行。</span><strong><span>QEMU 使用了 KVM 模块的虚拟化功能，为自己的虚拟机提供硬件虚拟化加速以提高虚拟机的性能。</span></strong></p></li><li><p><strong><span>当用作虚拟器时，QEMU 通过直接在主机 CPU 上执行来宾代码来实现接近原生的性能。</span></strong><span>在 Xen 管理程序下执行或在 Linux 中使用 KVM 内核模块时，QEMU 支持虚拟化。使用 KVM 时，QEMU 可以虚拟化 x86、服务器和嵌入式 PowerPC、64 位 POWER、S390、32 位和 64 位 ARM 以及 MIPS 客户机。</span></p></li></ul><h3 id='更多内容'><span>更多内容</span></h3><blockquote><p><span>QEMU 包括一个通用的系统调用转换器，也可以重定向主机和程序之间的 POSIX 信号。QEMU 使用基于 JSON 的 QMP 协议控制虚拟机，利用 virtio 技术，实现了 IO 虚拟化。在虚拟机和主机之间使用 vmchannel 技术实现简单通信，比如说共享剪贴板。内存方面：利用 KSM 内存页合并技术降低内存消耗。利用 virtio-pmen 直接调用主机页面缓存；将决策交给主机本身，并降低虚机内存。还可以利用 /dev/shm/ivshmem 在虚拟机之间内存后端。网络方面：利用 virtio-net-failover 技术，实现一个 pci 设备和一个 net 设备之间数据路径的接管。使用 VhostNet 技术，实现了比 e1000 提供了更好的延迟和比 virtio 更快的吞吐量(7~8Gib/sec)。同时支持磁盘仿真，输出文件包括了 qcow2、raw 等格式，也包括了 vmdk、vdi，甚至是一些少见的格式比如说 dmg、cloop、luks，另外包括一些 iscsi、光盘、软盘、USB、PXE boot 能力。测试方面：虚拟机支持热拔插，包括了 CPU、PCI 设备. 虚拟机迁移能力、虚拟机嵌套能力等。此外，时间问题可以在 guest 内查到 kvm-clock 输出。</span></p></blockquote><h3 id='总结时刻'><span>总结时刻</span></h3><p><span>简而言之，QEMU 可以在没有 KVM 的情况下，以前文提到的二进制转译的方式运行。与启用 KVM 的硬件辅助虚拟化相比，这种方式的执行速度会慢一些。</span><strong><span>无论在哪种模式下，QEMU 不仅模拟处理器，还模拟了不同的外围设备，如磁盘、网络、VGA、PCI、串口和并行端口、USB 等。</span></strong><span>除了 I/O 设备的模拟，在使用 KVM 时，QEMU-KVM 创建并初始化虚拟机。它还为每个 vCPU 初始化不同的 posix 线程。此外，它还提供了一个框架，在 QEMU-KVM 用户模式地址空间中，模拟虚拟机的物理地址空间。</span></p><h2 id='kvm'><span>KVM</span></h2><p><span>对于 </span><strong><span>KVM</span></strong><span>（英文 Kernel-based Virtual Machine 的缩写） 来说，其是一款支持虚拟机技术，而且是 linux 内核中的一个</span><strong><span>功能模块</span></strong><span>。它在 linux2.6.20 之后的任何 linux 分支中都被支持。@季文康</span></p><p><strong><span>当您安装了 KVM 内核模块，KVM 轻松的将 Linux 内核转换为一个 hypervisor。</span></strong><span>尽管如此，由于 hypervisor 是</span><strong><span>一个标准的 Linux 内核，使得它可以从标准内核的更新中受益（内存支持，调度等）</span></strong><span>。对这些 Linux 组件的优化，不仅让 hypervisor 从中受益，也有利于 Linux Guest OS。在I/O仿真方面，KVM 使用了一个用户态软件 QEMU；Qemu 是一个负责硬件仿真的用户程序。</span></p><p><img src="./typora/202207011047663.png" referrerpolicy="no-referrer" alt="image-20220701104733572"></p><ul><li><p><span>KVM 项目由 Qumranet(现属于红帽) 于2006年10月启动。</span></p></li><li><p><span>从 RHEL 5.4 开始，在 x86-64 架构上运行的红帽企业 Linux 中完全支持 KVM</span></p></li><li><p><span>KVM 设计性能十分优异，hypervisor 所需的许多功能都已通过 Linux 内核实施，如处理器调度、内存管理、物理设备驱动程序等</span></p></li></ul><h3 id='qemu-kvm-介绍'><span>QEMU-KVM 介绍</span></h3><p><span>要启动虚拟机，仅仅加载 KVM 模块还不够。您需要 emulator 来模拟虚拟机的外围硬件设备。</span></p><p><span>QEMU 是一个开源机器仿真软件。这个模拟器将帮助您在一个架构上运行为另一种架构设计的的操作系统。例如，QEMU 可以在 x86 平台上运行为 ARM 平台设计的操作系统。然而，这里有一个问题。由于QEMU使用二进制转译（一种用于在主机上执行虚拟机指令的技术），因此</span><strong><span>VM运行会比较缓慢</span></strong><span>。</span></p><p><span>如果 QEMU 运行缓慢，那它如何能以接近物理机的速度运行基于 KVM 的虚拟机呢？KVM 开发人员考虑到了这个问题，并修改了 QEMU作为解决方案。这个修改后的 QEMU 被称为 QEMU-KVM，它可以直接与 KVM 模块交互，并在</span><strong><span>不使用动态转译</span></strong><span>的情况下，</span><strong><span>直接在CPU上执行指令</span></strong><span>。简而言之，我们使用 qemu-kvm 来运行基于 KVM 的虚拟机。      </span></p><p><span>Q：如果qemu-kvm可以运行虚拟机，那么为什么还需要libvirt</span></p><p><span>A：</span><strong><span>libvirt管理qemu-kvm，qemu-kvm运行KVM虚拟机</span></strong><span>，这点我们会在 </span><a href='#setting-up-the-environment'><span>Setting up the environment</span></a><span> 有更具体的介绍。</span></p><h3 id='qemu-kvm-架构'><span>QEMU-KVM 架构</span></h3><p><img src="./typora/202207011057796.png" referrerpolicy="no-referrer" alt="image-20220701105735781"></p><p><span>KVM 开发者遵循了和 </span><code>Linux kernel</code><span> 开发者的一样的理念：</span><strong><span>不要重新发明轮子</span></strong><span>。也就是说，他们并没有尝试改变内核代码来创建一个hypervisor；相反，代码是围绕硬件供应商的虚拟化（VMX和SVM）的新硬件支持，用可加载的内核模块的形式开发的。</span></p><p><span>有一个通用的内核模块 kvm.ko 和其他硬件相关的</span><strong><span>内核模块</span></strong><span>，如 kvm-intel.ko（基于Intel CPU系统）或 kvm-amd.ko（基于AMD CPU系统）。相应的，KVM将载入 kvm-intel.ko（如果存在vmx标志）或 kvm-amd.ko（如果存在svm标志）模块。这将 Linux内核 变成了一个 hypervisor，从而实现了虚拟化。@季文康</span></p><p><img src="./typora/202207011058228.png" referrerpolicy="no-referrer" alt="img"></p><p><span>KVM暴露设备文件 /dev/kvm 供应用程序调用 ioctls()。QEMU 利用这个设备文件与 KVM通信，并创建、初始化和管理 VM 的内核模式上下文。KVM帮助实现用户空间在 QEMU-KVM 的用户模式地址空间内，提供 VM 的物理地址空间，其中包括 memory-mapped I/O。</span></p><h4 id='组件图'><span>组件图</span></h4><p><img src="./typora/202207010915174.png" alt="img" style="zoom: 33%;" /></p><p><img src="./typora/202207101728703.png" referrerpolicy="no-referrer" alt="img"></p><blockquote><p><span>（1）qemu-kvm 通过对 /dev/kvm 的 一系列 ICOTL 命令控制虚机；</span></p><p><span>（2）一个 KVM 虚机即一个 Linux qemu-kvm 进程，与其他 Linux 进程一样被Linux 进程调度器调度；</span></p><p><span>（3）KVM 虚机包括虚拟内存、虚拟CPU和虚机 I/O设备，其中，</span><strong><span>内存和 CPU 的虚拟化由 KVM 内核模块负责实现，I/O 设备的虚拟化由 QEMU 负责实现；</span></strong></p><p><span>（4）KVM虚机系统的内存是 qemu-kvm 进程的地址空间的一部分；</span></p><p><span>（5）KVM 虚机的 vCPU 作为 线程运行在 qemu-kvm 进程的上下文中。</span></p></blockquote><p><span>VMM 完成 Vcpu、内存的初始化后，通过 ioctl 调用KVM 接口，完成虚拟机的创建，并创建一个线程来运行 VM，由于VM在前期初始化的时候会设置各种寄存器来帮助KVM查找到需要加载的指令的入口（main函数）。所以线程在调用了KVM接口后，物理CPU的控制权就交给了VM。VM运行在VMX non-root模式，这是Intel-V或者AMD-V提供的一种特殊的CPU执行模式。然后当VM执行了特殊指令的时候，CPU将当前VM的上下文保存到VMCS寄存器（这个寄存器是一个指针，保存了实际的上下文地址），然后执行权切换到VMM。VMM 获取 VM 返回原因，并做处理。如果是IO请求，VMM 可以直接读取VM的内存并将IO操作模拟出来，然后再调用VMRESUME指令，VM继续执行，此时在VM看来，IO操作的指令被CPU执行了。@季文康</span></p><h4 id='框架图'><span>框架图</span></h4><p><img src="./typora/202207061458151.png" referrerpolicy="no-referrer" alt="image-20220706145831049"></p><p><img src="./typora/202206301427114.png" referrerpolicy="no-referrer" alt="img"></p><p><span>为了在物理 CPU 中执行 Guest 代码，QEMU 使用了 posix 线程。也就是说，Guest 虚拟CPU 在主机内核中作为 posix线程 执行。这本身就带来了许多好处，因为从上层来看它们只是主机内核的一些进程。从另一个角度看，KVM hypervisor 的用户空间部分由 QEMU 提供。QEMU 通过 KVM 内核模块运行客户代码。在使用 KVM 时，QEMU 也执行 I/O仿真、I/O设备设置、实时迁移等。</span></p><p><span>可见，KVM 客户机代码是受 VMM 控制直接运行在物理 CPU 上的。QEMU 只是通过 KVM 控制虚机的代码被 CPU 执行，但是它们本身并不执行其代码。</span><strong><span>也就是说，CPU 并没有真正的被虚拟化成虚拟的 CPU 给客户机使用。</span></strong></p><p><img src="./typora/202207101729988.png" referrerpolicy="no-referrer" alt="img"></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="shell" style="break-inside: unset;"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="shell"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: currentcolor;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: currentcolor;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment"># 通过 qemu-kvm 创建一个 2 核心的虚机</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">[root@localhost ~]<span class="cm-comment"># qemu-kvm -cpu host -smp 2 -m 512m -drive file=/root/cirros-0.3.5-i386-disk.img -daemonize</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">VNC server running on <span class="cm-quote">`::1:5900'</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment"># 查看 qemu-kvm 主进程</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">[root@localhost ~]<span class="cm-comment"># ps -ef | egrep qemu</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">root &nbsp; &nbsp; <span class="cm-number">24066</span> &nbsp; &nbsp; <span class="cm-number">1</span> <span class="cm-number">56</span> <span class="cm-number">13</span>:59 ? &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-number">00</span>:00:10 qemu-kvm <span class="cm-attribute">-cpu</span> host <span class="cm-attribute">-smp</span> <span class="cm-number">2</span> <span class="cm-attribute">-m</span> 512m <span class="cm-attribute">-drive</span> <span class="cm-def">file</span><span class="cm-operator">=</span>/root/cirros-0.3.5-i386-disk.img <span class="cm-attribute">-daemonize</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">root &nbsp; &nbsp; <span class="cm-number">24077</span> <span class="cm-number">24041</span> &nbsp;<span class="cm-number">0</span> <span class="cm-number">13</span>:59 pts/0 &nbsp; &nbsp;<span class="cm-number">00</span>:00:00 <span class="cm-builtin">grep</span> <span class="cm-attribute">-E</span> <span class="cm-attribute">--color</span><span class="cm-operator">=</span>auto qemu</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment"># 查看 qemu-kvm 子线程</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">[root@localhost ~]<span class="cm-comment"># ps -Tp 24066</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  PID  SPID TTY &nbsp; &nbsp; &nbsp; &nbsp;  TIME CMD</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-number">24066</span> <span class="cm-number">24066</span> ? &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-number">00</span>:00:00 qemu-kvm</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-number">24066</span> <span class="cm-number">24067</span> ? &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-number">00</span>:00:00 qemu-kvm</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-number">24066</span> <span class="cm-number">24070</span> ? &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-number">00</span>:00:07 qemu-kvm</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-number">24066</span> <span class="cm-number">24071</span> ? &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-number">00</span>:00:02 qemu-kvm</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-number">24066</span> <span class="cm-number">24073</span> ? &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-number">00</span>:00:00 qemu-kvm</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment"># 通过 gdb 查看子线程的作用</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">(gdb) thread <span class="cm-number">1</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">[Switching to thread <span class="cm-number">1</span> (Thread 0x7fb830cb2ac0 (LWP <span class="cm-number">24066</span>))]</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">#0  0x00007fb829eaebcd in poll () from /lib64/libc.so.6</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">(gdb) thread <span class="cm-number">2</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">[Switching to thread <span class="cm-number">2</span> (Thread 0x7fb7fddff700 (LWP <span class="cm-number">24073</span>))]</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">#0  0x00007fb82de0e6d5 in pthread_cond_wait@@GLIBC_2.3.2 () from /lib64/libpthread.so.0</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">(gdb) thread <span class="cm-number">3</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">[Switching to thread <span class="cm-number">3</span> (Thread 0x7fb81fe6e700 (LWP <span class="cm-number">24071</span>))]</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">#0  0x00007fb829eb02a7 in ioctl () from /lib64/libc.so.6</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">(gdb) thread <span class="cm-number">4</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">[Switching to thread <span class="cm-number">4</span> (Thread 0x7fb82066f700 (LWP <span class="cm-number">24070</span>))]</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">#0  0x00007fb829eb02a7 in ioctl () from /lib64/libc.so.6</span></span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 660px;"></div><div class="CodeMirror-gutters" style="display: none; height: 660px;"></div></div></div></pre><p><span>通过上面的数据得出：1 个 2 核心的虚拟机，4个子线程</span></p><ul><li><p><span>thread-1：主线程 loop 循环，循环操作 select 查看有无读写文件描述符，有的话进行读写操作；</span></p></li><li><p><span>thread-2：子线程 异步 I/O 操作，主要针对磁盘映像操作（block drive）；</span></p></li><li><p><span>thread-3：子线程 vcpu 线程，kvm_run 启动和运行虚拟机；</span></p></li><li><p><span>thread-4：同 thread-3</span></p></li></ul><h3 id='总结时刻-2'><span>总结时刻</span></h3><p><span>QEMU 访问 KVM 模块创建的设备文件（/dev/kvm），并执行 ioctls() . 最后，KVM 利用 QEMU 成为一个完整的 hypervisor，而 KVM 是利用 CPU 提供的硬件虚拟化扩展(VMX或SVM，与CPU架构紧密耦合。</span><strong><span>间接地，这表明VM也必须使用相同的架构以使用硬件虚拟化扩展/功能。</span></strong><span>一旦启用KVM，它肯定会比其他技术(如二进制转译)提供更好的性能。</span></p><ul><li><p><span>基于内核的虚拟机（KVM）代表了最新的开源虚拟化技术。这个项目的目标是创建一个现代化的 hypervisor，它建立在前几代技术的经验之上，并利用当今可用的现代硬件技术(VT-x，AMD-v)。</span></p></li><li><p><span>KVM 需要芯片支持虚拟化技术（英特尔的 VT 扩展或者 AMD 的 AMD-V 扩展）</span></p><ul><li><p><span>对于是否支持也可以通过命令行查看：egrep &#39;(vmx|svm)&#39; --color=always /proc/cpuinfo</span></p></li><li><p><span>在 bios 中是默认设置不打开该功能的，要去 bios 设置其为 enable</span></p></li><li><p><span>如果有任何内容则说明当期硬件架构是支持 kvm 的，否则就不支持。 </span></p></li></ul></li></ul><h2 id='libvirt'><span>Libvirt</span></h2><p><span>Q：为什么还要 </span><code>yum install libvirt</code><span> 呢？</span></p><p><span>A：</span><strong><span>操作系统装以后，天生就可以安装虚拟机了。</span></strong><span>但是，内核支持虚拟化，不代表应用就能直接访问虚拟化。应用需要调用 lib 来使用虚拟化，这是免费的。</span><strong><span>Libvirt将负责存储、网络和虚拟硬件需求，以启动虚拟机和VM生命周期管理。</span></strong></p><hr /><p><span>在系统管理实用程序 (如 virsh 和 virt-manager) 的请求下，libvirtd 为每个虚拟机启动了一个单独的 qemu-kvm </span><strong><span>进程</span></strong><span>。虚拟机的属性 (cpu数量、内存大小、I/O设备配置) 是在单独的 </span><strong><span>XML 文件</span></strong><span>中定义的，这些文件位于 /etc/libvirt/qemu目录中，libvirtd使用这些 XML 文件的详细信息来传递给 qemu-kvm 进程的参数列表。@季文康</span></p><p><span>进程：</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="shell"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="shell"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: currentcolor;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: currentcolor;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">qemu &nbsp; &nbsp; <span class="cm-number">14644</span> &nbsp;<span class="cm-number">9</span>.8 &nbsp;<span class="cm-number">6</span>.8 <span class="cm-number">6138068</span> <span class="cm-number">1078400</span> ? &nbsp; &nbsp; Sl &nbsp; <span class="cm-number">03</span>:14 &nbsp;<span class="cm-number">97</span>:29 /usr/bin/qemu-system-x86_64 <span class="cm-attribute">-machine</span> <span class="cm-def">accel</span><span class="cm-operator">=</span>kvm <span class="cm-attribute">-name</span> guest1 <span class="cm-attribute">-S</span> <span class="cm-attribute">-machine</span> pc--m <span class="cm-number">5000</span> <span class="cm-attribute">-realtime</span> <span class="cm-def">mlock</span><span class="cm-operator">=</span>off <span class="cm-attribute">-smp</span> <span class="cm-number">4</span><span class="cm-def">,sockets</span><span class="cm-operator">=</span><span class="cm-number">4</span><span class="cm-def">,cores</span><span class="cm-operator">=</span><span class="cm-number">1</span><span class="cm-def">,threads</span><span class="cm-operator">=</span><span class="cm-number">1</span> <span class="cm-attribute">-uuid</span> 7a615914-ea0d-7dab-e709-0533c00b921f <span class="cm-attribute">-no-user-config</span> <span class="cm-attribute">-nodefaults</span> <span class="cm-attribute">-chardev</span> socket<span class="cm-def">,id</span><span class="cm-operator">=</span>charmonitor-drive <span class="cm-def">file</span><span class="cm-operator">=</span>/dev/vms/hypervisor2<span class="cm-def">,if</span><span class="cm-operator">=</span>none<span class="cm-def">,id</span><span class="cm-operator">=</span>drive-virtio-disk0<span class="cm-def">,format</span><span class="cm-operator">=</span>raw<span class="cm-def">,cache</span><span class="cm-operator">=</span>none<span class="cm-def">,aio</span><span class="cm-operator">=</span>native <span class="cm-attribute">-device</span> <span class="cm-def">id</span><span class="cm-operator">=</span>net0<span class="cm-def">,mac</span><span class="cm-operator">=</span><span class="cm-number">52</span>:54:00:5d:be:06</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 110px;"></div><div class="CodeMirror-gutters" style="display: none; height: 110px;"></div></div></div></pre><p><span>XML 文件：</span></p><p><img src="./typora/202207011115798.png" referrerpolicy="no-referrer" alt="image-20220701111534750"></p><h3 id='通用层'><span>通用层</span></h3><ul><li><p><span>libvirt 是一组位于最终用户和 hypervisor 之间的API。</span></p></li><li><p><span>一个稳定的</span><strong><span>通用层</span></strong><span>来安全地管理主机上的虚拟机。</span></p></li><li><p><span>管理工具可以位于独立于主机的物理机上，并通过安全协议和主机进行交流。</span></p></li><li><p><span>hypervisor 可以基于任何 libvirt 支持的虚拟化技术来构建</span></p><ul><li><p><span>libvirt 支持下列 hypervisor：</span></p><ul><li><p><span>The KVM/QEMU Linux hypervisor</span></p></li><li><p><span>The Xen hypervisor on Linux and Solaris hosts</span></p></li><li><p><span>The LXC Linux container system</span></p></li><li><p><span>The OpenVZ Linux container system</span></p></li><li><p><span>The User Mode Linux paravirtualized kernel</span></p></li><li><p><span>The VirtualBox hypervisor</span></p></li><li><p><span>The VMware ESX and GSX hypervisors</span></p></li><li><p><span>The VMware Workstation and Player hypervisors</span></p></li><li><p><span>The Microsoft Hyper-V hypervisor</span></p></li><li><p><span>The IBM PowerVM hypervisor</span></p></li><li><p><span>The Parallels hypervisor</span></p></li><li><p><span>The Bhyve hypervisor</span></p></li></ul></li></ul></li></ul><hr /><p><span>libvirt 是一个透明层，它接受用户的命令，根据底层虚拟化技术修改它们，然后在 hypervisor 上执行它们。这意味着，如果您知道如何使用基于 libvirt 的管理工具，您就能够管理前面提到的 hypervisor，</span><strong><span>而不需要一一了解它们</span></strong><span>。您可以选择任何虚拟化管理技术。他们都使用 libvirt 作为后端基础设施管理层，尽管前端工具看起来不同；例如，oVirt、RHEV（Red Hat企业虚拟化技术）、OpenStack、Eucalyptus等。而作为红帽，</span><strong><span>我们会重点讲解 kvm/qemu 这部分。</span></strong></p><h3 id='通用接口'><span>通用接口</span></h3><p><span>尽管 </span><strong><span>libvirt</span></strong><span> 可同时访问多个主机，但 API 只限于</span><strong><span>单节点操作</span></strong><span>。libvirt 通过 hypervisor 提供的 API 来列举、监测和使用管理节点上的可用资源，其中包括 CPU、内存、储存、网络和非一致性内存访问（NUMA）分区。部署、创建、修改、监测、控制、迁移以及停止虚拟机操作都需要这些 API。</span></p><p><span>一个管理本地系统和连网主机的</span><strong><span>通用接口</span></strong><span>。很多人以为libvirt只能在单个节点或者运行libvirt的本地节点上运行，这并不正确。libvirt库支持远程功能。因此，任何libvirt工具（例如virt-manager）都可以通过传递一个额外的--connect参数，远程连接到网络上的libvirt守护进程。Fedora，CentOS等绝大多数发行版都安装了libvirt的客户端virsh（由libvirt -client package提供）。</span></p><h3 id='组件图-2'><span>组件图</span></h3><p><img src="./typora/202206301729505.png" referrerpolicy="no-referrer" alt="img"></p><p>&nbsp;</p><h3 id='架构图'><span>架构图</span></h3><p><img src="./typora/202207011126627.png" referrerpolicy="no-referrer" alt="image-20220701112614589"></p><center>架构设计思想</center><p><span>从该图可以看出，libvirt 的设计理念，是面向驱动的架构设计。对任何一种虚拟机技术都开发设计相对于该技术的驱动。在 libvirt api 之上会有很多个 driver，对于每一种虚拟机技术都会有一种 driver，用来充当该虚拟机技术与 libvirt 之间的包装接口。如此设计就可以避免 libvirt 需要设计各种针对不同虚拟机技术的接口，它主要关注底层的实现，提供对外接口调用，而不同的虚拟机技术通过调用 libvirt 提供的接口来完成自己所需要的功能。不同虚拟机技术就可以使用不同驱动，而且相互直接不会影响，方便扩展。而且 libvirt 提供了多种语言的编程接口，可以直接通过编程，调用 libvirt 提供的对外接口实现对虚拟机的操作。</span></p><h3 id='总结时刻-3'><span>总结时刻</span></h3><p><span>简而言之，作为管理层，它负责提供执行管理任务的API，如虚拟机置备、创建、修改、监视、控制、迁移等。在Linux中，您会注意到一些进程成为了守护进程。libvirt进程也有一个守护进程，叫做libvirtd。与其他守护进程一样，libvirtd为其client发起的请求提供服务。</span></p><p><span>libvirt 根据客户端传递的连接URI，前一个（qemu://xxxx/system）请求以root身份连接到本地管理的QEMU和KVM域，或者VM的守护进程。后一个（qemu://xxxx/session）请求以普通用户身份连接到它自身的QEMU和KVM域。libvirtd 建立起与 hypervisor的连接。</span></p><p><span>客户端程序 virsh 或 virt-manager 就是通过这样的方式使 libvirtd 与 hypervisor 建立通信的。</span></p><h2 id='setting-up-the-environment'><span>Setting up the environment</span></h2><h2 id='手动'><span>手动</span></h2><h3 id='1创建镜像'><span>1、创建镜像</span></h3><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="shell"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="shell"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: currentcolor;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: currentcolor;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">在 KVM 中，创建一个虚拟机镜像，大小为 8G，其中 qcow2 格式为动态分配，raw 格式为固定大小。</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment"># qemu-img create -f qcow2 ubuntutest.img 8G</span></span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 44px;"></div><div class="CodeMirror-gutters" style="display: none; height: 44px;"></div></div></div></pre><h3 id='2创建虚拟机'><span>2、创建虚拟机</span></h3><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="shell"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="shell"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: currentcolor;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: currentcolor;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">创建虚拟机：名字叫 ubuntutest，内存大小为 1024M，使用动态分配的 8g 大小的磁盘，挂载 Ubuntu 的 ISO 光盘，VNC 端口为 <span class="cm-number">5919</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment"># /usr/libexec/qemu-kvm -enable-kvm -name ubuntutest  -m 2048 -hda ubuntutest.img -cdrom ubuntu-14.04-server-amd64.iso -boot d -vnc :19</span></span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 88px;"></div><div class="CodeMirror-gutters" style="display: none; height: 88px;"></div></div></div></pre><h3 id='3启用虚拟机'><span>3、启用虚拟机</span></h3><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="shell"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="shell"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: currentcolor;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: currentcolor;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment"># /usr/libexec/qemu-kvm -enable-kvm -name centos7 -m 2048 -hda /home/centos7 -vnc :19 &nbsp; -device virtio-net,netdev=network0 -netdev tap,id=network0,ifname=tap0,script=no,downscript=no,vhost=on</span></span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 44px;"></div><div class="CodeMirror-gutters" style="display: none; height: 44px;"></div></div></div></pre><h3 id='4配置虚拟机网络'><span>4、配置虚拟机网络</span></h3><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="shell"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="shell"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: currentcolor;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: currentcolor;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment"># ip link set tap0 up</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment"># brctl addif br0 tap0</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment"># ifconfig br0 192.168.57.1/24 # 虚拟机启动后，网卡没有配置，所以无法连接外网，先给 br0 设置一个 ip。</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment"># sysctl -w net.ipv4.ip_forward=1</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment"># sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE # 在 Host 上设置 NAT，并且 enable ip forwarding</span></span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 132px;"></div><div class="CodeMirror-gutters" style="display: none; height: 132px;"></div></div></div></pre><p><img src="./typora/202207012144063.png" referrerpolicy="no-referrer" alt="image-20220701214411918"></p><h2 id='自动'><span>自动</span></h2><h3 id='cockpit'><span>cockpit</span></h3><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="shell"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="shell"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: currentcolor;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: currentcolor;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">yum install <span class="cm-attribute">-y</span> cockpit-machines cockpit</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">systemctl enable <span class="cm-attribute">--now</span> cockpit.service</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 44px;"></div><div class="CodeMirror-gutters" style="display: none; height: 44px;"></div></div></div></pre><p><img src="./typora/202207012239879.png" referrerpolicy="no-referrer" alt="image-20220701223944816"></p><h3 id='virt-manager'><span>virt-manager</span></h3><p><img src="./typora/202207012229990.png" referrerpolicy="no-referrer" alt="image-20220701222921926"></p><h3 id='virt-install'><span>virt-install</span></h3><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="shell"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="shell"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: currentcolor;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: currentcolor;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">virt-install \</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-attribute">--name</span> centos7 \</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-attribute">--import</span> \</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-attribute">--graphics</span> vnc<span class="cm-def">,listen</span><span class="cm-operator">=</span><span class="cm-number">0</span>.0.0.0 \</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-attribute">--memory</span> <span class="cm-number">4096</span> \</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-attribute">--disk</span> /home/centos7 \</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-attribute">--os-variant</span> rhel7.0</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 154px;"></div><div class="CodeMirror-gutters" style="display: none; height: 154px;"></div></div></div></pre><p><img src="./typora/202207012208853.png" referrerpolicy="no-referrer" alt="image-20220701220802794"></p><h3 id='virsh'><span>virsh</span></h3><p><img src="./typora/202207012247146.png" referrerpolicy="no-referrer" alt="image-20220701224720102"></p><h1 id='reference'><span>Reference</span></h1><p><span>概览式了解：</span></p><p><a href='https://docs.google.com/presentation/d/1aqBbd_Qk5Yj7VzKeQ7xJlYwLSPHU9wc--93mXs28RpM/edit#slide=id.g4f15f900b1_0_305'><span>推荐：内部 docs 虚拟化分享</span></a></p><p><a href='https://weread.qq.com/web/reader/707323107230073770737a2'><span>书籍：《Mastering KVM Virtualization》</span></a></p><p><a href='https://www.cnblogs.com/echo1937/category/1045922.html'><span>书籍：《Mastering KVM Virtualization》</span></a></p><p><a href='https://www.cnblogs.com/hukey/p/11138768.html'><span>博客园：KVM 相关总结</span></a></p><p><span>名词性了解：</span></p><p><a href='https://en.wikipedia.org/wiki/Protection_ring'><span>wiki：保护环</span></a></p><p><a href='https://en.wikipedia.org/wiki/Hypervisor'><span>wiki：Hypervisor</span></a></p><p><span>半虚拟化：</span></p><p><a href='https://rcore-os.github.io/rCore-Tutorial-Book-v3/chapter9/2device-driver-2.html'><span>GitHub IO：virtio</span></a></p><p><a href='https://wiki.qemu.org/Features/VT-d#With_Virtio_Devices'><span>QEMU：virtio 设备</span></a></p><p><a href='https://www.researchgate.net/publication/221436288_Unobservable_Intrusion_Detection_based_on_Call_Traces_in_Paravirtualized_Systems'><span>博士论文：半虚拟化中入侵检测</span></a></p><p><span>虚拟化产品：</span></p><p><a href='https://zhuanlan.zhihu.com/p/33324585'><span>知乎专栏：XEN</span></a></p><p><a href='https://pediaa.com/what-is-the-difference-between-kvm-and-xen/'><span>外文：kvm 与 xen 的不同</span></a></p><hr /><p><a href='https://gitlab.cee.redhat.com/wji/learningmd/-/blob/master/qemu-kvm/libvirt%20and%20QEMU.md'><span>更多查看内部旧文参考</span></a></p><p><a href='https://gitlab.cee.redhat.com/wji/learningmd/-/tree/master/qemu-kvm'><span>更多相关文章参考</span></a></p><p>&nbsp;</p></div></div>
 </body>
 </html>
