@@ -6,13 +6,13 @@
 
 操作系统上的程序分为两种，一种是**用户态**的程序，例如 Word、Excel 等，一种是**内核态**的程序，例如内核代码、驱动程序等。
 
-<img src="http://pic.itxdm.com/typora/202206281507921.png" alt="image-20220628150719806"  />
+<img src="./typora/202206281507921.png" alt="image-20220628150719806"  />
 
-<img src="http://pic.itxdm.com/typora/202206281554370.png" alt="image-20220628155427309" style="zoom:67%;" />
+<img src="./typora/202206281554370.png" alt="image-20220628155427309" style="zoom:67%;" />
 
 为了区分内核态和用户态，CPU 专门设置四个特权等级 0、1、2、3 来做这个事情。@季文康
 
-| <img src="http://pic.itxdm.com/typora/202204281801553.png" style="zoom:25%;" /> | ![](http://pic.itxdm.com/typora/202206292107420.png) |
+| <img src="./typora/202204281801553.png" style="zoom:25%;" /> | ![](./typora/202206292107420.png) |
 | ------------------------------------------------------------ | ---------------------------------------------------- |
 
 > 关于 **Ring** 环的介绍（早期版本的硬件只支持2个保护等级）：
@@ -67,7 +67,7 @@
 
 ## Hypervisor 类型
 
-![img](http://pic.itxdm.com/typora/202206291759198.png)
+![img](./typora/202206291759198.png)
 
 一般来说我们分为俩类，一种是 `Bare Metal`，直接在硬件上来控制硬件和管理虚拟机的操作系统 ；另外一种是安装在 `hosted OS` 上的 `hypervisor`，运行在传统的操作系统上，就像其他计算机程序那样运行。他们都有其代表产品。@季文康
 
@@ -85,7 +85,7 @@
 
 简单理解：完全虚拟化，就是对虚拟机不做任何修改即可运行。如果我的 CPU 具有 vmx|svm 的 flag 标志，则允许开启硬件辅助支持而具有更好的效能；如果我的 CPU 没有这个标志，我可以使用软件仿真做二进制转换来启动虚拟机。但这种方式速度极慢，并且 Host 是 32位系统，则 Guest 也只能是 32位系统等等限制。如果你嫌弃这样太慢，可以将虚拟机的 kernel 部分做一定修改（这一要求也使得无法运行 Windows 这种闭源操作系统），使得虚拟机知道自己是虚拟机从而更好的被 Host 运行，这就是半虚拟化。现在很少有人会在生产环境中使用半虚拟化了，但这并不代表完全虚拟化就和半虚拟化处在对立面。比如说我们可以在 VMware 中安装 vmware tools 以实现更好的性能，而这个 vmware tools 就是一个半虚拟化的东西。
 
-![image-20220708132115125](http://pic.itxdm.com/typora/202207081321220.png)
+![image-20220708132115125](./typora/202207081321220.png)
 
 --------
 
@@ -100,7 +100,7 @@
 
 ### 硬件仿真 VS 半虚拟化
 
-| ![img](http://pic.itxdm.com/typora/202207101303104.png) | ![img](http://pic.itxdm.com/typora/202207101303772.png) |
+| ![img](./typora/202207101303104.png) | ![img](./typora/202207101303772.png) |
 | ------------------------------------------------------- | ------------------------------------------------------- |
 
 ## 虚拟化详细
@@ -142,7 +142,7 @@ GuestOS 的内核进行修改过，明确知道自己运行在虚拟化环境中
   2. KSM：透明页面共享。
   3. 多核(>128 CPU)调度: 虽然宣称能支持最大192+ core, 但是实际我们发现如果在128  core的4P服务器上创建大规格虚拟机并在其中使用高精度时钟，导致虚拟机频繁陷入陷出调度cpu，Xen就会出现严重问题，这显然是Xen没有经过大规模商业实践的表现。
 
-![img](http://pic.itxdm.com/typora/202207051454356.jpg)
+![img](./typora/202207051454356.jpg)
 
 ------------
 
@@ -156,7 +156,7 @@ GuestOS 的内核进行修改过，明确知道自己运行在虚拟化环境中
 
 ### 硬件辅助的CPU技术（VT-x / AMD-V）
 
-| ![](http://pic.itxdm.com/typora/202206292107420.png) | <img src="http://pic.itxdm.com/typora/202206292228623.png" alt="img" style="zoom: 150%;" /> |
+| ![](./typora/202206292107420.png) | <img src="./typora/202206292228623.png" alt="img" style="zoom: 150%;" /> |
 | ---------------------------------------------------- | ------------------------------------------------------------ |
 
 2005年后，CPU 厂商 Intel 和 AMD 开始支持虚拟化了。 Intel 引入了 Intel-VT （Virtualization Technology）技术。 这种 CPU，有 **VMX root operation 和 VMX non-root operation两种模式**，两种模式都支持Ring 0 ~ Ring 3 共 4 个运行级别。这样，VMM 可以运行在 VMX root operation模式下，客户 OS 运行在VMX non-root operation模式下。
@@ -167,9 +167,9 @@ GuestOS 的内核进行修改过，明确知道自己运行在虚拟化环境中
 
 #### Guest OS 是如何运行的
 
-![image-20220710172348364](http://pic.itxdm.com/typora/202207101723446.png)
+![image-20220710172348364](./typora/202207101723446.png)
 
-![img](http://pic.itxdm.com/typora/202207101739612.png)
+![img](./typora/202207101739612.png)
 
 ##### vm entry / vm exit
 
@@ -191,7 +191,7 @@ User mode 中的 QEMU-KVM 会通过 ICOTL 命令来运行虚拟机。KVM 内核�
 
 
 
-![img](http://pic.itxdm.com/typora/202207101733135.png)
+![img](./typora/202207101733135.png)
 
 
 
@@ -209,7 +209,7 @@ User mode 中的 QEMU-KVM 会通过 ICOTL 命令来运行虚拟机。KVM 内核�
 
 第三代x86 硬件虚拟化支持集中于 I/O 虚拟化。主板芯片集上的使能技术为安全PCI穿透，允许将物理PCI设备直接连接到虚拟机。该技术可为虚拟机提供近似原生的I/O性能。在Intel中，这称为直接 I/O虚拟化技术 (VT-d)；在AMD中，称为 I/0虚拟化技术 (AMD- Vi)(最初称为IOMMU)
 
-![Vfio-设备分配-dpdk.png](http://pic.itxdm.com/typora/202207112132947.png)
+![Vfio-设备分配-dpdk.png](./typora/202207112132947.png)
 
 Abort NIC：之前，网卡 nic 还是要通过 hypervsor 交给虚拟机来用 ，造成到了千兆后速度上不去。现在，通过新技术 **SR-IOV** ，将网卡划 48 个口，跨过 hypervisor 直接给 vm 调用。通过多通道的处理，让流量直接交给网卡自己来做。
 
@@ -282,9 +282,9 @@ A：KVM 只是内核模块，用户并没法直接跟内核模块交互，需要
 
 ### QEMU 模拟器
 
-![image-20220702155704221](http://pic.itxdm.com/typora/202207021557343.png)
+![image-20220702155704221](./typora/202207021557343.png)
 
-![image-20220702212837595](http://pic.itxdm.com/typora/202207022128659.png)
+![image-20220702212837595](./typora/202207022128659.png)
 
 - QEMU 有整套的虚拟机实现，由以下部分构成
   - 处理器模拟器（x86、IBM Z、PowerPC、Sparc）
@@ -297,9 +297,9 @@ A：KVM 只是内核模块，用户并没法直接跟内核模块交互，需要
 
 ### QEMU 虚拟器
 
-![image-20220702160040196](http://pic.itxdm.com/typora/202207021600303.png)
+![image-20220702160040196](./typora/202207021600303.png)
 
-![image-20220702213258269](http://pic.itxdm.com/typora/202207022132353.png)
+![image-20220702213258269](./typora/202207022132353.png)
 
 - QEMU 是一个**用户空间**的进程，需要通过**特定的接口**才能调用到 KVM 模块提供的功能。
 - 从 QEMU 角度来看，虚拟机运行期间，QEMU 通过 KVM 模块提供的系统调用接口进行内核设置，由 KVM 模块负责将虚拟机置于处理器的特殊模式运行。**QEMU 使用了 KVM 模块的虚拟化功能，为自己的虚拟机提供硬件虚拟化加速以提高虚拟机的性能。**
@@ -319,7 +319,7 @@ A：KVM 只是内核模块，用户并没法直接跟内核模块交互，需要
 
 **当您安装了 KVM 内核模块，KVM 轻松的将 Linux 内核转换为一个 hypervisor。**尽管如此，由于 hypervisor 是**一个标准的 Linux 内核，使得它可以从标准内核的更新中受益（内存支持，调度等）**。对这些 Linux 组件的优化，不仅让 hypervisor 从中受益，也有利于 Linux Guest OS。在I/O仿真方面，KVM 使用了一个用户态软件 QEMU；Qemu 是一个负责硬件仿真的用户程序。
 
-![image-20220701104733572](http://pic.itxdm.com/typora/202207011047663.png)
+![image-20220701104733572](./typora/202207011047663.png)
 
 - KVM 项目由 Qumranet(现属于红帽) 于2006年10月启动。
 - 从 RHEL 5.4 开始，在 x86-64 架构上运行的红帽企业 Linux 中完全支持 KVM
@@ -339,21 +339,21 @@ A：**libvirt管理qemu-kvm，qemu-kvm运行KVM虚拟机**，这点我们会在 
 
 ### QEMU-KVM 架构
 
-![image-20220701105735781](http://pic.itxdm.com/typora/202207011057796.png)
+![image-20220701105735781](./typora/202207011057796.png)
 
 KVM 开发者遵循了和 `Linux kernel` 开发者的一样的理念：**不要重新发明轮子**。也就是说，他们并没有尝试改变内核代码来创建一个hypervisor；相反，代码是围绕硬件供应商的虚拟化（VMX和SVM）的新硬件支持，用可加载的内核模块的形式开发的。
 
 有一个通用的内核模块 kvm.ko 和其他硬件相关的**内核模块**，如 kvm-intel.ko（基于Intel CPU系统）或 kvm-amd.ko（基于AMD CPU系统）。相应的，KVM将载入 kvm-intel.ko（如果存在vmx标志）或 kvm-amd.ko（如果存在svm标志）模块。这将 Linux内核 变成了一个 hypervisor，从而实现了虚拟化。@季文康
 
-![img](http://pic.itxdm.com/typora/202207011058228.png)
+![img](./typora/202207011058228.png)
 
 KVM暴露设备文件 /dev/kvm 供应用程序调用 ioctls()。QEMU 利用这个设备文件与 KVM通信，并创建、初始化和管理 VM 的内核模式上下文。KVM帮助实现用户空间在 QEMU-KVM 的用户模式地址空间内，提供 VM 的物理地址空间，其中包括 memory-mapped I/O。
 
 #### 组件图
 
-<img src="http://pic.itxdm.com/typora/202207010915174.png" alt="img" style="zoom: 33%;" />
+<img src="./typora/202207010915174.png" alt="img" style="zoom: 33%;" />
 
-![img](http://pic.itxdm.com/typora/202207101728703.png)
+![img](./typora/202207101728703.png)
 
 > （1）qemu-kvm 通过对 /dev/kvm 的 一系列 ICOTL 命令控制虚机；
 >
@@ -369,15 +369,15 @@ VMM 完成 Vcpu、内存的初始化后，通过 ioctl 调用KVM 接口，完成
 
 #### 框架图
 
-![image-20220706145831049](http://pic.itxdm.com/typora/202207061458151.png)
+![image-20220706145831049](./typora/202207061458151.png)
 
-![img](http://pic.itxdm.com/typora/202206301427114.png)
+![img](./typora/202206301427114.png)
 
 为了在物理 CPU 中执行 Guest 代码，QEMU 使用了 posix 线程。也就是说，Guest 虚拟CPU 在主机内核中作为 posix线程 执行。这本身就带来了许多好处，因为从上层来看它们只是主机内核的一些进程。从另一个角度看，KVM hypervisor 的用户空间部分由 QEMU 提供。QEMU 通过 KVM 内核模块运行客户代码。在使用 KVM 时，QEMU 也执行 I/O仿真、I/O设备设置、实时迁移等。
 
 可见，KVM 客户机代码是受 VMM 控制直接运行在物理 CPU 上的。QEMU 只是通过 KVM 控制虚机的代码被 CPU 执行，但是它们本身并不执行其代码。**也就是说，CPU 并没有真正的被虚拟化成虚拟的 CPU 给客户机使用。**
 
-![img](http://pic.itxdm.com/typora/202207101729988.png)
+![img](./typora/202207101729988.png)
 
 ```shell
 # 通过 qemu-kvm 创建一个 2 核心的虚机
@@ -447,7 +447,7 @@ qemu     14644  9.8  6.8 6138068 1078400 ?     Sl   03:14  97:29 /usr/bin/qemu-s
 
 XML 文件：
 
-![image-20220701111534750](http://pic.itxdm.com/typora/202207011115798.png)
+![image-20220701111534750](./typora/202207011115798.png)
 
 ### 通用层
 
@@ -497,13 +497,13 @@ libvirt 是一个透明层，它接受用户的命令，根据底层虚拟化技
 
 ### 组件图
 
-![img](http://pic.itxdm.com/typora/202206301729505.png)
+![img](./typora/202206301729505.png)
 
 
 
 ### 架构图
 
-![image-20220701112614589](http://pic.itxdm.com/typora/202207011126627.png)
+![image-20220701112614589](./typora/202207011126627.png)
 <center>架构设计思想</center>
 
 从该图可以看出，libvirt 的设计理念，是面向驱动的架构设计。对任何一种虚拟机技术都开发设计相对于该技术的驱动。在 libvirt api 之上会有很多个 driver，对于每一种虚拟机技术都会有一种 driver，用来充当该虚拟机技术与 libvirt 之间的包装接口。如此设计就可以避免 libvirt 需要设计各种针对不同虚拟机技术的接口，它主要关注底层的实现，提供对外接口调用，而不同的虚拟机技术通过调用 libvirt 提供的接口来完成自己所需要的功能。不同虚拟机技术就可以使用不同驱动，而且相互直接不会影响，方便扩展。而且 libvirt 提供了多种语言的编程接口，可以直接通过编程，调用 libvirt 提供的对外接口实现对虚拟机的操作。
@@ -550,7 +550,7 @@ libvirt 根据客户端传递的连接URI，前一个（qemu://xxxx/system）请
 # sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE # 在 Host 上设置 NAT，并且 enable ip forwarding
 ```
 
-![image-20220701214411918](http://pic.itxdm.com/typora/202207012144063.png)
+![image-20220701214411918](./typora/202207012144063.png)
 
 ## 自动
 
@@ -560,11 +560,11 @@ libvirt 根据客户端传递的连接URI，前一个（qemu://xxxx/system）请
 yum install -y cockpit-machines cockpit
 systemctl enable --now cockpit.service
 ```
-![image-20220701223944816](http://pic.itxdm.com/typora/202207012239879.png)
+![image-20220701223944816](./typora/202207012239879.png)
 
 ### virt-manager
 
-![image-20220701222921926](http://pic.itxdm.com/typora/202207012229990.png)
+![image-20220701222921926](./typora/202207012229990.png)
 
 ### virt-install
 
@@ -578,11 +578,11 @@ virt-install \
         --os-variant rhel7.0
 ```
 
-![image-20220701220802794](http://pic.itxdm.com/typora/202207012208853.png)
+![image-20220701220802794](./typora/202207012208853.png)
 
 ### virsh
 
-![image-20220701224720102](http://pic.itxdm.com/typora/202207012247146.png)
+![image-20220701224720102](./typora/202207012247146.png)
 
 # Reference
 

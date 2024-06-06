@@ -1,10 +1,10 @@
-# <center>Wenkang / Wecom</center>
+# <center>Wenkang JI</center>
 
-> 生活 Life，工作 Red Hat，记录 Recoding 
+> 生活 Being alive，工作 Working，记录 Recoding 
 >
 >  兔兔 🐰 冲冲冲
 >
-> 大脑为高速缓存有缓存失效期(Expiraion Time)，本博客为磁盘持久化存储，写给失忆的自己 ：）
+> 大脑为高速缓存有缓存失效期 (Expiraion Time)。本博客为 Github Pages 分布式版本控制，分享给你给写给失忆的自己 ：）
 
 ------------
 
@@ -45,8 +45,9 @@
 
 - [虚拟化介绍](https://www.bilibili.com/video/BV12G411p7JW)
 - [虚拟化文字稿](QEMU.html)
-- [OpenShift CNV](https://www.bilibili.com/video/BV1cd4y1D7MW)
-- [OpenShift 介绍](https://www.bilibili.com/video/BV1TV4y1u7hg/)
+- [OpenShift Introduce Videos](https://www.bilibili.com/video/BV1TV4y1u7hg/)
+- [OpenShift CNV Videos](https://www.bilibili.com/video/BV1cd4y1D7MW)
+- [OpenSHift Network Slides](./redhat/OpenShift introduction for personal learning.pdf)
 
 
 
@@ -122,3 +123,4 @@
 <div>
         <a class="banquan" style="color:#000; text-decoration:none;" href="https://beian.miit.gov.cn/#/Integrated/index" target="_blank">沪ICP备18021942号-2</a>
         <div class="footer-support"><span>本网站由</span><a class="footer-support-logo" href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referral" target="blank" title="又拍云"><img height="30" src="https://cdn.yunyoujun.cn/img/logo/upyun-logo.png" alt="又拍云"></a><span>提供 CDN 加速</span></div>
+
