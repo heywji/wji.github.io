@@ -1,4 +1,4 @@
-# <center>Wenkang JI</center>
+# <center>Wenkang Ji</center>
 
 > 生活 Being alive，工作 Working，记录 Recoding 
 >
