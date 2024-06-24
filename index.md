@@ -81,7 +81,12 @@
 - ~~一线城市培训机构 5 年讲师（截止23年）~~。
   - 目前已培训超 1w 名工程师，遍布各大高校、电信、金融、电商等相关行业。
   - 具有 HCIP RHCA ISTQB 等多项职业认证，多门满分通过。
-- 恋爱中 —— 莎莎
+
+- 目前工作在以下项目中：
+  - 测试框架：[avocado-framework](https://github.com/avocado-framework/avocado-vt/)
+  - 测试策略： [tp-qemu](https://github.com/autotest/tp-qemu/)
+  - 开源项目： [virtio-win](https://github.com/virtio-win/kvm-guest-drivers-windows)
+    - [Download latest or stable binary drivers](https://docs.fedoraproject.org/en-US/quick-docs/creating-windows-virtual-machines-using-virtio-drivers/index.html)
 
 
 ## <center>Patches</center>
@@ -90,36 +95,34 @@
 - 人生首个技术 Patch：[K8S 文档修复](https://github.com/ovn-org/ovn-kubernetes/commit/8c149e5ecbf49d96f2dc95af4d5fdad3f74b18df)
 - 多人协作 Patch：[OpenPLC RT 支持](https://github.com/thiagoralves/OpenPLC_v3/pull/201)
   - 关于 OpenPLC 介绍：[OpenPLC RealTime tests](https://www.bilibili.com/video/BV1eT411C7qA/)
-- 目前工作在以下项目中：
-  - [avocado-framework](https://github.com/avocado-framework/avocado-vt/)
-  - [tp-qemu](https://github.com/autotest/tp-qemu/)
-  - [virtio-win](https://github.com/virtio-win/)
 
 
 ## <center>Others</center>
 
 - 梦想开始的地方：星光杯 & 红亚杯
   - [2015年全国职业院校技能大赛网络搭建与应用竞赛-赛题分享](guosai/国赛-compressed.pdf)
-- 衷心感谢的师傅：饶文老师 & 贺老师
+- 衷心感谢的师傅：饶 & 贺老师
   - 上海科技管理学校——饶老师，进入 Linux 世界的引导者。
-
   - 红帽 GLS 团队——贺老师，进入 Red Hat 公司的指路人。
+- 恋爱中 —— 莎莎
 
 
 ## <center>Funny</center>
 
-- 红帽 2023 年年会视频（分享版）：https://www.bilibili.com/video/BV15H4y1p7Lm/
+- 红帽 2023 年年会视频（分享版）：
+  - [红帽创造营第一期 - 多才多艺的开源人](https://www.bilibili.com/video/BV15H4y1p7Lm)
+
 
 
 ## <center>Links</center>
 
-- [CCAV](https://ccav.me/)
+- [CCAV](https://ccav.me/) - 早年一起创业的哥们
 
-- [h0u5er](https://www.h0u5er.com/)
+- [h0u5er](https://www.h0u5er.com/) - 网友
 
-- [fishstar](https://www.ssout.top/)
+- [fishstar](https://www.ssout.top/) - 大学室友
 
-- [xiaoming](https://www.gaoxinming.com/)
+- [xiaoming](https://www.gaoxinming.com/) - 大学室友
 
 --------
 
