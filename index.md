@@ -112,7 +112,7 @@
 - 红帽 2023 年年会视频（分享版）：
   - [红帽创造营第一期 - 多才多艺的开源人](https://www.bilibili.com/video/BV15H4y1p7Lm)
 
-
+<iframe src="//player.bilibili.com/player.html?isOutside=true&aid=540183338&bvid=BV17i4y187sN&cid=177757573&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
 
 ## <center>Links</center>
 
