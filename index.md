@@ -50,6 +50,7 @@
 - [OpenShift Introduce Videos](https://www.bilibili.com/video/BV1TV4y1u7hg/)
 - [OpenShift CNV Videos](https://www.bilibili.com/video/BV1cd4y1D7MW)
 - [KVM 基座能力来支持OpenShift Virtualization Slide](./redhat/KVM 基座能力来支持OpenShift Virtualization.pdf)
+- [NetKVM Feature Presentation](./redhat/NetKVM Presentation.pdf)
 
 ### AI part
 
