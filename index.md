@@ -54,7 +54,8 @@
 
 ### AI part
 
-- doing
+- [腾讯研究院 AIGC发展趋势报告2023.pdf](./AI/腾讯研究院 AIGC发展趋势报告2023.pdf)
+- [Instruct Lab & Granite Model .pdf](./AI/Instruct Lab & Granite Model .pdf)
 
 ## <center>Document</center>
 
@@ -66,23 +67,19 @@
 - [Red Hat 软件包](https://access.redhat.com/downloads/content/package-browser)
   - [付费订阅查询](https://access.redhat.com/management/subscriptions)
   - [操作系统下载](https://access.redhat.com/downloads/content/rhel)
-
 - [证书查询](https://www.credly.com/earner/earned)
 
-<div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="fd817161-668d-40ed-9dd3-3678cdb35a6c" data-share-badge-host="https://www.credly.com"></div><script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
 
 ## <center>About me</center>
 
-- ~~四年兔兔铲屎官 🐰~~ & 一年咪咪喂养员 🐱
+- ~~四年兔兔铲屎官 🐰~~ & 俩年咪咪喂养员 🐱
   - Tips1：兔子是非常聪明的宠物，饲养需要多喂水，大量供草，尽早绝育。
   - Tips2：招财咪是非常感性的生物，通常需要耐心呵护，不可大声。
-- 95后，沪3426，~~前交大 sjtu 讲师~~，~~前 [linux.cn](https://linux.cn) 开发组成员~~，现 Red Hat 虚拟化团队员工（IBM 为 Red Hat 母公司）
+- 95后，在沪3426，~~前交大 sjtu 讲师~~，~~前 [linux.cn](https://linux.cn) 开发组成员~~，现 Red Hat 虚拟化团队员工（IBM 为 Red Hat 母公司）
   - Bilibili：[文康的读书经历 ](https://www.bilibili.com/video/BV1iR4y1c7o4)
 - ~~拥有[博客园](https://www.cnblogs.com/itxdm) 6 年撰稿经验，50w 阅读量技术博主。~~
 - ~~一线城市培训机构 5 年讲师（截止23年）~~。
-  - 目前已培训超 1w 名工程师，遍布各大高校、电信、金融、电商等相关行业。
-  - 具有 HCIP RHCA ISTQB 等多项职业认证，多门满分通过。
-
+  - ~~目前已培训超 1w 名工程师，遍布各大高校、电信、金融、电商等相关行业。~~
 - 目前工作在以下项目中：
   - 测试框架：[avocado-framework](https://github.com/avocado-framework/avocado-vt/)
   - 测试策略： [tp-qemu](https://github.com/autotest/tp-qemu/)
@@ -90,41 +87,59 @@
     - [Download latest or stable binary drivers](https://docs.fedoraproject.org/en-US/quick-docs/creating-windows-virtual-machines-using-virtio-drivers/index.html)
 
 
-## <center>Patches</center>
+## <center>Honours</center>
 
-- 人生发出的第一个 Patch：[Linux 社区翻译](https://github.com/LCTT/TranslateProject/pull/4084)
-- 人生首个技术 Patch：[K8S 文档修复](https://github.com/ovn-org/ovn-kubernetes/commit/8c149e5ecbf49d96f2dc95af4d5fdad3f74b18df)
-- 多人协作 Patch：[OpenPLC RT 支持](https://github.com/thiagoralves/OpenPLC_v3/pull/201)
-  - 关于 OpenPLC 介绍：[OpenPLC RealTime tests](https://www.bilibili.com/video/BV1eT411C7qA/)
+- Patchs
+  - 人生发出的第一个 Patch：[Linux 社区翻译](https://github.com/LCTT/TranslateProject/pull/4084)
+  - 人生首个技术 Patch：[K8S 文档修复](https://github.com/ovn-org/ovn-kubernetes/commit/8c149e5ecbf49d96f2dc95af4d5fdad3f74b18df)
+  - 多人协作 Patch：[OpenPLC RT 支持](https://github.com/thiagoralves/OpenPLC_v3/pull/201)
+    - 关于 OpenPLC 介绍：[OpenPLC RealTime tests](https://www.bilibili.com/video/BV1eT411C7qA/)
+
+- 具有 HCIP RHCA ISTQB 等多项职业认证，多门满分通过。
+<div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="fd817161-668d-40ed-9dd3-3678cdb35a6c" data-share-badge-host="https://www.credly.com"></div><script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
 
 
 ## <center>Others</center>
 
-- 梦想开始的地方：星光杯 & 红亚杯
+- 梦的起点：
   - [2015年全国职业院校技能大赛网络搭建与应用竞赛-赛题分享](guosai/国赛-compressed.pdf)
-- 衷心感谢的师傅：饶 & 贺老师
-  - 上海科技管理学校——饶老师，进入 Linux 世界的引导者。
-  - 红帽 GLS 团队——贺老师，进入 Red Hat 公司的指路人。
+- 带我 Linux 入门的师傅们：饶 & 贺老师
+  - 上海科技管理学校 — 饶老师，带我进入 Linux 世界的引导者。
+  - 上海红帽 GLS 团队 — 贺老师，让我进入 Red Hat 公司的指路人。
 - 恋爱中 —— 莎莎
 
 
 ## <center>Funny</center>
 
-- 红帽 2023 年年会视频（分享版）：
-  - [红帽创造营第一期 - 多才多艺的开源人](https://www.bilibili.com/video/BV15H4y1p7Lm)
+- [红帽创造营第一期 - 多才多艺的开源人](https://www.bilibili.com/video/BV15H4y1p7Lm)
 
-<iframe src="//player.bilibili.com/player.html?isOutside=true&aid=540183338&bvid=BV17i4y187sN&cid=177757573&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+<iframe src="//player.bilibili.com/player.html?isOutside=true&aid=1051991159&bvid=BV15H4y1p7Lm&cid=1469311295&p=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="allowfullscreen"     sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts"></iframe>
+
+  - [清华武汉籍女生英文演讲：我三岁会唱国歌，一场疫情才理解了其中真正的含义](https://www.bilibili.com/video/BV17i4y187sN/)
+
+<iframe src="//player.bilibili.com/player.html?isOutside=true&aid=540183338&bvid=BV17i4y187sN&cid=177757573&p=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="allowfullscreen"     sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts"></iframe>
 
 ## <center>Links</center>
 
-- [CCAV](https://ccav.me/) - 早年一起创业的哥们
+- Friend links
 
-- [h0u5er](https://www.h0u5er.com/) - 网友
+  - [CCAV](https://ccav.me/) - 创业哥们
 
-- [fishstar](https://www.ssout.top/) - 大学室友
+  - [h0u5er](https://www.h0u5er.com/) - 黑客好友
 
-- [xiaoming](https://www.gaoxinming.com/) - 大学室友
+  - [fishstar](https://www.ssout.top/) - 大学室友
+
+  - [xiaoming](https://www.gaoxinming.com/) - 大学室友
+
+- Tool links
+
+  - [手写风格画图](https://excalidraw.com)
+
+  
+
 
 --------
+
+domain name: [Ji Wenkang](https://jiwenkang.com), [Wenkang Ji](https://wenkangji.com), [ITxdm](https://itxdm.com)
 
 本博客挂在 Github Pages 上进行分布式版本控制，配合 Cloudflare 动态防护。**国内访问需魔法**。
