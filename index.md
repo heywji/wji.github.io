@@ -15,8 +15,8 @@
 ### Linux
 
 - [文件系统基础版](https://www.cnblogs.com/itxdm/p/filesystem_base_version.html)
-- [Linux 的启动流程图](http://pic.jiwenkang.com/typora/202208281647545.png)
-- [Linux 下 grub 引导修复](http://pic.jiwenkang.com/typora/202208221147727.png)
+- [Linux 的启动流程图](./redhat/typora/202208281647545.png)
+- [Linux 下 grub 引导修复](./redhat/typora/202208221147727.png)
 - [如何将 Linux 系统转移至 LVM 卷](https://linux.cn/article-7718-1.html)
 - [Linux 意外操作后如何进行数据抢救](https://www.cnblogs.com/itxdm/p/linuxdate_recover.html)
 
