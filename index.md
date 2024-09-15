@@ -119,6 +119,12 @@
 
 <iframe src="//player.bilibili.com/player.html?isOutside=true&aid=540183338&bvid=BV17i4y187sN&cid=177757573&p=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="allowfullscreen"     sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts"></iframe>
 
+
+
+## <center>Wake up</center>
+
+<iframe width="1920" height="919" src="https://www.youtube.com/embed/araSgYLAW90?list=PLFI1Cd4723_Q2aZchRncgYvOlxdZr5feI" title="1.1 逻辑与逻辑学" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 ## <center>Links</center>
 
 - Friend links
