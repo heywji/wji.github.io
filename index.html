@@ -3,7 +3,7 @@
 <head>
 <meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
 
-<style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color: #ffffff; --text-color: #333333; --select-text-bg-color: #B5D6FC; --select-text-font-color: auto; --monospace: "Lucida Console",Consolas,"Courier",monospace; --title-bar-height: 20px; }
+<link href='https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700,700italic&subset=latin,cyrillic-ext,cyrillic,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color: #ffffff; --text-color: #333333; --select-text-bg-color: #B5D6FC; --select-text-font-color: auto; --monospace: "Lucida Console",Consolas,"Courier",monospace; --title-bar-height: 20px; }
 .mac-os-11 { --title-bar-height: 28px; }
 html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
 h1, h2, h3, h4, h5 { white-space: pre-wrap; }
@@ -27,11 +27,11 @@ body.typora-export { padding-left: 30px; padding-right: 30px; }
 #write li > figure:last-child { margin-bottom: 0.5rem; }
 #write ol, #write ul { position: relative; }
 img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
-button, input, select, textarea { color: inherit; font-style: inherit; font-variant-caps: inherit; font-weight: inherit; font-stretch: inherit; font-size: inherit; line-height: inherit; font-family: inherit; font-size-adjust: inherit; font-kerning: inherit; font-variant-alternates: inherit; font-variant-ligatures: inherit; font-variant-numeric: inherit; font-variant-east-asian: inherit; font-variant-position: inherit; font-variant-emoji: inherit; font-feature-settings: inherit; font-optical-sizing: inherit; font-variation-settings: inherit; }
+button, input, select, textarea { color: inherit; font-style: inherit; font-variant-caps: inherit; font-weight: inherit; font-width: inherit; font-size: inherit; line-height: inherit; font-family: inherit; font-size-adjust: inherit; font-kerning: inherit; font-variant-alternates: inherit; font-variant-ligatures: inherit; font-variant-numeric: inherit; font-variant-east-asian: inherit; font-variant-position: inherit; font-variant-emoji: inherit; font-feature-settings: inherit; font-optical-sizing: inherit; font-variation-settings: inherit; }
 input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
 *, ::after, ::before { box-sizing: border-box; }
-#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
-#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; position: relative; }
+#write svg h1, #write svg h2, #write svg h3, #write svg h4, #write svg h5, #write svg h6, #write svg p { position: static; }
 p { line-height: inherit; }
 h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
 p { orphans: 4; }
@@ -161,6 +161,7 @@ mark .md-meta { color: rgb(0, 0, 0); }
 .md-fences.md-fences-math { font-size: 1em; }
 .md-fences-advanced:not(.md-focus) { padding: 0px; white-space: nowrap; border: 0px; }
 .md-fences-advanced:not(.md-focus) { background: inherit; }
+.mermaid-svg { margin: auto; }
 .typora-export-show-outline .typora-export-content { max-width: 1440px; margin: auto; display: flex; flex-direction: row; }
 .typora-export-sidebar { width: 300px; font-size: 0.8rem; margin-top: 80px; margin-right: 18px; }
 .typora-export-show-outline #write { --webkit-flex: 2; flex: 2 1 0%; }
@@ -219,310 +220,604 @@ mjx-container { break-inside: avoid; }
 .md-alert-text-container::after { content: attr(data-text); text-transform: capitalize; pointer-events: none; margin-right: 1ch; }
 
 
+/* meyer reset -- http://meyerweb.com/eric/tools/css/reset/ , v2.0 | 20110126 | License: none (public domain) */
+
+@include-when-export url(https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700,700italic&subset=latin,cyrillic-ext,cyrillic,latin-ext);
+
+/* =========== */
+
+/* pt-serif-regular - latin */
+/* pt-serif-italic - latin */
+/* pt-serif-700 - latin */
+/* pt-serif-700italic - latin */
+:root {
+	--active-file-bg-color: #dadada;
+	--active-file-bg-color: rgba(32, 43, 51, 0.63);
+	--active-file-text-color: white;
+	--bg-color: #f3f2ee;
+	--text-color: #1f0909;
+	--control-text-color: #444;
+	--rawblock-edit-panel-bd: #e5e5e5;
+
+	--select-text-bg-color: rgba(32, 43, 51, 0.63);
+  --select-text-font-color: white;
+}
+
+pre {
+	--select-text-bg-color: #36284e;
+	--select-text-font-color: #fff;
+}
+
 html {
-	font-size: 19px;
+	font-size: 16px;
+	-webkit-font-smoothing: antialiased;
 }
 
 html, body {
-	margin: auto;
-	background: #fefefe;
-	-webkit-font-smoothing: antialiased;
-}
-body {
-	font-family: "Vollkorn", Palatino, Times;
-	color: #333;
-	line-height: 1.4;
-	text-align: justify;
+	background-color: #f3f2ee;
+	font-family: "PT Serif", 'Times New Roman', Times, serif;
+	color: #1f0909;
+	line-height: 1.5em;
 }
 
+/*#write {
+	overflow-x: auto;
+    max-width: initial;
+	padding-left: calc(50% - 17em);
+    padding-right: calc(50% - 17em);
+}
+
+@media (max-width: 36em) {
+ 	#write {
+ 		padding-left: 1em;
+    	padding-right: 1em;
+ 	}
+}*/
+
 #write {
-	max-width: 960px;
-	margin: 0 auto;
-	margin-bottom: 2em;
-	line-height: 1.53;
-	padding-top: 40px;
+	max-width: 40em;
 }
 
 @media only screen and (min-width: 1400px) {
 	#write {
-		max-width: 1100px;
+			max-width: 914px;
 	}
 }
 
-@media print {
-	html {
-		font-size: 13px;
-	}
+ol li {
+	list-style-type: decimal;
+	list-style-position: outside;
+}
+ul li {
+	list-style-type: disc;
+	list-style-position: outside;
 }
 
-/* Typography
--------------------------------------------------------- */
-
-#write>h1:first-child,
-h1 {
-	margin-top: 1.6em;
-	font-weight: normal;
-}
-
-h1 {
-	font-size:3em;
-}
-
-h2 {
-	margin-top:2em;
-	font-weight: normal;
-}
-
-h3 {
-	font-weight: normal;
-	font-style: italic;
-	margin-top: 3em;
-}
-
-h1, 
-h2, 
-h3{
-	text-align: center;
-}
-
-h2:after{
-	border-bottom: 1px solid #2f2f2f;
-    content: '';
-    width: 100px;
-    display: block;
-    margin: 0 auto;
-    height: 1px;
-}
-
-h1+h2, h2+h3 {
-	margin-top: 0.83em;
-}
-
-p,
-.mathjax-block {
-	margin-top: 0;
-	-webkit-hypens: auto;
-	-moz-hypens: auto;
-	hyphens: auto;
-}
+ol,
 ul {
-	list-style: square;
-	padding-left: 1.2em;
-}
-ol {
-	padding-left: 1.2em;
+	list-style: none;
 }
 
-@media print {
-	ol {
-		padding-left: 40px;
-	}
+blockquote,
+q {
+	quotes: none;
 }
-
-blockquote {
-	margin-left: 1em;
-	padding-left: 1em;
-	border-left: 1px solid #ddd;
-}
-code,
-pre {
-	font-family: "Consolas", "Menlo", "Monaco", monospace, serif;
-	font-size: .9em;
-	background: white;
-}
-.md-fences{
-	margin-left: 1em;
-	padding-left: 1em;
-	border: 1px solid #ddd;
-	padding-bottom: 8px;
-	padding-top: 6px;
-	margin-bottom: 1.5em;
-}
-
-a {
-	color: #2484c1;
-	text-decoration: none;
-}
-a:hover {
-	text-decoration: underline;
-}
-a img {
-	border: none;
-}
-h1 a,
-h1 a:hover {
-	color: #333;
-	text-decoration: none;
-}
-hr {
-	color: #ddd;
-	height: 1px;
-	margin: 2em 0;
-	border-top: solid 1px #ddd;
-	border-bottom: none;
-	border-left: 0;
-	border-right: 0;
-}
-.ty-table-edit {
-	background: #ededed;
-    padding-top: 4px;
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+	content: '';
+	content: none;
 }
 table {
-	margin-bottom: 1.333333rem
+	border-collapse: collapse;
+	border-spacing: 0;
 }
-table th,
-table td {
-	padding: 8px;
-	line-height: 1.333333rem;
-	vertical-align: top;
-	border-top: 1px solid #ddd
+/* styles */
+
+/* ====== */
+
+/* headings */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-weight: bold;
 }
-table th {
-	font-weight: bold
+h1 {
+	font-size: 1.875em;
+	/*30 / 16*/
+	line-height: 1.6em;
+	/* 48 / 30*/
+	margin-top: 2em;
 }
-table thead th {
-	vertical-align: bottom
+h2,
+h3 {
+	font-size: 1.3125em;
+	/*21 / 16*/
+	line-height: 1.15;
+	/*24 / 21*/
+	margin-top: 2.285714em;
+	/*48 / 21*/
+	margin-bottom: 1.15em;
+	/*24 / 21*/
 }
-table caption+thead tr:first-child th,
-table caption+thead tr:first-child td,
-table colgroup+thead tr:first-child th,
-table colgroup+thead tr:first-child td,
-table thead:first-child tr:first-child th,
-table thead:first-child tr:first-child td {
-	border-top: 0
+h3 {
+	font-weight: normal;
 }
-table tbody+tbody {
-	border-top: 2px solid #ddd
+h4 {
+	font-size: 1.125em;
+	/*18 / 16*/
+	margin-top: 2.67em;
+	/*48 / 18*/
+}
+h5,
+h6 {
+	font-size: 1em;
+	/*16*/
+}
+h1 {
+	border-bottom: 1px solid;
+	margin-bottom: 1.875em;
+	padding-bottom: 0.8125em;
+}
+/* links */
+
+a {
+	text-decoration: none;
+	color: #065588;
+}
+a:hover,
+a:active {
+	text-decoration: underline;
+}
+/* block spacing */
+
+p,
+blockquote,
+.md-fences {
+	margin-bottom: 1.5em;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin-bottom: 1.5em;
+}
+/* blockquote */
+
+blockquote {
+	font-style: italic;
+	border-left: 5px solid;
+	margin-left: 2em;
+	padding-left: 1em;
+}
+/* lists */
+
+ul,
+ol {
+	margin: 0 0 1.5em 1.5em;
+}
+/* tables */
+.md-meta,.md-before, .md-after {
+	color:#999;
 }
 
+table {
+	margin-bottom: 1.5em;
+	/*24 / 16*/
+	font-size: 1em;
+	/* width: 100%; */
+}
+thead th,
+tfoot th {
+	padding: .25em .25em .25em .4em;
+	text-transform: uppercase;
+}
+th {
+	text-align: left;
+}
+td {
+	vertical-align: top;
+	padding: .25em .25em .25em .4em;
+}
+
+code,
+.md-fences {
+	background-color: #dadada;
+}
+
+code {
+	padding-left: 2px;
+	padding-right: 2px;
+}
+
+.md-fences {
+	margin-left: 2em;
+	margin-bottom: 3em;
+	padding-left: 1ch;
+	padding-right: 1ch;
+}
+
+pre,
+code,
+tt {
+	font-size: .875em;
+	line-height: 1.714285em;
+}
+/* some fixes */
+
+h1 {
+	line-height: 1.3em;
+	font-weight: normal;
+	margin-bottom: 0.5em;
+}
+
+p + ul,
+p + ol{
+	margin-top: .5em;
+}
+
+h3 + ul,
+h4 + ul,
+h5 + ul,
+h6 + ul,
+h3 + ol,
+h4 + ol,
+h5 + ol,
+h6 + ol {
+	margin-top: .5em;
+}
+
+li > ul,
+li > ol {
+	margin-top: inherit;
+	margin-bottom: 0;
+}
+
+li ol>li {
+	list-style-type: lower-alpha;
+}
+
+li li ol>li{
+	list-style-type: lower-roman;
+}
+
+h2,
+h3 {
+	margin-bottom: .75em;
+}
+hr {
+	border-top: none;
+	border-right: none;
+	border-bottom: 1px solid;
+	border-left: none;
+}
+h1 {
+	border-color: #c5c5c5;
+}
+blockquote {
+	border-color: #bababa;
+	color: #656565;
+}
+
+blockquote ul,
+blockquote ol {
+	margin-left:0;
+}
+
+.ty-table-edit {
+	background-color: transparent;
+}
+thead {
+	background-color: #dadada;
+}
+tr:nth-child(even) {
+	background: #e8e7e7;
+}
+hr {
+	border-color: #c5c5c5;
+}
 .task-list{
-	padding:0;
+	padding-left: 1rem;
 }
 
 .md-task-list-item {
-	padding-left: 1.6rem;
+	padding-left: 1.5rem;
+	list-style-type: none;
 }
 
 .md-task-list-item > input:before {
 	content: '\221A';
 	display: inline-block;
-	width: 1.33333333rem;
+	width: 1.25rem;
   	height: 1.6rem;
 	vertical-align: middle;
 	text-align: center;
 	color: #ddd;
-	background-color: #fefefe;
+	background-color: #F3F2EE;
 }
 
 .md-task-list-item > input:checked:before,
 .md-task-list-item > input[checked]:before{
 	color: inherit;
 }
-.md-tag {
-	color: inherit;
-	font: inherit;
-}
+
 #write pre.md-meta-block {
-	min-height: 35px;
-	padding: 0.5em 1em;
-}
-#write pre.md-meta-block {
-	white-space: pre;
-	background: #f8f8f8;
+	min-height: 1.875rem;
+	color: #555;
 	border: 0px;
-	color: #999;
-	
-	width: 100vw;
-	max-width: calc(100% + 60px);
-	margin-left: -30px;
-	border-left: 30px #f8f8f8 solid;
-	border-right: 30px #f8f8f8 solid;
-
-	margin-bottom: 2em;
-	margin-top: -1.3333333333333rem;
-	padding-top: 26px;
-	padding-bottom: 10px;
-	line-height: 1.8em;
-	font-size: 0.9em;
-	font-size: 0.76em;
-	padding-left: 0;
-}
-.md-img-error.md-image>.md-meta{
-	vertical-align: bottom;
-}
-#write>h5.md-focus:before {
-	top: 2px;
+	background: transparent;
+	margin-top: -4px;
+	margin-left: 1em;
+	margin-top: 1em;
 }
 
-.md-toc {
-	margin-top: 40px;
+.md-image>.md-meta {
+	color: #9B5146;
 }
 
-.md-toc-content {
-	padding-bottom: 20px;
+.md-image>.md-meta{
+	font-family: Menlo, 'Ubuntu Mono', Consolas, 'Courier New', 'Microsoft Yahei', 'Hiragino Sans GB', 'WenQuanYi Micro Hei', serif;
+}
+
+
+#write>h3.md-focus:before{
+	left: -1.5rem;
+	color:#999;
+	border-color:#999;
+}
+#write>h4.md-focus:before{
+	left: -1.5rem;
+	top: .25rem;
+	color:#999;
+	border-color:#999;
+}
+#write>h5.md-focus:before{
+	left: -1.5rem;
+	top: .0.3125rem;
+	color:#999;
+	border-color:#999;
+}
+#write>h6.md-focus:before{
+	left: -1.5rem;
+	top: 0.3125rem;
+	color:#999;
+	border-color:#999;
+}
+
+.md-toc:focus .md-toc-content{
+	margin-top: 19px;
+}
+
+.md-toc-content:empty:before{
+	color: #065588;
+}
+.md-toc-item {
+	color: #065588;
+}
+#write div.md-toc-tooltip {
+	background-color: #f3f2ee;
+}
+
+#typora-sidebar {
+	background-color: #f3f2ee;
+	-webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.375);
+  	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.375);
+}
+
+.pin-outline #typora-sidebar {
+	background: inherit;
+	box-shadow: none;
+	border-right: 1px dashed;
+}
+
+.pin-outline #typora-sidebar:hover .outline-title-wrapper {
+	border-left:1px dashed;
+}
+
+.outline-item:hover {
+  background-color: #dadada;
+  border-left: 28px solid #dadada;
+  border-right: 18px solid #dadada;
+}
+
+.typora-node .outline-item:hover {
+  	border-right: 28px solid #dadada;
 }
 
 .outline-expander:before {
-	color: inherit;
-	font-size: 14px;
-	top: auto;
-	content: "\f0da";
-	font-family: FontAwesome;
+  content: "\f0da";
+  font-family: FontAwesome;
+  font-size:14px;
+  top: 1px;
 }
 
 .outline-expander:hover:before,
 .outline-item-open>.outline-item>.outline-expander:before {
-  	content: "\f0d7";
+  content: "\f0d7";
 }
 
-/** source code mode */
-#typora-source {
-	font-family: Courier, monospace;
-    color: #6A6A6A;
+.modal-content {
+	background-color: #f3f2ee;
 }
 
-.html-for-mac #typora-sidebar {
-    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+.auto-suggest-container ul li {
+	list-style-type: none;
 }
 
-.cm-s-typora-default .cm-header, 
-.cm-s-typora-default .cm-property,
-.CodeMirror.cm-s-typora-default div.CodeMirror-cursor {
-	color: #428bca;
+/** UI for electron */
+
+.megamenu-menu,
+#top-titlebar, #top-titlebar *,
+.megamenu-content {
+	background: #f3f2ee;
+	color: #1f0909;
 }
 
-.cm-s-typora-default .cm-atom, .cm-s-typora-default .cm-number {
-	color: #777777;
+.megamenu-menu-header {
+	border-bottom: 1px dashed #202B33;
 }
 
-.typora-node .file-list-item-parent-loc, 
-.typora-node .file-list-item-time, 
-.typora-node .file-list-item-summary {
-	font-family: arial, sans-serif;
+.megamenu-menu {
+	box-shadow: none;
+	border-right: 1px dashed;
+}
+
+header, .context-menu, .megamenu-content, footer {
+	font-family: "PT Serif", 'Times New Roman', Times, serif;
+    color: #1f0909;
+}
+
+#megamenu-back-btn {
+	color: #1f0909;
+	border-color: #1f0909;
+}
+
+.megamenu-menu-header #megamenu-menu-header-title:before {
+	color: #1f0909;
+}
+
+.megamenu-menu-list li a:hover, .megamenu-menu-list li a.active {
+	color: inherit;
+	background-color: #e8e7df;
+}
+
+.long-btn:hover {
+	background-color: #e8e7df;
+}
+
+#recent-file-panel tbody tr:nth-child(2n-1) {
+    background-color: transparent !important;
+}
+
+.megamenu-menu-panel tbody tr:hover td:nth-child(2) {
+    color: inherit;
+}
+
+.megamenu-menu-panel .btn {
+	background-color: #D2D1D1;
+}
+
+.btn-default {
+	background-color: transparent;
+}
+
+.typora-sourceview-on #toggle-sourceview-btn,
+.ty-show-word-count #footer-word-count {
+	background: #c7c5c5;
+}
+
+#typora-quick-open {
+    background-color: inherit;
+}
+
+.md-diagram-panel {
+	margin-top: 8px;
+}
+
+.file-list-item-file-name {
+	font-weight: initial;
+}
+
+.file-list-item-summary {
+	opacity: 1;
+}
+
+.file-list-item {
+	color: #777;
+}
+
+.file-list-item.active {
+	background-color: inherit;
+	color: black;
+}
+
+.ty-side-sort-btn.active {
+	background-color: inherit;
+}
+
+.file-list-item.active .file-list-item-file-name  {
+	font-weight: bold;
+}
+
+.file-list-item{
+    opacity:1 !important;
+}
+
+.file-library-node.active>.file-node-background{
+	background-color: rgba(32, 43, 51, 0.63);
+	background-color: var(--active-file-bg-color);
+}
+
+.file-tree-node.active>.file-node-content{
+	color: white;
+	color: var(--active-file-text-color);
 }
 
 .md-task-list-item>input {
-    margin-left: -1.3em;
-    margin-top: calc(1rem - 12px);
+	margin-left: -1.7em;
+	margin-top: calc(1rem - 12px);
+	-webkit-appearance: button;
 }
 
-.md-mathjax-midline {
-	background: #fafafa;
+input {
+	border: 1px solid #aaa;
 }
 
-.md-fences .code-tooltip {
-	bottom: -2em !important;
+.megamenu-menu-header #megamenu-menu-header-title,
+.megamenu-menu-header:hover, 
+.megamenu-menu-header:focus {
+	color: inherit;
 }
 
 .dropdown-menu .divider {
 	border-color: #e5e5e5;
+	opacity: 1;
+}
+
+/* https://github.com/typora/typora-issues/issues/2046 */
+.os-windows-7 strong,
+.os-windows-7 strong  {
+	font-weight: 760;
+}
+
+.ty-preferences .btn-default {
+	background: transparent;
+}
+
+.ty-preferences .window-header {
+	border-bottom: 1px dashed #202B33;
+	box-shadow: none;
+}
+
+#sidebar-loading-template, #sidebar-loading-template.file-list-item {
+	color: #777;
+}
+
+.searchpanel-search-option-btn.active {
+	background: #777;
+	color: white;
+}
+
+.export-detail, .light .export-detail, 
+.light .export-item.active, 
+.light .export-items-list-control {
+	background: #e0e0e0;
+	border-radius: 2px;
+	font-weight: 700;
+	color: inherit
 }
 
  @media print { @page {margin: 0 0 0 0;} body.typora-export {padding-left: 0; padding-right: 0;} #write {padding:0;}}
 </style><title>index</title>
 </head>
 <body class='typora-export'><div class='typora-export-content'>
-<div id='write'  class=''><h1 id='<center>wenkang-ji<center>'><center><span>Wenkang Ji</span></center></h1><blockquote><p><span>生活 Being alive，工作 Working，记录 Recoding </span></p><p><span>兔兔 🐰 冲冲冲</span></p><p><span>大脑为高速缓存有缓存失效期 (Expiraion Time)，写给失忆的自己也分享给你 ：）</span></p></blockquote><hr /><div class='md-toc' mdtype='toc'><p class="md-toc-content" role="list"><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n194"><a class="md-toc-inner" style="" href="#<center>wenkang-ji<center>">Wenkang Ji</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n202"><a class="md-toc-inner" style="" href="#<center>tech<center>">Tech</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n203"><a class="md-toc-inner" style="" href="#linux">Linux</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n215"><a class="md-toc-inner" style="" href="#commond-line">Commond Line</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n221"><a class="md-toc-inner" style="" href="#programing">Programing</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n234"><a class="md-toc-inner" style="" href="#network">Network</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n243"><a class="md-toc-inner" style="" href="#virtualization">Virtualization</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n257"><a class="md-toc-inner" style="" href="#ai-part">AI part</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n263"><a class="md-toc-inner" style="" href="#<center>document<center>">Document</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n264"><a class="md-toc-inner" style="" href="#linux-2">Linux</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n268"><a class="md-toc-inner" style="" href="#red-hat">Red Hat</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n282"><a class="md-toc-inner" style="" href="#<center>about-me<center>">About me</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n316"><a class="md-toc-inner" style="" href="#<center>honours<center>">Honours</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n334"><a class="md-toc-inner" style="" href="#<center>others<center>">Others</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n351"><a class="md-toc-inner" style="" href="#<center>funny<center>">Funny</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n361"><a class="md-toc-inner" style="" href="#<center>wake-up<center>">Wake up</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n387"><a class="md-toc-inner" style="" href="#<center>links<center>">Links</a></span></p></div><h2 id='<center>tech<center>'><center><span>Tech</span></center></h2><h3 id='linux'><span>Linux</span></h3><ul><li><p><a href='https://www.cnblogs.com/itxdm/p/filesystem_base_version.html'><span>文件系统基础版</span></a></p></li><li><p><a href='./redhat/typora/202208281647545.png'><span>Linux 的启动流程图</span></a></p></li><li><p><a href='./redhat/typora/202208221147727.png'><span>Linux 下 grub 引导修复</span></a></p></li><li><p><a href='https://linux.cn/article-7718-1.html'><span>如何将 Linux 系统转移至 LVM 卷</span></a></p></li><li><p><a href='https://www.cnblogs.com/itxdm/p/linuxdate_recover.html'><span>Linux 意外操作后如何进行数据抢救</span></a></p></li></ul><h3 id='commond-line'><span>Commond Line</span></h3><ul><li><p><a href='https://www.cnblogs.com/itxdm/p/5936907.html'><span>Linux 下 find 命令</span></a></p></li><li><p><a href='https://linux.cn/article-7475-1.html'><span>Linux 下 OpenSSH 高级运用两则</span></a></p></li></ul><h3 id='programing'><span>Programing</span></h3><ul><li><p><a href='https://www.cnblogs.com/itxdm/p/c_pointer2.html'><span>一文让你明白C语言中的指针 </span></a></p></li><li><p><a href='https://www.cnblogs.com/itxdm/p/c_pointer_of_pointer.html'><span>C 语言中指针的指针究竟是个啥</span></a></p></li><li><p><a href='https://www.cnblogs.com/itxdm/p/C_language_struct_structure.html'><span>C 语言 struct 结构体</span></a></p></li><li><p><a href='https://www.cnblogs.com/itxdm/p/c_visiting_from_function.html'><span>C 语言之函数访问 </span></a></p></li><li><p><a href='https://www.cnblogs.com/itxdm/p/something_of_shellscirpt.html'><span>Linux 下 Shell 脚本几种基本命令替换区别</span></a></p></li><li><p><a href='https://cdn.jiwenkang.com/BashShell/index.html'><span>Linux 下 Shell 脚本的基础/高级编程</span></a></p></li></ul><h3 id='network'><span>Network</span></h3><ul><li><p><a href='https://www.cnblogs.com/itxdm/p/6087727.html'><span>网络基础：IP地址子网划分</span></a></p></li><li><p><a href='https://www.cnblogs.com/itxdm/p/Remember_to_use_a_network_device_to_find_a_host_in_a_black_box_environment.html'><span>记一次在黑盒环境下使用网络设备寻找主机</span></a></p></li><li><p><a href='./redhat/OpenShift introduction for personal learning.pdf'><span>OpenSHift Network Slides</span></a></p></li></ul><h3 id='virtualization'><span>Virtualization</span></h3><ul><li><p><a href='https://www.bilibili.com/video/BV12G411p7JW'><span>虚拟化介绍</span></a></p></li><li><p><a href='./redhat/QEMU.html'><span>虚拟化文字稿</span></a></p></li><li><p><a href='https://www.bilibili.com/video/BV1TV4y1u7hg/'><span>OpenShift Introduce Videos</span></a></p></li><li><p><a href='https://www.bilibili.com/video/BV1cd4y1D7MW'><span>OpenShift CNV Videos</span></a></p></li><li><p><a href='./redhat/KVM 基座能力来支持OpenShift Virtualization.pdf'><span>KVM 基座能力来支持OpenShift Virtualization Slide</span></a></p></li><li><p><a href='./redhat/NetKVM Presentation.pdf'><span>NetKVM Feature Presentation</span></a></p></li></ul><h3 id='ai-part'><span>AI part</span></h3><ul><li><p><a href='./AI/腾讯研究院 AIGC发展趋势报告2023.pdf'><span>腾讯研究院 AIGC发展趋势报告2023.pdf</span></a></p></li><li><p><a href='./AI/Instruct Lab &amp; Granite Model .pdf'><span>Instruct Lab &amp; Granite Model .pdf</span></a></p></li></ul><h2 id='<center>document<center>'><center><span>Document</span></center></h2><h3 id='linux-2'><span>Linux</span></h3><ul><li><p><a href='https://man.cx/'><span>Manpages</span></a></p></li></ul><h3 id='red-hat'><span>Red Hat</span></h3><ul><li><p><a href='https://access.redhat.com/products/'><span>所有红帽产品和文档</span></a></p></li><li><p><a href='https://access.redhat.com/downloads/content/package-browser'><span>Red Hat 软件包</span></a></p><ul><li><p><a href='https://access.redhat.com/management/subscriptions'><span>付费订阅查询</span></a></p></li><li><p><a href='https://access.redhat.com/downloads/content/rhel'><span>操作系统下载</span></a></p></li></ul></li><li><p><a href='https://www.credly.com/earner/earned'><span>证书查询</span></a></p></li></ul><h2 id='<center>about-me<center>'><center><span>About me</span></center></h2><ul><li><p><del><span>四年兔兔铲屎官 🐰</span></del><span> &amp; 俩年咪咪喂养员 🐱</span></p><ul><li><p><span>Tips1：兔子是非常聪明的宠物，饲养需要多喂水，大量供草，尽早绝育。</span></p></li><li><p><span>Tips2：招财咪是非常感性的生物，通常需要耐心呵护，不可大声。</span></p></li></ul></li><li><p><span>95后，在沪3426，</span><del><span>前交大 sjtu 讲师</span></del><span>，</span><del><span>前 </span><a href='https://linux.cn'><span>linux.cn</span></a><span> 开发组成员</span></del><span>，现 Red Hat 虚拟化团队员工（IBM 为 Red Hat 母公司）</span></p><ul><li><p><span>Bilibili：</span><a href='https://www.bilibili.com/video/BV1iR4y1c7o4'><span>文康的读书经历 </span></a></p></li></ul></li><li><p><del><span>拥有</span><a href='https://www.cnblogs.com/itxdm'><span>博客园</span></a><span> 6 年撰稿经验，50w 阅读量技术博主。</span></del></p></li><li><p><del><span>一线城市培训机构 5 年讲师（截止23年）</span></del><span>。</span></p><ul><li><p><del><span>目前已培训超 1w 名工程师，遍布各大高校、电信、金融、电商等相关行业。</span></del></p></li></ul></li><li><p><span>目前工作在以下项目中：</span></p><ul><li><p><span>测试框架：</span><a href='https://github.com/avocado-framework/avocado-vt/'><span>avocado-framework</span></a></p></li><li><p><span>测试策略： </span><a href='https://github.com/autotest/tp-qemu/'><span>tp-qemu</span></a></p></li><li><p><span>开源项目： </span><a href='https://github.com/virtio-win/kvm-guest-drivers-windows'><span>virtio-win</span></a></p><ul><li><p><a href='https://docs.fedoraproject.org/en-US/quick-docs/creating-windows-virtual-machines-using-virtio-drivers/index.html'><span>Download latest or stable binary drivers</span></a></p></li></ul></li></ul></li></ul><h2 id='<center>honours<center>'><center><span>Honours</span></center></h2><ul><li><p><span>Patchs</span></p><ul><li><p><span>人生发出的第一个 Patch：</span><a href='https://github.com/LCTT/TranslateProject/pull/4084'><span>Linux 社区翻译</span></a></p></li><li><p><span>人生首个技术 Patch：</span><a href='https://github.com/ovn-org/ovn-kubernetes/commit/8c149e5ecbf49d96f2dc95af4d5fdad3f74b18df'><span>K8S 文档修复</span></a></p></li><li><p><span>多人协作 Patch：</span><a href='https://github.com/thiagoralves/OpenPLC_v3/pull/201'><span>OpenPLC RT 支持</span></a></p><ul><li><p><span>关于 OpenPLC 介绍：</span><a href='https://www.bilibili.com/video/BV1eT411C7qA/'><span>OpenPLC RealTime tests</span></a></p></li></ul></li></ul></li><li><p><span>具有 HCIP RHCA ISTQB 等多项职业认证，多门满分通过。</span></p></li></ul><div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="fd817161-668d-40ed-9dd3-3678cdb35a6c" data-share-badge-host="https://www.credly.com"></div><script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script><h2 id='<center>others<center>'><center><span>Others</span></center></h2><ul><li><p><span>梦的起点：</span></p><ul><li><p><a href='guosai/国赛-compressed.pdf'><span>2015年全国职业院校技能大赛网络搭建与应用竞赛-赛题分享</span></a></p></li></ul></li><li><p><span>带我 Linux 入门的师傅们：饶 &amp; 贺老师</span></p><ul><li><p><span>上海科技管理学校 — 饶老师，带我进入 Linux 世界的引导者。</span></p></li><li><p><span>上海红帽 GLS 团队 — 贺老师，让我进入 Red Hat 公司的指路人。</span></p></li></ul></li><li><p><span>恋爱中 —— 莎莎</span></p></li></ul><h2 id='<center>funny<center>'><center><span>Funny</span></center></h2><ul><li><p><a href='https://www.bilibili.com/video/BV15H4y1p7Lm'><span>红帽创造营第一期 - 多才多艺的开源人</span></a></p></li></ul><iframe src="//player.bilibili.com/player.html?isOutside=true&aid=1051991159&bvid=BV15H4y1p7Lm&cid=1469311295&p=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="allowfullscreen"     sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts"></iframe><ul><li><p><a href='https://www.bilibili.com/video/BV17i4y187sN/'><span>清华武汉籍女生英文演讲：我三岁会唱国歌，一场疫情才理解了其中真正的含义</span></a></p></li></ul><iframe src="//player.bilibili.com/player.html?isOutside=true&aid=540183338&bvid=BV17i4y187sN&cid=177757573&p=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="allowfullscreen"     sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts"></iframe><p>&nbsp;</p><h2 id='<center>wake-up<center>'><center><span>Wake up</span></center></h2><iframe width="1920" height="919" src="https://www.youtube.com/embed/araSgYLAW90?list=PLFI1Cd4723_Q2aZchRncgYvOlxdZr5feI" title="1.1 逻辑与逻辑学" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe><h2 id='<center>links<center>'><center><span>Links</span></center></h2><ul><li><p><span>Friend links</span></p><ul><li><p><a href='https://ccav.me/'><span>CCAV</span></a><span> - 创业哥们</span></p></li><li><p><a href='https://www.h0u5er.com/'><span>h0u5er</span></a><span> - 黑客好友</span></p></li><li><p><a href='https://www.ssout.top/'><span>fishstar</span></a><span> - 大学室友</span></p></li><li><p><a href='https://www.gaoxinming.com/'><span>xiaoming</span></a><span> - 大学室友</span></p></li><li><p><a href='https://github.com/Alberthua-Perl/tech-docs'><span>Alberthua</span></a><span> - GLS 华老师</span></p></li></ul></li><li><p><span>Tool links</span></p><ul><li><p><a href='https://excalidraw.com'><span>手写风格画图</span></a></p></li></ul><p>&nbsp;</p></li></ul><hr /><p><span>domain name: </span><a href='https://jiwenkang.com'><span>Ji Wenkang</span></a><span>, </span><a href='https://wenkangji.com'><span>Wenkang Ji</span></a><span>, </span><a href='https://itxdm.com'><span>ITxdm</span></a></p><p><span>本博客挂在 Github Pages 上进行分布式版本控制，配合 Cloudflare 动态防护。</span><strong><span>国内访问需魔法</span></strong><span>。</span></p></div></div>
+<div id='write'  class=''><h1 id='<center>wecoms-blog<center>'><center><span>Wecom&#39;s BLOG</span></center></h1><blockquote><p><span>工作 Working，记录 Recoding </span></p><p><span>兔兔 🐰 冲冲冲</span></p><p><span>大脑的高速缓存有缓存失效期 (Expiraion Time)，在这里我写给失忆的自己也分享给你 ：）</span></p></blockquote><hr /><div class='md-toc' mdtype='toc'><p class="md-toc-content" role="list"><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n666"><a class="md-toc-inner" style="" href="#<center>wecoms-blog<center>">Wecom's BLOG</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n674"><a class="md-toc-inner" style="" href="#<center>tech<center>">Tech</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n675"><a class="md-toc-inner" style="" href="#linux">Linux</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n687"><a class="md-toc-inner" style="" href="#commond-line">Commond Line</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n693"><a class="md-toc-inner" style="" href="#programing">Programing</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n706"><a class="md-toc-inner" style="" href="#network">Network</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n715"><a class="md-toc-inner" style="" href="#virtualization">Virtualization</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n731"><a class="md-toc-inner" style="" href="#ai-part">AI part</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n737"><a class="md-toc-inner" style="" href="#<center>document<center>">Document</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n738"><a class="md-toc-inner" style="" href="#general">General</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n742"><a class="md-toc-inner" style="" href="#red-hat">Red Hat</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n758"><a class="md-toc-inner" style="" href="#<center>about-me<center>">About me</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n789"><a class="md-toc-inner" style="" href="#<center>honours<center>">Honours</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n807"><a class="md-toc-inner" style="" href="#<center>others<center>">Others</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n824"><a class="md-toc-inner" style="" href="#<center>funny<center>">Funny</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n834"><a class="md-toc-inner" style="" href="#<center>wake-up<center>">Wake up</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n836"><a class="md-toc-inner" style="" href="#<center>links<center>">Links</a></span></p></div><h2 id='<center>tech<center>'><center><span>Tech</span></center></h2><h3 id='linux'><span>Linux</span></h3><ul><li><p><a href='https://www.cnblogs.com/itxdm/p/filesystem_base_version.html'><span>文件系统基础版</span></a></p></li><li><p><a href='./redhat/typora/202208281647545.png'><span>Linux 的启动流程图</span></a></p></li><li><p><a href='./redhat/typora/202208221147727.png'><span>Linux 下 grub 引导修复</span></a></p></li><li><p><a href='https://linux.cn/article-7718-1.html'><span>如何将 Linux 系统转移至 LVM 卷</span></a></p></li><li><p><a href='https://www.cnblogs.com/itxdm/p/linuxdate_recover.html'><span>Linux 意外操作后如何进行数据抢救</span></a></p></li></ul><h3 id='commond-line'><span>Commond Line</span></h3><ul><li><p><a href='https://www.cnblogs.com/itxdm/p/5936907.html'><span>Linux 下 find 命令</span></a></p></li><li><p><a href='https://linux.cn/article-7475-1.html'><span>Linux 下 OpenSSH 高级运用两则</span></a></p></li></ul><h3 id='programing'><span>Programing</span></h3><ul><li><p><a href='https://www.cnblogs.com/itxdm/p/c_pointer2.html'><span>一文让你明白C语言中的指针 </span></a></p></li><li><p><a href='https://www.cnblogs.com/itxdm/p/c_pointer_of_pointer.html'><span>C 语言中指针的指针究竟是个啥</span></a></p></li><li><p><a href='https://www.cnblogs.com/itxdm/p/C_language_struct_structure.html'><span>C 语言 struct 结构体</span></a></p></li><li><p><a href='https://www.cnblogs.com/itxdm/p/c_visiting_from_function.html'><span>C 语言之函数访问 </span></a></p></li><li><p><a href='https://www.cnblogs.com/itxdm/p/something_of_shellscirpt.html'><span>Linux 下 Shell 脚本几种基本命令替换区别</span></a></p></li><li><p><a href='https://cdn.jiwenkang.com/BashShell/index.html'><span>Linux 下 Shell 脚本的基础/高级编程</span></a></p></li></ul><h3 id='network'><span>Network</span></h3><ul><li><p><a href='https://www.cnblogs.com/itxdm/p/6087727.html'><span>网络基础：IP地址子网划分</span></a></p></li><li><p><a href='https://www.cnblogs.com/itxdm/p/Remember_to_use_a_network_device_to_find_a_host_in_a_black_box_environment.html'><span>记一次在黑盒环境下使用网络设备寻找主机</span></a></p></li><li><p><a href='./redhat/OpenShift introduction for personal learning.pdf'><span>OpenSHift Network Slides</span></a></p></li></ul><h3 id='virtualization'><span>Virtualization</span></h3><ul><li><p><a href='https://www.bilibili.com/video/BV12G411p7JW'><span>虚拟化介绍</span></a></p></li><li><p><a href='./redhat/QEMU.html'><span>虚拟化文字稿</span></a></p></li><li><p><a href='https://www.bilibili.com/video/BV1TV4y1u7hg/'><span>OpenShift Introduce Videos</span></a></p></li><li><p><a href='https://www.bilibili.com/video/BV1cd4y1D7MW'><span>OpenShift CNV Videos</span></a></p></li><li><p><a href='./redhat/VM live migration deep dive in OCP-V.pdf'><span>VM live migration deep dive in OCP-V</span></a></p></li><li><p><a href='./redhat/KVM 基座能力来支持OpenShift Virtualization.pdf'><span>KVM 基座能力来支持OpenShift Virtualization Slide</span></a></p></li><li><p><a href='./redhat/NetKVM Presentation.pdf'><span>NetKVM Feature Presentation</span></a></p></li></ul><h3 id='ai-part'><span>AI part</span></h3><ul><li><p><a href='./AI/腾讯研究院 AIGC发展趋势报告2023.pdf'><span>腾讯研究院 AIGC 发展趋势报告2023.pdf</span></a></p></li><li><p><a href='./AI/Instruct Lab &amp; Granite Model .pdf'><span>Instruct Lab &amp; Granite Model .pdf</span></a></p></li></ul><h2 id='<center>document<center>'><center><span>Document</span></center></h2><h3 id='general'><span>General</span></h3><ul><li><p><a href='https://man.cx/'><span>Manpages</span></a></p></li></ul><h3 id='red-hat'><span>Red Hat</span></h3><ul><li><p><a href='https://access.redhat.com/products/'><span>所有红帽产品和文档</span></a></p><ul><li><p><a href='https://redhatofficial.github.io/#!/main'><span>上下游预览</span></a></p></li><li><p><a href='https://access.redhat.com/downloads/content/rhel'><span>操作系统下载</span></a></p></li><li><p><a href='https://access.redhat.com/downloads/content/package-browser'><span>Red Hat 软件包</span></a></p></li></ul></li><li><p><a href='https://www.credly.com/earner/earned'><span>证书查询</span></a></p></li><li><p><a href='https://access.redhat.com/management/subscriptions'><span>付费订阅查询</span></a></p></li></ul><h2 id='<center>about-me<center>'><center><span>About me</span></center></h2><ul><li><p><del><span>四年兔兔铲屎官 🐰</span></del><span> &amp; 俩年咪咪喂养员 🐱</span></p><ul><li><p><span>Tips1：兔子是非常聪明的宠物，饲养需要多喂水，大量供草，尽早绝育。</span></p></li><li><p><span>Tips2：招财咪是非常感性的生物，通常需要耐心呵护，不可大声。</span></p></li></ul></li><li><p><span>95后，在沪3426，前交大慧谷红帽课程讲师，前 </span><a href='https://linux.cn'><span>linux.cn</span></a><span> 开发组成员，现 Red Hat 虚拟化团队员工（IBM 为 Red Hat 母公司）=&gt; Bilibili：</span><a href='https://www.bilibili.com/video/BV1iR4y1c7o4'><span>文康的读书经历 </span></a></p><ul><li><p><del><span>一线城市培训机构 5 年讲师（截止23年）</span></del><span>。</span></p></li><li><p><del><span>目前已培训超 1w 名工程师，遍布各大高校、电信、金融、电商等相关行业。</span></del></p></li></ul></li><li><p><del><span>拥有</span><a href='https://www.cnblogs.com/itxdm'><span>博客园</span></a><span> 6 年撰稿经验，50w 阅读量技术博主。</span></del></p></li><li><p><span>目前工作在以下开源项目中：</span></p><ul><li><p><span>Virtio-Win 开源项目： </span><a href='https://github.com/virtio-win/kvm-guest-drivers-windows'><span>kvm-guest-drivers-windows</span></a></p><ul><li><p><a href='https://docs.fedoraproject.org/en-US/quick-docs/creating-windows-virtual-machines-using-virtio-drivers/index.html'><span>Download latest or stable binary drivers</span></a></p></li></ul></li><li><p><span>Virtio-Win 安装包：</span><a href='https://github.com/virtio-win/virtio-win-guest-tools-installer'><span>virtio-win-guest-tools-installer</span></a></p></li><li><p><span>测试框架：</span><a href='https://github.com/avocado-framework/avocado-vt/'><span>avocado-framework</span></a></p></li><li><p><span>测试用例： </span><a href='https://github.com/autotest/tp-qemu/'><span>tp-qemu</span></a></p></li></ul></li><li><p><span>联系我：wji#redhat.com</span></p></li></ul><h2 id='<center>honours<center>'><center><span>Honours</span></center></h2><ul><li><p><span>Patchs</span></p><ul><li><p><span>人生发出的第一个 Patch：</span><a href='https://github.com/LCTT/TranslateProject/pull/4084'><span>Linux 社区翻译</span></a></p></li><li><p><span>人生首个技术 Patch：</span><a href='https://github.com/ovn-org/ovn-kubernetes/commit/8c149e5ecbf49d96f2dc95af4d5fdad3f74b18df'><span>K8S 文档修复</span></a></p></li><li><p><span>多人协作 Patch：</span><a href='https://github.com/thiagoralves/OpenPLC_v3/pull/201'><span>OpenPLC RT 支持</span></a></p><ul><li><p><span>关于 OpenPLC 介绍：</span><a href='https://www.bilibili.com/video/BV1eT411C7qA/'><span>OpenPLC RealTime tests</span></a></p></li></ul></li></ul></li><li><p><span>具有 HCIP RHCA ISTQB 等多项职业认证，多门满分通过。</span></p></li></ul><div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="fd817161-668d-40ed-9dd3-3678cdb35a6c" data-share-badge-host="https://www.credly.com"></div><script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script><h2 id='<center>others<center>'><center><span>Others</span></center></h2><ul><li><p><span>梦的起点：</span></p><ul><li><p><a href='guosai/国赛-compressed.pdf'><span>2015年全国职业院校技能大赛网络搭建与应用竞赛-赛题分享</span></a></p></li></ul></li><li><p><span>带我 Linux 入门的师傅们：饶 &amp; 贺老师</span></p><ul><li><p><span>上海科技管理学校 — 饶老师，带我进入 Linux 世界的引导者。</span></p></li><li><p><span>上海红帽 GLS 团队 — 贺老师，让我进入 Red Hat 公司的指路人。</span></p></li></ul></li><li><p><span>恋爱中 —— 莎莎</span></p></li></ul><h2 id='<center>funny<center>'><center><span>Funny</span></center></h2><ul><li><p><a href='https://www.bilibili.com/video/BV15H4y1p7Lm'><span>红帽创造营第一期 - 多才多艺的开源人</span></a></p></li></ul><iframe src="//player.bilibili.com/player.html?isOutside=true&aid=1051991159&bvid=BV15H4y1p7Lm&cid=1469311295&p=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="allowfullscreen"     sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts"></iframe><ul><li><p><a href='https://www.bilibili.com/video/BV17i4y187sN/'><span>清华武汉籍女生英文演讲：我三岁会唱国歌，一场疫情才理解了其中真正的含义</span></a></p></li></ul><iframe src="//player.bilibili.com/player.html?isOutside=true&aid=540183338&bvid=BV17i4y187sN&cid=177757573&p=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="allowfullscreen"     sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts"></iframe><p>&nbsp;</p><h2 id='<center>wake-up<center>'><center><span>Wake up</span></center></h2><iframe width="1920" height="919" src="https://www.youtube.com/embed/araSgYLAW90?list=PLFI1Cd4723_Q2aZchRncgYvOlxdZr5feI" title="1.1 逻辑与逻辑学" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe><h2 id='<center>links<center>'><center><span>Links</span></center></h2><ul><li><p><span>Friend links</span></p><ul><li><p><a href='https://ccav.me/'><span>CCAV</span></a><span> - 创业哥们</span></p></li><li><p><a href='https://www.h0u5er.com/'><span>h0u5er</span></a><span> - 黑客好友</span></p></li><li><p><a href='https://www.ssout.top/'><span>fishstar</span></a><span> - 大学室友</span></p></li><li><p><a href='https://www.gaoxinming.com/'><span>xiaoming</span></a><span> - 大学室友</span></p></li><li><p><a href='https://github.com/Alberthua-Perl/tech-docs'><span>Alberthua</span></a><span> - GLS 华老师</span></p></li></ul></li><li><p><span>Tool links</span></p><ul><li><p><a href='https://excalidraw.com'><span>手写风格画图</span></a></p></li></ul><p>&nbsp;</p></li></ul><hr /><p><span>domain name: </span><a href='https://jiwenkang.com'><span>Ji Wenkang</span></a><span>, </span><a href='https://wenkangji.com'><span>Wenkang Ji</span></a><span>, </span><a href='https://itxdm.com'><span>ITxdm</span></a></p><p><span>本博客挂在 Github Pages 上进行分布式版本控制，配合 Cloudflare 动态防护。</span><strong><span>国内访问需魔法</span></strong><span>。</span></p></div></div>
 </body>
 </html>

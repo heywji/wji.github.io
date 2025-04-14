@@ -1,10 +1,10 @@
-# <center>Wenkang Ji</center>
+# <center>Wecom's BLOG</center>
 
-> 生活 Being alive，工作 Working，记录 Recoding 
+> 工作 Working，记录 Recoding 
 >
 >  兔兔 🐰 冲冲冲
 >
-> 大脑为高速缓存有缓存失效期 (Expiraion Time)，写给失忆的自己也分享给你 ：）
+> 大脑的高速缓存有缓存失效期 (Expiraion Time)，在这里我写给失忆的自己也分享给你 ：）
 
 ------------
 
@@ -49,25 +49,28 @@
 - [虚拟化文字稿](./redhat/QEMU.html)
 - [OpenShift Introduce Videos](https://www.bilibili.com/video/BV1TV4y1u7hg/)
 - [OpenShift CNV Videos](https://www.bilibili.com/video/BV1cd4y1D7MW)
+- [VM live migration deep dive in OCP-V](./redhat/VM live migration deep dive in OCP-V.pdf)
 - [KVM 基座能力来支持OpenShift Virtualization Slide](./redhat/KVM 基座能力来支持OpenShift Virtualization.pdf)
 - [NetKVM Feature Presentation](./redhat/NetKVM Presentation.pdf)
 
 ### AI part
 
-- [腾讯研究院 AIGC发展趋势报告2023.pdf](./AI/腾讯研究院 AIGC发展趋势报告2023.pdf)
+- [腾讯研究院 AIGC 发展趋势报告2023.pdf](./AI/腾讯研究院 AIGC发展趋势报告2023.pdf)
 - [Instruct Lab & Granite Model .pdf](./AI/Instruct Lab & Granite Model .pdf)
 
 ## <center>Document</center>
 
-### Linux
+### General
 - [Manpages](https://man.cx/)
 
 ### Red Hat
 - [所有红帽产品和文档](https://access.redhat.com/products/)
-- [Red Hat 软件包](https://access.redhat.com/downloads/content/package-browser)
-  - [付费订阅查询](https://access.redhat.com/management/subscriptions)
+  - [上下游预览](https://redhatofficial.github.io/#!/main)
   - [操作系统下载](https://access.redhat.com/downloads/content/rhel)
+  - [Red Hat 软件包](https://access.redhat.com/downloads/content/package-browser)
+
 - [证书查询](https://www.credly.com/earner/earned)
+- [付费订阅查询](https://access.redhat.com/management/subscriptions)
 
 
 ## <center>About me</center>
@@ -75,16 +78,18 @@
 - ~~四年兔兔铲屎官 🐰~~ & 俩年咪咪喂养员 🐱
   - Tips1：兔子是非常聪明的宠物，饲养需要多喂水，大量供草，尽早绝育。
   - Tips2：招财咪是非常感性的生物，通常需要耐心呵护，不可大声。
-- 95后，在沪3426，~~前交大 sjtu 讲师~~，~~前 [linux.cn](https://linux.cn) 开发组成员~~，现 Red Hat 虚拟化团队员工（IBM 为 Red Hat 母公司）
-  - Bilibili：[文康的读书经历 ](https://www.bilibili.com/video/BV1iR4y1c7o4)
-- ~~拥有[博客园](https://www.cnblogs.com/itxdm) 6 年撰稿经验，50w 阅读量技术博主。~~
-- ~~一线城市培训机构 5 年讲师（截止23年）~~。
+- 95后，在沪3426，前交大慧谷红帽课程讲师，前 [linux.cn](https://linux.cn) 开发组成员，现 Red Hat 虚拟化团队员工（IBM 为 Red Hat 母公司）=> Bilibili：[文康的读书经历 ](https://www.bilibili.com/video/BV1iR4y1c7o4)
+  - ~~一线城市培训机构 5 年讲师（截止23年）~~。
   - ~~目前已培训超 1w 名工程师，遍布各大高校、电信、金融、电商等相关行业。~~
-- 目前工作在以下项目中：
-  - 测试框架：[avocado-framework](https://github.com/avocado-framework/avocado-vt/)
-  - 测试策略： [tp-qemu](https://github.com/autotest/tp-qemu/)
-  - 开源项目： [virtio-win](https://github.com/virtio-win/kvm-guest-drivers-windows)
+
+- ~~拥有[博客园](https://www.cnblogs.com/itxdm) 6 年撰稿经验，50w 阅读量技术博主。~~
+- 目前工作在以下开源项目中：
+  - Virtio-Win 开源项目： [kvm-guest-drivers-windows](https://github.com/virtio-win/kvm-guest-drivers-windows)
     - [Download latest or stable binary drivers](https://docs.fedoraproject.org/en-US/quick-docs/creating-windows-virtual-machines-using-virtio-drivers/index.html)
+  - Virtio-Win 安装包：[virtio-win-guest-tools-installer](https://github.com/virtio-win/virtio-win-guest-tools-installer)
+  - 测试框架：[avocado-framework](https://github.com/avocado-framework/avocado-vt/)
+  - 测试用例： [tp-qemu](https://github.com/autotest/tp-qemu/)
+- 联系我：wji#redhat.com
 
 
 ## <center>Honours</center>
