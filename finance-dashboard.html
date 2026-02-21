@@ -1,0 +1,812 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>文康个人财务监控面板</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Noto+Sans+SC:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.6.8/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+    <style>
+      :root {
+        --bg-0: #f5f4ef;
+        --bg-1: #d6e8e4;
+        --bg-2: #f5dcc8;
+        --text: #15202b;
+        --muted: #5b7083;
+        --panel: rgba(255, 255, 255, 0.85);
+        --border: rgba(21, 32, 43, 0.12);
+        --accent: #0b7a75;
+        --accent-strong: #0a625e;
+        --warn: #c9582c;
+        --up: #0f8a42;
+        --down: #b93737;
+        --radius: 16px;
+        --shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        color: var(--text);
+        font-family: "Noto Sans SC", "Space Grotesk", sans-serif;
+        min-height: 100dvh;
+        background:
+          radial-gradient(
+            circle at 8% 5%,
+            rgba(201, 88, 44, 0.15),
+            transparent 32%
+          ),
+          radial-gradient(
+            circle at 92% 10%,
+            rgba(11, 122, 117, 0.15),
+            transparent 30%
+          ),
+          linear-gradient(140deg, var(--bg-0), var(--bg-1) 48%, var(--bg-2));
+        padding-bottom: 60px;
+      }
+
+      body.embed-mode {
+        padding-bottom: 0;
+      }
+
+      .wrap {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 24px 20px 32px 88px;
+      }
+
+      body.embed-mode .wrap {
+        max-width: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      h1,
+      h2,
+      h3 {
+        margin: 0;
+        font-family: "Space Grotesk", "Noto Sans SC", sans-serif;
+        letter-spacing: -0.02em;
+      }
+
+      /* Hero Section */
+      .hero {
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 24px;
+        background: rgba(255, 255, 255, 0.6);
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(12px);
+        margin-bottom: 24px;
+        animation: fadeIn 0.5s ease-out;
+      }
+
+      body.embed-mode .hero {
+        display: none;
+      }
+
+      .hero h1 {
+        font-size: 1.5rem;
+        color: var(--text);
+      }
+
+      .hero p {
+        margin: 8px 0 0;
+        color: var(--muted);
+        line-height: 1.6;
+        max-width: 600px;
+      }
+
+      .toolbar {
+        margin-top: 16px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      button.primary-btn {
+        border: 0;
+        border-radius: 8px;
+        background: var(--accent);
+        color: #fff;
+        padding: 8px 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition:
+          background 0.2s,
+          transform 0.1s;
+      }
+
+      button.primary-btn:hover {
+        background: var(--accent-strong);
+      }
+
+      button.primary-btn:active {
+        transform: scale(0.98);
+      }
+
+      .stamp {
+        font-size: 0.85rem;
+        color: var(--muted);
+      }
+
+      /* Panel Layout */
+      .panel {
+        margin-top: 24px;
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        background: var(--panel);
+        padding: 24px;
+        box-shadow: var(--shadow);
+        animation: slideUp 0.4s ease-out;
+      }
+
+      body.embed-mode .panel {
+        margin: 0;
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+        min-height: 100dvh;
+        padding: 18px;
+      }
+
+      .panel.hidden {
+        display: none;
+      }
+
+      .panel-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        margin-bottom: 16px;
+      }
+
+      .panel-header h2 {
+        font-size: 1.25rem;
+      }
+
+      .source-tag {
+        font-size: 0.8rem;
+        color: var(--muted);
+        background: rgba(0, 0, 0, 0.04);
+        padding: 4px 8px;
+        border-radius: 6px;
+      }
+
+      /* Grid for Cards */
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 16px;
+        margin-bottom: 24px;
+      }
+
+      .card {
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.5);
+        padding: 16px;
+        transition: transform 0.2s;
+      }
+
+      .card:hover {
+        transform: translateY(-2px);
+        background: rgba(255, 255, 255, 0.8);
+      }
+
+      .card .k {
+        color: var(--muted);
+        font-size: 0.85rem;
+        margin-bottom: 4px;
+      }
+
+      .card .v {
+        font-size: 1.5rem;
+        font-weight: 700;
+        letter-spacing: -0.03em;
+      }
+
+      .card .change {
+        font-weight: 600;
+        font-size: 0.95rem;
+        margin-top: 4px;
+      }
+
+      .up {
+        color: var(--up);
+      }
+      .down {
+        color: var(--down);
+      }
+
+      /* Charts */
+      .chart-container {
+        position: relative;
+        height: 450px;
+        width: 100%;
+        margin-bottom: 32px;
+        background: rgba(255, 255, 255, 0.4);
+        border-radius: 12px;
+        padding: 16px;
+        border: 1px solid var(--border);
+      }
+
+      /* News Section */
+      .news-divider {
+        height: 1px;
+        background: var(--border);
+        margin: 32px 0 24px;
+      }
+
+      .news-header {
+        font-size: 1.1rem;
+        font-weight: 700;
+        margin-bottom: 16px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .news-header::before {
+        content: "";
+        display: block;
+        width: 4px;
+        height: 16px;
+        background: var(--warn);
+        border-radius: 2px;
+      }
+
+      .news-list {
+        display: grid;
+        gap: 12px;
+      }
+
+      /* Special grid for the full Breaking News page */
+      .news-list.full-page {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      }
+
+      .news-item {
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.6);
+        padding: 12px 16px;
+        transition: background 0.2s;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .news-item:hover {
+        background: rgba(255, 255, 255, 0.9);
+      }
+
+      .news-item h3 {
+        font-size: 0.95rem;
+        line-height: 1.4;
+        margin-bottom: 6px;
+      }
+      
+      .news-item-title {
+        display: block;
+        font-weight: 600;
+        color: var(--text);
+        text-decoration: none;
+        margin-bottom: auto; /* Push content down */
+      }
+
+      .news-item-title:hover {
+        color: var(--accent-strong);
+        text-decoration: underline;
+      }
+
+      .news-meta {
+        margin-top: 8px;
+        padding-top: 8px;
+        border-top: 1px solid rgba(0,0,0,0.05);
+      }
+
+      .news-item p {
+        margin: 2px 0 0;
+        color: var(--muted);
+        font-size: 0.85rem;
+      }
+
+      /* Navigation */
+      .nav {
+        position: fixed;
+        left: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        padding: 12px;
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(16px);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        box-shadow: var(--shadow);
+        z-index: 100;
+      }
+
+      .nav button {
+        width: 44px;
+        height: 44px;
+        border: 0;
+        border-radius: 10px;
+        background: transparent;
+        color: var(--muted);
+        font-size: 1.2rem;
+        cursor: pointer;
+        transition: all 0.2s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .nav button:hover {
+        background: rgba(0, 0, 0, 0.05);
+      }
+
+      .nav button.active {
+        background: var(--accent);
+        color: white;
+        box-shadow: 0 4px 12px rgba(11, 122, 117, 0.3);
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .wrap {
+          padding: 16px 16px 80px 76px;
+        }
+        body.embed-mode .wrap {
+          padding: 0;
+        }
+        .nav {
+          left: 12px;
+          gap: 8px;
+          padding: 8px;
+        }
+        .nav button {
+          width: 38px;
+          height: 38px;
+          font-size: 1rem;
+        }
+        .chart-container {
+          height: 350px;
+        }
+        .grid {
+          grid-template-columns: 1fr;
+        }
+        .news-list.full-page {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      @keyframes slideUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <section class="hero">
+        <h1>文康个人财务监控面板</h1>
+        <p>
+          实时监控全球核心资产、加密货币及预测市场动态。
+          <br />
+          数据源整合：腾讯财经、CoinGecko、Polymarket (Finance/Crypto/Breaking)。
+        </p>
+        <div class="toolbar">
+          <button id="refreshBtn" class="primary-btn">刷新全部数据</button>
+          <div class="stamp" id="refreshStamp">等待更新...</div>
+        </div>
+      </section>
+
+      <!-- Panel: Traditional Assets -->
+      <section class="panel" id="panel-assets">
+        <div class="panel-header">
+          <h2>混合资产看板</h2>
+          <span class="source-tag">纳指 / 道琼斯 / 标普</span>
+        </div>
+        <div class="grid" id="assetsGrid"></div>
+        <div class="chart-container">
+          <canvas id="assetsChart"></canvas>
+        </div>
+        <div class="news-divider"></div>
+        <div class="news-header">金融预测 (Finance)</div>
+        <div class="news-list" id="assetsNewsList"></div>
+      </section>
+
+      <!-- Panel: Crypto -->
+      <section class="panel hidden" id="panel-crypto">
+        <div class="panel-header">
+          <h2>加密与贵金属</h2>
+          <span class="source-tag">BTC / ETH / 黄金 / 白银</span>
+        </div>
+        <div class="grid" id="cryptoGrid"></div>
+        <div class="chart-container">
+          <canvas id="cryptoChart"></canvas>
+        </div>
+        <div class="news-divider"></div>
+        <div class="news-header">加密预测 (Crypto)</div>
+        <div class="news-list" id="cryptoNewsList"></div>
+      </section>
+
+      <!-- Panel: Breaking News -->
+      <section class="panel hidden" id="panel-breaking">
+        <div class="panel-header">
+          <h2>热门预测 (Breaking)</h2>
+          <span class="source-tag">Polymarket 全局热门</span>
+        </div>
+        <div class="news-list full-page" id="breakingNewsList"></div>
+      </section>
+    </div>
+
+    <nav class="nav">
+      <button class="active" data-tab="assets" title="混合资产" aria-label="混合资产">📊</button>
+      <button data-tab="crypto" title="加密与贵金属" aria-label="加密与贵金属">🪙</button>
+      <button data-tab="breaking" title="热门预测" aria-label="热门预测">🔥</button>
+    </nav>
+
+    <script>
+      const EMBED_MODE = new URLSearchParams(window.location.search).get("embed") === "1";
+      if (EMBED_MODE) {
+        document.body.classList.add("embed-mode");
+      }
+
+      // Configuration
+      const TABS = ["assets", "crypto", "breaking"];
+      let charts = { assets: null, crypto: null };
+
+      // DOM Elements
+      const els = {
+        panels: {
+          assets: document.getElementById("panel-assets"),
+          crypto: document.getElementById("panel-crypto"),
+          breaking: document.getElementById("panel-breaking"),
+        },
+        grids: {
+          assets: document.getElementById("assetsGrid"),
+          crypto: document.getElementById("cryptoGrid"),
+        },
+        news: {
+          assets: document.getElementById("assetsNewsList"),
+          crypto: document.getElementById("cryptoNewsList"),
+          breaking: document.getElementById("breakingNewsList"),
+        },
+        stamp: document.getElementById("refreshStamp"),
+      };
+
+      // Formatting
+      const fmt = {
+        money: (n, d = 2) => {
+           const num = Number(n);
+           if (!Number.isFinite(num)) return "--";
+           // Polymarket volumes are often large, format K/M
+           if (d === 0 && num > 1000000) return (num / 1000000).toFixed(1) + "M";
+           if (d === 0 && num > 1000) return (num / 1000).toFixed(1) + "K";
+           
+           return num.toLocaleString("zh-CN", {
+            minimumFractionDigits: d,
+            maximumFractionDigits: d,
+          });
+        },
+        pct: (n) => {
+          const num = Number(n);
+          if (!Number.isFinite(num)) return "--";
+          const sign = num >= 0 ? "+" : "";
+          return `${sign}${num.toFixed(2)}%`;
+        },
+        date: (d) => {
+          if (!d) return "--";
+          const date = new Date(d);
+          return date.toLocaleTimeString("zh-CN", { hour12: false });
+        },
+        cls: (n) => (Number(n) >= 0 ? "up" : "down"),
+      };
+
+      // Tabs
+      document.querySelectorAll(".nav button").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const target = btn.dataset.tab;
+          TABS.forEach((t) =>
+            els.panels[t].classList.toggle("hidden", t !== target),
+          );
+          document
+            .querySelectorAll(".nav button")
+            .forEach((b) => b.classList.toggle("active", b === btn));
+        });
+      });
+
+      // API: Tencent
+      async function fetchTencent(codes) {
+        try {
+          const url = `https://qt.gtimg.cn/q=${codes.join(",")}`;
+          const { data } = await axios.get(url, { responseType: "text", timeout: 8000 });
+          const results = {};
+          if (typeof data !== "string") return {};
+
+          data.split(";").forEach((line) => {
+            const m = line.match(/v_([^=]+)="(.*)"/);
+            if (m) {
+              const vals = m[2].split("~");
+              if (vals.length > 30) {
+                 results[m[1]] = {
+                    price: Number(vals[3]),
+                    change: Number(vals[32]),
+                    name: vals[1],
+                 };
+              }
+            }
+          });
+          return results;
+        } catch (e) {
+          console.error("Tencent API Error:", e);
+          return {};
+        }
+      }
+
+      // API: Crypto
+      async function fetchCrypto(ids) {
+        try {
+          const { data } = await axios.get(
+            "https://api.coingecko.com/api/v3/simple/price",
+            {
+              params: {
+                ids: ids.join(","),
+                vs_currencies: "usd",
+                include_24hr_change: "true",
+              },
+              timeout: 10000
+            },
+          );
+          return data || {};
+        } catch (e) {
+          console.error("Crypto API Error:", e);
+          return {};
+        }
+      }
+
+      // API: Polymarket
+      // tag: "Finance", "Crypto", or null (for breaking/trending)
+      async function fetchPolymarketEvents(tag = null) {
+        try {
+          // Jina Proxy to bypass CORS on the frontend
+          // Tag IDs are tricky without a lookup, but slug filtering often works or we query top events and client-side filter
+          // Actually, the events endpoint supports `tag_slug`.
+          
+          let queryParams = "active=true&closed=false&limit=20&sort=volume";
+          if (tag) {
+             queryParams += `&tag_slug=${tag.toLowerCase()}`;
+          } else {
+             // For breaking/hot, maybe sort by liquidity or just use 'featured'
+             queryParams += `&featured=true`;
+          }
+
+          const url = `https://r.jina.ai/http://gamma-api.polymarket.com/events?${queryParams}`;
+          const { data } = await axios.get(url, { responseType: "text", timeout: 15000 });
+          
+          if (typeof data !== 'string') return [];
+          const start = data.indexOf("[");
+          const end = data.lastIndexOf("]");
+          if (start === -1 || end === -1) return [];
+          
+          return JSON.parse(data.substring(start, end + 1));
+        } catch (e) {
+          console.warn(`Polymarket Fetch Error (${tag}):`, e);
+          return [];
+        }
+      }
+
+      // Render: Grid
+      function renderGrid(container, items) {
+        container.innerHTML = items
+          .map(
+            (item) => `
+          <div class="card">
+            <div class="k">${item.name}</div>
+            <div class="v">$${fmt.money(item.price, item.digits || 2)}</div>
+            <div class="change ${fmt.cls(item.change)}">
+              ${fmt.pct(item.change)}
+            </div>
+          </div>
+        `,
+          )
+          .join("");
+      }
+
+      // Render: Chart
+      function updateChart(ctxId, instanceName, items) {
+        const ctx = document.getElementById(ctxId);
+        if (charts[instanceName]) charts[instanceName].destroy();
+
+        charts[instanceName] = new Chart(ctx, {
+          type: "bar",
+          data: {
+            labels: items.map((i) => i.name),
+            datasets: [
+              {
+                label: "24H 涨跌幅 (%)",
+                data: items.map((i) => i.change),
+                backgroundColor: items.map((i) =>
+                  i.change >= 0
+                    ? "rgba(15, 138, 66, 0.6)"
+                    : "rgba(185, 55, 55, 0.6)",
+                ),
+                borderColor: items.map((i) =>
+                  i.change >= 0 ? "#0f8a42" : "#b93737",
+                ),
+                borderWidth: 1,
+                borderRadius: 4,
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: { display: false },
+            },
+            scales: {
+              y: {
+                grid: { color: "rgba(0,0,0,0.05)" },
+                ticks: { callback: (v) => v + "%" },
+              },
+              x: {
+                grid: { display: false },
+              },
+            },
+          },
+        });
+      }
+
+      // Render: News List
+      function renderNewsSection(container, events) {
+        if (!events || !events.length) {
+          container.innerHTML = '<div class="news-item"><p>暂无相关事件</p></div>';
+          return;
+        }
+        
+        container.innerHTML = events
+          .slice(0, 8) // Limit items
+          .map((ev) => {
+            const m = Array.isArray(ev.markets) ? ev.markets[0] : (ev.markets || {});
+            
+            let outcomes = [];
+            let prices = [];
+            try {
+                 outcomes = typeof m.outcomes === 'string' ? JSON.parse(m.outcomes) : (m.outcomes || []);
+                 prices = typeof m.outcomePrices === 'string' ? JSON.parse(m.outcomePrices) : (m.outcomePrices || []);
+            } catch (e) {}
+
+            const prob = outcomes
+              .map(
+                (o, i) => `${o}: ${Math.round((Number(prices[i]) || 0) * 100)}%`,
+              )
+              .slice(0, 2)
+              .join(" | ");
+
+            return `
+            <div class="news-item">
+              <a class="news-item-title" href="https://polymarket.com/event/${ev.slug}" target="_blank">
+                ${ev.title || "未知事件"}
+              </a>
+              <div class="news-meta">
+                 <p>预测: ${prob || "暂无"}</p>
+                 <p>Volume: $${fmt.money(ev.volume || 0, 0)}</p>
+              </div>
+            </div>
+          `;
+          })
+          .join("");
+      }
+
+      // Main Refresh
+      async function refresh() {
+        els.stamp.textContent = "正在刷新...";
+        const btn = document.getElementById("refreshBtn");
+        btn.disabled = true;
+        btn.style.opacity = "0.7";
+
+        try {
+            // Fetch everything in parallel
+            // 1. Assets & Crypto Prices
+            // 2. Polymarket: Finance (for Assets panel), Crypto (for Crypto panel), Breaking (for own panel)
+            const [
+                tencentData, 
+                cryptoData, 
+                polyFinance, 
+                polyCrypto, 
+                polyBreaking
+            ] = await Promise.all([
+              fetchTencent(["usIXIC", "usDJI", "usINX", "usGLD", "usSLV"]),
+              fetchCrypto(["bitcoin", "ethereum", "dogecoin"]),
+              fetchPolymarketEvents("finance"),
+              fetchPolymarketEvents("crypto"),
+              fetchPolymarketEvents(null) // Breaking/Featured
+            ]);
+
+            // --- Process Assets Panel ---
+            const assetsItems = [
+              {
+                name: "纳斯达克",
+                price: tencentData["usIXIC"]?.price || 0,
+                change: tencentData["usIXIC"]?.change || 0,
+              },
+              {
+                name: "道琼斯",
+                price: tencentData["usDJI"]?.price || 0,
+                change: tencentData["usDJI"]?.change || 0,
+              },
+              {
+                name: "标普 500",
+                price: tencentData["usINX"]?.price || 0,
+                change: tencentData["usINX"]?.change || 0,
+              },
+            ];
+            renderGrid(els.grids.assets, assetsItems);
+            updateChart("assetsChart", "assets", assetsItems);
+            renderNewsSection(els.news.assets, polyFinance);
+
+            // --- Process Crypto Panel ---
+            const cryptoItems = [
+              {
+                name: "比特币 (BTC)",
+                price: cryptoData["bitcoin"]?.usd || 0,
+                change: cryptoData["bitcoin"]?.usd_24h_change || 0,
+                digits: 0,
+              },
+              {
+                name: "以太坊 (ETH)",
+                price: cryptoData["ethereum"]?.usd || 0,
+                change: cryptoData["ethereum"]?.usd_24h_change || 0,
+              },
+              {
+                name: "黄金 (GLD)",
+                price: tencentData["usGLD"]?.price || 0,
+                change: tencentData["usGLD"]?.change || 0,
+              },
+              {
+                name: "白银 (SLV)",
+                price: tencentData["usSLV"]?.price || 0,
+                change: tencentData["usSLV"]?.change || 0,
+              },
+            ];
+            renderGrid(els.grids.crypto, cryptoItems);
+            updateChart("cryptoChart", "crypto", cryptoItems);
+            renderNewsSection(els.news.crypto, polyCrypto);
+
+            // --- Process Breaking Panel ---
+            renderNewsSection(els.news.breaking, polyBreaking);
+
+            els.stamp.textContent = "更新于 " + fmt.date(Date.now());
+        } catch (err) {
+            console.error(err);
+            els.stamp.textContent = "更新失败";
+        } finally {
+            btn.disabled = false;
+            btn.style.opacity = "1";
+        }
+      }
+
+      // Init
+      document.getElementById("refreshBtn").addEventListener("click", refresh);
+      refresh();
+    </script>
+  </body>
+</html>

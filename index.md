@@ -1,16 +1,57 @@
-# <center>Wecom's BLOG</center>
+# <center>Wenkang's Finance</center>
 
-> 工作 Working，记录 Recoding 
+<style>
+#finance-dashboard-embed {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  margin-top: 0;
+  margin-bottom: 0;
+}
+#finance-dashboard-embed iframe {
+  display: block;
+  width: 100vw;
+  height: 100dvh;
+  min-height: 680px;
+  border: 0;
+  border-radius: 0;
+  background: #fff;
+}
+#finance-dashboard-embed > h2 {
+  display: none;
+}
+@media (max-width: 768px) {
+  #finance-dashboard-embed iframe {
+    height: 100dvh;
+    min-height: 100dvh;
+  }
+}
+</style>
+  <section id="finance-dashboard-embed">
+    <iframe
+      src="./finance-dashboard.html?embed=1"
+      title="混合资产看板"
+      loading="lazy"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen>
+    </iframe>
+  </section>
+
+
+------------
+
+# <center>Wenkang's BLOG</center>
+
+> 工作 Work，生活 Life，记录 Recoding
 >
 >  兔兔 🐰 冲冲冲
 >
 > 大脑的高速缓存有缓存失效期 (Expiraion Time)，在这里我写给失忆的自己也分享给你 ：）
 
-------------
 
 [TOC]
 
-## <center>Tech</center>
+## <center>Tech Knowledges</center>
 
 ### Linux
 
@@ -57,6 +98,10 @@
 
 - [腾讯研究院 AIGC 发展趋势报告2023.pdf](./AI/腾讯研究院 AIGC发展趋势报告2023.pdf)
 - [Instruct Lab & Granite Model .pdf](./AI/Instruct Lab & Granite Model .pdf)
+- [CS146S: The Modern Software Developer](https://themodernsoftware.dev/)
+- [Deep Learning](https://ocw.mit.edu/courses/6-7960-deep-learning-fall-2024/pages/syllabus/)
+
+
 
 ## <center>Document</center>
 
@@ -73,16 +118,17 @@
 - [付费订阅查询](https://access.redhat.com/management/subscriptions)
 
 
+
+
 ## <center>About me</center>
 
-- ~~四年兔兔铲屎官 🐰~~ & 俩年咪咪喂养员 🐱
-  - Tips1：兔子是非常聪明的宠物，饲养需要多喂水，大量供草，尽早绝育。
-  - Tips2：招财咪是非常感性的生物，通常需要耐心呵护，不可大声。
-- 95后，在沪3426，前交大慧谷红帽课程讲师，前 [linux.cn](https://linux.cn) 开发组成员，现 Red Hat 虚拟化团队员工（IBM 为 Red Hat 母公司）=> Bilibili：[文康的读书经历 ](https://www.bilibili.com/video/BV1iR4y1c7o4)
+- ~~拥有[博客园](https://www.cnblogs.com/itxdm) 6 年撰稿经验【截至到 2022-05】，50w 阅读量技术博主。~~
+- ~~三年半兔兔铲屎官【截止 2023-02-18】 🐰~~
+  - ~~Tips：兔子是非常聪明的宠物，饲养需要多喂水，大量供草，尽早绝育。~~
+- 95后，在沪 342，前交大慧谷红帽课程讲师，前 [linux.cn](https://linux.cn) 开发组成员，现 Red Hat 虚拟化团队员工（IBM 为 Red Hat 母公司）具体可见 => Bilibili：[文康的读书经历 ](https://www.bilibili.com/video/BV1iR4y1c7o4)
   - ~~一线城市培训机构 5 年讲师（截止23年）~~。
   - ~~目前已培训超 1w 名工程师，遍布各大高校、电信、金融、电商等相关行业。~~
 
-- ~~拥有[博客园](https://www.cnblogs.com/itxdm) 6 年撰稿经验，50w 阅读量技术博主。~~
 - 目前工作在以下开源项目中：
   - Virtio-Win 开源项目： [kvm-guest-drivers-windows](https://github.com/virtio-win/kvm-guest-drivers-windows)
     - [Download latest or stable binary drivers](https://docs.fedoraproject.org/en-US/quick-docs/creating-windows-virtual-machines-using-virtio-drivers/index.html)
@@ -90,6 +136,11 @@
   - 测试框架：[avocado-framework](https://github.com/avocado-framework/avocado-vt/)
   - 测试用例： [tp-qemu](https://github.com/autotest/tp-qemu/)
 - 联系我：wji#redhat.com
+  - 恋爱中 —— 莎莎（从校园走到至今）
+    - 三年咪咪喂养员 🐱
+    - Tips：招财咪是非常感性的生物，通常需要耐心呵护，不可大声。
+
+
 
 
 ## <center>Honours</center>
@@ -100,35 +151,33 @@
   - 多人协作 Patch：[OpenPLC RT 支持](https://github.com/thiagoralves/OpenPLC_v3/pull/201)
     - 关于 OpenPLC 介绍：[OpenPLC RealTime tests](https://www.bilibili.com/video/BV1eT411C7qA/)
 
-- 具有 HCIP RHCA ISTQB 等多项职业认证，多门满分通过。
+- 具有 HCIP RHCA ISTQB 等多项职业认证，多门红帽认证满分通过。
 <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="fd817161-668d-40ed-9dd3-3678cdb35a6c" data-share-badge-host="https://www.credly.com"></div><script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
 
 
 ## <center>Others</center>
 
-- 梦的起点：
+- IT 梦想的起点：
   - [2015年全国职业院校技能大赛网络搭建与应用竞赛-赛题分享](guosai/国赛-compressed.pdf)
-- 带我 Linux 入门的师傅们：饶 & 贺老师
-  - 上海科技管理学校 — 饶老师，带我进入 Linux 世界的引导者。
+- 带我 Linux 入门的师傅们：饶文 & 贺老师
+  - 上海科技管理学校 — 饶文老师，带我进入 Linux 世界的引导者。
   - 上海红帽 GLS 团队 — 贺老师，让我进入 Red Hat 公司的指路人。
-- 恋爱中 —— 莎莎
+
+
 
 
 ## <center>Funny</center>
 
 - [红帽创造营第一期 - 多才多艺的开源人](https://www.bilibili.com/video/BV15H4y1p7Lm)
+- [清华武汉籍女生英文演讲：我三岁会唱国歌，一场疫情才理解了其中真正的含义](https://www.bilibili.com/video/BV17i4y187sN/)
 
-<iframe src="//player.bilibili.com/player.html?isOutside=true&aid=1051991159&bvid=BV15H4y1p7Lm&cid=1469311295&p=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="allowfullscreen"     sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts"></iframe>
-
-  - [清华武汉籍女生英文演讲：我三岁会唱国歌，一场疫情才理解了其中真正的含义](https://www.bilibili.com/video/BV17i4y187sN/)
-
-<iframe src="//player.bilibili.com/player.html?isOutside=true&aid=540183338&bvid=BV17i4y187sN&cid=177757573&p=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="allowfullscreen"     sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts"></iframe>
 
 
 
 ## <center>Wake up</center>
 
 <iframe width="1920" height="919" src="https://www.youtube.com/embed/araSgYLAW90?list=PLFI1Cd4723_Q2aZchRncgYvOlxdZr5feI" title="1.1 逻辑与逻辑学" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 
 ## <center>Links</center>
 
@@ -149,8 +198,6 @@
   - [手写风格画图](https://excalidraw.com)
 
   
-
-
 --------
 
 domain name: [Ji Wenkang](https://jiwenkang.com), [Wenkang Ji](https://wenkangji.com), [ITxdm](https://itxdm.com)
