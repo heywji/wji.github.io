@@ -92,7 +92,11 @@
 - [OpenShift CNV Videos](https://www.bilibili.com/video/BV1cd4y1D7MW)
 - [VM live migration deep dive in OCP-V](./redhat/VM live migration deep dive in OCP-V.pdf)
 - [KVM 基座能力来支持OpenShift Virtualization Slide](./redhat/KVM 基座能力来支持OpenShift Virtualization.pdf)
+
+#### NetKVM
+
 - [NetKVM Feature Presentation](./redhat/NetKVM Presentation.pdf)
+- [VirtIO-Win-NetKVM - UDP Segmentation Offload](./redhat/RHEL_Week.pdf)
 
 ### AI part
 
@@ -107,6 +111,7 @@
 
 ### General
 - [Manpages](https://man.cx/)
+- [BashShell基础](./BashShell/BashShell基础.html)
 
 ### Red Hat
 - [所有红帽产品和文档](https://access.redhat.com/products/)
