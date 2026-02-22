@@ -453,7 +453,19 @@
           <h2>热门预测 (Breaking)</h2>
           <span class="source-tag">Polymarket 全局热门</span>
         </div>
+        
+        <div class="news-header">🚨 突发 (Breaking)</div>
         <div class="news-list full-page" id="breakingNewsList"></div>
+
+        <div class="news-divider"></div>
+
+        <div class="news-header">🔥 正在趋势 (Trending)</div>
+        <div class="news-list full-page" id="trendingNewsList"></div>
+
+        <div class="news-divider"></div>
+
+        <div class="news-header">🆕 最新上线 (New)</div>
+        <div class="news-list full-page" id="newNewsList"></div>
       </section>
     </div>
 
@@ -488,6 +500,8 @@
           assets: document.getElementById("assetsNewsList"),
           crypto: document.getElementById("cryptoNewsList"),
           breaking: document.getElementById("breakingNewsList"),
+          trending: document.getElementById("trendingNewsList"),
+          new: document.getElementById("newNewsList"),
         },
         stamp: document.getElementById("refreshStamp"),
       };
@@ -583,32 +597,122 @@
       }
 
       // API: Polymarket
-      // tag: "Finance", "Crypto", or null (for breaking/trending)
-      async function fetchPolymarketEvents(tag = null) {
+      // tag: "Finance", "Crypto"
+      async function fetchPolymarketEvents(tag = null, sort = "volume", featured = false, isNew = false) {
         try {
           // Jina Proxy to bypass CORS on the frontend
-          // Tag IDs are tricky without a lookup, but slug filtering often works or we query top events and client-side filter
-          // Actually, the events endpoint supports `tag_slug`.
-          
-          let queryParams = "active=true&closed=false&limit=20&sort=volume";
+          let queryParams = `active=true&closed=false&limit=20&sort=${sort}`;
           if (tag) {
              queryParams += `&tag_slug=${tag.toLowerCase()}`;
-          } else {
-             // For breaking/hot, maybe sort by liquidity or just use 'featured'
+          }
+          if (featured) {
              queryParams += `&featured=true`;
+          }
+          if (isNew) {
+            queryParams += `&new=true`;
           }
 
           const url = `https://r.jina.ai/http://gamma-api.polymarket.com/events?${queryParams}`;
           const { data } = await axios.get(url, { responseType: "text", timeout: 15000 });
           
-          if (typeof data !== 'string') return [];
+          if (typeof data !== "string") return [];
           const start = data.indexOf("[");
           const end = data.lastIndexOf("]");
           if (start === -1 || end === -1) return [];
-          
-          return JSON.parse(data.substring(start, end + 1));
+
+          const parsed = JSON.parse(data.substring(start, end + 1));
+          return Array.isArray(parsed) ? parsed : [];
         } catch (e) {
           console.warn(`Polymarket Fetch Error (${tag}):`, e);
+          return [];
+        }
+      }
+
+      async function fetchPolymarketBreakingEvents() {
+        try {
+          const query = new URLSearchParams({
+            active: "true",
+            closed: "false",
+            featured: "true",
+            limit: "30",
+            order: "featuredOrder",
+            ascending: "true",
+          });
+          const url = `https://r.jina.ai/http://gamma-api.polymarket.com/events?${query.toString()}`;
+          const { data } = await axios.get(url, { responseType: "text", timeout: 15000 });
+
+          if (typeof data !== "string") return [];
+          const start = data.indexOf("[");
+          const end = data.lastIndexOf("]");
+          if (start === -1 || end === -1) return [];
+
+          const parsed = JSON.parse(data.substring(start, end + 1));
+          return Array.isArray(parsed) ? parsed : [];
+        } catch (e) {
+          console.warn("Polymarket Breaking Fetch Error:", e);
+          return [];
+        }
+      }
+
+      async function fetchPolymarketTrendingMovers() {
+        const endpoints = [
+          { url: "https://polymarket.com/api/biggest-movers?category=all", proxy: false },
+          { url: "https://r.jina.ai/http://polymarket.com/api/biggest-movers?category=all", proxy: true },
+        ];
+
+        for (const endpoint of endpoints) {
+          try {
+            const { data } = await axios.get(endpoint.url, {
+              timeout: 15000,
+              responseType: endpoint.proxy ? "text" : "json",
+            });
+
+            let parsed = data;
+            if (endpoint.proxy) {
+              if (typeof data !== "string") continue;
+              const start = data.indexOf("{");
+              const end = data.lastIndexOf("}");
+              if (start === -1 || end === -1) continue;
+              parsed = JSON.parse(data.substring(start, end + 1));
+            }
+
+            const markets = parsed && Array.isArray(parsed.markets) ? parsed.markets : [];
+            if (markets.length) return markets;
+          } catch (e) {
+            console.warn(`Polymarket Trending Fetch Error (${endpoint.url}):`, e);
+          }
+        }
+
+        return [];
+      }
+
+      async function fetchPolymarketNewEvents() {
+        try {
+          const query = new URLSearchParams({
+            limit: "20",
+            active: "true",
+            archived: "false",
+            closed: "false",
+            order: "startDate",
+            ascending: "false",
+            offset: "0",
+          });
+          // Matches Polymarket "New" feed filtering
+          query.append("exclude_tag_id", "100639");
+          query.append("exclude_tag_id", "102169");
+
+          const url = `https://r.jina.ai/http://gamma-api.polymarket.com/events/pagination?${query.toString()}`;
+          const { data } = await axios.get(url, { responseType: "text", timeout: 15000 });
+
+          if (typeof data !== "string") return [];
+          const start = data.indexOf("{");
+          const end = data.lastIndexOf("}");
+          if (start === -1 || end === -1) return [];
+
+          const parsed = JSON.parse(data.substring(start, end + 1));
+          return parsed && Array.isArray(parsed.data) ? parsed.data : [];
+        } catch (e) {
+          console.warn("Polymarket New Fetch Error:", e);
           return [];
         }
       }
@@ -683,7 +787,7 @@
         }
         
         container.innerHTML = events
-          .slice(0, 8) // Limit items
+          .slice(0, 12) // Limit items for full page
           .map((ev) => {
             const m = Array.isArray(ev.markets) ? ev.markets[0] : (ev.markets || {});
             
@@ -716,6 +820,41 @@
           .join("");
       }
 
+      // Render: Trending Movers List
+      function renderTrendingSection(container, markets) {
+        if (!markets || !markets.length) {
+          container.innerHTML = '<div class="news-item"><p>暂无相关事件</p></div>';
+          return;
+        }
+
+        container.innerHTML = markets
+          .slice(0, 12)
+          .map((m) => {
+            const yesPrice = Number(Array.isArray(m.outcomePrices) ? m.outcomePrices[0] : 0);
+            const prob = Number.isFinite(yesPrice) ? Math.round(yesPrice * 100) : null;
+            const move24h = Number(m.oneDayPriceChange) * 100;
+            const vol = Number(m.events?.[0]?.volume ?? 0);
+            const eventSlug = m.events?.[0]?.slug;
+            const href = eventSlug
+              ? `https://polymarket.com/event/${eventSlug}/${m.slug || ""}`
+              : `https://polymarket.com/market/${m.slug || ""}`;
+
+            return `
+            <div class="news-item">
+              <a class="news-item-title" href="${href}" target="_blank">
+                ${m.question || "未知事件"}
+              </a>
+              <div class="news-meta">
+                <p>概率: ${prob === null ? "--" : `${prob}%`}</p>
+                <p>24H: <span class="${fmt.cls(move24h)}">${fmt.pct(move24h)}</span></p>
+                <p>Volume: $${fmt.money(vol, 0)}</p>
+              </div>
+            </div>
+          `;
+          })
+          .join("");
+      }
+
       // Main Refresh
       async function refresh() {
         els.stamp.textContent = "正在刷新...";
@@ -725,20 +864,22 @@
 
         try {
             // Fetch everything in parallel
-            // 1. Assets & Crypto Prices
-            // 2. Polymarket: Finance (for Assets panel), Crypto (for Crypto panel), Breaking (for own panel)
             const [
                 tencentData, 
                 cryptoData, 
                 polyFinance, 
                 polyCrypto, 
-                polyBreaking
+                polyBreaking,
+                polyTrending,
+                polyNew
             ] = await Promise.all([
               fetchTencent(["usIXIC", "usDJI", "usINX", "usGLD", "usSLV"]),
               fetchCrypto(["bitcoin", "ethereum", "dogecoin"]),
               fetchPolymarketEvents("finance"),
               fetchPolymarketEvents("crypto"),
-              fetchPolymarketEvents(null) // Breaking/Featured
+              fetchPolymarketBreakingEvents(), // Breaking (Featured)
+              fetchPolymarketTrendingMovers(), // Trending (Biggest Movers)
+              fetchPolymarketNewEvents()       // New
             ]);
 
             // --- Process Assets Panel ---
@@ -793,6 +934,8 @@
 
             // --- Process Breaking Panel ---
             renderNewsSection(els.news.breaking, polyBreaking);
+            renderTrendingSection(els.news.trending, polyTrending);
+            renderNewsSection(els.news.new, polyNew);
 
             els.stamp.textContent = "更新于 " + fmt.date(Date.now());
         } catch (err) {
