@@ -1,59 +1,18 @@
-# <center>Wenkang's Finance</center>
-
-<style>
-#finance-dashboard-embed {
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
-  margin-top: 0;
-  margin-bottom: 0;
-}
-#finance-dashboard-embed iframe {
-  display: block;
-  width: 100vw;
-  height: 100dvh;
-  min-height: 680px;
-  border: 0;
-  border-radius: 0;
-  background: #fff;
-}
-#finance-dashboard-embed > h2 {
-  display: none;
-}
-@media (max-width: 768px) {
-  #finance-dashboard-embed iframe {
-    height: 100dvh;
-    min-height: 100dvh;
-  }
-}
-</style>
-  <section id="finance-dashboard-embed">
-    <iframe
-      src="./finance-dashboard.html?embed=1"
-      title="混合资产看板"
-      loading="lazy"
-      referrerpolicy="strict-origin-when-cross-origin"
-      allowfullscreen>
-    </iframe>
-  </section>
-
-
-------------
-
 # <center>Wenkang's BLOG</center>
 
-> 工作 Work，生活 Life，记录 Recoding
+> 工作 Work，生活 Life，记录 Record
 >
->  兔兔 🐰 冲冲冲
+> 兔兔 🐰 冲冲冲
 >
-> 大脑的高速缓存有缓存失效期 (Expiraion Time)，在这里我写给失忆的自己也分享给你 ：）
+> The brain has cache expiration too.
+> I’m leaving this here for my future forgetful self — and for you, Humem, my AI agent.
 
 
 [TOC]
 
 ## <center>Tech Knowledges</center>
 
-### Linux
+### General Linux
 
 - [文件系统基础版](https://www.cnblogs.com/itxdm/p/filesystem_base_version.html)
 - [Linux 的启动流程图](./redhat/typora/202208281647545.png)
@@ -61,12 +20,12 @@
 - [如何将 Linux 系统转移至 LVM 卷](https://linux.cn/article-7718-1.html)
 - [Linux 意外操作后如何进行数据抢救](https://www.cnblogs.com/itxdm/p/linuxdate_recover.html)
 
-### Commond Line
+### Linux Commond Line
 
 - [Linux 下 find 命令](https://www.cnblogs.com/itxdm/p/5936907.html)
 - [Linux 下 OpenSSH 高级运用两则](https://linux.cn/article-7475-1.html)
 
-### Programing
+### C/Shell Programing
 
 - [一文让你明白C语言中的指针 ](https://www.cnblogs.com/itxdm/p/c_pointer2.html)
 
@@ -78,25 +37,38 @@
 - [Linux 下 Shell 脚本几种基本命令替换区别](https://www.cnblogs.com/itxdm/p/something_of_shellscirpt.html)
 
 - [Linux 下 Shell 脚本的基础/高级编程](https://cdn.jiwenkang.com/BashShell/index.html)
-### Network
+### Standard Network
 
 - [网络基础：IP地址子网划分](https://www.cnblogs.com/itxdm/p/6087727.html)
 - [记一次在黑盒环境下使用网络设备寻找主机](https://www.cnblogs.com/itxdm/p/Remember_to_use_a_network_device_to_find_a_host_in_a_black_box_environment.html)
-- [OpenSHift Network Slides](./redhat/OpenShift introduction for personal learning.pdf)
+- [OpenShift Network Slides](./redhat/OpenShift introduction for personal learning.pdf)
+- [OpenShift CNV Videos](https://www.bilibili.com/video/BV1cd4y1D7MW)
 
-### Virtualization
+### Qemu-KVM Virtualization
 
 - [虚拟化介绍](https://www.bilibili.com/video/BV12G411p7JW)
 - [虚拟化文字稿](./redhat/QEMU.html)
 - [OpenShift Introduce Videos](https://www.bilibili.com/video/BV1TV4y1u7hg/)
-- [OpenShift CNV Videos](https://www.bilibili.com/video/BV1cd4y1D7MW)
 - [VM live migration deep dive in OCP-V](./redhat/VM live migration deep dive in OCP-V.pdf)
 - [KVM 基座能力来支持OpenShift Virtualization Slide](./redhat/KVM 基座能力来支持OpenShift Virtualization.pdf)
 
+#### Virtio-Win
+
+- [Virtio-win 性能架构解析](./redhat/Virtio-win 性能架构解析.png)
+- [Virtio-Win 驱动程序及相关虚拟化技术组件概览](./redhat/Virtio-Win 驱动程序及相关虚拟化技术组件概览.png)
+
 #### NetKVM
 
+- [软件之桥：Windows_如何在_Linux_云上运行](./软件之桥：Windows_如何在_Linux_云上运行.mp4)
 - [NetKVM Feature Presentation](./redhat/NetKVM Presentation.pdf)
 - [VirtIO-Win-NetKVM - UDP Segmentation Offload](./redhat/RHEL_Week.pdf)
+- [Virtio_Windows_KVM_Enterprise_Drivers](./redhat/Virtio_Windows_KVM_Enterprise_Drivers.pdf)
+
+#### FWcfg
+
+- [Fwcfg & vioinput transfer](./redhat/fwcfg.pdf)
+
+
 
 ### AI part
 
@@ -109,16 +81,15 @@
 
 ## <center>Document</center>
 
-### General
+### General Help
 - [Manpages](https://man.cx/)
 - [BashShell基础](./BashShell/BashShell基础.html)
 
-### Red Hat
+### Red Hat Links
 - [所有红帽产品和文档](https://access.redhat.com/products/)
   - [上下游预览](https://redhatofficial.github.io/#!/main)
   - [操作系统下载](https://access.redhat.com/downloads/content/rhel)
   - [Red Hat 软件包](https://access.redhat.com/downloads/content/package-browser)
-
 - [证书查询](https://www.credly.com/earner/earned)
 - [付费订阅查询](https://access.redhat.com/management/subscriptions)
 
@@ -127,23 +98,26 @@
 
 ## <center>About me</center>
 
-- ~~拥有[博客园](https://www.cnblogs.com/itxdm) 6 年撰稿经验【截至到 2022-05】，50w 阅读量技术博主。~~
-- ~~三年半兔兔铲屎官【截止 2023-02-18】 🐰~~
-  - ~~Tips：兔子是非常聪明的宠物，饲养需要多喂水，大量供草，尽早绝育。~~
-- 95后，在沪 342，前交大慧谷红帽课程讲师，前 [linux.cn](https://linux.cn) 开发组成员，现 Red Hat 虚拟化团队员工（IBM 为 Red Hat 母公司）具体可见 => Bilibili：[文康的读书经历 ](https://www.bilibili.com/video/BV1iR4y1c7o4)
-  - ~~一线城市培训机构 5 年讲师（截止23年）~~。
-  - ~~目前已培训超 1w 名工程师，遍布各大高校、电信、金融、电商等相关行业。~~
+- 【从 2016年05月10日 到 2022年05月14日 】拥有[博客园](https://www.cnblogs.com/itxdm) 6 年撰稿经验，50w 阅读量技术博主。
+- 九九后，在沪，前 [linux.cn](https://linux.cn) 开发组成员，前腾科网络技术、交大慧谷红帽课程讲师。详见 Bilibili：[文康的读书经历 ](https://www.bilibili.com/video/BV1iR4y1c7o4)
+  - 【从 2018 年到 2023 年，红帽政策原则无法继续 】一线城市培训机构 5 年讲师
+    - 已培训超 1k 名工程师，遍布各大高校、电信、金融、电商等相关行业。
+- 【从 2019年5月29日 到 2023年2月18日】三年半兔兔铲屎官🐰
+  - Tips：兔子是非常聪明的宠物，饲养需要多喂水，大量供草，尽早绝育。
+- 【从 2022年02月 至 2026年07月】前 Red Hat 虚拟化团队员工 wji@redhat.com（IBM 为 Red Hat 母公司）
+  - [质量工程师的旅程：从学习者到领导者](./redhat/质量工程师的旅程：从学习者到领导者.mp4) 
+  - 目前工作在以下开源项目中：
+    - Our Goal: [Virtio-win 性能架构解析](./redhat/Virtio-win 性能架构解析.png)
 
-- 目前工作在以下开源项目中：
-  - Virtio-Win 开源项目： [kvm-guest-drivers-windows](https://github.com/virtio-win/kvm-guest-drivers-windows)
-    - [Download latest or stable binary drivers](https://docs.fedoraproject.org/en-US/quick-docs/creating-windows-virtual-machines-using-virtio-drivers/index.html)
-  - Virtio-Win 安装包：[virtio-win-guest-tools-installer](https://github.com/virtio-win/virtio-win-guest-tools-installer)
-  - 测试框架：[avocado-framework](https://github.com/avocado-framework/avocado-vt/)
-  - 测试用例： [tp-qemu](https://github.com/autotest/tp-qemu/)
-- 联系我：wji#redhat.com
-  - 恋爱中 —— 莎莎（从校园走到至今）
-    - 三年咪咪喂养员 🐱
-    - Tips：招财咪是非常感性的生物，通常需要耐心呵护，不可大声。
+    - Virtio-Win 开源项目： [kvm-guest-drivers-windows](https://github.com/virtio-win/kvm-guest-drivers-windows)
+      - [Download latest or stable binary drivers](https://docs.fedoraproject.org/en-US/quick-docs/creating-windows-virtual-machines-using-virtio-drivers/index.html)
+
+    - Virtio-Win 安装包：[virtio-win-guest-tools-installer](https://github.com/virtio-win/virtio-win-guest-tools-installer)
+    - 测试框架：[avocado-framework](https://github.com/avocado-framework/avocado-vt/)
+    - 测试用例： [tp-qemu](https://github.com/autotest/tp-qemu/)
+
+- 联系我：wenkangji@gmail.com / vx: ShanghaiedKang
+  - 恋爱中 —— 莎莎（从校园至今）
 
 
 
@@ -151,14 +125,12 @@
 ## <center>Honours</center>
 
 - Patchs
-  - 人生发出的第一个 Patch：[Linux 社区翻译](https://github.com/LCTT/TranslateProject/pull/4084)
-  - 人生首个技术 Patch：[K8S 文档修复](https://github.com/ovn-org/ovn-kubernetes/commit/8c149e5ecbf49d96f2dc95af4d5fdad3f74b18df)
-  - 多人协作 Patch：[OpenPLC RT 支持](https://github.com/thiagoralves/OpenPLC_v3/pull/201)
+  - [Jun 23, 2016] 人生发出的第一个 Patch：[Linux.CN 社区：文章翻译](https://github.com/LCTT/TranslateProject/pull/4084)
+  - [Aug 28, 2022] 人生首个开源 Patch：[K8S 社区：OVN 文档修复](https://github.com/ovn-org/ovn-kubernetes/commit/8c149e5ecbf49d96f2dc95af4d5fdad3f74b18df)
+  - [Apr 6, 2023] 人生首次多人协作 Patch：[OpenPLC 社区：OpenPLC 对于 RT 支持](https://github.com/thiagoralves/OpenPLC_v3/pull/201)
     - 关于 OpenPLC 介绍：[OpenPLC RealTime tests](https://www.bilibili.com/video/BV1eT411C7qA/)
 
-- 具有 HCIP RHCA ISTQB 等多项职业认证，多门红帽认证满分通过。
-<div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="fd817161-668d-40ed-9dd3-3678cdb35a6c" data-share-badge-host="https://www.credly.com"></div><script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
-
+- 本人具有 [RHCA](https://www.credly.com/badges/fd817161-668d-40ed-9dd3-3678cdb35a6c/public_url) ISTQB HCIP 等多项职业认证，红帽认证多数均满分通过。
 
 ## <center>Others</center>
 
@@ -167,6 +139,11 @@
 - 带我 Linux 入门的师傅们：饶文 & 贺老师
   - 上海科技管理学校 — 饶文老师，带我进入 Linux 世界的引导者。
   - 上海红帽 GLS 团队 — 贺老师，让我进入 Red Hat 公司的指路人。
+- 在红帽公司的领路人，在此感谢：
+  - Product Owner: [Yan Vugenfirer](https://www.linkedin.com/in/yanvugenfirer/)
+  - Manager: [Qianqian Zhu](https://www.linkedin.com/in/qianqian-zhu-1aa45a35b/)
+  - Nini Gu, Menghuan Li, Xiaoling Gao, [Kostiantyn Kostiuk](linkedin.com/in/ACoAADMN34YBkATSEFBDVaBPFmWrmZWEjx1azh8), [Vadim Rozenfeld](https://www.linkedin.com/in/vadim-rozenfeld-0131683/), [Yuri Benditovich](https://www.linkedin.com/in/yuri-benditovich-35a27239/)
+
 
 
 
@@ -205,6 +182,6 @@
   
 --------
 
-domain name: [Ji Wenkang](https://jiwenkang.com), [Wenkang Ji](https://wenkangji.com), [ITxdm](https://itxdm.com)
+Domain Names: [Ji Wenkang - 季文康](https://jiwenkang.com), [Wenkang Ji - 文康季](https://wenkangji.com), [ITxdm - IT 兄弟盟](https://itxdm.com)
 
-本博客挂在 Github Pages 上进行分布式版本控制，配合 Cloudflare 动态防护。**国内访问需魔法**。
+本博客挂在 Github Pages 上进行[分布式版本控制](https://github.com/heywji/wji.github.io/)，配合 [Cloudflare](https://cloudflare.com/) 实现动态防护。**国内访问很慢，需[魔法](./v2ray/v2ray 搭建教程.md)**。
