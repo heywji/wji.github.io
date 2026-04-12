@@ -59,7 +59,7 @@
 
 #### NetKVM
 
-- [软件之桥：Windows_如何在_Linux_云上运行](./软件之桥：Windows_如何在_Linux_云上运行.mp4)
+- [软件之桥：Windows_如何在_Linux_云上运行](./redhat/软件之桥：Windows_如何在_Linux_云上运行.mp4)
 - [NetKVM Feature Presentation](./redhat/NetKVM Presentation.pdf)
 - [VirtIO-Win-NetKVM - UDP Segmentation Offload](./redhat/RHEL_Week.pdf)
 - [Virtio_Windows_KVM_Enterprise_Drivers](./redhat/Virtio_Windows_KVM_Enterprise_Drivers.pdf)
@@ -76,8 +76,46 @@
 - [Instruct Lab & Granite Model .pdf](./AI/Instruct Lab & Granite Model .pdf)
 - [CS146S: The Modern Software Developer](https://themodernsoftware.dev/)
 - [Deep Learning](https://ocw.mit.edu/courses/6-7960-deep-learning-fall-2024/pages/syllabus/)
+- [codechangeai](./AI/codechangeai.md)
 
+#### Prompt Library
 
+把我本地已经在用、以及已经归档过的 prompt 资源拆开收纳。这里不混成一坨，而是按“单条 prompt / prompt 源码项目 / system prompt 归档”分开挂，同时在首页直接放一批可读入口。
+
+##### Local Workflow Prompts
+
+- [ChatGPT System Prompt Snapshot](./AI/prompts/chatgpt_system_prompt_snapshot.md)
+- [RHEL / avocado / tp-qemu Debug User Prompt](./AI/prompts/rhel_avocado_tp_qemu_debug_user_prompt.md)
+- [Microsoft Docs MCP Prompt](./AI/prompts/microsoft_docs_mcp.md)
+- [oh-my-opencode Setup Prompt](./AI/prompts/oh_my_opencode_setup.md)
+- [去 AI 特征 Prompt](./AI/prompts/de_ai_style_rewrite.md)
+- [WJI Local Rules Prompt - Sanitized](./AI/prompts/wji_local_rules_sanitized.md)
+
+##### Prompt Source Projects
+
+- [CC-Haha Prompt Source Index](./AI/prompts/cc_haha_prompt_sources.md)
+
+##### System Prompt Archives
+
+- [OpenAI / ChatGPT / Codex System Prompt Archive](./AI/prompts/openai_system_prompts_archive.md)
+- OpenAI 直接阅读：[Codex](https://github.com/asgeirtj/system_prompts_leaks/blob/main/OpenAI/Codex.md), [ChatGPT GPT-5 Agent Mode](https://github.com/asgeirtj/system_prompts_leaks/blob/main/OpenAI/ChatGPT-GPT-5-Agent-mode-System-Prompt.md), [GPT-4.1](https://github.com/asgeirtj/system_prompts_leaks/blob/main/OpenAI/GPT-4.1.md), [GPT-4o](https://github.com/asgeirtj/system_prompts_leaks/blob/main/OpenAI/GPT-4o.md)
+- [Anthropic / Claude System Prompt Archive](./AI/prompts/anthropic_system_prompts_archive.md)
+- Anthropic 直接阅读：[Claude Code](https://github.com/asgeirtj/system_prompts_leaks/blob/main/Anthropic/claude-code.md), [Claude Sonnet 4](https://github.com/asgeirtj/system_prompts_leaks/blob/main/Anthropic/claude-sonnet-4.md), [Claude 3.7 Full Tools](https://github.com/asgeirtj/system_prompts_leaks/blob/main/Anthropic/claude-3.7-full-system-message-with-all-tools.md)
+- [Google / Gemini System Prompt Archive](./AI/prompts/google_gemini_system_prompts_archive.md)
+- Gemini 直接阅读：[Gemini 2.5 Pro Webapp](https://github.com/asgeirtj/system_prompts_leaks/blob/main/Google/gemini-2.5-pro-webapp.md), [Gemini 2.0 Flash Webapp](https://github.com/asgeirtj/system_prompts_leaks/blob/main/Google/gemini-2.0-flash-webapp.md), [Gemini Diffusion](https://github.com/asgeirtj/system_prompts_leaks/blob/main/Google/gemini-diffusion.md)
+- [Other AI System Prompt Archive](./AI/prompts/other_system_prompts_archive.md)
+- 其他直接阅读：[xAI Grok 4](https://github.com/asgeirtj/system_prompts_leaks/blob/main/xAI/grok-4.md), [Perplexity Voice Assistant](https://github.com/asgeirtj/system_prompts_leaks/blob/main/Perplexity/voice-assistant.md), [Warp 2.0 Agent](https://github.com/asgeirtj/system_prompts_leaks/blob/main/Misc/Warp-2.0-agent.md), [Proton Luma](https://github.com/asgeirtj/system_prompts_leaks/blob/main/Proton/Luma.md)
+
+## <center>Vibe Coding</center>
+
+把我自己已经跑通过、并且能继续交给 AI 复现的项目整理成一个手册库。这里不只放一个项目，而是持续收纳 Gemini、Cursor、语音输入、图像生成、中转服务之类的 Vibe Coding 项目，每个项目再进入自己的执行手册。
+
+- [前台文本发送助手](./AI/vibe_coding/frontstage_text_sender/index.md)
+- [Xfyun Wayland 实时语音输入](./AI/vibe_coding/xfyun_wayland_asr/index.md)
+- [Nanobanana AI 时尚工作室](./AI/vibe_coding/nanobanana_studio/index.md)
+- [Cursor Agent Browser 登录方案](./AI/vibe_coding/cursor_agent_browser_login/index.md)
+- [Sojiang Survey Assistant](./AI/vibe_coding/sojiang_survey_assistant/index.md)
+- [Gemini API 中转站](./AI/vibe_coding/nano_banana_gemini_proxy/index.md)
 
 ## <center>Document</center>
 
@@ -184,4 +222,4 @@
 
 Domain Names: [Ji Wenkang - 季文康](https://jiwenkang.com), [Wenkang Ji - 文康季](https://wenkangji.com), [ITxdm - IT 兄弟盟](https://itxdm.com)
 
-本博客挂在 Github Pages 上进行[分布式版本控制](https://github.com/heywji/wji.github.io/)，配合 [Cloudflare](https://cloudflare.com/) 实现动态防护。**国内访问很慢，需[魔法](./v2ray/v2ray 搭建教程.md)**。
+本博客挂在 Github Pages 上进行[分布式版本控制](https://github.com/heywji/wji.github.io/)，配合 [Cloudflare](https://cloudflare.com/) 实现动态防护。**国内访问很慢，需[魔法](./v2ray/v2ray 搭建教程.html)**。
