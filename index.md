@@ -135,6 +135,8 @@
 
 
 ## <center>About me</center>
+<script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
+<div class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="light" data-type="VERTICAL" data-vanity="wenkang-ji-b2120324a" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://cn.linkedin.com/in/wenkang-ji-b2120324a?trk=profile-badge">Wenkang Ji</a></div>
 
 - 【从 2016年05月10日 到 2022年05月14日 】拥有[博客园](https://www.cnblogs.com/itxdm) 6 年撰稿经验，50w 阅读量技术博主。
 - 九九后，在沪，前 [linux.cn](https://linux.cn) 开发组成员，前腾科网络技术、交大慧谷红帽课程讲师。详见 Bilibili：[文康的读书经历 ](https://www.bilibili.com/video/BV1iR4y1c7o4)
