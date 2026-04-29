@@ -1,0 +1,675 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Understanding Kdump and Linux Tracing Tools for Effective Kernel Debugging</title>
+<style>
+:root {
+  --fg: #1f2937;
+  --muted: #6b7280;
+  --border: #e5e7eb;
+  --bg: #ffffff;
+  --code-bg: #f6f8fa;
+}
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Helvetica, Arial, sans-serif;
+  line-height: 1.68;
+}
+main {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 48px 22px 80px;
+}
+h1 {
+  font-size: 2.4rem;
+  line-height: 1.16;
+  margin-bottom: 1rem;
+}
+h2 {
+  margin-top: 3rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+h3 {
+  margin-top: 2rem;
+}
+h4 {
+  margin-top: 1.5rem;
+}
+blockquote {
+  margin: 1rem 0;
+  padding: 0.8rem 1rem;
+  color: var(--muted);
+  border-left: 4px solid var(--border);
+  background: #fafafa;
+}
+pre {
+  overflow-x: auto;
+  padding: 1rem;
+  border-radius: 10px;
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+}
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  font-size: 0.92em;
+}
+p code {
+  background: var(--code-bg);
+  padding: 0.15rem 0.32rem;
+  border-radius: 4px;
+}
+figure {
+  margin: 1.5rem 0 2rem;
+  padding: 0;
+}
+figure img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+}
+figcaption {
+  margin-top: 0.6rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+  text-align: center;
+}
+.list {
+  margin: 0.25rem 0 0.25rem 1rem;
+}
+.tableline {
+  margin: 0;
+  border-radius: 0;
+  border-top: 0;
+  border-bottom: 0;
+}
+</style>
+</head>
+<body>
+<main>
+
+<h1>Understanding Kdump and Linux Tracing Tools for Effective Kernel Debugging</h1>
+
+<blockquote>Mentor: Qiao Zhao  </blockquote>
+<blockquote>Mentee: Wenkang Li / Wenkang Ji  </blockquote>
+<blockquote>Duration: 2-3 months  </blockquote>
+<blockquote>Format: Bi-weekly mentoring meetings</blockquote>
+
+<h2>Background</h2>
+
+<p>This mentoring topic focuses on building a practical understanding of Linux kernel debugging workflows, especially around <strong>kdump</strong>, <strong>kexec</strong>, <strong>crash</strong>, and Linux tracing tools such as <strong>perf</strong> and <strong>ftrace</strong>.</p>
+
+<p>The main goal is to improve the ability to diagnose kernel-related issues, especially issues that may interact with virtualization or KVM subsystems.</p>
+
+<h2>Mentoring Plan</h2>
+
+<p class="list">• Understand **Kernel Dump / kdump** and **kexec**</p>
+<p class="list">• Learn how to use the **crash** tool for vmcore analysis</p>
+<p class="list">• Perform practical vmcore analysis</p>
+<p class="list">• Gain practical tracing and profiling skills with **perf** and **ftrace**</p>
+<p class="list">• Complete an end-to-end kernel debugging workflow</p>
+
+<p>---</p>
+
+<h2>Meeting 1: Understanding kdump and kexec</h2>
+
+<p><strong>Date:</strong> Dec 3, 2025  </p>
+<p><strong>Target:</strong> Understand kdump and kexec</p>
+
+<h3>What is kdump?</h3>
+
+<p><code>kdump</code> is the Linux kernel crash dumping mechanism. When the running kernel crashes, kdump uses a reserved crash kernel to save the memory image of the crashed system.</p>
+
+<p>A typical dump file is saved as:</p>
+
+<pre><code>/var/crash/&lt;host&gt;-&lt;timestamp&gt;/vmcore</code></pre>
+
+<p>The saved <code>vmcore</code> can then be analyzed using the <code>crash</code> utility.</p>
+
+<h3>What is kexec?</h3>
+
+<p><code>kexec</code> allows Linux to boot directly into another kernel without going through the full firmware reboot process.</p>
+
+<p>In the kdump workflow:</p>
+
+<p class="list">1. The normal kernel is running as the first kernel.</p>
+<p class="list">2. A second crash kernel is preloaded.</p>
+<p class="list">3. When the first kernel crashes, control is transferred to the second kernel.</p>
+<p class="list">4. The second kernel saves the dump file.</p>
+
+<p>Example command:</p>
+
+<pre><code>kexec -l &lt;kernel&gt; \
+  --initrd=&lt;initramfs&gt; \
+  --command-line=&quot;&lt;kernel cmdline&gt;&quot;</code></pre>
+
+<h3>kdump Configuration</h3>
+
+<p>Main configuration file:</p>
+
+<pre><code>/etc/kdump.conf</code></pre>
+
+<p>Useful hooks:</p>
+
+<pre><code>kdump_pre  &lt;binary | script&gt;
+kdump_post &lt;binary | script&gt;</code></pre>
+
+<p>Restarting kdump may regenerate the kdump initramfs image:</p>
+
+<pre><code>systemctl restart kdump</code></pre>
+
+<p>Typical initramfs paths:</p>
+
+<pre><code>/boot/initramfs-5.14.0-645.el9.x86_64.img
+/boot/initramfs-5.14.0-645.el9.x86_64kdump.img</code></pre>
+
+<h3>Triggering a Kernel Crash</h3>
+
+<p>For controlled testing:</p>
+
+<pre><code>echo c &gt; /proc/sysrq-trigger</code></pre>
+
+<blockquote>Warning: this command intentionally crashes the machine. Run it only in an isolated VM or test environment.</blockquote>
+
+<h3>Common Kernel Failure Types</h3>
+
+<h4>Type 1: System Panic</h4>
+
+<p>A full kernel panic stops the system and, if kdump is configured correctly, triggers dump collection.</p>
+
+<h4>Type 2: Oops</h4>
+
+<p>A kernel Oops usually indicates a kernel bug such as NULL pointer dereference or invalid memory access.</p>
+
+<p>Common clues:</p>
+
+<p class="list">• Call trace</p>
+<p class="list">• Faulting instruction</p>
+<p class="list">• Related module name</p>
+<p class="list">• Panic behavior controlled by `kernel.panic_on_oops`</p>
+
+<h4>Type 3: Hung Task</h4>
+
+<p>A hung task means a kernel task has been blocked for too long.</p>
+
+<p>Typical log source:</p>
+
+<pre><code>/var/log/messages</code></pre>
+
+<p>Possible causes:</p>
+
+<p class="list">• Insufficient system resources</p>
+<p class="list">• Kernel logic issue</p>
+<p class="list">• Lock contention</p>
+<p class="list">• Long I/O wait</p>
+<p class="list">• Scheduling starvation</p>
+
+<h4>Type 4: Soft Lockup and Hard Lockup</h4>
+
+<p>A <strong>soft lockup</strong> means a CPU stays in kernel mode for too long, but interrupts may still work.</p>
+
+<p>A <strong>hard lockup</strong> means the CPU does not respond to interrupts.</p>
+
+<p>Typical hard-lockup message:</p>
+
+<pre><code>hard lockup detected on CPU#</code></pre>
+
+<p>---</p>
+
+<h2>Meeting 2: Using crash for vmcore Analysis</h2>
+
+<p><strong>Date:</strong> Dec 17, 2025  </p>
+<p><strong>Target:</strong> Understand and use <code>crash</code></p>
+
+<h3>crash vs gdb</h3>
+
+<pre><code>gdb   -&gt; user-space debugging
+crash -&gt; kernel-space vmcore debugging</code></pre>
+
+<p>To analyze a vmcore, you need:</p>
+
+<p class="list">• the `vmcore` file</p>
+<p class="list">• the matching `vmlinux` file with debug symbols</p>
+
+<p>Example:</p>
+
+<pre><code>crash /usr/lib/debug/lib/modules/&lt;kernel-version&gt;/vmlinux \
+      /var/crash/&lt;timestamp&gt;/vmcore</code></pre>
+
+<figure><img src="assets/01-crash-command-debuginfo.png" alt="Loading crash with matching vmlinux and checking kernel-debuginfo"><figcaption>Loading crash with matching vmlinux and checking kernel-debuginfo</figcaption></figure>
+
+<h3>Debug Symbols</h3>
+
+<p>The <code>vmlinux</code> file with symbols usually comes from the <code>kernel-debuginfo</code> package.</p>
+
+<p>Example path:</p>
+
+<pre><code>/usr/lib/debug/lib/modules/&lt;kernel-version&gt;/vmlinux</code></pre>
+
+<p>Without matching debuginfo, stack traces and symbol resolution can be incomplete.</p>
+
+<h3>Basic crash Commands</h3>
+
+<h4>System Summary</h4>
+
+<pre><code>crash&gt; sys</code></pre>
+
+<p>This command is useful for locating the crash reason.</p>
+
+<figure><img src="assets/02-crash-sys-summary-oops.png" alt="crash sys output showing kernel version, vmcore path, command and PANIC reason"><figcaption>crash sys output showing kernel version, vmcore path, command and PANIC reason</figcaption></figure>
+
+<h4>Backtrace</h4>
+
+<pre><code>crash&gt; bt</code></pre>
+
+<p>Show the current task backtrace.</p>
+
+<p>For all CPUs:</p>
+
+<pre><code>crash&gt; bt -a</code></pre>
+
+<figure><img src="assets/03-crash-bt-output.png" alt="Backtrace output in crash"><figcaption>Backtrace output in crash</figcaption></figure>
+
+<figure><img src="assets/04-crash-stack-trace.png" alt="Detailed stack trace output in crash"><figcaption>Detailed stack trace output in crash</figcaption></figure>
+
+<h4>Process List</h4>
+
+<pre><code>crash&gt; ps</code></pre>
+
+<p>Use it to inspect tasks and locate suspicious or crashed processes.</p>
+
+<figure><img src="assets/08-crash-ps-output.png" alt="Process list output from crash ps"><figcaption>Process list output from crash ps</figcaption></figure>
+
+<figure><img src="assets/14-crash-task-list.png" alt="Task list during crash analysis"><figcaption>Task list during crash analysis</figcaption></figure>
+
+<h4>Memory Information</h4>
+
+<pre><code>crash&gt; kmem -i</code></pre>
+
+<p>This is useful when investigating OOM killer or memory pressure issues.</p>
+
+<figure><img src="assets/16-crash-kmem-output.png" alt="Memory summary from crash kmem -i"><figcaption>Memory summary from crash kmem -i</figcaption></figure>
+
+<h4>Disassemble with Source Line</h4>
+
+<pre><code>crash&gt; dis -l &lt;symbol&gt;</code></pre>
+
+<p>This maps a faulting instruction back to source context when symbols are available.</p>
+
+<h3>Example: Oops Caused by NULL Pointer Dereference</h3>
+
+<p>Example source pattern:</p>
+
+<pre><code>int *ptr = NULL;
+*ptr = 1234;</code></pre>
+
+<p>This causes a NULL pointer dereference and may trigger a kernel Oops.</p>
+
+<figure><img src="assets/07-null-deref-module-source.png" alt="NULL pointer dereference demo module source code"><figcaption>NULL pointer dereference demo module source code</figcaption></figure>
+
+<p>A typical analysis flow:</p>
+
+<p class="list">1. Run `crash&gt; sys` to confirm the panic reason.</p>
+<p class="list">2. Run `crash&gt; bt` or `crash&gt; bt -a` to inspect the call trace.</p>
+<p class="list">3. Identify the crashing task and module.</p>
+<p class="list">4. Inspect registers and instruction pointer.</p>
+<p class="list">5. Use `dis -l` to map the faulting instruction to source.</p>
+<p class="list">6. Check `dmesg` or `/var/log/messages`.</p>
+
+<figure><img src="assets/05-register-dump.png" alt="Register dump around the fault"><figcaption>Register dump around the fault</figcaption></figure>
+
+<figure><img src="assets/06-dmesg-output.png" alt="dmesg output for Oops analysis"><figcaption>dmesg output for Oops analysis</figcaption></figure>
+
+<h3>Panic-related sysctl Values</h3>
+
+<p>Useful sysctl entries:</p>
+
+<pre><code>sysctl kernel.panic_on_oops
+sysctl kernel.hardlockup_panic
+sysctl kernel.softlockup_panic</code></pre>
+
+<figure><img src="assets/09-sysctl-panic-defaults.png" alt="Checking panic-related sysctl values"><figcaption>Checking panic-related sysctl values</figcaption></figure>
+
+<figure><img src="assets/10-sysctl-hardlockup-panic-enabled.png" alt="hardlockup_panic enabled"><figcaption>hardlockup_panic enabled</figcaption></figure>
+
+<figure><img src="assets/11-sysctl-softlockup-panic-enabled.png" alt="softlockup_panic enabled"><figcaption>softlockup_panic enabled</figcaption></figure>
+
+<figure><img src="assets/12-sysctl-panic-on-oops-enabled.png" alt="panic_on_oops enabled"><figcaption>panic_on_oops enabled</figcaption></figure>
+
+<p>Runtime example:</p>
+
+<pre><code>sysctl -w kernel.panic_on_oops=1
+sysctl -w kernel.hardlockup_panic=1
+sysctl -w kernel.softlockup_panic=1</code></pre>
+
+<figure><img src="assets/15-sysctl-panic-on-oops-runtime.png" alt="Runtime panic_on_oops setting"><figcaption>Runtime panic_on_oops setting</figcaption></figure>
+
+<h3>Other crash Notes</h3>
+
+<p><code>crash</code> can also expose possible alternatives around functions and symbols:</p>
+
+<figure><img src="assets/13-crash-possible-alternatives.png" alt="crash possible alternatives output"><figcaption>crash possible alternatives output</figcaption></figure>
+
+<p>When the kernel is still alive, user-space applications can usually be debugged directly. When the kernel is dead, the practical options are usually kdump or NMI-based dump collection.</p>
+
+<p>---</p>
+
+<h2>Meeting 3: Kernel Tracing with perf and ftrace</h2>
+
+<p><strong>Date:</strong> Jan 28, 2026  </p>
+<p><strong>Target:</strong> Understand other kernel tracers and how they work</p>
+
+<h3>Live Debugging vs Postmortem Debugging</h3>
+
+<pre><code>Live mode   -&gt; the system is still running
+Postmortem  -&gt; analyze vmcore after crash</code></pre>
+
+<p><code>perf</code> and <code>ftrace</code> are usually live debugging and profiling tools.</p>
+
+<h3>Kernel Tracing Commonality</h3>
+
+<p>Linux tracing tools share several lower-level mechanisms such as tracepoints, kprobes, uprobes, perf events, and ftrace function hooks.</p>
+
+<figure><img src="assets/17-linux-tracing-commonality.png" alt="Linux tracing commonality diagram"><figcaption>Linux tracing commonality diagram</figcaption></figure>
+
+<h3>perf Overview</h3>
+
+<p><code>perf</code> is a Linux performance analysis tool.</p>
+
+<p>It can be used to inspect:</p>
+
+<p class="list">• CPU usage</p>
+<p class="list">• I/O behavior</p>
+<p class="list">• Filesystem activity</p>
+<p class="list">• Memory behavior</p>
+<p class="list">• Process performance</p>
+<p class="list">• Context switches</p>
+<p class="list">• Page faults</p>
+<p class="list">• CPU cycles</p>
+<p class="list">• Branch misses</p>
+
+<p>Reference:</p>
+
+<pre><code>https://perf.wiki.kernel.org/index.php/Tutorial</code></pre>
+
+<h3>PMU</h3>
+
+<p>PMU stands for <strong>Performance Monitoring Unit</strong>.</p>
+
+<p>It provides hardware counters for low-level performance events, such as:</p>
+
+<p class="list">• CPU cycles</p>
+<p class="list">• Instructions</p>
+<p class="list">• Branches</p>
+<p class="list">• Branch misses</p>
+<p class="list">• Cache misses</p>
+
+<h3>Common perf Commands</h3>
+
+<p>System-wide statistics:</p>
+
+<pre><code>perf stat -a -- sleep 10</code></pre>
+
+<p>Monitor a specific process:</p>
+
+<pre><code>perf stat -a -p &lt;pid&gt; -- sleep 5</code></pre>
+
+<p>Trace a specific process:</p>
+
+<pre><code>perf trace -p &lt;pid&gt; -- sleep 5</code></pre>
+
+<p>Optional summary mode:</p>
+
+<pre><code>perf trace -s -p &lt;pid&gt; -- sleep 5</code></pre>
+
+<p>Real-time hotspot view:</p>
+
+<pre><code>perf top</code></pre>
+
+<p>Sort by command and shared object:</p>
+
+<pre><code>perf top --sort comm,dso</code></pre>
+
+<figure><img src="assets/18-perf-stat-output.png" alt="perf stat output"><figcaption>perf stat output</figcaption></figure>
+
+<figure><img src="assets/20-perf-trace-summary.png" alt="perf trace summary output"><figcaption>perf trace summary output</figcaption></figure>
+
+<h3>Important perf Metrics</h3>
+
+<pre class="tableline">| Metric | Meaning |</pre>
+<pre class="tableline">|---|---|</pre>
+<pre class="tableline">| `cpu-clock` | CPU runtime related metric |</pre>
+<pre class="tableline">| `context-switches` | Scheduling activity and overhead |</pre>
+<pre class="tableline">| `page-faults` | Memory fault behavior; lower is often better |</pre>
+<pre class="tableline">| `cycles` | CPU cycle counter |</pre>
+<pre class="tableline">| `branches` | Branch instruction count |</pre>
+<pre class="tableline">| `branch-misses` | Failed branch prediction count |</pre>
+
+<h3>ftrace Overview</h3>
+
+<p><code>ftrace</code> is a Linux kernel tracing framework.</p>
+
+<p>Common mount points:</p>
+
+<pre><code>/sys/kernel/tracing
+/sys/kernel/debug/tracing</code></pre>
+
+<p><code>/sys/kernel/tracing</code> is the standard path.  </p>
+<p><code>/sys/kernel/debug/tracing</code> is retained for backward compatibility.</p>
+
+<p>Reference:</p>
+
+<pre><code>https://www.kernel.org/doc/Documentation/trace/ftrace.txt</code></pre>
+
+<p>Typical ftrace use cases:</p>
+
+<p class="list">• Locate kernel latency</p>
+<p class="list">• Trace function calls</p>
+<p class="list">• Debug scheduling problems</p>
+<p class="list">• Inspect interrupt behavior</p>
+<p class="list">• Investigate specific kernel execution paths</p>
+
+<p>---</p>
+
+<h2>Meeting 4: Kernel Panic and Lockup Experiments</h2>
+
+<p><strong>Date:</strong> Mar 26, 2026</p>
+
+<h3>sysctl Configuration</h3>
+
+<p>Defaults discussed:</p>
+
+<pre><code>sysctl kernel.panic_on_oops      # 1
+sysctl kernel.hardlockup_panic   # 1
+sysctl kernel.softlockup_panic   # 0</code></pre>
+
+<p>Set values:</p>
+
+<pre><code>sysctl -w kernel.panic_on_oops=1
+sysctl -w kernel.hardlockup_panic=1
+sysctl -w kernel.softlockup_panic=1</code></pre>
+
+<h3>Demo: Trigger Kernel Oops</h3>
+
+<pre><code>#include &lt;linux/module.h&gt;
+#include &lt;linux/kernel.h&gt;
+
+static int __init oops_demo_init(void)
+{
+    int *ptr = NULL;
+
+    pr_info(&quot;Triggering kernel Oops...\n&quot;);
+    *ptr = 1234;   // NULL pointer dereference -&gt; Oops
+
+    return 0;
+}
+
+static void __exit oops_demo_exit(void)
+{
+    pr_info(&quot;exit\n&quot;);
+}
+
+module_init(oops_demo_init);
+module_exit(oops_demo_exit);
+
+MODULE_LICENSE(&quot;GPL&quot;);</code></pre>
+
+<h3>Demo: Trigger Hard Lockup</h3>
+
+<pre><code>#include &lt;linux/module.h&gt;
+#include &lt;linux/kernel.h&gt;
+#include &lt;linux/interrupt.h&gt;
+
+static int __init hard_lockup_init(void)
+{
+    pr_info(&quot;Triggering hard lockup...\n&quot;);
+
+    local_irq_disable();
+
+    while (1)
+        cpu_relax();
+
+    return 0;
+}
+
+static void __exit hard_lockup_exit(void)
+{
+}
+
+module_init(hard_lockup_init);
+module_exit(hard_lockup_exit);
+
+MODULE_LICENSE(&quot;GPL&quot;);</code></pre>
+
+<h3>Demo: Trigger NMI Watchdog Lockup</h3>
+
+<pre><code>#include &lt;linux/module.h&gt;
+#include &lt;linux/kernel.h&gt;
+
+static int __init nmi_lockup_init(void)
+{
+    pr_info(&quot;Triggering NMI watchdog lockup...\n&quot;);
+
+    preempt_disable();
+
+    while (1)
+        cpu_relax();
+
+    return 0;
+}
+
+module_init(nmi_lockup_init);
+
+MODULE_LICENSE(&quot;GPL&quot;);</code></pre>
+
+<h3>Demo: Slab Overflow</h3>
+
+<pre><code>#include &lt;linux/module.h&gt;
+#include &lt;linux/kernel.h&gt;
+#include &lt;linux/slab.h&gt;
+
+static int __init slab_overflow_init(void)
+{
+    char *buf;
+
+    pr_info(&quot;allocating 32 bytes\n&quot;);
+
+    buf = kmalloc(32, GFP_KERNEL);
+    memset(buf, &#x27;A&#x27;, 512);   // overflow
+
+    pr_info(&quot;freeing corrupted object\n&quot;);
+    kfree(buf);              // allocator may detect corrupted metadata
+
+    pr_info(&quot;done\n&quot;);
+
+    return 0;
+}
+
+module_init(slab_overflow_init);
+
+MODULE_LICENSE(&quot;GPL&quot;);</code></pre>
+
+<figure><img src="assets/19-lockup-code-in-editor.png" alt="Lockup demo source code in editor"><figcaption>Lockup demo source code in editor</figcaption></figure>
+
+<blockquote>Warning: these examples intentionally trigger kernel failures. Run them only in an isolated VM or dedicated test environment.</blockquote>
+
+<p>---</p>
+
+<h2>Practical Kernel Debugging Workflow</h2>
+
+<h3>1. Enable kdump</h3>
+
+<pre><code>systemctl status kdump</code></pre>
+
+<h3>2. Capture or Reproduce the Failure</h3>
+
+<p>Controlled test:</p>
+
+<pre><code>echo c &gt; /proc/sysrq-trigger</code></pre>
+
+<p>Real issue collection:</p>
+
+<pre><code>/var/crash/&lt;timestamp&gt;/vmcore
+/var/log/messages
+dmesg</code></pre>
+
+<h3>3. Load vmcore with crash</h3>
+
+<pre><code>crash &lt;vmlinux&gt; &lt;vmcore&gt;</code></pre>
+
+<h3>4. Identify Panic Reason</h3>
+
+<pre><code>crash&gt; sys</code></pre>
+
+<h3>5. Inspect Backtrace</h3>
+
+<pre><code>crash&gt; bt
+crash&gt; bt -a</code></pre>
+
+<h3>6. Check Processes</h3>
+
+<pre><code>crash&gt; ps</code></pre>
+
+<h3>7. Check Memory State</h3>
+
+<pre><code>crash&gt; kmem -i</code></pre>
+
+<h3>8. Map Faulting Address to Source</h3>
+
+<pre><code>crash&gt; dis -l &lt;symbol&gt;</code></pre>
+
+<h3>9. Use Live Tracing When the System Is Still Running</h3>
+
+<pre><code>perf top
+perf stat -a -- sleep 10
+perf trace -p &lt;pid&gt; -- sleep 5</code></pre>
+
+<p>For deeper kernel tracing:</p>
+
+<pre><code>cd /sys/kernel/tracing</code></pre>
+
+<p>---</p>
+
+<h2>Summary</h2>
+
+<p>This mentoring program covered a practical Linux kernel debugging path:</p>
+
+<p class="list">• `kdump` captures the vmcore after a kernel crash.</p>
+<p class="list">• `kexec` switches into the crash kernel.</p>
+<p class="list">• `crash` supports postmortem vmcore analysis.</p>
+<p class="list">• `perf` helps analyze live system performance.</p>
+<p class="list">• `ftrace` provides detailed kernel tracing capability.</p>
+<p class="list">• sysctl panic settings control whether Oops, soft lockup, or hard lockup events trigger a panic.</p>
+<p class="list">• Controlled kernel modules can reproduce Oops, lockup, and memory corruption scenarios in a lab.</p>
+
+<p>Together, these tools provide a practical foundation for debugging kernel failures, performance problems, and low-level system behavior.</p>
+</main>
+</body>
+</html>
