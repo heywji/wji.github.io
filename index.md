@@ -68,6 +68,7 @@
 - [OpenShift Network Slides](./redhat/OpenShift introduction for personal learning.pdf)
 - [OpenShift CNV Videos](https://www.bilibili.com/video/BV1cd4y1D7MW)
 - [OpenWrt 双出口分流：在不动主链路的前提下增加第二个境外出口](./openwrt-dual-egress/OpenWrt 双出口分流：在不动主链路的前提下增加第二个境外出口.html)（[md 源](./openwrt-dual-egress/OpenWrt 双出口分流：在不动主链路的前提下增加第二个境外出口.md)）
+- [家庭网络分层拓扑：从远端笔记本到双出口的完整链路](./home-network-topology/家庭网络分层拓扑：从远端笔记本到双出口的完整链路.html)（[md 源](./home-network-topology/家庭网络分层拓扑：从远端笔记本到双出口的完整链路.md)）
 
 ### Qemu-KVM Virtualization
 

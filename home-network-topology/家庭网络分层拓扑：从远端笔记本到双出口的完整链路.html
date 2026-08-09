@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>家庭网络分层拓扑：从远端笔记本到双出口的完整链路</title>
+<style>
+:root{--bg:#fff;--fg:#2b2b2b;--muted:#6a737d;--border:#e1e4e8;--code-bg:#f6f8fa;--accent:#2f6f4f;--quote-bg:#f6f8fa;--quote-bar:#2f6f4f;}
+@media (prefers-color-scheme:dark){:root{--bg:#1b1d1e;--fg:#d6d6d6;--muted:#9aa0a6;--border:#33383d;--code-bg:#24272b;--accent:#7bc49a;--quote-bg:#22252a;--quote-bar:#7bc49a;}}
+*{box-sizing:border-box;}
+html{font-size:15px;-webkit-font-smoothing:antialiased;}
+body{margin:0;background:var(--bg);color:var(--fg);line-height:1.7;
+ font-family:"Helvetica Neue",Helvetica,Arial,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Segoe UI Emoji",sans-serif;}
+#write{max-width:860px;margin:0 auto;padding:48px 24px 96px;}
+h1{font-size:1.9rem;line-height:1.3;margin:0 0 .6em;}
+h2{font-size:1.45rem;margin:2em 0 .7em;padding-bottom:.3em;border-bottom:1px solid var(--border);}
+h3{font-size:1.18rem;margin:1.6em 0 .5em;}
+h4{font-size:1.03rem;margin:1.3em 0 .4em;}
+p{margin:.7em 0;}
+a{color:var(--accent);text-decoration:none;}
+a:hover{text-decoration:underline;}
+code{background:var(--code-bg);padding:.15em .4em;border-radius:4px;font-size:.88em;
+ font-family:"SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace;}
+pre{background:var(--code-bg);border:1px solid var(--border);border-radius:8px;padding:14px 16px;overflow-x:auto;margin:1em 0;}
+pre code{background:none;padding:0;font-size:.85rem;line-height:1.55;}
+blockquote{margin:1em 0;padding:.6em 1em;background:var(--quote-bg);border-left:4px solid var(--quote-bar);border-radius:0 6px 6px 0;color:var(--fg);}
+blockquote p{margin:.4em 0;}
+ul,ol{padding-left:1.6em;margin:.7em 0;}
+li{margin:.3em 0;}
+hr{border:none;border-top:1px solid var(--border);margin:2em 0;}
+table{border-collapse:collapse;width:100%;margin:1em 0;display:block;overflow-x:auto;}
+th,td{border:1px solid var(--border);padding:8px 12px;text-align:left;}
+th{background:var(--code-bg);}
+.toc{background:var(--code-bg);border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin:1.5em 0;}
+.toc-title{font-weight:700;margin:0 0 .5em;color:var(--accent);}
+.toc ul{list-style:none;padding-left:0;margin:0;}
+.toc li{margin:.25em 0;}
+.toc-l3 a{padding-left:1.4em;font-size:.95em;color:var(--muted);}
+.toc-l4 a{padding-left:2.6em;font-size:.9em;color:var(--muted);}
+</style>
+</head>
+<body>
+<article id="write">
+<h1 id="家庭网络分层拓扑-从远端笔记本到双出口的完整链路">家庭网络分层拓扑：从远端笔记本到双出口的完整链路</h1>
+<div class="toc"><p class="toc-title">目录 / Step 导航</p><ul><li class="toc-l2"><a href="#一-全景图">一、全景图</a></li><li class="toc-l2"><a href="#二-四类终端-四种出口画像">二、四类终端，四种出口画像</a></li><li class="toc-l2"><a href="#三-第一棒-nas-上的接入与策略路由">三、第一棒：NAS 上的接入与策略路由</a></li><li class="toc-l2"><a href="#四-第二棒-旁路网关上的透明代理">四、第二棒：旁路网关上的透明代理</a></li><li class="toc-l2"><a href="#五-两段-ip-rule-的接力-各管一段-互不知情">五、两段 ip rule 的接力：各管一段，互不知情</a></li><li class="toc-l2"><a href="#六-故障域分析-每一层挂了会怎样">六、故障域分析：每一层挂了会怎样</a></li><li class="toc-l2"><a href="#七-一个运维细节-会悄悄残留的重复-ip-rule">七、一个运维细节：会悄悄残留的重复 ip rule</a></li><li class="toc-l2"><a href="#八-小结">八、小结</a></li></ul></div>
+<blockquote><p>上一篇<a href="../openwrt-dual-egress/OpenWrt 双出口分流：在不动主链路的前提下增加第二个境外出口.html">《OpenWrt 双出口分流》</a>讲的是<strong>旁路网关内部</strong>怎么做第二出口。这一篇把镜头拉远，讲整张网络的<strong>分层拓扑</strong>：一台远端的公司笔记本，是怎么穿过 NAS 的 VPN、被两段策略路由接力、最终从境外出口上网的；以及家里每一类设备各自走哪条路、为什么。</p><p>文中所有公网 IP、商业服务商品牌、个人域名与主机名均已抹去，只保留可复用的结构。</p></blockquote>
+<hr>
+<h2 id="一-全景图">一、全景图</h2>
+<p>先上完整的数据流图，后面逐层拆解：</p>
+<pre><code>                                  ┌──────────────────────────────────────────────┐
+ 公司笔记本（远端，任意网络）        │                家庭内网 192.168.0.0/24         │
+      │                           │                                              │
+      │ VPN 隧道（加密）           │   ┌─────────── NAS (.4) ────────────┐        │
+      └───────────────────────────┼──►│ VPN Server → tun0 172.x.y.0/24  │        │
+                                  │   │                                 │        │
+                                  │   │ ip rule: from 172.x.y.0/24      │        │
+                                  │   │          lookup 100             │        │
+                                  │   │ table 100: default via .254 ────┼──┐     │
+                                  │   │                                 │  │     │
+                                  │   │ NAS 自身流量: default via .1 ───┼──┼──►  │──► 国内家宽（直连）
+                                  │   └─────────────────────────────────┘  │     │
+                                  │                                        ▼     │
+ 家里普通设备（手机/电视/PC）───────┼──────────────────────────────► 旁路网关 (.254)│
+                                  │                             OpenWrt 虚拟机   │
+                                  │                                     │        │
+                                  │              TPROXY 全局透明代理      │        │
+                                  │        fwmark 0x1 → lookup 100 → 代理内核    │
+                                  │                    │                         │
+                                  │        ┌───────────┴───────────┐             │
+                                  │        ▼                       ▼             │
+                                  │   默认（未命中规则）        命中媒体域名        │
+                                  │        │                       │             │
+                                  └────────┼───────────────────────┼─────────────┘
+                                           ▼                       ▼
+                                      主出口（境外A）        第二出口（境外B，
+                                      金融/工作/默认         WireGuard 节点池
+                                                            + 自动故障切换）</code></pre>
+<p>三个层次一句话概括：</p>
+<ol>
+<li><strong>接入层（NAS）</strong>：把远端设备&quot;拉进&quot;家庭内网，并用策略路由决定它的流量交给谁。</li>
+<li><strong>代理层（旁路网关）</strong>：把到达的流量透明地劫进代理内核，按域名分流到两个境外出口。</li>
+<li><strong>出口层</strong>：主出口（生命线）+ 第二出口（媒体流量、多节点冗余）。</li>
+</ol>
+<hr>
+<h2 id="二-四类终端-四种出口画像">二、四类终端，四种出口画像</h2>
+<p>同一张家庭网络，不同设备的流量走完全不同的路——这是整个设计的出发点：</p>
+<table><thead><tr><th>终端</th><th>路径</th><th>最终出口</th><th>为什么</th></tr></thead><tbody><tr><td>公司笔记本（远端）</td><td>VPN → NAS → 策略路由 → 旁路网关 → 代理</td><td>境外（主出口/分流）</td><td>人在外面，也要和在家一样的网络环境</td></tr><tr><td>家里普通设备</td><td>默认网关指向旁路网关 → 代理</td><td>境外（主出口/分流）</td><td>全家默认出海，域名分流自动生效</td></tr><tr><td>NAS 本机</td><td>默认路由直指上游网关</td><td>国内直连</td><td>NAS 跑的是下载/备份/内网服务，走国内又快又稳，也不占代理带宽</td></tr><tr><td>开发用笔记本</td><td>自己的独立 VPN 隧道</td><td>境外（独立于本拓扑）</td><td>故障隔离：排查家庭网络时，这台机器不受影响，反之亦然</td></tr></tbody></table>
+<p>注意最后一行的价值：<strong>留一台不依赖这套拓扑的机器</strong>。旁路网关重启、代理挂掉时，你需要一台还能上网、还能 SSH 进各设备排障的&quot;生命线终端&quot;。</p>
+<hr>
+<h2 id="三-第一棒-nas-上的接入与策略路由">三、第一棒：NAS 上的接入与策略路由</h2>
+<p>远端的公司笔记本通过 VPN 拨进 NAS（很多 NAS 系统自带 VPN Server 套件），拿到一个 VPN 子网的地址（本文记作 <code>172.x.y.0/24</code>，NAS 侧接口是 <code>tun0</code>）。</p>
+<p>默认情况下，VPN 客户端的流量会跟着 NAS 自己的默认路由走——也就是国内直连。但我们想让它走代理。<strong>在 NAS 上加两条东西即可</strong>：</p>
+<pre><code class="language-bash"># 1. 独立路由表：VPN 客户端的&quot;默认路由&quot;指向旁路网关（而不是上游网关）
+ip route add default via 192.168.0.254 dev &lt;内网接口&gt; table 100
+ip route add 172.x.y.0/24 dev tun0 table 100   # 回程路由也要在这张表里
+
+# 2. 策略路由：只有源地址来自 VPN 子网的流量才查这张表
+ip rule add from 172.x.y.0/24 lookup 100</code></pre>
+<p>生效后的 <code>ip rule</code> 长这样：</p>
+<pre><code>0:      from all lookup local
+1:      from 172.x.y.0/24 lookup 100     ← 只有 VPN 客户端命中
+32766:  from all lookup main             ← NAS 自身流量照旧
+32767:  from all lookup default</code></pre>
+<p>这一段的精髓是<strong>按源地址切割路由决策</strong>：</p>
+<ul>
+<li>命中 <code>from 172.x.y.0/24</code> 的（= 公司笔记本），默认路由被替换成&quot;下一跳旁路网关&quot;。</li>
+<li>NAS 自己的流量源地址是内网地址，不命中，继续查 main 表直连国内——<strong>NAS 的下载、备份、内网服务完全不受影响</strong>。</li>
+</ul>
+<p>别忘了打开转发和 NAT/放行（各系统写法不同，思路一致）：VPN 子网 → 内网接口允许 FORWARD；如果旁路网关上没有回程路由，就在 NAS 上对这段做 SNAT，让回包能找回来。</p>
+<hr>
+<h2 id="四-第二棒-旁路网关上的透明代理">四、第二棒：旁路网关上的透明代理</h2>
+<p>流量到达旁路网关后，进入上一篇讲过的代理平面，这里只画重点。</p>
+<p>旁路网关是台 OpenWrt 虚拟机，<strong>单臂部署</strong>（只有一个桥接口，既收内网流量，也从同一条线出去）。它不做路由层分流，而是全局透明代理：</p>
+<pre><code>到达的转发流量 / 本机流量
+      │  防火墙 mangle 链打上 fwmark 0x1
+      ▼
+ip rule: from all fwmark 0x1 lookup 100
+      ▼
+table 100: local default dev lo        ← 流量被&quot;扣留&quot;在本机
+      ▼
+TPROXY 重定向 → 代理内核监听端口
+      ▼
+按域名分流：
+  ├─ 默认（金融/工作/一切未命中）──► 主出口（境外A）
+  └─ geosite:youtube 等媒体域名 ───► 第二出口（境外B，WireGuard 节点池）</code></pre>
+<p>配套机制（详见上一篇）：</p>
+<ul>
+<li><strong>DNS 全量劫持</strong>到代理内核的 DNS 端口，远程解析，无污染——域名分流因此可靠。</li>
+<li><strong>防泄漏（kill switch）</strong>：自制 nft 规则 DROP 掉&quot;绕过代理直连外网&quot;的转发——代理挂了宁可断网也不裸奔。</li>
+<li><strong>第二出口节点池 + cron 自动故障切换</strong>：单节点挂了沿节点环轮转，绝不回落主出口。</li>
+</ul>
+<hr>
+<h2 id="五-两段-ip-rule-的接力-各管一段-互不知情">五、两段 ip rule 的接力：各管一段，互不知情</h2>
+<p>这套拓扑里最容易混淆的，是 NAS 和旁路网关上<strong>各有一条 <code>lookup 100</code> 的 ip rule</strong>，但它们是完全不同的两回事：</p>
+<table><thead><tr><th></th><th>NAS 上的规则</th><th>旁路网关上的规则</th></tr></thead><tbody><tr><td>规则</td><td><code>from 172.x.y.0/24 lookup 100</code></td><td><code>from all fwmark 0x1 lookup 100</code></td></tr><tr><td>匹配依据</td><td><strong>源地址</strong>（谁发的）</td><td><strong>防火墙标记</strong>（被 mangle 链盖过章的）</td></tr><tr><td>table 100 内容</td><td><code>default via 旁路网关</code></td><td><code>local default dev lo</code></td></tr><tr><td>作用</td><td>把 VPN 客户端流量<strong>送到网关</strong></td><td>把打了标的流量<strong>扣进代理</strong></td></tr><tr><td>谁维护</td><td>手工/开机脚本</td><td>代理服务自动增删</td></tr></tbody></table>
+<p>表号都叫 100 纯属巧合（两台机器各有各的路由表空间），但正好提醒我们:<strong>策略路由是逐跳生效的</strong>。NAS 只负责&quot;下一跳给谁&quot;，它不知道也不需要知道网关后面是代理；网关只管&quot;到达我的流量按域名分流&quot;，它不在乎流量是家里设备发的还是 VPN 穿进来的。两段规则通过&quot;把包送到对方门口&quot;完成接力，没有任何共享状态。</p>
+<p>这种<strong>分层解耦</strong>的直接好处：加一台新的接入设备（比如再来一路 VPN），只动 NAS 的规则；换一个出口节点，只动网关的代理配置——互不牵连。</p>
+<hr>
+<h2 id="六-故障域分析-每一层挂了会怎样">六、故障域分析：每一层挂了会怎样</h2>
+<p>设计时把&quot;谁挂了影响谁&quot;想清楚，出问题时就不会慌：</p>
+<table><thead><tr><th>故障</th><th>影响范围</th><th>表现与恢复</th></tr></thead><tbody><tr><td>旁路网关重启</td><td>家里设备 + 公司笔记本断网</td><td>代理内核拉起需要几十秒，期间&quot;打不开&quot;，<strong>自愈</strong>，不用管</td></tr><tr><td>第二出口节点挂</td><td>只有媒体域名</td><td>自动故障切换约 6 分钟内换下一个节点；期间媒体域名连接失败，其余一切正常</td></tr><tr><td>主出口挂</td><td>默认流量（金融/工作）</td><td><strong>不会</strong>自动切到第二出口——宁可暂时不通，也不换国家 IP 去登录银行</td></tr><tr><td>NAS 挂</td><td>只有公司笔记本</td><td>家里设备不经过 NAS，完全无感；笔记本重连 VPN 即可</td></tr><tr><td>上游家宽挂</td><td>全部</td><td>物理层问题，谁也救不了</td></tr><tr><td>代理挂但网关活着</td><td>家里设备 + 笔记本</td><td>kill switch 兜底：<strong>断网而不是裸奔直连</strong></td></tr></tbody></table>
+<p>两个值得强调的设计决策：</p>
+<ol>
+<li><strong>主出口挂 ≠ 切第二出口</strong>。金融和工作服务的 IP 归属地突变，轻则风控验证，重则封号。所以默认流量没有任何 fallback 规则——这是故意的。</li>
+<li><strong>重启网关前心里有数</strong>。接入层（NAS 的 ip rule）是静态的，重启网关不影响它；恢复顺序永远是&quot;网关代理拉起 → 全链路自愈&quot;，不需要人工干预任何一层。</li>
+</ol>
+<hr>
+<h2 id="七-一个运维细节-会悄悄残留的重复-ip-rule">七、一个运维细节：会悄悄残留的重复 ip rule</h2>
+<p>旁路网关重启后，偶尔会看到 fwmark 规则出现<strong>两条一模一样的副本</strong>：</p>
+<pre><code>32764:  from all fwmark 0x1 lookup 100
+32765:  from all fwmark 0x1 lookup 100</code></pre>
+<p>翻代理服务的脚本能找到原因——它的启动/停止逻辑是<strong>不对称的</strong>：</p>
+<pre><code class="language-sh"># start 时：
+ip rule add fwmark 1 lookup 100      # 加一条
+# stop 时：
+ip rule del fwmark 1 lookup 100      # 只删一条（del 一次只删一个实例）</code></pre>
+<p>开机过程中 start 逻辑被触发了两次（没有经过 stop），就叠成两条。之后每次 restart 都是&quot;删一条、加一条&quot;，净数不变——<strong>这个重复副本不会自愈，会永久残留</strong>。</p>
+<p>处理原则：</p>
+<ul>
+<li><strong>功能上完全无害</strong>：两条规则字节级相同，匹配等价，零开销。不处理也没任何问题。</li>
+<li>想清理的话，<code>ip rule del fwmark 1 lookup 100</code> 恰好只删一个实例，剩下那条继续工作，流量无感知。</li>
+<li><strong>但绝不能删光</strong>——这条规则是整个代理平面的命脉，删光则所有代理流量（包括穿过 NAS 进来的公司笔记本）全断，直到代理服务下次重启才恢复。删之前先 <code>ip rule show</code> 数清楚还剩几条。</li>
+</ul>
+<hr>
+<h2 id="八-小结">八、小结</h2>
+<p>回看整张图，这套拓扑的骨架就三句话：</p>
+<ol>
+<li><strong>接入归接入，代理归代理</strong>。NAS 用&quot;源地址策略路由&quot;决定谁的流量交给网关，网关用&quot;fwmark + TPROXY&quot;决定流量怎么出海——两段 ip rule 各管一段，通过下一跳接力，零共享状态。</li>
+<li><strong>出口画像按设备定制</strong>。远端笔记本全量出海、家里设备默认出海、NAS 直连国内、开发机独立隧道互为备份——同一张网，四种画像。</li>
+<li><strong>故障域预先划清</strong>。每一层挂掉影响谁、会不会自愈、要不要 fallback，都是设计时定好的——尤其是&quot;主出口挂了绝不自动换国家&quot;这条底线。</li>
+</ol>
+<p>分层的代价是多一跳、多一处配置；换来的是每一层都可以独立变更、独立排障、独立演进。对一张要长期运行的家庭网络来说，这笔账很划算。</p>
+</article>
+</body>
+</html>
