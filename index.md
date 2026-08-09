@@ -67,6 +67,7 @@
 - [记一次在黑盒环境下使用网络设备寻找主机](https://www.cnblogs.com/itxdm/p/Remember_to_use_a_network_device_to_find_a_host_in_a_black_box_environment.html)
 - [OpenShift Network Slides](./redhat/OpenShift introduction for personal learning.pdf)
 - [OpenShift CNV Videos](https://www.bilibili.com/video/BV1cd4y1D7MW)
+- [OpenWrt 双出口分流：在不动主链路的前提下增加第二个境外出口](./openwrt-dual-egress/OpenWrt 双出口分流：在不动主链路的前提下增加第二个境外出口.html)（[md 源](./openwrt-dual-egress/OpenWrt 双出口分流：在不动主链路的前提下增加第二个境外出口.md)）
 
 ### Qemu-KVM Virtualization
 

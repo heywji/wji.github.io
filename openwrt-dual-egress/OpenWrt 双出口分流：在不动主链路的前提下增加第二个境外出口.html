@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OpenWrt 双出口分流：在不动主链路的前提下增加第二个境外出口</title>
+<style>
+:root{--bg:#fff;--fg:#2b2b2b;--muted:#6a737d;--border:#e1e4e8;--code-bg:#f6f8fa;--accent:#2f6f4f;--quote-bg:#f6f8fa;--quote-bar:#2f6f4f;}
+@media (prefers-color-scheme:dark){:root{--bg:#1b1d1e;--fg:#d6d6d6;--muted:#9aa0a6;--border:#33383d;--code-bg:#24272b;--accent:#7bc49a;--quote-bg:#22252a;--quote-bar:#7bc49a;}}
+*{box-sizing:border-box;}
+html{font-size:15px;-webkit-font-smoothing:antialiased;}
+body{margin:0;background:var(--bg);color:var(--fg);line-height:1.7;
+ font-family:"Helvetica Neue",Helvetica,Arial,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Segoe UI Emoji",sans-serif;}
+#write{max-width:860px;margin:0 auto;padding:48px 24px 96px;}
+h1{font-size:1.9rem;line-height:1.3;margin:0 0 .6em;}
+h2{font-size:1.45rem;margin:2em 0 .7em;padding-bottom:.3em;border-bottom:1px solid var(--border);}
+h3{font-size:1.18rem;margin:1.6em 0 .5em;}
+h4{font-size:1.03rem;margin:1.3em 0 .4em;}
+p{margin:.7em 0;}
+a{color:var(--accent);text-decoration:none;}
+a:hover{text-decoration:underline;}
+code{background:var(--code-bg);padding:.15em .4em;border-radius:4px;font-size:.88em;
+ font-family:"SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace;}
+pre{background:var(--code-bg);border:1px solid var(--border);border-radius:8px;padding:14px 16px;overflow-x:auto;margin:1em 0;}
+pre code{background:none;padding:0;font-size:.85rem;line-height:1.55;}
+blockquote{margin:1em 0;padding:.6em 1em;background:var(--quote-bg);border-left:4px solid var(--quote-bar);border-radius:0 6px 6px 0;color:var(--fg);}
+blockquote p{margin:.4em 0;}
+ul,ol{padding-left:1.6em;margin:.7em 0;}
+li{margin:.3em 0;}
+hr{border:none;border-top:1px solid var(--border);margin:2em 0;}
+table{border-collapse:collapse;width:100%;margin:1em 0;display:block;overflow-x:auto;}
+th,td{border:1px solid var(--border);padding:8px 12px;text-align:left;}
+th{background:var(--code-bg);}
+.toc{background:var(--code-bg);border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin:1.5em 0;}
+.toc-title{font-weight:700;margin:0 0 .5em;color:var(--accent);}
+.toc ul{list-style:none;padding-left:0;margin:0;}
+.toc li{margin:.25em 0;}
+.toc-l3 a{padding-left:1.4em;font-size:.95em;color:var(--muted);}
+.toc-l4 a{padding-left:2.6em;font-size:.9em;color:var(--muted);}
+</style>
+</head>
+<body>
+<article id="write">
+<h1 id="openwrt-双出口分流-在不动主链路的前提下增加第二个境外出口">OpenWrt 双出口分流：在不动主链路的前提下增加第二个境外出口</h1>
+<div class="toc"><p class="toc-title">目录 / Step 导航</p><ul><li class="toc-l2"><a href="#全流程-step-by-step-总览">全流程 Step-by-Step 总览</a></li><li class="toc-l2"><a href="#一-为什么-加一条路由-这个直觉是错的">一、为什么&quot;加一条路由&quot;这个直觉是错的</a></li><li class="toc-l2"><a href="#二-调查阶段-只读-不改">二、调查阶段：只读，不改</a></li><li class="toc-l2"><a href="#三-目标架构">三、目标架构</a></li><li class="toc-l2"><a href="#四-取得-wireguard-配置的正确姿势">四、取得 WireGuard 配置的正确姿势</a></li><li class="toc-l2"><a href="#五-旁路验证-先别碰生产">五、旁路验证：先别碰生产</a></li><li class="toc-l2"><a href="#六-接入生产代理-域名分流">六、接入生产代理 + 域名分流</a></li><li class="toc-l2"><a href="#七-多节点冗余-自动故障切换">七、多节点冗余 + 自动故障切换</a></li><li class="toc-l2"><a href="#八-fail-safe-两种取舍">八、Fail-safe：两种取舍</a></li><li class="toc-l2"><a href="#九-收尾验证清单">九、收尾验证清单</a></li><li class="toc-l2"><a href="#十-小结">十、小结</a></li></ul></div>
+<blockquote><p>本文记录一次在<strong>已承担生产出口</strong>的 OpenWrt 路由器上，安全地接入第二个境外 WireGuard 出口，并按域名分流的完整思路与方法。</p><p>核心诉求：主出口是全家的生命线，<strong>绝对不能被第二出口覆盖或拖垮</strong>；第二出口只用来把 YouTube、Spotify 这类大流量按域名单独引走。</p><p>文中所有服务器 IP、商业 VPN 服务商品牌、个人域名均已抹去，只保留可复用的方法。</p></blockquote>
+<hr>
+<h2 id="全流程-step-by-step-总览">全流程 Step-by-Step 总览</h2>
+<p>赶时间的话，照这个顺序走就行；每一步的详细说明见对应章节。<strong>顺序本身就是安全保证</strong>——先只读、再旁路、再最小上线、最后扩展。</p>
+<ul>
+<li><strong>Step 0｜看清现状</strong>（第一、二章）：判断主出口是&quot;路由&quot;还是&quot;透明代理&quot;，只读命令调查，认出防泄漏规则。</li>
+<li><strong>Step 1｜定架构</strong>（第三章）：确认第二出口放在代理平面，立下&quot;绝不覆盖主出口&quot;的铁律。</li>
+<li><strong>Step 2｜备份 + 回滚脚本</strong>（第九章 §1-2）：动手前先能退回去。</li>
+<li><strong>Step 3｜取 WireGuard 配置</strong>（第四章）：用服务商会员后台的配置生成器，<strong>不要</strong>跑官方一键脚本。</li>
+<li><strong>Step 4｜旁路验证</strong>（第五章）：独立 sing-box 实例 + 额外 SOCKS 端口，测直连/链式两条底层路径，不碰生产。</li>
+<li><strong>Step 5｜最小规则上线</strong>（第六章前半）：建节点 + 分流节点，先只放一个&quot;金丝雀&quot;域名，重启代理验证。</li>
+<li><strong>Step 6｜扩展分流域名</strong>（第六章后半）：确认无误后把 YouTube/Spotify 等批量加进<strong>同一条</strong>规则。</li>
+<li><strong>Step 7｜多节点冗余 + 自动切换</strong>（第七章）：下载节点池 + cron 故障切换脚本。</li>
+<li><strong>Step 8｜定 Fail-safe 策略</strong>（第八章）：第二出口挂＝DROP；主出口挂＝绝不自动换国家。</li>
+<li><strong>Step 9｜收尾验证</strong>（第九章）：核对路由表/规则未变、防泄漏仍在、两个出口 IP 正确。</li>
+</ul>
+<hr>
+<h2 id="一-为什么-加一条路由-这个直觉是错的">一、为什么&quot;加一条路由&quot;这个直觉是错的</h2>
+<p>大多数人想到&quot;给路由器加第二个出口&quot;，脑子里的图是这样的：</p>
+<pre><code>                    +--&gt; 默认路由 --&gt; 主出口
+终端 --&gt; OpenWrt ---|
+                    +--&gt; 第二条路由 --&gt; 新出口</code></pre>
+<p>于是去研究 <code>ip route</code> / <code>ip rule</code> / PBR（策略路由）/ mwan3。<strong>但动手前必须先搞清楚：你现有的&quot;主出口&quot;到底是不是路由层实现的。</strong></p>
+<p>我的这台机器调查下来发现：所谓&quot;主出口&quot;根本不是路由层的 default route，而是一套<strong>全局透明代理（TPROXY）</strong>。它的真实数据流是：</p>
+<pre><code>终端流量 / 路由器本机流量
+      │  （被防火墙 mangle 表打上 mark）
+      ▼
+  ip rule: fwmark 0x1  →  独立路由表
+      ▼
+  TPROXY 重定向到本机代理内核（xray）监听端口
+      ▼
+  代理协议封装  →  境外服务器  →  Internet</code></pre>
+<p>也就是说：<strong>所有流量在进入 main 路由表决策之前，就已经被防火墙 mark + TPROXY 劫走了。</strong> main 表里那条 <code>default via 网关</code> 只是给代理内核自己连境外服务器用的底层链路，终端流量根本不经过它做决策。</p>
+<p>这个发现直接推翻了&quot;加第二条路由&quot;的方案。因为：</p>
+<ol>
+<li>你在 main 表 / PBR 里怎么折腾第二条路由，普通流量都感知不到——它们早被 TPROXY 截走了。</li>
+<li>想按<strong>域名</strong>分流更是无从谈起：路由层只认 IP，不认域名。</li>
+</ol>
+<blockquote><p><strong>结论：如果你的主出口是透明代理实现的，那么&quot;第二出口&quot;正确的位置不在路由层，而在代理平面里——把它做成代理内核里的第二个 outbound 节点，用代理软件自带的分流（shunt）按域名区分。</strong></p></blockquote>
+<p>这一步&quot;先搞清楚现状再动手&quot;是整件事里最重要的判断。不要照搬教程直接装 PBR 包。</p>
+<hr>
+<h2 id="二-调查阶段-只读-不改">二、调查阶段：只读，不改</h2>
+<p>在动任何配置之前，先把现状摸清楚。全部是只读命令，不会影响正在跑的生产流量：</p>
+<pre><code class="language-bash">ubus call system board         # 系统/内核/架构
+ip addr ; ip route show        # 接口与 main 表
+ip route show table all        # 所有路由表（关键！能看出有没有独立表）
+ip rule show ; ip -6 rule show # 策略路由规则（关键！fwmark 规则暴露 TPROXY）
+nft list ruleset               # 防火墙全量规则（mangle/TPROXY/mark 都在这）
+wg show                        # 有没有现成 WireGuard
+uci show network ; uci show firewall
+opkg list-installed | grep -iE &#x27;wireguard|pbr|mwan|xray|sing|passwall&#x27;</code></pre>
+<p>重点看三样东西，它们能直接告诉你主出口是不是透明代理：</p>
+<ul>
+<li><strong><code>ip rule</code> 里有没有 <code>fwmark ... lookup &lt;表号&gt;</code></strong>：有，基本就是 TPROXY 分流。</li>
+<li><strong><code>nft list ruleset</code> 里有没有 <code>mangle</code> 链 + <code>tproxy</code> / <code>meta mark set</code> 动作</strong>：这是透明代理的指纹。</li>
+<li><strong><code>ip route show table all</code> 里除了 main 有没有独立小表</strong>（如 <code>local default dev lo table 100</code>）：TPROXY 的配套。</li>
+</ul>
+<p>我的机器上还发现一条<strong>自制&quot;防泄漏&quot;规则</strong>（在 forward 链上 DROP 掉内网直连外网的流量），意思是&quot;代理挂了宁可断网也不许裸奔&quot;。<strong>这种规则要认出来并保留</strong>，它是你现有安全模型的一部分，别手滑删了。</p>
+<hr>
+<h2 id="三-目标架构">三、目标架构</h2>
+<pre><code>                              ┌─ 默认（未命中规则）──► 主出口（原有，保持不动）
+终端/本机 ─ TPROXY ─► 代理内核分流 ─┤
+                              └─ 命中域名规则 ───────► 第二出口（WireGuard 境外节点）</code></pre>
+<p>几条铁律：</p>
+<ul>
+<li>main 路由表、IPv4 <code>ip rule</code>、防火墙 zone、防泄漏规则——<strong>一个字节都不改</strong>。第二出口永远不可能变成系统默认出口。</li>
+<li>第二出口挂掉 → 只有命中分流规则的域名受影响（表现为连接失败），主出口完全无关。</li>
+<li>主出口挂掉 → 金融、默认流量<strong>不会</strong>自动切到第二出口（宁可暂时不通，也不要突然换国家 IP）。</li>
+<li>不装 PBR / mwan3，不重启整个 network（避免 SSH 断线），唯一的服务中断点是重启代理服务（秒级）。</li>
+</ul>
+<hr>
+<h2 id="四-取得-wireguard-配置的正确姿势">四、取得 WireGuard 配置的正确姿势</h2>
+<p>很多商业 VPN 服务商提供官方的 OpenWrt 客户端脚本，但<strong>大多数这类脚本会无条件接管默认路由</strong>——典型做法是往 main 表注入两条 <code>/1</code> 路由：</p>
+<pre><code>0.0.0.0/1   dev &lt;wg&gt;
+128.0.0.0/1 dev &lt;wg&gt;</code></pre>
+<p>两条 <code>/1</code> 合起来覆盖整个 <code>0.0.0.0/0</code>，而且比默认路由更&quot;具体&quot;（前缀更长），会<strong>压过</strong>你原有的默认路由。很多客户端还会同时改 DNS、装 kill switch，且<strong>没有开关可以关掉这些行为</strong>。</p>
+<blockquote><p><strong>所以：不要跑服务商的官方一键脚本。</strong> 只需要它的&quot;静态 WireGuard 配置&quot;——现在正规服务商的会员后台基本都有一个 <strong>WireGuard 配置生成器</strong>：浏览器本地生成密钥对，私钥不上传（只把公钥注册到账号），当场生成标准的 <code>[Interface] / [Peer]</code> 配置文件。</p></blockquote>
+<p>生成的配置长这样（敏感信息已抹去）：</p>
+<pre><code class="language-ini">[Interface]
+Address = 10.x.x.x/32, fd00:.../128
+DNS = 10.x.x.1, fd00:...::1
+PrivateKey = &lt;私钥，只存本地&gt;
+
+[Peer]
+PublicKey = &lt;服务器公钥&gt;
+AllowedIPs = 0.0.0.0/0, ::/0
+Endpoint = &lt;服务器地址&gt;:&lt;端口&gt;
+PersistentKeepalive = 20</code></pre>
+<p>我们只取里面的 <code>PrivateKey / PublicKey / Endpoint / Address / DNS</code>，<strong>AllowedIPs 里的 <code>0.0.0.0/0</code> 只是 WireGuard 协议字段，不会真的注入系统路由表</strong>——因为我们不把它交给内核 WireGuard 接口，而是喂给代理内核当一个 outbound。</p>
+<p>把配置传到路由器专门的目录并收紧权限，<strong>私钥全程不要打印到终端或日志</strong>：</p>
+<pre><code class="language-bash">ssh root@路由器 &#x27;mkdir -p /etc/hideout/pool &amp;&amp; chmod 700 /etc/hideout/pool&#x27;
+scp 配置.conf root@路由器:/etc/hideout/pool/nodeA.conf
+ssh root@路由器 &#x27;chmod 600 /etc/hideout/pool/*.conf&#x27;
+# 传完立刻删掉本地下载的副本</code></pre>
+<hr>
+<h2 id="五-旁路验证-先别碰生产">五、旁路验证：先别碰生产</h2>
+<p>在把节点接进生产代理之前，先起一个<strong>独立的 sing-box 实例</strong>，用一个额外的 SOCKS 端口单独测这条隧道。这样验证过程完全不影响正在跑的主出口。</p>
+<p>关键点：WireGuard 走 UDP，从境内直连境外 UDP 端口有时会被干扰。所以要测两条底层路径：</p>
+<ol>
+<li><strong>直连</strong>：WireGuard 的 <code>Endpoint</code> 直接从本地网络出去。</li>
+<li><strong>链式（前置代理）</strong>：让 WireGuard 的握手和数据先走你现有的主出口代理，再到境外节点（sing-box 的 <code>detour</code> 字段）。</li>
+</ol>
+<p>sing-box 测试配置骨架（用户态 WireGuard endpoint + 两个 SOCKS 入口分别对应两条路径）：</p>
+<pre><code class="language-jsonc">{
+  &quot;endpoints&quot;: [
+    { &quot;type&quot;: &quot;wireguard&quot;, &quot;tag&quot;: &quot;wg-direct&quot;,
+      &quot;address&quot;: [&quot;10.x.x.x/32&quot;, &quot;fd00:.../128&quot;],
+      &quot;private_key&quot;: &quot;...&quot;, &quot;mtu&quot;: 1380,
+      &quot;peers&quot;: [{ &quot;address&quot;: &quot;&lt;endpoint&gt;&quot;, &quot;port&quot;: &lt;端口&gt;,
+                  &quot;public_key&quot;: &quot;...&quot;, &quot;allowed_ips&quot;: [&quot;0.0.0.0/0&quot;,&quot;::/0&quot;],
+                  &quot;persistent_keepalive_interval&quot;: 20 }] },
+    { &quot;type&quot;: &quot;wireguard&quot;, &quot;tag&quot;: &quot;wg-chained&quot;, &quot;detour&quot;: &quot;socks-main&quot;,
+      /* 其余同上，握手经主出口 */ }
+  ],
+  &quot;inbounds&quot;: [
+    { &quot;type&quot;: &quot;socks&quot;, &quot;tag&quot;: &quot;in-direct&quot;,  &quot;listen&quot;: &quot;127.0.0.1&quot;, &quot;listen_port&quot;: 10808 },
+    { &quot;type&quot;: &quot;socks&quot;, &quot;tag&quot;: &quot;in-chained&quot;, &quot;listen&quot;: &quot;127.0.0.1&quot;, &quot;listen_port&quot;: 10809 }
+  ],
+  &quot;outbounds&quot;: [
+    { &quot;type&quot;: &quot;socks&quot;, &quot;tag&quot;: &quot;socks-main&quot;, &quot;server&quot;: &quot;127.0.0.1&quot;, &quot;server_port&quot;: &lt;主出口本地SOCKS端口&gt; },
+    { &quot;type&quot;: &quot;direct&quot;, &quot;tag&quot;: &quot;direct&quot; }
+  ],
+  &quot;route&quot;: { &quot;rules&quot;: [
+    { &quot;inbound&quot;: [&quot;in-direct&quot;],  &quot;outbound&quot;: &quot;wg-direct&quot; },
+    { &quot;inbound&quot;: [&quot;in-chained&quot;], &quot;outbound&quot;: &quot;wg-chained&quot; }
+  ], &quot;final&quot;: &quot;direct&quot; }
+}</code></pre>
+<p>验证命令（看到的 IP 应该是境外节点，而不是主出口）：</p>
+<pre><code class="language-bash">sing-box check -c test.json &amp;&amp; sing-box run -c test.json &amp;
+curl --socks5-hostname 127.0.0.1:10808 https://ifconfig.co/ip   # 直连路径
+curl --socks5-hostname 127.0.0.1:10809 https://ifconfig.co/ip   # 链式路径
+curl https://ifconfig.co/ip                                     # 现网：应仍是主出口</code></pre>
+<p>我实测下来<strong>直连 UDP 通且速度不错</strong>（几十 Mbps 级别），就用直连；如果你那边直连不通，就用链式。测完把测试实例杀掉、临时文件删掉，生产还是干干净净的。</p>
+<blockquote><p>顺带记一个坑：主出口代理的本地 SOCKS 如果 <strong>UDP relay 不通</strong>，链式路径会失败——因为 WireGuard 是 UDP。这种情况要么开启 SOCKS 的 UDP 支持，要么老实用直连。</p></blockquote>
+<hr>
+<h2 id="六-接入生产代理-域名分流">六、接入生产代理 + 域名分流</h2>
+<p>验证通过后，把这个 WireGuard 节点正式加进生产代理（这里以 PassWall2 为例，它的 xray 后端原生支持 WireGuard 协议节点）。用 <code>uci</code> 脚本从 <code>.conf</code> 里提取字段、建节点：</p>
+<pre><code class="language-bash">CONF=/etc/hideout/pool/nodeA.conf
+PK=$(sed -n &#x27;s/^PrivateKey *= *//p&#x27; $CONF)
+PUB=$(sed -n &#x27;s/^PublicKey *= *//p&#x27; $CONF)
+ADDR=$(sed -n &#x27;s/^Address *= *//p&#x27; $CONF); A4=${ADDR%%,*}; A6=${ADDR##*,}
+EP=$(sed -n &#x27;s/^Endpoint *= *//p&#x27; $CONF)
+
+uci set 代理.nodeA=nodes
+uci set 代理.nodeA.type=&#x27;Xray&#x27;
+uci set 代理.nodeA.protocol=&#x27;wireguard&#x27;
+uci set 代理.nodeA.address=&quot;${EP%:*}&quot;
+uci set 代理.nodeA.port=&quot;${EP##*:}&quot;
+uci set 代理.nodeA.wireguard_public_key=&quot;$PUB&quot;
+uci set 代理.nodeA.wireguard_secret_key=&quot;$PK&quot;
+uci add_list 代理.nodeA.wireguard_local_address=&quot;$A4&quot;
+uci add_list 代理.nodeA.wireguard_local_address=&quot;$A6&quot;
+uci set 代理.nodeA.wireguard_mtu=&#x27;1380&#x27;
+uci set 代理.nodeA.wireguard_keepAlive=&#x27;20&#x27;</code></pre>
+<p>再建一个<strong>分流（shunt）节点</strong>：默认走主出口，命中规则的域名走第二出口。<strong>先只加一条最小可验证的规则</strong>（比如一个 IP 查询站点当&quot;金丝雀&quot;），确认整条链路通了再扩：</p>
+<pre><code class="language-bash"># 分流规则：初期只放一个金丝雀域名
+uci set 代理.MediaRule=shunt_rules
+uci set 代理.MediaRule.remarks=&#x27;MediaRule&#x27;
+uci set 代理.MediaRule.network=&#x27;tcp,udp&#x27;
+uci set 代理.MediaRule.domain_list=&#x27;ifconfig.co&#x27;
+
+# 分流节点：默认=主出口，MediaRule=第二出口
+uci set 代理.split=nodes
+uci set 代理.split.protocol=&#x27;_shunt&#x27;
+uci set 代理.split.default_node=&#x27;&lt;主出口节点ID&gt;&#x27;
+uci set 代理.split.MediaRule=&#x27;nodeA&#x27;
+
+uci set 代理.@global[0].node=&#x27;split&#x27;   # 全局切到分流节点
+uci commit 代理
+/etc/init.d/代理 restart               # 唯一的秒级中断点</code></pre>
+<p>验证（默认仍是主出口，金丝雀域名走第二出口）：</p>
+<pre><code class="language-bash">curl https://ifconfig.me       # 应为主出口 IP
+curl https://ifconfig.co/ip    # 应为第二出口（境外节点）IP</code></pre>
+<p>确认无误后，把真正要分流的域名批量加进<strong>同一条规则</strong>（用 geosite 分类最省事）：</p>
+<pre><code class="language-bash">uci set 代理.MediaRule.domain_list=&#x27;geosite:youtube
+geosite:spotify
+domain:googlevideo.com
+domain:ytimg.com
+domain:youtubei.googleapis.com
+domain:scdn.co
+domain:spotifycdn.com&#x27;
+uci commit 代理 &amp;&amp; /etc/init.d/代理 restart</code></pre>
+<p><strong>金融、代码托管、AI 服务、工作相关域名——不写任何规则</strong>，它们自然落到默认（主出口），符合&quot;这些服务绝不自动换国家 IP&quot;的要求。</p>
+<blockquote><p>⚠️ <strong>一个重要的坑：不要让多条分流规则指向同一个 WireGuard 节点。</strong> 用户态 WireGuard outbound 每条规则会建一个独立会话，同一把密钥的多个并发会话在服务端会互相打架（endpoint 漂移、丢包）。<strong>所有域名都塞进同一条规则</strong>即可。</p></blockquote>
+<hr>
+<h2 id="七-多节点冗余-自动故障切换">七、多节点冗余 + 自动故障切换</h2>
+<p>单节点有个明显风险：那台境外服务器一挂，分流的域名就全崩。解决办法是<strong>下载同一服务商的一批节点组成&quot;节点池&quot;</strong>。</p>
+<p>关键认知：同一个 WireGuard 密钥对，在服务商后台可以对<strong>每个位置</strong>分别生成配置——它们<strong>共享同一把私钥和同一个隧道内网地址，只是 <code>Endpoint</code> 和服务器公钥不同</strong>。所以下载一批（我下了十来个欧洲位置），逐个建成代理节点即可。</p>
+<p>然后写一个<strong>故障切换脚本</strong>，用 cron 定时探测，节点挂了就沿&quot;节点环&quot;轮转到下一个。设计要点：</p>
+<ul>
+<li><strong>双金丝雀探测</strong>：用两个独立的 IP 查询站点（都走第二出口规则），避免单站点抽风误判。</li>
+<li><strong>连续失败才切</strong>：连续 2 次探测失败（约 6 分钟确认窗口）才动，避免瞬时抖动导致频繁重启代理。</li>
+<li><strong>整环走完仍失败就停手</strong>：说明不是单节点问题（可能是金丝雀站点挂了、或上游/审查层面的问题），继续轮转只会无意义地反复重启，不如保持现状等恢复。</li>
+<li><strong>永不回落主出口</strong>：切换只在节点池内部进行，跟&quot;宁可断也不换国家&quot;的原则一致。</li>
+</ul>
+<p>脚本骨架：</p>
+<pre><code class="language-sh">#!/bin/sh
+RING=&quot;nodeA nodeB nodeC ... nodeJ&quot;     # 节点环
+STATE=/tmp/failover.state
+probe() {   # 双金丝雀，任一成功即算通
+  curl -4 -s --max-time 10 https://金丝雀1/ip &amp;&amp; return 0
+  curl -4 -s --max-time 10 https://金丝雀2   &amp;&amp; return 0
+  return 1
+}
+FAILS=0; ROT=0; [ -f &quot;$STATE&quot; ] &amp;&amp; . &quot;$STATE&quot;
+if probe; then echo &quot;FAILS=0&quot;$&#x27;\n&#x27;&quot;ROT=0&quot; &gt; &quot;$STATE&quot;; exit 0; fi   # 恢复即归零
+FAILS=$((FAILS+1))
+[ &quot;$FAILS&quot; -lt 2 ] &amp;&amp; { echo &quot;FAILS=$FAILS&quot;$&#x27;\n&#x27;&quot;ROT=$ROT&quot; &gt; &quot;$STATE&quot;; exit 0; }  # 未连续失败2次，先忍
+NODECOUNT=$(echo $RING | wc -w)
+[ &quot;$ROT&quot; -ge &quot;$NODECOUNT&quot; ] &amp;&amp; exit 0    # 整环走完仍失败，停手保持现状
+# 取环中下一个节点，改分流映射并重启代理
+CUR=$(uci -q get 代理.split.MediaRule)
+# ...在 RING 里找到 CUR 的下一个 NEXT...
+uci set 代理.split.MediaRule=&quot;$NEXT&quot;; uci commit 代理; /etc/init.d/代理 restart
+echo &quot;FAILS=0&quot;$&#x27;\n&#x27;&quot;ROT=$((ROT+1))&quot; &gt; &quot;$STATE&quot;
+logger -t failover &quot;switched: $CUR -&gt; $NEXT&quot;</code></pre>
+<p>挂到 cron：</p>
+<pre><code class="language-bash">echo &#x27;*/3 * * * * /etc/hideout/failover.sh&#x27; &gt;&gt; /etc/crontabs/root
+/etc/init.d/cron restart</code></pre>
+<p>日志用 <code>logread | grep failover</code> 看切换动态。</p>
+<hr>
+<h2 id="八-fail-safe-两种取舍">八、Fail-safe：两种取舍</h2>
+<p><strong>第二出口挂掉时，命中规则的流量怎么办？</strong> 两个方案：</p>
+<ul>
+<li><strong>A. DROP（推荐，零配置）</strong>：分流规则固定指向第二出口节点，节点死则那些域名连接失败。零风险、绝不泄漏到别的出口。配合上面的自动切换，通常还没等你发现就已经切到别的节点了。</li>
+<li><strong>B. 回落主出口</strong>：让规则节点自动切回主出口。<strong>但这意味着 YouTube/Spotify 会在你不知情时突然变回主出口的国家 IP</strong>，未必是你想要的。</li>
+</ul>
+<p>我选 A。</p>
+<p><strong>主出口挂掉时</strong>：默认流量（金融、工作等）<strong>不会</strong>自动切到第二出口——因为它们压根没有分流规则，默认节点死了就是不通。这正是我们想要的：&quot;宁可这些服务暂时不可访问，也不要突然换一个国家的 IP 去登录银行。&quot;</p>
+<hr>
+<h2 id="九-收尾验证清单">九、收尾验证清单</h2>
+<pre><code class="language-bash">ip rule show                              # 应与备份一致：只有 local / fwmark→表 / main / default
+ip route show                             # main 表默认路由未变
+nft list chain inet fw4 &lt;防泄漏链&gt;         # 自制防泄漏规则仍在
+curl https://ifconfig.me                  # 主出口 IP（未变）
+curl https://ifconfig.co/ip               # 第二出口 IP（境外节点）
+logread | grep failover | tail            # 故障切换正常</code></pre>
+<p>再补几个安全习惯：</p>
+<ol>
+<li><strong>动手前先全量备份</strong>：<code>/etc/config/{network,firewall,dhcp,代理}</code>、<code>/etc/nftables.d/</code>，以及 <code>ip route show table all</code> / <code>ip rule</code> / <code>nft list ruleset</code> 的快照，全部塞进 <code>/root/网络备份-时间戳/</code>。</li>
+<li><strong>写一个一键回滚脚本</strong>：恢复上述配置 + 重启代理服务（<strong>不要</strong> <code>network restart</code>，会断 SSH），确保配置出错能立刻退回原状。</li>
+<li><strong>优先 <code>ifup/ifdown &lt;接口&gt;</code> 而不是 <code>/etc/init.d/network restart</code></strong>，避免 SSH 断线。</li>
+<li><strong>私钥永不落终端/日志</strong>，配置文件 <code>chmod 600</code>。</li>
+</ol>
+<hr>
+<h2 id="十-小结">十、小结</h2>
+<p>这次的核心不是&quot;怎么配 WireGuard&quot;，而是三个判断：</p>
+<ol>
+<li><strong>先摸清主出口的真实实现</strong>（路由 vs 透明代理），它决定了第二出口该放在哪一层——照搬教程装 PBR 是南辕北辙。</li>
+<li><strong>第二出口做成代理平面的一个 outbound 节点</strong>，用软件自带的域名分流，天生不碰系统路由表，也天然用无污染的远程 DNS。</li>
+<li><strong>主出口是 PRIMARY，第二出口是 SECONDARY</strong>：后者的存在、故障、切换，都不允许以任何方式影响前者。</li>
+</ol>
+<p>沿着&quot;只读调查 → 旁路验证 → 最小规则上线 → 逐步扩展 → 加冗余与 fail-safe&quot;这个顺序走，全程对生产链路零破坏，SSH 不断线，随时可一键回滚。</p>
+</article>
+</body>
+</html>
