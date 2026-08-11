@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>家庭网络分层拓扑（二）：一条策略路由如何让 VPN 网关人间蒸发</title>
+<style>
+:root{--bg:#fff;--fg:#2b2b2b;--muted:#6a737d;--border:#e1e4e8;--code-bg:#f6f8fa;--accent:#2f6f4f;--quote-bg:#f6f8fa;--quote-bar:#2f6f4f;}
+@media (prefers-color-scheme:dark){:root{--bg:#1b1d1e;--fg:#d6d6d6;--muted:#9aa0a6;--border:#33383d;--code-bg:#24272b;--accent:#7bc49a;--quote-bg:#22252a;--quote-bar:#7bc49a;}}
+*{box-sizing:border-box;}
+html{font-size:15px;-webkit-font-smoothing:antialiased;}
+body{margin:0;background:var(--bg);color:var(--fg);line-height:1.7;
+ font-family:"Helvetica Neue",Helvetica,Arial,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Segoe UI Emoji",sans-serif;}
+#write{max-width:860px;margin:0 auto;padding:48px 24px 96px;}
+h1{font-size:1.9rem;line-height:1.3;margin:0 0 .6em;}
+h2{font-size:1.45rem;margin:2em 0 .7em;padding-bottom:.3em;border-bottom:1px solid var(--border);}
+h3{font-size:1.18rem;margin:1.6em 0 .5em;}
+h4{font-size:1.03rem;margin:1.3em 0 .4em;}
+p{margin:.7em 0;}
+a{color:var(--accent);text-decoration:none;}
+a:hover{text-decoration:underline;}
+code{background:var(--code-bg);padding:.15em .4em;border-radius:4px;font-size:.88em;
+ font-family:"SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace;}
+pre{background:var(--code-bg);border:1px solid var(--border);border-radius:8px;padding:14px 16px;overflow-x:auto;margin:1em 0;}
+pre code{background:none;padding:0;font-size:.85rem;line-height:1.55;}
+blockquote{margin:1em 0;padding:.6em 1em;background:var(--quote-bg);border-left:4px solid var(--quote-bar);border-radius:0 6px 6px 0;color:var(--fg);}
+blockquote p{margin:.4em 0;}
+ul,ol{padding-left:1.6em;margin:.7em 0;}
+li{margin:.3em 0;}
+hr{border:none;border-top:1px solid var(--border);margin:2em 0;}
+table{border-collapse:collapse;width:100%;margin:1em 0;display:block;overflow-x:auto;}
+th,td{border:1px solid var(--border);padding:8px 12px;text-align:left;}
+th{background:var(--code-bg);}
+.toc{background:var(--code-bg);border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin:1.5em 0;}
+.toc-title{font-weight:700;margin:0 0 .5em;color:var(--accent);}
+.toc ul{list-style:none;padding-left:0;margin:0;}
+.toc li{margin:.25em 0;}
+.toc-l3 a{padding-left:1.4em;font-size:.95em;color:var(--muted);}
+.toc-l4 a{padding-left:2.6em;font-size:.9em;color:var(--muted);}
+</style>
+</head>
+<body>
+<article id="write">
+<h1 id="家庭网络分层拓扑-二-一条策略路由如何让-vpn-网关人间蒸发">家庭网络分层拓扑（二）：一条策略路由如何让 VPN 网关人间蒸发</h1>
+<div class="toc"><p class="toc-title">目录 / Step 导航</p><ul><li class="toc-l2"><a href="#一-tl-dr">一、TL;DR</a></li><li class="toc-l2"><a href="#二-症状">二、症状</a></li><li class="toc-l2"><a href="#三-排查-三个被证伪的假设">三、排查：三个被证伪的假设</a></li><li class="toc-l3"><a href="#3-1-假设一-客户端侧的问题">3.1 假设一：客户端侧的问题</a></li><li class="toc-l3"><a href="#3-2-假设二-nas-防火墙-证伪">3.2 假设二：NAS 防火墙 —— 证伪</a></li><li class="toc-l3"><a href="#3-3-假设三-搞错了机器-证伪">3.3 假设三：搞错了机器 —— 证伪</a></li><li class="toc-l3"><a href="#3-4-转折点一-filtered-还是-closed">3.4 转折点一：<code>filtered</code> 还是 <code>closed</code>？</a></li><li class="toc-l3"><a href="#3-5-转折点二-在服务端抓包">3.5 转折点二：在服务端抓包</a></li><li class="toc-l3"><a href="#3-6-定位-ip-route-get">3.6 定位：<code>ip route get</code></a></li><li class="toc-l2"><a href="#四-根因">四、根因</a></li><li class="toc-l3"><a href="#4-1-机制">4.1 机制</a></li><li class="toc-l3"><a href="#4-2-真正的教训-文档是对的-落地漏了一行">4.2 真正的教训：文档是对的，落地漏了一行</a></li><li class="toc-l3"><a href="#4-3-为什么-192-168-0-4-一直是好的">4.3 为什么 <code>192.168.0.4</code> 一直是好的</a></li><li class="toc-l3"><a href="#4-4-最精彩的细节-它能主动发包-却收不了包">4.4 最精彩的细节：它能主动发包，却收不了包</a></li><li class="toc-l2"><a href="#五-修复">五、修复</a></li><li class="toc-l2"><a href="#六-一个没有查清的问题">六、一个没有查清的问题</a></li><li class="toc-l2"><a href="#七-可复用的排查清单">七、可复用的排查清单</a></li><li class="toc-l2"><a href="#八-结语">八、结语</a></li></ul></div>
+<blockquote>
+<p>上一篇<a href="./家庭网络分层拓扑：从远端笔记本到双出口的完整链路.html">《家庭网络分层拓扑：从远端笔记本到双出口的完整链路》</a>讲了这套拓扑<strong>该怎么搭</strong>。这一篇讲它<strong>怎么坏的</strong>——一个只错了一行、却让人绕了整整一晚的故障。</p>
+<p>最讽刺的地方在于：<strong>上一篇里已经写对了那一行，落地时却没抄进去。</strong> 而上一篇紧接着的另一句解释，恰好让那一行看起来可以省。</p>
+<p>文中所有公网 IP、商业服务商品牌、个人域名与主机名均已抹去，只保留可复用的结构。</p>
+</blockquote>
+<hr>
+<h2 id="一-tl-dr">一、TL;DR</h2>
+<p>VPN 客户端可以正常上网、可以访问家里任何一台内网机器，唯独<strong>访问不了 VPN 网关 <code>172.x.y.1</code> 本身</strong>——ping 不通，全端口静默。</p>
+<p>排查过程中先后怀疑并<strong>证伪</strong>了：客户端防火墙、DSM 防火墙（把整个防火墙关掉照样不通）、"网关和 NAS 不是同一台机器"。</p>
+<p>真正的根因是 NAS 上这张表：</p>
+<pre><code>ip rule:    1: from 172.x.y.0/24 lookup 100
+table 100:  default via 192.168.0.254 dev ovs_eth0     ← 只有这一条
+</code></pre>
+<p><strong>NAS 回复 VPN 客户端时，回包的源地址是 <code>172.x.y.1</code>，它落在 <code>172.x.y.0/24</code> 里。</strong> 于是回包命中这条规则、去查 table 100、只匹配到那条 default，被送去了旁路网关。而旁路网关没有回 VPN 网段的路由，包就此消失。</p>
+<p>请求进得来，回包出不去。修复是补回上一篇里就写着的那条回程路由：</p>
+<pre><code class="language-sh">ip route replace 172.x.y.0/24 dev tun0 src 172.x.y.1 table 100
+</code></pre>
+<hr>
+<h2 id="二-症状">二、症状</h2>
+<p>远端笔记本通过 OpenVPN 拨回家，拿到 <code>172.x.y.2/24</code>，网关 <code>172.x.y.1</code>。一切正常：</p>
+<ul>
+<li>默认路由走隧道，出口 IP 是境外节点 ✅</li>
+<li>内网 <code>192.168.0.0/24</code> 全通，NAS 的 DSM、SSH、SMB 都能用 ✅</li>
+<li>唯独 <code>ping 172.x.y.1</code> 100% 丢包，<code>22/80/443/5000/5001</code> 全部无响应 ❌</li>
+</ul>
+<p>隧道本身健康得很——tun0 上已经跑了 1.4 GB。就是网关这一个地址，像不存在一样。</p>
+<hr>
+<h2 id="三-排查-三个被证伪的假设">三、排查：三个被证伪的假设</h2>
+<p>这次排查真正的价值不在结论，而在<strong>排除的过程</strong>。我依次相信过三个假设，全是错的。</p>
+<h3 id="3-1-假设一-客户端侧的问题">3.1 假设一：客户端侧的问题</h3>
+<p>第一反应总是查本机。全部排除：</p>
+<table>
+<thead>
+<tr>
+<th>检查项</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>tun0 状态</td>
+<td>UP，累计 RX 1.4 GB / TX 838 MB</td>
+</tr>
+<tr>
+<td>默认路由</td>
+<td><code>ip route get 8.8.8.8</code> → <code>via 172.x.y.1 dev tun0</code></td>
+</tr>
+<tr>
+<td>本机防火墙</td>
+<td><code>ufw-user-input</code> 里有 <code>iifname "tun0" accept</code>，已放行 346 个包</td>
+</tr>
+<tr>
+<td>rp_filter</td>
+<td>= 2（loose），不会丢反向路径</td>
+</tr>
+</tbody>
+</table>
+<p><code>tcpdump -i tun0</code> 确认 ICMP echo request <strong>确实从客户端发出去了</strong>，零回包。问题在对端。</p>
+<h3 id="3-2-假设二-nas-防火墙-证伪">3.2 假设二：NAS 防火墙 —— 证伪</h3>
+<p>这是最自然的猜测，而且证据看起来严丝合缝：群晖 DSM 的防火墙规则是<strong>按网络界面分档</strong>的，VPN 接口那一栏如果没有放行规则就落到默认拒绝；而转发流量走 FORWARD + NAT，不受 INPUT 规则影响——完美解释了"能上网但访问不了网关本身"。</p>
+<p>于是<strong>把整个防火墙关掉</strong>。</p>
+<p>结果：<strong>一模一样，还是不通。</strong></p>
+<p>这个假设死得干干净净。后来上机验尸也确认了它从头到尾就是无辜的：</p>
+<pre><code>Chain INPUT   (policy ACCEPT)
+Chain FORWARD (policy ACCEPT)
+Chain OUTPUT  (policy ACCEPT)
+
+Chain DOS_PROTECT (1 references)
+  DROP icmp -- ovs_eth0 * ...        ← 全部限定 in ovs_eth0，tun0 流量根本不匹配
+  DROP tcp  -- ovs_eth0 * ...
+
+Chain MAILSERVER_PLUS (1 references)
+  DROP tcp -- * * multiport dports 5230,5252,8500:8507,...   ← 只 DROP 邮件端口
+</code></pre>
+<p>三条主链全是 <code>policy ACCEPT</code>，两个自定义链一个只管 <code>ovs_eth0</code>、一个只管邮件端口。<strong>没有任何一条规则能碰到发往 <code>172.x.y.1</code> 的包。</strong></p>
+<blockquote>
+<p><strong>教训一：一个假设能解释所有已知现象，不代表它是对的。</strong> 它只是还没被证伪而已。要证伪它，就得去做那个能区分真假的实验——这里就是"把防火墙整个关掉"，而不是继续在规则里微调。</p>
+</blockquote>
+<h3 id="3-3-假设三-搞错了机器-证伪">3.3 假设三：搞错了机器 —— 证伪</h3>
+<p>既然 NAS 的 LAN 地址 <code>192.168.0.4</code> 一切正常，而 <code>172.x.y.1</code> 全死，那会不会<strong>它俩根本不是同一台机器</strong>？也许 VPN 服务跑在别的设备上，我一直在错误的机器上关防火墙。</p>
+<p>用 TTL 判定：</p>
+<pre><code>$ ping -c 2 -t 1 192.168.0.4
+64 bytes from 192.168.0.4: icmp_seq=1 ttl=64 time=7.37 ms      ← TTL=1 就到了
+
+$ ping -c 1 192.168.0.244
+64 bytes from 192.168.0.244: icmp_seq=1 ttl=63 time=12.2 ms    ← 对照：后面还有一跳
+</code></pre>
+<p>TTL=1 的包穿不过任何路由器（路由器会把它减到 0 然后丢弃）。它能被 <code>192.168.0.4</code> 收到并回复，只有一种解释：<strong>这个地址就在隧道的对端本机上</strong>。假设三出局。</p>
+<h3 id="3-4-转折点一-filtered-还是-closed">3.4 转折点一：<code>filtered</code> 还是 <code>closed</code>？</h3>
+<p><code>/dev/tcp</code> 这种土办法只能告诉你"连不上"，区分不了<strong>被丢弃</strong>和<strong>没人监听</strong>。nmap 可以：</p>
+<pre><code>$ nmap -Pn --reason -sS -p 22,80,443,5000,8080 172.x.y.1
+22/tcp   filtered  ssh            no-response
+80/tcp   filtered  http           no-response
+443/tcp  filtered  https          no-response
+5000/tcp filtered  upnp           no-response
+8080/tcp filtered  http-proxy     no-response
+
+$ nmap -Pn --reason -sS -p 22,80,443,5000,8080 192.168.0.4    # 同一台机器
+22/tcp   open      ssh            syn-ack ttl 64
+80/tcp   open      http           syn-ack ttl 64
+443/tcp  open      https          syn-ack ttl 64
+5000/tcp open      upnp           syn-ack ttl 64
+8080/tcp closed    http-proxy     reset ttl 64                 ← 注意这一格
+</code></pre>
+<p><code>192.168.0.4:8080</code> 回了 <strong>RST</strong>。这说明内核<strong>在正常处理</strong>发往那个地址的包，没监听的端口就规规矩矩拒绝。</p>
+<p>而 <code>172.x.y.1</code> 上，连 22/80/443/5000 这些<strong>已经证明开着</strong>的端口都零响应。sshd 和 DSM 都是 bind 在 <code>0.0.0.0</code> 上的，只要包带着一个本机地址进了内核，它们必然应答。</p>
+<p>结论：包没进到 TCP 协议栈。</p>
+<h3 id="3-5-转折点二-在服务端抓包">3.5 转折点二：在服务端抓包</h3>
+<p>到这一步只能上 NAS 了。同时 ping 两个地址，在 NAS 的 tun0 上抓：</p>
+<pre><code>$ tcpdump -nli tun0 &quot;icmp or tcp port 5000&quot;
+
+172.x.y.2 &gt; 172.x.y.1: ICMP echo request, seq 1        ← 到了
+172.x.y.2 &gt; 172.x.y.1: ICMP echo request, seq 2        ← 到了
+172.x.y.2 &gt; 172.x.y.1: ICMP echo request, seq 3        ← 到了，一个回包都没有
+172.x.y.2.59692 &gt; 172.x.y.1.5000: Flags [S]            ← 到了
+172.x.y.2.59692 &gt; 172.x.y.1.5000: Flags [S]            ← 到了，没有 SYN-ACK
+
+172.x.y.2 &gt; 192.168.0.4: ICMP echo request, seq 1
+192.168.0.4 &gt; 172.x.y.2: ICMP echo reply,   seq 1       ← 同一接口，秒回
+172.x.y.2.40308 &gt; 192.168.0.4.5000: Flags [S]
+192.168.0.4.5000 &gt; 172.x.y.2: Flags [S.]                ← SYN-ACK
+</code></pre>
+<p><strong>请求包完好无损地到达了内核，OpenVPN 交付无误，iptables 是 ACCEPT，但内核一声不吭。</strong></p>
+<p>这一刻方向变了：问题不在<strong>入方向</strong>，在<strong>出方向</strong>。</p>
+<h3 id="3-6-定位-ip-route-get">3.6 定位：<code>ip route get</code></h3>
+<p>Linux 的路由查找是可以直接问的。把三种情况并排一比，答案就跳出来了：</p>
+<pre><code># 回包（源地址 = VPN 网关自己）
+$ ip route get 172.x.y.2 from 172.x.y.1
+172.x.y.2 from 172.x.y.1 via 192.168.0.254 dev ovs_eth0  table 100    ← 走局域网了！
+
+# 对照：源地址 = NAS 的 LAN 地址
+$ ip route get 172.x.y.2 from 192.168.0.4
+172.x.y.2 from 192.168.0.4 dev tun0                                    ← 正常
+
+# 对照：不指定源地址
+$ ip route get 172.x.y.2
+172.x.y.2 dev tun0  src 172.x.y.1                                      ← 正常
+</code></pre>
+<p>找到了。</p>
+<hr>
+<h2 id="四-根因">四、根因</h2>
+<h3 id="4-1-机制">4.1 机制</h3>
+<p>上一篇里，为了让 VPN 客户端享受和家里设备一致的分流体验，做了源地址策略路由：<strong>凡是源地址属于 VPN 网段的流量，默认路由换成旁路网关。</strong></p>
+<p>问题在于，NAS 有两个地址：LAN 侧 <code>192.168.0.4</code>，以及 tun0 上的 <code>172.x.y.1</code>。当它<strong>回复一个发往 <code>172.x.y.1</code> 的请求</strong>时，回包的源地址必须是 <code>172.x.y.1</code>（否则四元组对不上）。而 <code>172.x.y.1</code> <strong>就在 <code>172.x.y.0/24</code> 里</strong>——它命中了那条规则：</p>
+<pre><code>回包 src=172.x.y.1 dst=172.x.y.2
+  → ip rule 1: from 172.x.y.0/24   ✓ 命中
+  → 查 table 100
+  → 表里只有 default via 192.168.0.254
+  → 回包被从 ovs_eth0 发给旁路网关
+  → 旁路网关没有回 172.x.y.0/24 的路由
+  → 丢弃
+</code></pre>
+<p>再往深一层：<strong>策略路由表一旦被规则命中，就自成体系了。</strong> main 表里那条 <code>172.x.y.0/24 dev tun0</code> 完全帮不上忙，因为查找压根不会走到 main。而 table 100 里<strong>只有一条默认路由</strong>——一张只有 default 的路由表，意味着"任何目的地址都往下一跳扔"，包括那些本该直连的目的地。</p>
+<h3 id="4-2-真正的教训-文档是对的-落地漏了一行">4.2 真正的教训：文档是对的，落地漏了一行</h3>
+<p>这才是这次故障最值得记的部分。</p>
+<p>上一篇原文给的命令是<strong>两条</strong>：</p>
+<pre><code class="language-bash"># 1. 独立路由表：VPN 客户端的&quot;默认路由&quot;指向旁路网关（而不是上游网关）
+ip route add default via 192.168.0.254 dev &lt;内网接口&gt; table 100
+ip route add 172.x.y.0/24 dev tun0 table 100   # 回程路由也要在这张表里
+</code></pre>
+<p><strong>第二行就是修复本身。</strong> 它当时就写在那里，还带着注释。</p>
+<p>而实际落地到 NAS 开机任务里的脚本，是这样的：</p>
+<pre><code class="language-sh">#!/bin/sh
+sleep 30
+ip route replace default via 192.168.0.254 table 100
+ip rule show | grep -q &quot;from 172.x.y.0/24 lookup 100&quot; || ip rule add from 172.x.y.0/24 table 100
+</code></pre>
+<p><strong>回程路由那一行没了。</strong></p>
+<p>为什么会漏？因为上一篇紧接着的解释是这么写的：</p>
+<blockquote>
+<ul>
+<li>命中 <code>from 172.x.y.0/24</code> 的（= 公司笔记本），默认路由被替换成"下一跳旁路网关"。</li>
+<li>NAS 自己的流量源地址是内网地址，不命中，继续查 main 表直连国内——<strong>NAS 的下载、备份、内网服务完全不受影响</strong>。</li>
+</ul>
+</blockquote>
+<p>这段话让人相信：<strong>table 100 是给客户端用的，NAS 自己永远不会查它。</strong> 既然如此，往一张"客户端专用表"里放一条 VPN 网段的路由，看起来就像是冗余——客户端本来就在那个网段里，它发给同网段的包根本不会走三层。于是抄写脚本时顺手省掉了。</p>
+<p>问题是那句话<strong>不完整</strong>：NAS 自己的流量里，有一类的源地址不是内网地址，而是 <code>172.x.y.1</code>。这类流量恰好就是"所有对 VPN 客户端的应答"。</p>
+<blockquote>
+<p><strong>教训二：一条配置为什么存在，比这条配置是什么更重要。</strong> 上一篇写了"回程路由也要在这张表里"，但没写"给谁回程"。注释解释了 What，没解释 Why，于是在落地时被当成冗余删掉了。<strong>凡是看起来冗余的配置，要么补上它存在的理由，要么它迟早会被某个人（包括三个月后的你自己）删掉。</strong></p>
+<p><strong>教训三：策略路由表不会 fallback 到 main。</strong> 一张只有 default 的表会把所有流量都往下一跳扔，包括本机的应答。凡是这张表的使用者需要访问的直连网段，都得显式写进去。</p>
+</blockquote>
+<h3 id="4-3-为什么-192-168-0-4-一直是好的">4.3 为什么 <code>192.168.0.4</code> 一直是好的</h3>
+<p>因为它命中的是另一条规则（DSM 自己维护的）：</p>
+<pre><code>7: from 192.168.0.4 lookup ovs_eth0-table
+</code></pre>
+<p>而 <code>ovs_eth0-table</code> 里只有 <code>192.168.0.0/24</code>，<strong>匹配不到 <code>172.x.y.2</code></strong>。策略路由的规则链在"查表未命中"时会<strong>继续往下走</strong>，于是落到 <code>32766: from all lookup main</code>，main 表里有 <code>172.x.y.0/24 dev tun0</code> —— 正确出隧道。</p>
+<p><strong>同一台机器，两个源地址，两条完全不同的命运。</strong></p>
+<h3 id="4-4-最精彩的细节-它能主动发包-却收不了包">4.4 最精彩的细节：它能主动发包，却收不了包</h3>
+<p>排查中期有个现象一度让我判断失误——<code>172.x.y.1</code> <strong>能给客户端发 ICMP</strong>：</p>
+<pre><code>$ ping -t 1 8.8.8.8
+From 172.x.y.1 icmp_seq=1 Time to live exceeded      ← 它活着，而且能发包给我
+</code></pre>
+<p>TTL 耗尽时，NAS 用 <code>172.x.y.1</code> 作源地址发回了 time-exceeded，一路顺利到达客户端。既然它能发，为什么 echo reply 发不出来？</p>
+<p>区别在于<strong>源地址是什么时候被绑定的</strong>：</p>
+<ul>
+<li>
+<p><strong>ICMP 差错报文</strong>（time-exceeded）：触发它的原包目的地是 <code>8.8.8.8</code>，不是本机。在 <code>icmp_errors_use_inbound_ifaddr=0</code>（默认）下，内核<strong>先做路由查找、再从出接口挑源地址</strong>。查找时源地址是未指定的，<code>from 172.x.y.0/24</code> 这条<strong>按源匹配</strong>的规则自然不命中 → 落到 main 表 → 出 tun0 → 然后才把源地址填成出接口的主地址 <code>172.x.y.1</code>。✅</p>
+</li>
+<li>
+<p><strong>ICMP echo reply / TCP SYN-ACK</strong>：源地址在路由查找<strong>之前</strong>就被钉死了（必须等于请求的目的地址 <code>172.x.y.1</code>），于是规则命中 → table 100 → 走岔。❌</p>
+</li>
+</ul>
+<p>这正是 <code>ip route get 172.x.y.2</code>（不带 <code>from</code>）返回 <code>dev tun0</code>、而 <code>ip route get 172.x.y.2 from 172.x.y.1</code> 返回 <code>via 192.168.0.254</code> 的原因。</p>
+<blockquote>
+<p><strong>教训四：出入不对称是源地址策略路由的指纹。</strong> 一个地址"能主动发、不能被访问"，几乎必然是出方向的源地址路由问题，而不是入方向的过滤问题。下次先跑 <code>ip route get &lt;对端&gt; from &lt;本机该地址&gt;</code>，能省几小时。</p>
+</blockquote>
+<hr>
+<h2 id="五-修复">五、修复</h2>
+<p>table 100 必须补全直连路由：</p>
+<pre><code class="language-sh">ip route replace 172.x.y.0/24  dev tun0     src 172.x.y.1  table 100   # 关键
+ip route replace 192.168.0.0/24 dev ovs_eth0 src 192.168.0.4 table 100 # 建议
+ip route replace default via 192.168.0.254   dev ovs_eth0    table 100
+</code></pre>
+<p>第一条是修复本身。第二条是顺手优化：在此之前，VPN 客户端访问家里其他机器要先绕到旁路网关再拐回来（实测多一跳，回包 ttl=63），还要白白穿一遍透明代理的 netfilter 路径；加上直连路由后走直连。</p>
+<p>完整的落地脚本（群晖「控制面板 → 任务计划 → 用户定义的脚本」，用户选 root）：</p>
+<pre><code class="language-sh">#!/bin/sh
+VPN_NET=172.x.y.0/24
+TUN_IP=172.x.y.1
+TUN_DEV=tun0
+LAN_NET=192.168.0.0/24
+LAN_IP=192.168.0.4
+LAN_DEV=ovs_eth0
+PROXY_GW=192.168.0.254
+RT=100
+PREF=1
+
+# ---- 不依赖 tun0，立刻可做 ----
+ip route replace default via &quot;$PROXY_GW&quot; dev &quot;$LAN_DEV&quot;  table &quot;$RT&quot;
+ip route replace &quot;$LAN_NET&quot; dev &quot;$LAN_DEV&quot; src &quot;$LAN_IP&quot; table &quot;$RT&quot;
+
+# 显式指定 pref。不写的话由内核自动分配，那是运气不是设计。
+ip rule list | grep -q &quot;from ${VPN_NET}&quot; ||
+    ip rule add from &quot;$VPN_NET&quot; table &quot;$RT&quot; pref &quot;$PREF&quot;
+
+# ---- 依赖 tun0：等它真正带上地址，最多 60 秒 ----
+# 不能用固定 sleep：早了 tun0 还没起，下面这条会失败；晚了纯属白等。
+n=0
+until ip addr show &quot;$TUN_DEV&quot; 2&gt;/dev/null | grep -q &quot;inet ${TUN_IP}/&quot;; do
+    n=$((n + 1))
+    [ &quot;$n&quot; -ge 60 ] &amp;&amp; exit 0
+    sleep 1
+done
+
+# 修复点：回程路由。少了它，NAS 从 172.x.y.1 发出的回包会命中上面那条 rule，
+# 在 table 100 里只匹配到 default，被甩给旁路网关，再也回不到隧道。
+ip route replace &quot;$VPN_NET&quot; dev &quot;$TUN_DEV&quot; src &quot;$TUN_IP&quot; table &quot;$RT&quot;
+
+ip route flush cache
+exit 0
+</code></pre>
+<p>相比最初那版，有几处值得单独说：</p>
+<table>
+<thead>
+<tr>
+<th>改动</th>
+<th>原因</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>补回 <code>172.x.y.0/24 dev tun0</code></td>
+<td>本文的全部内容</td>
+</tr>
+<tr>
+<td><code>sleep 30</code> → 轮询等 tun0 带上地址</td>
+<td>固定 sleep 是赌运气：早了 <code>ip route ... dev tun0 src 172.x.y.1</code> 直接失败（源地址还不是本机地址），晚了白等。改成轮询后，脚本才具备"可反复执行"的前提</td>
+</tr>
+<tr>
+<td><code>ip rule add</code> 显式写 <code>pref</code></td>
+<td>不写 pref 时由内核自动分配。我这次恰好拿到 1（排在其他规则之前），换个加载顺序落到别的位置，匹配行为就变了</td>
+</tr>
+<tr>
+<td>补 <code>exit 0</code></td>
+<td>如果这脚本被用作 OpenVPN 的 <code>route-up</code> 钩子，<strong>返回非 0 会让 OpenVPN 直接退出</strong></td>
+</tr>
+<tr>
+<td><code>grep -q "from ${VPN_NET}"</code> 只匹配源前缀</td>
+<td>不匹配 <code>lookup</code> 部分。否则一旦给 table 100 在 <code>/etc/iproute2/rt_tables</code> 里起了名字，输出会从 <code>lookup 100</code> 变成 <code>lookup &lt;name&gt;</code>，幂等判断失效，重复执行会不断累积规则</td>
+</tr>
+</tbody>
+</table>
+<p>验证：</p>
+<pre><code>$ ping -c 3 172.x.y.1
+3 packets transmitted, 3 received, 0% packet loss
+rtt min/avg/max/mdev = 8.150/8.496/9.049/0.395 ms
+
+$ ip route get 172.x.y.2 from 172.x.y.1
+172.x.y.2 from 172.x.y.1 dev tun0  table 100        ← 留在隧道里了
+</code></pre>
+<p>防火墙重新启用后复测，不受影响。</p>
+<hr>
+<h2 id="六-一个没有查清的问题">六、一个没有查清的问题</h2>
+<p>诚实记录：NAS 上还挂着一个 OpenVPN 的 <code>route-up</code> 钩子脚本，内容正是上面那条回程路由命令。但在故障发生时，<strong>它加的路由并不在表里</strong>。</p>
+<p>OpenVPN 在故障前重启过，<code>route-up</code> 那行也在配置里，理论上应该执行了。到底是<strong>它压根没触发</strong>，还是<strong>触发了但路由后来被冲掉</strong>，我没能确定——根分区是 <code>noatime</code> 挂载的，<code>atime</code> 这条非侵入式线索用不了；日志里也没有记录。手工执行该脚本是正常的。</p>
+<p>要定论只有一个办法：重启 VPN 服务，然后立刻看 table 100。代价是掐断当前隧道。</p>
+<p><strong>但不管答案是哪个，工程结论是同一个：</strong> VPN 服务重启会销毁重建 tun0，而 Linux 内核在网卡消失时会清掉所有引用它的路由——<strong>自定义表也不例外</strong>。所以 table 100 里那条 <code>dev tun0</code> 的回程路由，在每次 VPN 服务重启后都会消失，而"开机跑一次"的任务不会再补。</p>
+<p>群晖的「触发的任务」只有开机/关机两种事件，没有"服务启动"钩子。所以要么依赖 OpenVPN 自己的 <code>route-up</code>（可靠性存疑），要么加一个定期任务轮询兜底，要么接受"每次改完 VPN 设置手动跑一次"。</p>
+<p>这是个真实的权衡，没有免费的正确答案。</p>
+<hr>
+<h2 id="七-可复用的排查清单">七、可复用的排查清单</h2>
+<p>按这个顺序走，大部分"某个地址访问不了"的问题都能收敛：</p>
+<pre><code class="language-sh"># 1. 包出去了吗？（客户端）
+tcpdump -ni &lt;出接口&gt; host &lt;目标&gt;
+
+# 2. 被丢弃还是没人监听？filtered vs closed 是完全不同的两件事
+nmap -Pn --reason -sS -p &lt;ports&gt; &lt;目标&gt;
+
+# 3. 目标和你以为的是同一台机器吗？TTL=1 打不穿任何路由器
+ping -t 1 &lt;目标&gt;
+
+# 4. 包到达对端内核了吗？（服务端）
+tcpdump -ni &lt;入接口&gt; host &lt;源&gt;
+#    到了却没回包 ⇒ 问题在出方向，别再查防火墙的 INPUT 了
+
+# 5. 回包会往哪走？—— 决定性的一步
+ip route get &lt;对端&gt; from &lt;本机应答用的源地址&gt;
+ip route get &lt;对端&gt;                          # 对照：不指定源地址
+ip rule show                                 # 看有没有按源匹配的规则
+ip route show table &lt;被命中的表&gt;              # 看那张表是不是&quot;残表&quot;
+</code></pre>
+<p>第 5 步里"带 <code>from</code> 和不带 <code>from</code> 结果不一样"就是决定性证据。</p>
+<hr>
+<h2 id="八-结语">八、结语</h2>
+<p>这个故障的技术根因只有一行路由，但它能活下来，靠的是三层叠加：</p>
+<ol>
+<li><strong>文档解释了 What，没解释 Why</strong>——"回程路由也要在这张表里"写了，但没写这条路由是给谁回程的。</li>
+<li><strong>旁边一句不完整的断言给了错误的安全感</strong>——"NAS 自己的流量源地址是内网地址，不命中"，对主动流量成立，对应答流量不成立。</li>
+<li><strong>落地脚本和设计文档没有对账</strong>——两条命令只抄了一条，而且没人复核。</li>
+</ol>
+<p>分层解耦是好设计，但每一层的边界条件都得自己守住。这次踩的坑，只有当一台机器<strong>同时是网关和主机</strong>时才会出现——它既要转发别人的包，又要用那个网关地址回自己的包，而策略路由只认源地址，分不清这两者。</p>
+</article>
+</body>
+</html>
