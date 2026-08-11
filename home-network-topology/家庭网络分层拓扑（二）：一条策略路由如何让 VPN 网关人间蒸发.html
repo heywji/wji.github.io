@@ -42,7 +42,7 @@ th{background:var(--code-bg);}
 <body>
 <article id="write">
 <h1 id="家庭网络分层拓扑-二-一条策略路由如何让-vpn-网关人间蒸发">家庭网络分层拓扑（二）：一条策略路由如何让 VPN 网关人间蒸发</h1>
-<div class="toc"><p class="toc-title">目录 / Step 导航</p><ul><li class="toc-l2"><a href="#一-tl-dr">一、TL;DR</a></li><li class="toc-l2"><a href="#二-症状">二、症状</a></li><li class="toc-l2"><a href="#三-排查-三个被证伪的假设">三、排查：三个被证伪的假设</a></li><li class="toc-l3"><a href="#3-1-假设一-客户端侧的问题">3.1 假设一：客户端侧的问题</a></li><li class="toc-l3"><a href="#3-2-假设二-nas-防火墙-证伪">3.2 假设二：NAS 防火墙 —— 证伪</a></li><li class="toc-l3"><a href="#3-3-假设三-搞错了机器-证伪">3.3 假设三：搞错了机器 —— 证伪</a></li><li class="toc-l3"><a href="#3-4-转折点一-filtered-还是-closed">3.4 转折点一：<code>filtered</code> 还是 <code>closed</code>？</a></li><li class="toc-l3"><a href="#3-5-转折点二-在服务端抓包">3.5 转折点二：在服务端抓包</a></li><li class="toc-l3"><a href="#3-6-定位-ip-route-get">3.6 定位：<code>ip route get</code></a></li><li class="toc-l2"><a href="#四-根因">四、根因</a></li><li class="toc-l3"><a href="#4-1-机制">4.1 机制</a></li><li class="toc-l3"><a href="#4-2-真正的教训-文档是对的-落地漏了一行">4.2 真正的教训：文档是对的，落地漏了一行</a></li><li class="toc-l3"><a href="#4-3-为什么-192-168-0-4-一直是好的">4.3 为什么 <code>192.168.0.4</code> 一直是好的</a></li><li class="toc-l3"><a href="#4-4-最精彩的细节-它能主动发包-却收不了包">4.4 最精彩的细节：它能主动发包，却收不了包</a></li><li class="toc-l2"><a href="#五-修复">五、修复</a></li><li class="toc-l2"><a href="#六-一个没有查清的问题">六、一个没有查清的问题</a></li><li class="toc-l2"><a href="#七-可复用的排查清单">七、可复用的排查清单</a></li><li class="toc-l2"><a href="#八-结语">八、结语</a></li></ul></div>
+<div class="toc"><p class="toc-title">目录 / Step 导航</p><ul><li class="toc-l2"><a href="#一-tl-dr">一、TL;DR</a></li><li class="toc-l2"><a href="#二-症状">二、症状</a></li><li class="toc-l2"><a href="#三-排查-三个被证伪的假设">三、排查：三个被证伪的假设</a></li><li class="toc-l3"><a href="#3-1-假设一-客户端侧的问题">3.1 假设一：客户端侧的问题</a></li><li class="toc-l3"><a href="#3-2-假设二-nas-防火墙-证伪">3.2 假设二：NAS 防火墙 —— 证伪</a></li><li class="toc-l3"><a href="#3-3-假设三-搞错了机器-证伪">3.3 假设三：搞错了机器 —— 证伪</a></li><li class="toc-l3"><a href="#3-4-转折点一-filtered-还是-closed">3.4 转折点一：<code>filtered</code> 还是 <code>closed</code>？</a></li><li class="toc-l3"><a href="#3-5-转折点二-在服务端抓包">3.5 转折点二：在服务端抓包</a></li><li class="toc-l3"><a href="#3-6-定位-ip-route-get">3.6 定位：<code>ip route get</code></a></li><li class="toc-l2"><a href="#四-根因">四、根因</a></li><li class="toc-l3"><a href="#4-1-机制">4.1 机制</a></li><li class="toc-l3"><a href="#4-2-真正的教训-文档是对的-落地漏了一行">4.2 真正的教训：文档是对的，落地漏了一行</a></li><li class="toc-l3"><a href="#4-3-为什么-192-168-0-4-一直是好的">4.3 为什么 <code>192.168.0.4</code> 一直是好的</a></li><li class="toc-l3"><a href="#4-4-最精彩的细节-它能主动发包-却收不了包">4.4 最精彩的细节：它能主动发包，却收不了包</a></li><li class="toc-l2"><a href="#五-修复">五、修复</a></li><li class="toc-l2"><a href="#六-实测-route-up-在-server-模式下根本不触发">六、实测：<code>route-up</code> 在 server 模式下根本不触发</a></li><li class="toc-l3"><a href="#实验设计">实验设计</a></li><li class="toc-l3"><a href="#结果">结果</a></li><li class="toc-l3"><a href="#顺带排除的几种可能">顺带排除的几种可能</a></li><li class="toc-l3"><a href="#一个没能复现的矛盾">一个没能复现的矛盾</a></li><li class="toc-l3"><a href="#工程结论">工程结论</a></li><li class="toc-l2"><a href="#七-可复用的排查清单">七、可复用的排查清单</a></li><li class="toc-l2"><a href="#八-结语">八、结语</a></li></ul></div>
 <blockquote>
 <p>上一篇<a href="./家庭网络分层拓扑：从远端笔记本到双出口的完整链路.html">《家庭网络分层拓扑：从远端笔记本到双出口的完整链路》</a>讲了这套拓扑<strong>该怎么搭</strong>。这一篇讲它<strong>怎么坏的</strong>——一个只错了一行、却让人绕了整整一晚的故障。</p>
 <p>最讽刺的地方在于：<strong>上一篇里已经写对了那一行，落地时却没抄进去。</strong> 而上一篇紧接着的另一句解释，恰好让那一行看起来可以省。</p>
@@ -334,13 +334,75 @@ $ ip route get 172.x.y.2 from 172.x.y.1
 </code></pre>
 <p>防火墙重新启用后复测，不受影响。</p>
 <hr>
-<h2 id="六-一个没有查清的问题">六、一个没有查清的问题</h2>
-<p>诚实记录：NAS 上还挂着一个 OpenVPN 的 <code>route-up</code> 钩子脚本，内容正是上面那条回程路由命令。但在故障发生时，<strong>它加的路由并不在表里</strong>。</p>
-<p>OpenVPN 在故障前重启过，<code>route-up</code> 那行也在配置里，理论上应该执行了。到底是<strong>它压根没触发</strong>，还是<strong>触发了但路由后来被冲掉</strong>，我没能确定——根分区是 <code>noatime</code> 挂载的，<code>atime</code> 这条非侵入式线索用不了；日志里也没有记录。手工执行该脚本是正常的。</p>
-<p>要定论只有一个办法：重启 VPN 服务，然后立刻看 table 100。代价是掐断当前隧道。</p>
-<p><strong>但不管答案是哪个，工程结论是同一个：</strong> VPN 服务重启会销毁重建 tun0，而 Linux 内核在网卡消失时会清掉所有引用它的路由——<strong>自定义表也不例外</strong>。所以 table 100 里那条 <code>dev tun0</code> 的回程路由，在每次 VPN 服务重启后都会消失，而"开机跑一次"的任务不会再补。</p>
-<p>群晖的「触发的任务」只有开机/关机两种事件，没有"服务启动"钩子。所以要么依赖 OpenVPN 自己的 <code>route-up</code>（可靠性存疑），要么加一个定期任务轮询兜底，要么接受"每次改完 VPN 设置手动跑一次"。</p>
-<p>这是个真实的权衡，没有免费的正确答案。</p>
+<h2 id="六-实测-route-up-在-server-模式下根本不触发">六、实测：<code>route-up</code> 在 server 模式下根本不触发</h2>
+<p>修好之后还剩一个问题：这条回程路由<strong>该挂在哪里才不会再丢</strong>？</p>
+<p>NAS 上原本挂着一个 OpenVPN 的 <code>route-up</code> 钩子脚本，内容正是那条回程路由命令。如果它可靠，那就够了，不需要别的。但故障发生时它加的路由并不在表里——所以它到底有没有被执行过，必须实测。</p>
+<h3 id="实验设计">实验设计</h3>
+<p>一次重启，同时回答两个问题：<strong>钩子有没有被调用</strong>、<strong>路由会不会自己回来</strong>。</p>
+<ol>
+<li>给 <code>route-up.sh</code> 插两条<strong>互相独立</strong>的埋点：写文件 + <code>logger</code> 进 syslog。任何一条留下记录，就证明它被执行过。</li>
+<li>删掉 table 100 里的回程路由。</li>
+<li>重启 VPN 服务。</li>
+<li><strong>每秒采样一次</strong> table 100，连续 150 秒，记录路由首次出现的精确秒数。</li>
+</ol>
+<p>因为重启会掐断隧道（而我正是从这条隧道连进 NAS 的），整个流程写成脚本用 <code>setsid nohup</code> 脱离终端执行，结果落盘，等隧道恢复后再回来取。</p>
+<h3 id="结果">结果</h3>
+<pre><code>[01:21:15] del rc=0 ; table100 条数=2          ← 回程路由已删除
+[01:21:15] &gt;&gt;&gt; synopkg restart VPNCenter
+           restart package [VPNCenter] successfully
+[01:22:21] &lt;&lt;&lt; restart rc=0                    ← 服务确实重启,openvpn 新 PID @ 01:22:00
+[01:24:53] *** 150 秒内路由从未出现 ***
+--- route-up 自证日志 ---                       (空)
+--- syslog 中的埋点 ---                          (空)
+</code></pre>
+<p>两条独立埋点<strong>全部为空</strong>。而同一个脚本手工执行完全正常：</p>
+<pre><code>[01:19:46] route-up FIRED  dev=tun0 ifconfig_local=172.x.y.1
+[01:19:46] route-up ip-route rc=0
+</code></pre>
+<p>所以不是脚本坏了，是 <strong>OpenVPN 压根没有调用它</strong>。</p>
+<p>原因大概率在于 <code>--route-up</code> 的语义是"<strong>路由添加完成后</strong>执行"。一个 <code>--server</code> 实例并不为自己添加客户端路由，这个钩子自然就没有触发点。文档里它看起来像个通用的"隧道起来后执行"钩子，实际上不是。</p>
+<blockquote>
+<p><strong>教训五：没验证过的兜底，比没有兜底更危险。</strong> 这个脚本躺在那儿好几天，看起来像一层保险，实际从未执行过一次。它唯一的作用是让人误以为问题已经被兜住了——包括写它的人自己。<strong>任何自动恢复机制，都必须真的触发一次给你看。</strong></p>
+</blockquote>
+<h3 id="顺带排除的几种可能">顺带排除的几种可能</h3>
+<table>
+<thead>
+<tr>
+<th>可能性</th>
+<th>排除方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DSM 开机任务补上的</td>
+<td><code>last_start_time</code> 仍停在上次开机，期间没有重跑</td>
+</tr>
+<tr>
+<td>有什么在轮询</td>
+<td>删掉后静置 30 秒，路由始终没有回来</td>
+</tr>
+<tr>
+<td>表号撞车（DSM 也在用 100）</td>
+<td><code>/etc/iproute2/rt_tables</code> 里只有 2/3/5/7/8，没有 100</td>
+</tr>
+<tr>
+<td>别的脚本在写这张表</td>
+<td>全盘 grep <code>table 100</code>、VPN 套件启停脚本、crontab，均无结果</td>
+</tr>
+</tbody>
+</table>
+<h3 id="一个没能复现的矛盾">一个没能复现的矛盾</h3>
+<p>诚实记录：中间还有一轮 5 秒粒度的测试，路由曾在重启后约 28 秒出现过一次。上面这轮 1 秒粒度、150 秒的严格测试没能复现，上表里的几种可能也都排除了，<strong>我没查出那次是谁加的</strong>。</p>
+<p>我按否定结论定性——它更保守，也和更严格的那次测试一致。但把这个矛盾记在这里，因为一份只写"结论很干净"的 RCA 是不可信的。</p>
+<h3 id="工程结论">工程结论</h3>
+<p><code>route-up</code> 这条路走不通，所以：</p>
+<ul>
+<li>VPN 服务重启会销毁重建 tun0，Linux 内核在网卡消失时会清掉所有引用它的路由——<strong>自定义表也不例外</strong>。</li>
+<li>群晖的「触发的任务」只有开机/关机两种事件，<strong>没有"服务启动"钩子</strong>。</li>
+<li>因此"开机跑一次"不够：只要在面板里改一次 VPN 设置触发重启，回程路由就没了，一直到下次重启 NAS 或手动补一次为止。</li>
+</ul>
+<p><strong>唯一的自愈手段是轮询</strong>：把第五节那个幂等脚本再注册一个「计划的任务 → 每天，重复间隔 5 分钟」。脚本本身设计成可反复执行就是为了这个。</p>
+<p>那个从未执行过的 <code>route-up.sh</code>，连同配置里的 <code>route-up</code> 和 <code>script-security 2</code> 两行，已经一并删掉了。留着只会让下一个排查的人（很可能就是几个月后的自己）以为有兜底。</p>
 <hr>
 <h2 id="七-可复用的排查清单">七、可复用的排查清单</h2>
 <p>按这个顺序走，大部分"某个地址访问不了"的问题都能收敛：</p>
@@ -366,11 +428,12 @@ ip route show table &lt;被命中的表&gt;              # 看那张表是不是
 <p>第 5 步里"带 <code>from</code> 和不带 <code>from</code> 结果不一样"就是决定性证据。</p>
 <hr>
 <h2 id="八-结语">八、结语</h2>
-<p>这个故障的技术根因只有一行路由，但它能活下来，靠的是三层叠加：</p>
+<p>这个故障的技术根因只有一行路由，但它能活下来，靠的是四层叠加：</p>
 <ol>
 <li><strong>文档解释了 What，没解释 Why</strong>——"回程路由也要在这张表里"写了，但没写这条路由是给谁回程的。</li>
 <li><strong>旁边一句不完整的断言给了错误的安全感</strong>——"NAS 自己的流量源地址是内网地址，不命中"，对主动流量成立，对应答流量不成立。</li>
 <li><strong>落地脚本和设计文档没有对账</strong>——两条命令只抄了一条，而且没人复核。</li>
+<li><strong>兜底机制从未被验证过</strong>——那个 <code>route-up</code> 钩子看起来能补回丢失的路由，实测证明它一次都没执行过。它没有修复任何问题，只是让人以为问题已经被修复了。</li>
 </ol>
 <p>分层解耦是好设计，但每一层的边界条件都得自己守住。这次踩的坑，只有当一台机器<strong>同时是网关和主机</strong>时才会出现——它既要转发别人的包，又要用那个网关地址回自己的包，而策略路由只认源地址，分不清这两者。</p>
 </article>
