@@ -42,7 +42,7 @@ th{background:var(--code-bg);}
 <body>
 <article id="write">
 <h1 id="家庭网络分层拓扑-二-一条策略路由如何让-vpn-网关人间蒸发">家庭网络分层拓扑（二）：一条策略路由如何让 VPN 网关人间蒸发</h1>
-<div class="toc"><p class="toc-title">目录 / Step 导航</p><ul><li class="toc-l2"><a href="#一-tl-dr">一、TL;DR</a></li><li class="toc-l2"><a href="#二-症状">二、症状</a></li><li class="toc-l2"><a href="#三-排查-三个被证伪的假设">三、排查：三个被证伪的假设</a></li><li class="toc-l3"><a href="#3-1-假设一-客户端侧的问题">3.1 假设一：客户端侧的问题</a></li><li class="toc-l3"><a href="#3-2-假设二-nas-防火墙-证伪">3.2 假设二：NAS 防火墙 —— 证伪</a></li><li class="toc-l3"><a href="#3-3-假设三-搞错了机器-证伪">3.3 假设三：搞错了机器 —— 证伪</a></li><li class="toc-l3"><a href="#3-4-转折点一-filtered-还是-closed">3.4 转折点一：<code>filtered</code> 还是 <code>closed</code>？</a></li><li class="toc-l3"><a href="#3-5-转折点二-在服务端抓包">3.5 转折点二：在服务端抓包</a></li><li class="toc-l3"><a href="#3-6-定位-ip-route-get">3.6 定位：<code>ip route get</code></a></li><li class="toc-l2"><a href="#四-根因">四、根因</a></li><li class="toc-l3"><a href="#4-1-机制">4.1 机制</a></li><li class="toc-l3"><a href="#4-2-真正的教训-文档是对的-落地漏了一行">4.2 真正的教训：文档是对的，落地漏了一行</a></li><li class="toc-l3"><a href="#4-3-为什么-192-168-0-4-一直是好的">4.3 为什么 <code>192.168.0.4</code> 一直是好的</a></li><li class="toc-l3"><a href="#4-4-最精彩的细节-它能主动发包-却收不了包">4.4 最精彩的细节：它能主动发包，却收不了包</a></li><li class="toc-l2"><a href="#五-修复">五、修复</a></li><li class="toc-l2"><a href="#六-实测-route-up-在-server-模式下根本不触发">六、实测：<code>route-up</code> 在 server 模式下根本不触发</a></li><li class="toc-l3"><a href="#实验设计">实验设计</a></li><li class="toc-l3"><a href="#结果">结果</a></li><li class="toc-l3"><a href="#顺带排除的几种可能">顺带排除的几种可能</a></li><li class="toc-l3"><a href="#一个没能复现的矛盾">一个没能复现的矛盾</a></li><li class="toc-l3"><a href="#工程结论">工程结论</a></li><li class="toc-l2"><a href="#七-可复用的排查清单">七、可复用的排查清单</a></li><li class="toc-l2"><a href="#八-结语">八、结语</a></li></ul></div>
+<div class="toc"><p class="toc-title">目录 / Step 导航</p><ul><li class="toc-l2"><a href="#一-tl-dr">一、TL;DR</a></li><li class="toc-l2"><a href="#二-症状">二、症状</a></li><li class="toc-l2"><a href="#三-排查-三个被证伪的假设">三、排查：三个被证伪的假设</a></li><li class="toc-l3"><a href="#3-1-假设一-客户端侧的问题">3.1 假设一：客户端侧的问题</a></li><li class="toc-l3"><a href="#3-2-假设二-nas-防火墙-证伪">3.2 假设二：NAS 防火墙 —— 证伪</a></li><li class="toc-l3"><a href="#3-3-假设三-搞错了机器-证伪">3.3 假设三：搞错了机器 —— 证伪</a></li><li class="toc-l3"><a href="#3-4-转折点一-filtered-还是-closed">3.4 转折点一：<code>filtered</code> 还是 <code>closed</code>？</a></li><li class="toc-l3"><a href="#3-5-转折点二-在服务端抓包">3.5 转折点二：在服务端抓包</a></li><li class="toc-l3"><a href="#3-6-定位-ip-route-get">3.6 定位：<code>ip route get</code></a></li><li class="toc-l2"><a href="#四-根因">四、根因</a></li><li class="toc-l3"><a href="#4-1-机制">4.1 机制</a></li><li class="toc-l3"><a href="#4-2-真正的教训-文档是对的-落地漏了一行">4.2 真正的教训：文档是对的，落地漏了一行</a></li><li class="toc-l3"><a href="#4-3-为什么-192-168-0-4-一直是好的">4.3 为什么 <code>192.168.0.4</code> 一直是好的</a></li><li class="toc-l3"><a href="#4-4-最精彩的细节-它能主动发包-却收不了包">4.4 最精彩的细节：它能主动发包，却收不了包</a></li><li class="toc-l2"><a href="#五-修复">五、修复</a></li><li class="toc-l2"><a href="#六-实测-route-up-在-server-模式下根本不触发">六、实测：<code>route-up</code> 在 server 模式下根本不触发</a></li><li class="toc-l3"><a href="#实验设计">实验设计</a></li><li class="toc-l3"><a href="#结果">结果</a></li><li class="toc-l3"><a href="#插曲-我自己也踩了一次同样的坑">插曲：我自己也踩了一次同样的坑</a></li><li class="toc-l3"><a href="#route-up-的结论不受影响"><code>route-up</code> 的结论不受影响</a></li><li class="toc-l3"><a href="#工程结论">工程结论</a></li><li class="toc-l2"><a href="#七-可复用的排查清单">七、可复用的排查清单</a></li><li class="toc-l2"><a href="#八-结语">八、结语</a></li></ul></div>
 <blockquote>
 <p>上一篇<a href="./家庭网络分层拓扑：从远端笔记本到双出口的完整链路.html">《家庭网络分层拓扑：从远端笔记本到双出口的完整链路》</a>讲了这套拓扑<strong>该怎么搭</strong>。这一篇讲它<strong>怎么坏的</strong>——一个只错了一行、却让人绕了整整一晚的故障。</p>
 <p>最讽刺的地方在于：<strong>上一篇里已经写对了那一行，落地时却没抄进去。</strong> 而上一篇紧接着的另一句解释，恰好让那一行看起来可以省。</p>
@@ -364,7 +364,58 @@ $ ip route get 172.x.y.2 from 172.x.y.1
 <blockquote>
 <p><strong>教训五：没验证过的兜底，比没有兜底更危险。</strong> 这个脚本躺在那儿好几天，看起来像一层保险，实际从未执行过一次。它唯一的作用是让人误以为问题已经被兜住了——包括写它的人自己。<strong>任何自动恢复机制，都必须真的触发一次给你看。</strong></p>
 </blockquote>
-<h3 id="顺带排除的几种可能">顺带排除的几种可能</h3>
+<h3 id="插曲-我自己也踩了一次同样的坑">插曲：我自己也踩了一次同样的坑</h3>
+<p>测试过程中出现过一个当时无法解释的现象：另一轮 5 秒粒度的测试里，路由曾在重启后约 28 秒<strong>自己出现过一次</strong>。我当时排查了一圈，得出"没有任何东西在轮询"的结论，理由是这两条：</p>
+<ul>
+<li>查 DSM 的任务库 <code>esynoscheduler.db</code>，里面只有一个开机触发的任务；</li>
+<li>把路由删掉后<strong>静置 30 秒</strong>观察，它没有回来。</li>
+</ul>
+<p><strong>两条都是错的。</strong></p>
+<p>第一条错在<strong>只查了一半</strong>。群晖把任务分成两处存：事件触发的（开机/关机）在 <code>esynoscheduler.db</code>，而<strong>定时的在 <code>/usr/syno/etc/synoschedule.d/&lt;用户&gt;/&lt;id&gt;.task</code></strong>。我只查了前者，于是把一个一直在跑的 5 分钟定时任务判成了"不存在"。</p>
+<p>第二条错在<strong>观测窗口比被观测周期还短</strong>。用 30 秒的观察去否定一个 5 分钟周期的进程，本来就不可能看见它。</p>
+<p>而那轮"150 秒内路由从未出现"的严格测试，同样栽在窗口上——采样在 <code>01:24:53</code> 结束，定时任务的下一个刻度是 <code>01:25:00</code>，<strong>差 7 秒</strong>。</p>
+<p>对上时间线，一切都吻合：</p>
+<table>
+<thead>
+<tr>
+<th>时刻</th>
+<th>事件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>01:14:15</td>
+<td>测试删除回程路由</td>
+</tr>
+<tr>
+<td><strong>01:15:00</strong></td>
+<td><strong>定时任务触发，恢复路由</strong></td>
+</tr>
+<tr>
+<td>01:15:32</td>
+<td>采样到"路由回来了" → 当时判为无法解释</td>
+</tr>
+<tr>
+<td>01:21:15</td>
+<td>严格测试删除回程路由</td>
+</tr>
+<tr>
+<td>01:24:53</td>
+<td>采样窗口结束，报告"150 秒内从未出现"</td>
+</tr>
+<tr>
+<td><strong>01:25:00</strong></td>
+<td><strong>定时任务触发——比窗口晚 7 秒</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>教训六：负面结论比正面结论更难成立。</strong> "我看到 X 发生了"只需要一次观测；"X 不会发生"却要求你的观测覆盖了它可能发生的全部时空。<strong>周期性行为的观测窗口必须长于它的周期</strong>，而"我在某处没找到"永远不等于"它不存在"——先问清楚还有没有别的地方要找。</p>
+</blockquote>
+<h3 id="route-up-的结论不受影响"><code>route-up</code> 的结论不受影响</h3>
+<p>上面这个错误没有动摇 route-up 的判定，因为那次判定不依赖于窗口长度：</p>
+<p>openvpn 于 <code>01:22:00</code> 启动，采样从 <code>01:22:21</code> 开始。<strong>如果 route-up 在服务启动时触发过，路由在采样的第一秒就应该已经在表里了</strong>——而它全程缺失，两条独立埋点也全为空。定时任务的刻度在窗口之外，不构成干扰。</p>
+<p>顺带排除的其他可能：</p>
 <table>
 <thead>
 <tr>
@@ -374,26 +425,15 @@ $ ip route get 172.x.y.2 from 172.x.y.1
 </thead>
 <tbody>
 <tr>
-<td>DSM 开机任务补上的</td>
-<td><code>last_start_time</code> 仍停在上次开机，期间没有重跑</td>
-</tr>
-<tr>
-<td>有什么在轮询</td>
-<td>删掉后静置 30 秒，路由始终没有回来</td>
-</tr>
-<tr>
 <td>表号撞车（DSM 也在用 100）</td>
 <td><code>/etc/iproute2/rt_tables</code> 里只有 2/3/5/7/8，没有 100</td>
 </tr>
 <tr>
 <td>别的脚本在写这张表</td>
-<td>全盘 grep <code>table 100</code>、VPN 套件启停脚本、crontab，均无结果</td>
+<td>全盘 grep <code>172.x.y</code>、VPN 套件启停脚本、<code>synocrond</code> 全部内置任务，均无结果</td>
 </tr>
 </tbody>
 </table>
-<h3 id="一个没能复现的矛盾">一个没能复现的矛盾</h3>
-<p>诚实记录：中间还有一轮 5 秒粒度的测试，路由曾在重启后约 28 秒出现过一次。上面这轮 1 秒粒度、150 秒的严格测试没能复现，上表里的几种可能也都排除了，<strong>我没查出那次是谁加的</strong>。</p>
-<p>我按否定结论定性——它更保守，也和更严格的那次测试一致。但把这个矛盾记在这里，因为一份只写"结论很干净"的 RCA 是不可信的。</p>
 <h3 id="工程结论">工程结论</h3>
 <p><code>route-up</code> 这条路走不通，所以：</p>
 <ul>
@@ -402,6 +442,11 @@ $ ip route get 172.x.y.2 from 172.x.y.1
 <li>因此"开机跑一次"不够：只要在面板里改一次 VPN 设置触发重启，回程路由就没了，一直到下次重启 NAS 或手动补一次为止。</li>
 </ul>
 <p><strong>唯一的自愈手段是轮询</strong>：把第五节那个幂等脚本再注册一个「计划的任务 → 每天，重复间隔 5 分钟」。脚本本身设计成可反复执行就是为了这个。</p>
+<p>这一条是实测过的——按教训五的要求，让它真的触发一次给我看：</p>
+<pre><code>[T+0]    删除 table 100 的回程路由
+[T+140s] 路由自动恢复,ping 172.x.y.1 → 0% 丢包, 8.7ms
+</code></pre>
+<p>140 秒，正好落在下一个 5 分钟刻度上。</p>
 <p>那个从未执行过的 <code>route-up.sh</code>，连同配置里的 <code>route-up</code> 和 <code>script-security 2</code> 两行，已经一并删掉了。留着只会让下一个排查的人（很可能就是几个月后的自己）以为有兜底。</p>
 <hr>
 <h2 id="七-可复用的排查清单">七、可复用的排查清单</h2>
