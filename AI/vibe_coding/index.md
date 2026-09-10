@@ -55,31 +55,7 @@
 
 这条线的重点是：上传服装图、生成多视角时尚图、保存历史作品与元数据。
 
-### 4. [Cursor Agent Browser 登录方案](./cursor_agent_browser_login/index.md)
-
-关键词：
-
-- Cursor
-- MCP Browser
-- 验证码
-- 登录流程
-- Playwright
-
-这条线的重点是：用 Cursor Agent Browser 完成登录工作流，并保留本地等价验证方案。
-
-### 5. [Sojiang Survey Assistant](./sojiang_survey_assistant/index.md)
-
-关键词：
-
-- Survey
-- Playwright
-- Gemini / OpenAI / Claude
-- 验证码
-- 自动回填
-
-这条线的重点是：登录、验证码、题目提取、LLM 候选答案、自动回填和测试产物。
-
-### 6. [Gemini API 中转站](./nano_banana_gemini_proxy/index.md)
+### 4. [Gemini API 中转站](./nano_banana_gemini_proxy/index.md)
 
 关键词：
 

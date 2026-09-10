@@ -9,31 +9,6 @@
 
 [TOC]
 
-## <center>Services & Digital Products</center>
-
-这个博客主要记录我的技术学习、工作经验和个人项目。随着内容越来越多，我把其中一部分可以被复用、交付或进一步咨询的内容，整理到了独立页面：
-
-### 🛒 [Ji Wenkang 技术服务与数字资源](https://buy.jiwenkang.com/)
-
-它不是一个传统意义上的“商品店”，更像是这个博客的延伸：
-
-* **博客**：记录学习路径、技术文章、项目索引和个人经历；
-* **Buy 页面**：整理可以预约、购买、交付或进一步展开的服务与资源；
-* **Prompt Library / Vibe Coding**：沉淀可复用的 Prompt 包、项目手册和自动化工具；
-* **Red Hat / KVM / Virtio-Win / OpenShift**：沉淀技术咨询、排障笔记和实验环境方案。
-
-适合访问 Buy 页面的场景：
-
-* 想系统学习 Linux / KVM / OpenShift / Red Hat 认证；
-* 想请我帮忙看一个虚拟化、容器、网络或 Homelab 问题；
-* 想获取 Prompt、脚本、部署手册或实验资源；
-* 想搭建 NAS、软路由、AI API、内网穿透或个人数字基础设施；
-* 想定制自动化脚本、数据监控工具或个人 AI Agent。
-
-👉 [进入 Ji Wenkang 技术服务与数字资源页面](https://buy.jiwenkang.com/)
-
----
-
 ## <center>Tech Knowledges</center>
 
 ### General Linux
@@ -107,8 +82,6 @@
 
 把我本地已经在用、以及已经归档过的 prompt 资源拆开收纳。这里不混成一坨，而是按“单条 prompt / prompt 源码项目 / system prompt 归档”分开挂，同时在首页直接放一批可读入口。
 
-> 部分已经沉淀成可复用的 Prompt 工作流、AI Agent 模板或 Vibe Coding 项目手册，会逐步整理到：[buy.jiwenkang.com](https://buy.jiwenkang.com/)
-
 ##### Local Workflow Prompts
 
 * [ChatGPT System Prompt Snapshot](./AI/prompts/chatgpt_system_prompt_snapshot.md)
@@ -137,13 +110,9 @@
 
 把我自己已经跑通过、并且能继续交给 AI 复现的项目整理成一个手册库。这里不只放一个项目，而是持续收纳 Gemini、Cursor、语音输入、图像生成、中转服务之类的 Vibe Coding 项目，每个项目再进入自己的执行手册。
 
-> 部分已经跑通的项目会进一步整理成可复用的交付版本、部署手册或源码资源，统一收录在：[buy.jiwenkang.com](https://buy.jiwenkang.com/)
-
 * [前台文本发送助手](./AI/vibe_coding/frontstage_text_sender/index.md)
 * [Xfyun Wayland 实时语音输入](./AI/vibe_coding/xfyun_wayland_asr/index.md)
 * [Nanobanana AI 时尚工作室](./AI/vibe_coding/nanobanana_studio/index.md)
-* [Cursor Agent Browser 登录方案](./AI/vibe_coding/cursor_agent_browser_login/index.md)
-* [Sojiang Survey Assistant](./AI/vibe_coding/sojiang_survey_assistant/index.md)
 * [Gemini API 中转站](./AI/vibe_coding/nano_banana_gemini_proxy/index.md)
 
 ## <center>Document</center>
@@ -183,10 +152,14 @@
 
   * Tips：兔子是非常聪明的宠物，饲养需要多喂水，大量供草，尽早绝育。
 
-* 【从 2022 年 02 月 至 2026 年 07 月】前 Red Hat 虚拟化团队员工 [wji@redhat.com](mailto:wji@redhat.com)（IBM 为 Red Hat 母公司）
+* 【2026 年 06 月 15 日至今】Red Hat Customer Success Executive（CSE），上海，APAC SA & Adoption 团队。 [wji@redhat.com](mailto:wji@redhat.com)
+
+  * 帮助客户制定并推进客户成功计划，跟踪产品采用情况与业务目标；协调销售、技术、支持和交付团队，推动阻塞问题解决、主动管理风险，并收集客户反馈。
+
+* 【从 2022 年 02 月 至 2026 年 06 月】Red Hat 虚拟化团队，研发与质量工程（R&D/QE）
 
   * [质量工程师的旅程：从学习者到领导者](./redhat/质量工程师的旅程：从学习者到领导者.mp4)
-  * 目前工作在以下开源项目中：
+  * 在虚拟化团队期间参与的开源项目：
 
     * Our Goal: [Virtio-Win 性能架构解析](./redhat/Virtio-win 性能架构解析.png)
     * Virtio-Win 开源项目：[kvm-guest-drivers-windows](https://github.com/virtio-win/kvm-guest-drivers-windows)
@@ -222,7 +195,7 @@
 
   * 上海科管 — 饶老师，带我进入 Linux 世界的引导者。
   * 红帽 GLS 团队 — 贺老师，领我进入 Red Hat 公司的指路人。
-* 在红帽公司期间遇到的部分同事，在此感谢：
+* 在红帽虚拟化团队工作期间遇到的部分同事，在此感谢：
 
   * Product Owner: [Yan Vugenfirer](https://www.linkedin.com/in/yanvugenfirer/)
   * Manager: [Qianqian Zhu](https://www.linkedin.com/in/qianqian-zhu-1aa45a35b/)
@@ -251,6 +224,29 @@
 ### Tool Links
 
 * [手写风格画图](https://excalidraw.com)
+
+---
+
+## <center>Services & Digital Products</center>
+
+这个博客主要记录我的技术学习、工作经验和个人项目。随着内容越来越多，我把其中一部分可以被复用、交付或进一步咨询的内容，整理到了独立页面：
+
+### 🛒 [Ji Wenkang 技术服务与数字资源](https://buy.jiwenkang.com/)
+
+它不是一个传统意义上的“商品店”，更像是这个博客的延伸：
+
+* **博客**：记录学习路径、技术文章、项目索引和个人经历；
+* **Buy 页面**：整理可以预约、购买、交付或进一步展开的服务与资源；
+* **Prompt Library / Vibe Coding**：沉淀可复用的 Prompt 包、项目手册和自动化工具；
+* **Red Hat / KVM / Virtio-Win / OpenShift**：沉淀技术咨询、排障笔记和实验环境方案。
+
+适合访问 Buy 页面的场景：
+
+* 想系统学习 Linux / KVM / OpenShift / Red Hat 认证；
+* 想请我帮忙看一个虚拟化、容器、网络或 Homelab 问题；
+* 想获取 Prompt、脚本、部署手册或实验资源；
+* 想搭建 NAS、软路由、AI API、内网穿透或个人数字基础设施；
+* 想定制自动化脚本、数据监控工具或个人 AI Agent。
 
 ---
 
