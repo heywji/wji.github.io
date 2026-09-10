@@ -152,7 +152,7 @@
 
   * Tips：兔子是非常聪明的宠物，饲养需要多喂水，大量供草，尽早绝育。
 
-* 【2026 年 06 月 15 日至今】Red Hat Customer Success Executive（CSE），上海，APAC SA & Adoption 团队。 [wji@redhat.com](mailto:wji@redhat.com)
+* 【2026 年 06 月 15 日至今】Red Hat Customer Success Executive（CSE），上海，APAC SA & Adoption 团队。
 
   * 帮助客户制定并推进客户成功计划，跟踪产品采用情况与业务目标；协调销售、技术、支持和交付团队，推动阻塞问题解决、主动管理风险，并收集客户反馈。
 
@@ -168,8 +168,6 @@
     * Virtio-Win 安装包：[virtio-win-guest-tools-installer](https://github.com/virtio-win/virtio-win-guest-tools-installer)
     * 测试框架：[avocado-framework](https://github.com/avocado-framework/avocado-vt/)
     * 测试用例：[tp-qemu](https://github.com/autotest/tp-qemu/)
-
-* 联系我：[wenkangji@gmail.com](mailto:wenkangji@gmail.com) / WeChat: ShanghaiedKang
 
 
 ## <center>Honours</center>
@@ -247,6 +245,13 @@
 * 想获取 Prompt、脚本、部署手册或实验资源；
 * 想搭建 NAS、软路由、AI API、内网穿透或个人数字基础设施；
 * 想定制自动化脚本、数据监控工具或个人 AI Agent。
+
+**付费咨询与联系**
+
+技术咨询、排障与定制开发为付费服务。请先在上方页面选购服务，完成购买后再邮件联系，并附上订单信息和具体需求。
+
+* 个人服务与订单：[wenkangji@gmail.com](mailto:wenkangji@gmail.com)
+* Red Hat 工作事务：[wji@redhat.com](mailto:wji@redhat.com)
 
 ---
 
