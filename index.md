@@ -246,11 +246,11 @@
 * 想搭建 NAS、软路由、AI API、内网穿透或个人数字基础设施；
 * 想定制自动化脚本、数据监控工具或个人 AI Agent。
 
-**付费咨询与联系**
+**服务咨询与联系**
 
-技术咨询、排障与定制开发为付费服务。请先在上方页面选购服务，完成购买后再邮件联系，并附上订单信息和具体需求。
+咨询前可先浏览上方的服务与资源介绍，来信时请简要说明需求。
 
-* 个人服务与订单：[wenkangji@gmail.com](mailto:wenkangji@gmail.com)
+* 个人服务咨询：[wenkangji@gmail.com](mailto:wenkangji@gmail.com)
 * Red Hat 工作事务：[wji@redhat.com](mailto:wji@redhat.com)
 
 ---
