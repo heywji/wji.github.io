@@ -248,8 +248,9 @@
 
 **服务咨询与联系**
 
-咨询前可先浏览上方的服务与资源介绍，来信时请简要说明需求。
+咨询前可先浏览上方的服务与资源介绍，来信时请简要说明需求；也可以直接预约一次 30 分钟线上沟通。
 
+* 预约线上沟通：[calendly.com/wenkangji](https://calendly.com/wenkangji/30min)
 * 个人服务咨询：[wenkangji@gmail.com](mailto:wenkangji@gmail.com)
 * Red Hat 工作事务：[wji@redhat.com](mailto:wji@redhat.com)
 
