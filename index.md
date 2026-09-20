@@ -45,6 +45,7 @@
 - [OpenWrt 双出口分流：在不动主链路的前提下增加第二个境外出口](./openwrt-dual-egress/OpenWrt 双出口分流：在不动主链路的前提下增加第二个境外出口.html)（[md 源](./openwrt-dual-egress/OpenWrt 双出口分流：在不动主链路的前提下增加第二个境外出口.md)）
 - [家庭网络分层拓扑：从远端笔记本到双出口的完整链路](./home-network-topology/家庭网络分层拓扑：从远端笔记本到双出口的完整链路.html)（[md 源](./home-network-topology/家庭网络分层拓扑：从远端笔记本到双出口的完整链路.md)）
 - [家庭网络分层拓扑（二）：一条策略路由如何让 VPN 网关人间蒸发](./home-network-topology/家庭网络分层拓扑（二）：一条策略路由如何让 VPN 网关人间蒸发.html)（[md 源](./home-network-topology/家庭网络分层拓扑（二）：一条策略路由如何让 VPN 网关人间蒸发.md)）
+- [远程给朋友修 VPN：有了 AI 之后，一次运维排障是怎么进行的](./ai-assisted-ops/远程给朋友修 VPN：有了 AI 之后，一次运维排障是怎么进行的.html)（[md 源](./ai-assisted-ops/远程给朋友修 VPN：有了 AI 之后，一次运维排障是怎么进行的.md)）
 
 ### Qemu-KVM Virtualization
 
@@ -77,6 +78,7 @@
 - [CS146S: The Modern Software Developer](https://themodernsoftware.dev/)
 - [Deep Learning](https://ocw.mit.edu/courses/6-7960-deep-learning-fall-2024/pages/syllabus/)
 - [codechangeai](./AI/codechangeai.md)
+- [远程给朋友修 VPN：有了 AI 之后，一次运维排障是怎么进行的](./ai-assisted-ops/远程给朋友修 VPN：有了 AI 之后，一次运维排障是怎么进行的.html)（[md 源](./ai-assisted-ops/远程给朋友修 VPN：有了 AI 之后，一次运维排障是怎么进行的.md)）
 
 #### Prompt Library
 

@@ -1,0 +1,458 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>远程给朋友修 VPN：有了 AI 之后，一次运维排障是怎么进行的</title>
+<style>
+:root{--bg:#fff;--fg:#2b2b2b;--muted:#6a737d;--border:#e1e4e8;--code-bg:#f6f8fa;--accent:#2f6f4f;--quote-bg:#f6f8fa;--quote-bar:#2f6f4f;}
+@media (prefers-color-scheme:dark){:root{--bg:#1b1d1e;--fg:#d6d6d6;--muted:#9aa0a6;--border:#33383d;--code-bg:#24272b;--accent:#7bc49a;--quote-bg:#22252a;--quote-bar:#7bc49a;}}
+*{box-sizing:border-box;}
+html{font-size:15px;-webkit-font-smoothing:antialiased;}
+body{margin:0;background:var(--bg);color:var(--fg);line-height:1.7;
+ font-family:"Helvetica Neue",Helvetica,Arial,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Segoe UI Emoji",sans-serif;}
+#write{max-width:860px;margin:0 auto;padding:48px 24px 96px;}
+h1{font-size:1.9rem;line-height:1.3;margin:0 0 .6em;}
+h2{font-size:1.45rem;margin:2em 0 .7em;padding-bottom:.3em;border-bottom:1px solid var(--border);}
+h3{font-size:1.18rem;margin:1.6em 0 .5em;}
+h4{font-size:1.03rem;margin:1.3em 0 .4em;}
+p{margin:.7em 0;}
+a{color:var(--accent);text-decoration:none;}
+a:hover{text-decoration:underline;}
+code{background:var(--code-bg);padding:.15em .4em;border-radius:4px;font-size:.88em;
+ font-family:"SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace;}
+pre{background:var(--code-bg);border:1px solid var(--border);border-radius:8px;padding:14px 16px;overflow-x:auto;margin:1em 0;}
+pre code{background:none;padding:0;font-size:.85rem;line-height:1.55;}
+blockquote{margin:1em 0;padding:.6em 1em;background:var(--quote-bg);border-left:4px solid var(--quote-bar);border-radius:0 6px 6px 0;color:var(--fg);}
+blockquote p{margin:.4em 0;}
+ul,ol{padding-left:1.6em;margin:.7em 0;}
+li{margin:.3em 0;}
+hr{border:none;border-top:1px solid var(--border);margin:2em 0;}
+table{border-collapse:collapse;width:100%;margin:1em 0;display:block;overflow-x:auto;}
+th,td{border:1px solid var(--border);padding:8px 12px;text-align:left;}
+th{background:var(--code-bg);}
+.toc{background:var(--code-bg);border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin:1.5em 0;}
+.toc-title{font-weight:700;margin:0 0 .5em;color:var(--accent);}
+.toc ul{list-style:none;padding-left:0;margin:0;}
+.toc li{margin:.25em 0;}
+.toc-l3 a{padding-left:1.4em;font-size:.95em;color:var(--muted);}
+.toc-l4 a{padding-left:2.6em;font-size:.9em;color:var(--muted);}
+</style>
+</head>
+<body>
+<article id="write">
+<h1 id="远程给朋友修-vpn-有了-ai-之后-一次运维排障是怎么进行的">远程给朋友修 VPN：有了 AI 之后，一次运维排障是怎么进行的</h1>
+<div class="toc"><p class="toc-title">目录 / Step 导航</p><ul><li class="toc-l2"><a href="#一-tl-dr">一、TL;DR</a></li><li class="toc-l2"><a href="#二-背景">二、背景</a></li><li class="toc-l2"><a href="#三-排障时间线">三、排障时间线</a></li><li class="toc-l3"><a href="#3-1-第一层-协议不对">3.1 第一层：协议不对</a></li><li class="toc-l3"><a href="#3-2-第二层-在家里打公网-ip">3.2 第二层：在家里打公网 IP</a></li><li class="toc-l3"><a href="#3-3-第三层-客户端不读你改的文件">3.3 第三层：客户端不读你改的文件</a></li><li class="toc-l3"><a href="#3-4-第四层-broken-pipe">3.4 第四层：Broken pipe</a></li><li class="toc-l3"><a href="#3-5-教训小结">3.5 教训小结</a></li><li class="toc-l2"><a href="#四-第二阶段-仅这一台设备不走-openwrt">四、第二阶段：仅这一台设备不走 OpenWrt</a></li><li class="toc-l3"><a href="#4-1-为什么不能直接做">4.1 为什么不能直接做</a></li><li class="toc-l3"><a href="#4-2-三个动作">4.2 三个动作</a></li><li class="toc-l3"><a href="#4-3-一个顺手的技巧-不登录也能验证密码">4.3 一个顺手的技巧：不登录也能验证密码</a></li><li class="toc-l3"><a href="#4-4-完成后的拓扑">4.4 完成后的拓扑</a></li><li class="toc-l2"><a href="#五-第三阶段-给不懂命令行的人交付工具">五、第三阶段：给不懂命令行的人交付工具</a></li><li class="toc-l3"><a href="#5-1-第一版-系统代理开关-被否">5.1 第一版：系统代理开关（被否）</a></li><li class="toc-l3"><a href="#5-2-第二版-拆成-代理开关-和-gemini">5.2 第二版：拆成"代理开关"和"Gemini"</a></li><li class="toc-l3"><a href="#5-3-第三版-gemini-专用的隔离-chrome-最终">5.3 第三版：Gemini 专用的隔离 Chrome（最终）</a></li><li class="toc-l3"><a href="#5-4-最终桌面">5.4 最终桌面</a></li><li class="toc-l2"><a href="#六-有了-ai-以后-变化在哪">六、有了 AI 以后，变化在哪</a></li><li class="toc-l3"><a href="#6-1-排障半径-从-我的机器-到-我能-ssh-到的一切">6.1 排障半径：从"我的机器"到"我能 ssh 到的一切"</a></li><li class="toc-l3"><a href="#6-2-外置记忆-ai-比我更记得我家的网络">6.2 外置记忆：AI 比我更记得我家的网络</a></li><li class="toc-l3"><a href="#6-3-假设-证据循环更快-错得也更快-人负责叫停">6.3 假设-证据循环更快，错得也更快 —— 人负责叫停</a></li><li class="toc-l3"><a href="#6-4-需求变更的成本趋近于一句话">6.4 需求变更的成本趋近于一句话</a></li><li class="toc-l3"><a href="#6-5-从-修好-到-交付">6.5 从"修好"到"交付"</a></li><li class="toc-l3"><a href="#6-6-代价-权限-边界与备份">6.6 代价：权限、边界与备份</a></li><li class="toc-l3"><a href="#6-7-时间线">6.7 时间线</a></li><li class="toc-l2"><a href="#七-可复用的排查清单">七、可复用的排查清单</a></li><li class="toc-l2"><a href="#八-结语">八、结语</a></li></ul></div>
+<blockquote>
+<p>朋友坐在我家客厅，MacBook 上的 OpenVPN Connect 死活连不上我 NAS 的 VPN。我没碰她的电脑，只把一条 <code>ssh</code> 命令丢给了 AI agent（Claude Code）。</p>
+<p>一个小时后：VPN 通了；她的设备在 NAS 上有了专属的出口策略；桌面上多了三个带图标的小程序，双击就能用。</p>
+<p>这篇文章记两件事：<strong>故障本身是怎么一层层剥开的</strong>，以及<strong>有了 AI 之后，这类工作和以前到底哪里不一样了</strong>。</p>
+<p>文中所有公网 IP、密码、商业服务商品牌、个人域名与真实用户名均已抹去或改写，只保留可复用的结构。网段沿用<a href="../home-network-topology/家庭网络分层拓扑：从远端笔记本到双出口的完整链路.html">前两篇</a>的写法：内网 <code>192.168.0.0/24</code>，VPN <code>172.x.y.0/24</code>。</p>
+</blockquote>
+<hr />
+<h2 id="一-tl-dr">一、TL;DR</h2>
+<p>一次"连不上"背后叠了<strong>四层</strong>互不相关的问题，每剥掉一层症状就变一次：</p>
+<table>
+<thead>
+<tr>
+<th>层</th>
+<th>症状</th>
+<th>根因</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>Server poll timeout</code>（TCP）</td>
+<td>客户端 <code>.ovpn</code> 写的是 <code>proto tcp-client</code>，服务端只开 <strong>UDP</strong></td>
+</tr>
+<tr>
+<td>2</td>
+<td>改成 UDP 仍超时</td>
+<td>人在家里局域网，拨的却是公网域名 —— 路由器 <strong>hairpin NAT 不通</strong></td>
+</tr>
+<tr>
+<td>3</td>
+<td>加了内网 <code>remote</code> 仍只打公网 IP</td>
+<td>OpenVPN Connect 把服务器地址<strong>缓存在自己的数据库</strong>里，改磁盘上的 <code>.ovpn</code> 不生效</td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>UDP send exception: send: Broken pipe</code></td>
+<td>同机的另一个商业 VPN（WireGuard）kill-switch 在拦包；断开后残留状态仍拦，<strong>换了一条网络链路才消失</strong></td>
+</tr>
+</tbody>
+</table>
+<p>连通之后又追加了两件事：</p>
+<ul>
+<li><strong>仅这一台设备</strong>的流量不走家里的旁路网关 OpenWrt（其他 VPN 用户不变）：<code>client-config-dir</code> 固定 IP + 一条 <code>pref 0</code> 的 <code>ip rule</code> + 写进 DSM 定时任务持久化。</li>
+<li>给一个不懂命令行的用户交付<strong>桌面工具</strong>：一键代理开关（带测速、退出恢复）、一个只走代理的 Gemini 独立浏览器、一个远程桌面入口。方案迭代了三版。</li>
+</ul>
+<p>全程 <strong>20:59 → 22:05</strong>，一个会话，同时操作三台机器（我的 Mac、她的 Mac、NAS）。</p>
+<hr />
+<h2 id="二-背景">二、背景</h2>
+<ul>
+<li><strong>服务端</strong>：群晖 NAS 上的 OpenVPN Server，<code>proto udp</code>，端口 <code>3389</code>，地址池 <code>172.x.y.0/24</code>，<code>topology subnet</code>，账号密码认证（<code>username-as-common-name</code> + <code>duplicate-cn</code>，所有人共用一个账号）。</li>
+<li><strong>拓扑</strong>：NAS 上有一张策略路由表 —— <code>from 172.x.y.0/24 lookup 100</code>，table 100 的默认路由指向旁路网关 OpenWrt（<code>192.168.0.254</code>），VPN 用户的流量由它分流出境；NAS 自身走主路由 <code>192.168.0.1</code>。这套东西的来龙去脉见<a href="../home-network-topology/家庭网络分层拓扑：从远端笔记本到双出口的完整链路.html">《家庭网络分层拓扑》</a>。</li>
+<li><strong>客户端</strong>：朋友的 MacBook（macOS 15），OpenVPN Connect 3.8，<code>.ovpn</code> 是从 DSM 导出后<strong>别人手改过</strong>的。机器上还装着另一个商业 VPN、一个代理工具、一个企业 VDI 客户端和远程控制软件。</li>
+<li><strong>我的角色</strong>：坐在旁边，不碰她的电脑。所有操作通过 <code>sshpass ... ssh</code> 由 AI 执行；NAS 也是 ssh + sudo。</li>
+</ul>
+<hr />
+<h2 id="三-排障时间线">三、排障时间线</h2>
+<p>按真实顺序写，每一步都是"看到什么 → 怀疑什么 → 用什么命令证实/证伪"。</p>
+<h3 id="3-1-第一层-协议不对">3.1 第一层：协议不对</h3>
+<p>先看客户端日志（<code>~/Library/Application Support/OpenVPN Connect/log/ovpn.log</code>）：</p>
+<pre><code>Contacting &lt;公网IP&gt;:3389 via TCP
+EVENT: WAIT
+Server poll timeout, trying next remote entry...
+</code></pre>
+<p>再看 <code>.ovpn</code>：</p>
+<pre><code>remote &lt;ddns域名&gt; 3389
+proto tcp-client
+</code></pre>
+<p>而服务端在 NAS 上：</p>
+<pre><code class="language-sh">$ netstat -lnu | grep 3389
+udp6  0  0 :::3389  :::*
+$ nc -vz 192.168.0.4 3389        # TCP
+Connection refused
+</code></pre>
+<p><strong>TCP 永远握不上。</strong> 这一步 AI 是先查了我的记忆库（后面第六章会讲），已经知道"服务端是 UDP 3389"，所以第一眼就盯住了 <code>proto</code> 行。</p>
+<h3 id="3-2-第二层-在家里打公网-ip">3.2 第二层：在家里打公网 IP</h3>
+<p>改成 UDP 后还是超时。这时注意到一个细节：</p>
+<pre><code class="language-sh">$ curl ifconfig.me       # 在她的 Mac 上
+&lt;和我家一样的公网IP&gt;
+</code></pre>
+<p>她连的是我家 Wi-Fi，拨的却是 DDNS 域名 —— 从内网打自己路由器的公网 IP，靠的是 hairpin NAT，而我家路由器不支持。这个坑在我记忆库里也有一条："公网 DDNS 在家 hairpin 不通会静默卡死"。</p>
+<p>修法直觉上很简单：在 <code>.ovpn</code> 里加一行内网地址，让它优先：</p>
+<pre><code>remote 192.168.0.4 3389 udp
+remote &lt;ddns域名&gt; 3389 udp
+</code></pre>
+<h3 id="3-3-第三层-客户端不读你改的文件">3.3 第三层：客户端不读你改的文件</h3>
+<p>改完再连，日志里依然<strong>只有公网 IP</strong>，<code>192.168.0.4</code> 一次都没出现过。</p>
+<p>OpenVPN Connect 3 导入 profile 时，会把解析出来的 <code>remoteHost</code> / <code>serverList</code> 存进自己的 <code>config.json</code>（一个 redux persist 状态）。之后连接用的是这份缓存，磁盘上的 <code>.ovpn</code> 只是个备份。所以：</p>
+<blockquote>
+<p><strong>改 OpenVPN Connect 的配置，必须在 app 里删掉 profile 重新导入</strong>，而不是改文件。</p>
+</blockquote>
+<p>重新导入后，日志终于出现 <code>Contacting 192.168.0.4:3389 via UDP</code>。然后症状变了。</p>
+<h3 id="3-4-第四层-broken-pipe">3.4 第四层：Broken pipe</h3>
+<pre><code>Connecting to [192.168.0.4]:3389 via UDP
+UDP send exception: send: Broken pipe
+UDP send exception: send: Broken pipe
+...
+</code></pre>
+<p><strong>包在本机就没发出去。</strong> 查她 Mac 上的网络状态：</p>
+<pre><code class="language-sh">$ scutil --nc list
+* (Connected)     ... &quot;&lt;商业VPN&gt; (Wireguard)&quot;
+$ netstat -rn | grep default
+default   link#19   UCSg   utun4
+</code></pre>
+<p>另一个商业 VPN 正处于连接状态，<code>utun4</code> 抢了默认路由，它的 kill-switch 会丢掉一切不走隧道的流量。断开它 —— <strong>依然 Broken pipe</strong>。</p>
+<p>接下来是一段真正的"排障"：</p>
+<ul>
+<li><code>pfctl -s info</code> → pf 是 Disabled</li>
+<li><code>sysctl net.cfil</code> → 内容过滤器 <code>active_count: 0</code></li>
+<li><code>systemextensionsctl list</code> → 那个商业 VPN 的系统扩展处于 <code>activated waiting for user</code>（半激活）</li>
+<li>系统日志里发现 <strong>OpenVPN Connect 进程自己发的 TCP SYN 也没有回应</strong>（<code>SYN in/out: 0/11</code>），但同一台机器上 <code>curl</code>、Python 的 UDP socket 都正常 —— 这是<strong>针对单个进程</strong>的现象</li>
+<li>机器上还跑着企业 VDI 客户端（root 权限的网络服务）、远程控制软件、四个残留的 <code>utun</code> 接口</li>
+</ul>
+<p>到这里我叫停了 AI。它给出的候选根因都有道理，但每验证一个要五分钟，而我们的目标是"让 VPN 通"，不是"给这台机器写病历"。</p>
+<p><strong>人做的决策</strong>：让她把网络切到手机热点（同时 Wi-Fi 还连着我家、但那个 Wi-Fi 没网关），用 DDNS 域名走公网进来 —— 这才是她日常真正的使用场景。切完之后：</p>
+<pre><code>EVENT: CONNECTED vpn@&lt;ddns域名&gt;:3389 via /UDP on utun4/172.x.y.2/
+</code></pre>
+<p><strong>通了。</strong> EPIPE 的最终根因没有钉死（候选：半激活的系统扩展残留、VDI 客户端的网络钩子、<code>en0</code> 无网关时 ovpnagent 计算 bypass route 出错）。这里诚实地记一笔：不是每个故障都值得追到底，<strong>换链路后消失</strong>是一个足够的工程结论。</p>
+<h3 id="3-5-教训小结">3.5 教训小结</h3>
+<ol>
+<li>日志里的"超时"和"Broken pipe"是<strong>两种完全不同的失败</strong>：前者包出去了没回应，后者包根本没出去。看清这一点能省一半时间。</li>
+<li>客户端 GUI 有自己的状态库时，<strong>改文件不等于改配置</strong>。</li>
+<li>一台机器上同时装着 3 个会接管网络栈的软件（商业 VPN、代理、VDI），任何一个的残留都可能拦别人的包。排障前先 <code>scutil --nc list</code> + <code>ifconfig | grep utun</code>。</li>
+<li><strong>在服务端也要看</strong>：NAS 上 <code>netstat -lnu</code>、<code>openvpn.conf</code>、连接日志（<code>synovpnlog.db</code>）三样合起来才能说"服务端没问题"。</li>
+</ol>
+<hr />
+<h2 id="四-第二阶段-仅这一台设备不走-openwrt">四、第二阶段：仅这一台设备不走 OpenWrt</h2>
+<p>VPN 通了之后，新需求：这位朋友的流量<strong>不要</strong>经过旁路网关 OpenWrt，直接从主路由出去；其他 VPN 用户保持不变。</p>
+<h3 id="4-1-为什么不能直接做">4.1 为什么不能直接做</h3>
+<p>策略路由按<strong>源地址</strong>匹配。现在所有人共用一个账号（<code>duplicate-cn</code>），拿到的 IP 是动态的 <code>.2/.3/.4</code>，从 NAS 看根本分不清谁是谁。所以第一步是<strong>让这台设备有一个稳定的源地址</strong>。</p>
+<h3 id="4-2-三个动作">4.2 三个动作</h3>
+<p><strong>① 专属账号 + <code>client-config-dir</code> 固定 IP</strong></p>
+<p>DSM 里给她建一个独立用户（授予 VPN Server 权限），然后在 OpenVPN 配置里启用 per-client 配置目录：</p>
+<pre><code class="language-sh"># /usr/syno/etc/packages/VPNCenter/openvpn/openvpn.conf 追加
+client-config-dir /usr/syno/etc/packages/VPNCenter/openvpn/ccd
+</code></pre>
+<pre><code class="language-sh"># ccd/&lt;用户名&gt;
+ifconfig-push 172.x.y.200 255.255.255.0
+push-remove dhcp-option                    # 不给她推旁路网关的 DNS
+push &quot;dhcp-option DNS 192.168.0.1&quot;         # 改推主路由
+</code></pre>
+<p>两个细节：</p>
+<ul>
+<li>用 <code>push-remove</code> 而不是 <code>push-reset</code>。<code>push-reset</code> 会把服务端自动生成的 <code>topology subnet</code>、<code>route-gateway</code>、<code>ping</code>/<code>ping-restart</code> 一起清掉，客户端会拿到一个残缺的配置。<code>push-remove</code> 只精确摘掉一项（OpenVPN ≥ 2.4）。</li>
+<li><code>ccd</code> 文件名 = 客户端 CN。因为服务端开了 <code>username-as-common-name</code>，所以文件名就是<strong>用户名</strong>。</li>
+</ul>
+<p><strong>② 一条排在前面的 <code>ip rule</code></strong></p>
+<pre><code class="language-sh">ip rule add from 172.x.y.200/32 lookup main pref 0
+</code></pre>
+<pre><code>0:  from all lookup local
+0:  from 172.x.y.200 lookup main        ← 新加，查 main 表 → default via 192.168.0.1
+1:  from 172.x.y.0/24 lookup 100        ← 原有，其他 VPN 用户 → OpenWrt
+</code></pre>
+<p>为什么是 <code>pref 0</code>：Linux 内核插入同优先级规则时，<strong>排在已有同优先级规则之后</strong>（<code>fib_nl_newrule</code> 找的是第一条 <code>pref &gt; new</code> 的位置）。写 <code>pref 1</code> 会落在那条 <code>/24</code> 后面，永远匹配不到；写 <code>pref 0</code> 则正好落在 <code>local</code> 之后、<code>/24</code> 之前。</p>
+<p>回程不用担心：NAS 回给 <code>.200</code> 的包源地址是 <code>172.x.y.1</code>，仍命中 <code>/24</code> 规则查 table 100，而 table 100 里有 <code>172.x.y.0/24 dev tun0</code>（<a href="../home-network-topology/家庭网络分层拓扑（二）：一条策略路由如何让 VPN 网关人间蒸发.html">上一篇</a>就是修这条的）。</p>
+<p><strong>③ 持久化</strong></p>
+<p><code>ip rule</code> 重启 NAS 就没了。我家 NAS 上已经有一个每 5 分钟跑一次、维护 table 100 的 DSM 定时任务（上一篇的产物），最合理的做法是把新规则加进同一个脚本，而不是再开一个。</p>
+<p>DSM 的定时任务不在 crontab 里，是存在它自己的库里的。用 <code>synowebapi</code> 读出来、改、写回去：</p>
+<pre><code class="language-sh">synowebapi --exec api=SYNO.Core.TaskScheduler method=get version=4 id=7
+# ...在 script 字段里插入下面这段，再 method=set 写回
+</code></pre>
+<pre><code class="language-sh">DIRECT_HOSTS=&quot;172.x.y.200&quot;
+for h in $DIRECT_HOSTS; do
+    ip rule list | grep -q &quot;from ${h} lookup main&quot; ||
+        ip rule add from &quot;${h}/32&quot; lookup main pref 0
+done
+</code></pre>
+<p>写回后立刻 <code>get</code> 一次核对字段确实在 —— 这类"写了但没生效"的坑上一篇踩过。</p>
+<h3 id="4-3-一个顺手的技巧-不登录也能验证密码">4.3 一个顺手的技巧：不登录也能验证密码</h3>
+<p>朋友不确定新账号的密码。DSM 的登录 API 对"密码错"和"密码对但没有登录权限"返回<strong>不同的错误码</strong>：</p>
+<pre><code class="language-sh">curl -G http://127.0.0.1:5000/webapi/entry.cgi \
+  --data-urlencode api=SYNO.API.Auth --data-urlencode version=6 \
+  --data-urlencode method=login --data-urlencode account=&lt;用户&gt; \
+  --data-urlencode passwd=&lt;待验证密码&gt;
+# {&quot;error&quot;:{&quot;code&quot;:402}}   ← 密码对，只是这个账号没有 DSM 桌面权限
+# {&quot;error&quot;:{&quot;code&quot;:400}}   ← 账号或密码错
+</code></pre>
+<p>一次请求就知道答案，不用去改密码。</p>
+<h3 id="4-4-完成后的拓扑">4.4 完成后的拓扑</h3>
+<pre><code>朋友的 MacBook
+  │ 底层：手机热点（或任意外网）
+  │ OpenVPN / UDP 3389 → &lt;ddns域名&gt;，专属账号
+  ▼
+utun  172.x.y.200/24 ──────────────► NAS tun0 172.x.y.1
+                                        │
+                     ip rule ───────────┤
+        pref 0  from .200 → main ──────►│ default via 192.168.0.1 ──► 主路由直出   ← 她
+        pref 1  from /24  → table 100 ─►│ default via 192.168.0.254 ► OpenWrt 分流  ← 其他人
+</code></pre>
+<hr />
+<h2 id="五-第三阶段-给不懂命令行的人交付工具">五、第三阶段：给不懂命令行的人交付工具</h2>
+<p>她的真实需求其实只有一句话："我要能用 Gemini。" 出境流量在我家是 OpenWrt 上的一个 SOCKS 端口（<code>192.168.0.254:1080</code>）负责的，所以要做的是：<strong>让她的浏览器在需要时走这个 SOCKS</strong>。</p>
+<p>方案迭代了三版，每一版的否决理由都值得记。</p>
+<h3 id="5-1-第一版-系统代理开关-被否">5.1 第一版：系统代理开关（被否）</h3>
+<p>一个 AppleScript 小程序，双击后用 <code>networksetup -setsocksfirewallproxy</code> 把系统 SOCKS 代理指过去，弹一个窗；点"关闭并退出"或 ⌘Q 时恢复。</p>
+<p>做对的部分：</p>
+<ul>
+<li>开启前把每个网络服务的原始值（启用状态/服务器/端口）记到 <code>~/Library/Application Support/&lt;工具&gt;/state.psv</code>，退出时逐项还原，并在她机器上实测 on→off 一轮，四个服务全部精确回到 <code>Enabled: No / Server 空 / Port 0</code>。</li>
+<li>上次被强杀没恢复的话，下次启动<strong>不覆盖</strong>已有记录，退出仍回到最初状态。</li>
+<li>启动先 <code>nc -z</code> 探测代理可达，不通就提示"先连 Wi-Fi 或 VPN"，不改任何东西。</li>
+</ul>
+<p>踩的坑：</p>
+<ul>
+<li><code>networksetup -setsocksfirewallproxy &lt;svc&gt; "" 0</code> 会把服务器设成字面量 <code>0</code>；要清空得写 <code>"" ""</code>。</li>
+<li>状态文件用 Tab 分隔，<code>IFS=$'\t' read</code> 会把<strong>连续的 Tab 合并</strong>（Tab 是空白类 IFS），空字段导致列错位。换成 <code>|</code> 分隔。</li>
+<li>AppleScript 里 <code>POSIX path of (path to me) &amp; "…"</code> 偶发 <code>-1700</code>（can't make … into type），拆成两句赋值就稳了。</li>
+<li><code>osacompile</code> 生成的小程序里带了一个 <code>Assets.car</code>，macOS 15 优先从它读图标，换 <code>applet.icns</code> 不生效；删掉 <code>Assets.car</code>、去掉 <code>Info.plist</code> 的 <code>CFBundleIconName</code>、重新签名才行。</li>
+</ul>
+<p>被否的理由（用户原话）："<strong>太危险了</strong>。" 系统级代理影响所有应用，忘了关、或者小程序崩了，整台机器的流量就都在走那个口。对一个不看菜单栏的用户，这个风险不对称。</p>
+<h3 id="5-2-第二版-拆成-代理开关-和-gemini">5.2 第二版：拆成"代理开关"和"Gemini"</h3>
+<p>代理开关保留，做成 VPN 工具那种小白模式：开启 → 自动跑一轮测试 → 弹窗显示</p>
+<pre><code>✅ Google 可达，延迟 580 ms
+⬇️ 下载速度约 18.9 Mbps
+🌍 出口：US Los Angeles
+[重新测试]  [关闭代理并退出]
+</code></pre>
+<p>Gemini 单独一个图标，双击时检查系统代理没开就先拉起开关、等它开好，再开浏览器。<strong>但这没有解决"系统代理"本身的风险</strong>，只是把它藏得更深了。</p>
+<h3 id="5-3-第三版-gemini-专用的隔离-chrome-最终">5.3 第三版：Gemini 专用的隔离 Chrome（最终）</h3>
+<p>正确的模型是：<strong>代理只作用于一个进程，且这个进程的生命周期和窗口一致。</strong> Chrome 恰好都能做到：</p>
+<pre><code class="language-sh">&quot;/Applications/Google Chrome.app/Contents/MacOS/Google Chrome&quot; \
+  --user-data-dir=&quot;$HOME/Library/Application Support/GeminiChrome&quot; \   # 独立 profile，和她日常的 Chrome 互不干扰
+  --proxy-server=&quot;socks5://192.168.0.254:1080&quot; \                       # 只有这个实例走代理
+  --remote-debugging-port=9333 \                                        # 给看门狗用
+  --no-first-run --no-default-browser-check --disable-sync \
+  --app=https://gemini.google.com/app                                   # app 模式，无地址栏
+</code></pre>
+<p>三个要点：</p>
+<ol>
+<li><strong>系统代理一个字节都不碰。</strong> <code>scutil --proxy</code> 全程 <code>SOCKSEnable: 0</code>。</li>
+<li><strong>DNS 不泄漏。</strong> Chrome 对 <code>socks5://</code> 代理是把域名交给代理端解析的。一开始还加了 <code>--host-resolver-rules="MAP * ~NOTFOUND, EXCLUDE 192.168.0.254"</code> 做双保险，但 Chrome 会为它弹"不受支持的命令行标记"横幅，去掉了。</li>
+<li><strong>关窗即退出。</strong> macOS 上 Chrome 关掉最后一个窗口不会退出进程。解决办法是一个看门狗：每 2 秒查 <code>http://127.0.0.1:9333/json/list</code>，<code>"type": "page"</code> 数量为 0 就 <code>kill</code> 这个实例。不需要辅助功能权限，不需要 UI 脚本。</li>
+</ol>
+<p>端到端验证的方式也值得记：不是"看起来关了"，而是通过 DevTools 协议模拟关窗（<code>/json/close/&lt;id&gt;</code>），然后确认进程 4 秒内消失、<code>launcher.pid</code> 被清理。</p>
+<h3 id="5-4-最终桌面">5.4 最终桌面</h3>
+<table>
+<thead>
+<tr>
+<th>图标</th>
+<th>做什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Gemini（官方图标）</td>
+<td>隔离的代理 Chrome；关窗 = 一切消失</td>
+</tr>
+<tr>
+<td>代理开关（盾牌+锁）</td>
+<td>可选：其他应用也要走代理时用；带测速；退出恢复</td>
+</tr>
+<tr>
+<td>远程桌面 VDI（客户端原版图标）</td>
+<td>Safari 打开企业 VDI 登录页，Touch ID 自动填密码</td>
+</tr>
+<tr>
+<td>OpenVPN Connect / 商业 VPN</td>
+<td>替身</td>
+</tr>
+</tbody>
+</table>
+<p>图标来源：Gemini 用 App Store 的 1024px 原图按 macOS 圆角规范裁；VDI 直接拿客户端 bundle 里的 <code>.icns</code>；代理开关用 PIL 画了一个盾牌 + 锁。</p>
+<hr />
+<h2 id="六-有了-ai-以后-变化在哪">六、有了 AI 以后，变化在哪</h2>
+<p>这一节是写这篇的真正原因。上面的技术内容放在三年前我也能做出来，<strong>但我不会去做</strong> —— 尤其是第四、五章。变化不在"能不能"，在<strong>边际成本</strong>。</p>
+<h3 id="6-1-排障半径-从-我的机器-到-我能-ssh-到的一切">6.1 排障半径：从"我的机器"到"我能 ssh 到的一切"</h3>
+<p>整个会话里 AI 同时操作三台机器：我的 Mac（跑 agent）、她的 Mac（<code>sshpass ssh</code>）、NAS（ssh + sudo）。每一次"看客户端日志 → 看服务端监听 → 看 NAS 路由表 → 回到客户端"的跨机器往返，以前是我在三个终端窗口之间切换、复制粘贴、在脑子里拼图；现在是一次工具调用并行发出，结果并排回来。</p>
+<p>第三章里客户端说 Broken pipe、同时服务端确认 UDP 3389 在听、同时我自己的机器 <code>nc</code> 测端口 —— 三个视角一分钟内对齐。<strong>并行</strong>是最直接的加速。</p>
+<h3 id="6-2-外置记忆-ai-比我更记得我家的网络">6.2 外置记忆：AI 比我更记得我家的网络</h3>
+<p>会话一开始，AI 先去查了我的记忆库（一个跨客户端共享的 MCP memory），搜到了四条相关记录：</p>
+<ul>
+<li>服务端是 UDP 3389，不是 TCP</li>
+<li>table 100 的设计与"回程路由"的坑</li>
+<li>DDNS 在家 hairpin 不通</li>
+<li>DSM 定时任务存在两个地方，只查一个会误判</li>
+</ul>
+<p>这四条<strong>每一条都在这次派上了用场</strong>。第一层故障几乎是秒判；第四章改定时任务时直接走了正确的存储位置。这些东西我自己写过、也在博客里发过，但如果是我亲手排查，大概率要重新想一遍"服务端到底是 UDP 还是 TCP 来着"。</p>
+<p>博客顶上那句 <em>The brain has cache expiration too</em> 是写给未来的我的；现在多了一个读者，而且它真的读。</p>
+<h3 id="6-3-假设-证据循环更快-错得也更快-人负责叫停">6.3 假设-证据循环更快，错得也更快 —— 人负责叫停</h3>
+<p>3.4 节是这次最值得反思的段落。AI 判断"另一个 VPN 的 kill-switch 是根因"—— 证据充分（默认路由被抢、utun4 在线），结论合理，<strong>但断开后故障依旧</strong>。它接着给出下一个候选、再下一个：pf、内容过滤器、系统扩展、NECP、flow divert、VDI 客户端……每一个都有对应的验证命令，每一个都能再花五分钟。</p>
+<p>它不会自己停。这不是缺陷，是分工：<strong>agent 的默认模式是穷尽假设空间，而"这个问题值不值得继续追"是目标层面的判断</strong>，属于人。我叫停之后换了链路，问题消失，我们接受了"根因未钉死"这个结论继续往前走。</p>
+<p>反过来说，如果我一个人排查，我可能在第二个候选就放弃了 —— 也可能在第五个候选上耗掉一晚上。AI 把"继续追"的成本压得很低，这让"停不停"这个决策变得更重要、也更清晰。</p>
+<h3 id="6-4-需求变更的成本趋近于一句话">6.4 需求变更的成本趋近于一句话</h3>
+<p>回看这次的需求流：</p>
+<ol>
+<li>"帮我看下为什么连不上"</li>
+<li>"改成公网 IP"</li>
+<li>"现在用的是手机热点，用 DDNS 域名解决"</li>
+<li>"有办法不要流量往 OpenWrt 发吗？仅这个设备"</li>
+<li>"用已有的 ho 用户"</li>
+<li>"写一个工具，点击设置代理，关闭恢复如初"</li>
+<li>"把 OpenVPN 快捷方式放桌面上"</li>
+<li>"拆成代理开关和 Gemini 两个"</li>
+<li>"图标换成真的"</li>
+<li>"太危险了，做成 Chrome app，关闭就清掉"</li>
+<li>"去掉那个横幅"</li>
+</ol>
+<p>十一次变更，每次一句话，每次都在几分钟内落地并验证。以前这种对话发生在我和自己之间，落地的成本是"再花一个晚上"，于是大部分变更根本不会发生 —— 我会在第 1 步修好 VPN 之后说"行了，能用了"。</p>
+<p><strong>AI 没有改变我想要什么，改变的是"想要"和"得到"之间的距离。</strong> 第 4、6、9、10 步是以前绝对不会为朋友做的事。</p>
+<h3 id="6-5-从-修好-到-交付">6.5 从"修好"到"交付"</h3>
+<p>以前帮朋友修完东西，交付物是一段口头说明或一份 README。这次交付物是三个带图标的 <code>.app</code>，而且每一个都在她的机器上做了真实的端到端验证：</p>
+<ul>
+<li>代理开关：on → 查 <code>scutil --proxy</code> → off → 逐项比对四个服务恢复原值</li>
+<li>Gemini：启动 → 查 DevTools 目标列表里有 <code>gemini.google.com/app</code> → 模拟关窗 → 确认进程退出、系统代理从未变过</li>
+<li>VDI：启动 → 读 Safari 前台标签 URL</li>
+</ul>
+<p><strong>验证不是额外步骤，是每一步的一部分。</strong> 这是 agent 工作方式里我最想保留到自己手工操作中的习惯。</p>
+<h3 id="6-6-代价-权限-边界与备份">6.6 代价：权限、边界与备份</h3>
+<p>诚实地列一下这次 AI 拿到了什么：她 Mac 的登录密码、NAS 的 sudo 密码、她新账号的密码、三台机器的 root 级操作。</p>
+<p>对应的约束也要写清楚，这些是<strong>人来定的</strong>：</p>
+<ul>
+<li>改 NAS 配置前先 <code>cp openvpn.conf openvpn.conf.bak-&lt;时间戳&gt;</code>；改她的 <code>.ovpn</code> 前先备份到桌面。</li>
+<li>所有写入 NAS 的脚本必须<strong>幂等</strong>（<code>grep -q || ip rule add</code>），可以反复跑。</li>
+<li>有不可逆或影响他人的操作时（建账号、重启 VPN Server 会踢掉现有用户），先问再做。这次有两处它停下来问了，都是对的。</li>
+<li>会话结束后，密码文件删掉。</li>
+</ul>
+<p>AI 让"做"变得便宜，也让"做错"变得便宜。备份和幂等不是形式，是这套工作方式的安全带。</p>
+<h3 id="6-7-时间线">6.7 时间线</h3>
+<table>
+<thead>
+<tr>
+<th>时刻</th>
+<th>事件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>20:59</td>
+<td>她第一次点 Connect，TCP 超时</td>
+</tr>
+<tr>
+<td>21:04</td>
+<td>定位 <code>proto tcp-client</code>，改 UDP + 内网 remote</td>
+</tr>
+<tr>
+<td>21:12</td>
+<td>发现客户端缓存，重新导入</td>
+</tr>
+<tr>
+<td>21:15</td>
+<td>Broken pipe；发现另一个 VPN 在线</td>
+</tr>
+<tr>
+<td>21:20</td>
+<td>换手机热点</td>
+</tr>
+<tr>
+<td>21:22</td>
+<td><strong>CONNECTED</strong></td>
+</tr>
+<tr>
+<td>21:28</td>
+<td>ccd + ip rule + 定时任务写回，VPN Server 重启</td>
+</tr>
+<tr>
+<td>21:31</td>
+<td>以专属账号连接，拿到 <code>.200</code></td>
+</tr>
+<tr>
+<td>21:36</td>
+<td>第一版代理开关上线</td>
+</tr>
+<tr>
+<td>21:44</td>
+<td>桌面替身</td>
+</tr>
+<tr>
+<td>21:54</td>
+<td>三个工具 + 图标</td>
+</tr>
+<tr>
+<td>22:00</td>
+<td>Chrome 隔离实例版 Gemini</td>
+</tr>
+<tr>
+<td>22:05</td>
+<td>去掉横幅，收工</td>
+</tr>
+</tbody>
+</table>
+<p>66 分钟。其中真正卡住的只有 3.4 节那十分钟。</p>
+<hr />
+<h2 id="七-可复用的排查清单">七、可复用的排查清单</h2>
+<p><strong>OpenVPN 客户端连不上，按这个顺序：</strong></p>
+<ol>
+<li>客户端日志：是 <code>poll timeout</code>（包出去没回应）还是 <code>send exception</code>（包没出去）？</li>
+<li>服务端：<code>netstat -lnu</code> / <code>-lnt</code> 确认协议和端口；配置文件里的 <code>proto</code> / <code>port</code>。</li>
+<li>客户端 <code>.ovpn</code> 的 <code>proto</code> 是否与服务端一致。</li>
+<li>客户端和服务端是否在同一个 LAN（<code>curl ifconfig.me</code> 对比公网 IP）→ hairpin。</li>
+<li>如果改了 <code>.ovpn</code> 没效果：GUI 客户端是否有自己的状态缓存，需要删除重导入。</li>
+<li><code>scutil --nc list</code>、<code>ifconfig | grep utun</code>、<code>netstat -rn | grep default</code>：有没有别的 VPN/代理在线或残留。</li>
+<li>换一条网络链路（热点）再试，区分"这台机器的问题"和"这条链路的问题"。</li>
+</ol>
+<p><strong>NAS 侧单设备例外，按这个顺序：</strong></p>
+<ol>
+<li>独立账号 + <code>client-config-dir</code> + <code>ifconfig-push</code> 固定 IP。</li>
+<li><code>push-remove</code> 精确摘掉不想推的选项，不要 <code>push-reset</code>。</li>
+<li><code>ip rule add from &lt;ip&gt;/32 lookup main pref 0</code>（注意同 pref 排序规则）。</li>
+<li>写进已有的自愈定时任务；写回后 <code>get</code> 一次核对。</li>
+<li>提醒未来的自己：DSM 界面一旦保存 VPN 设置，<code>client-config-dir</code> 会被抹掉。</li>
+</ol>
+<p><strong>给非技术用户交付 macOS 小工具：</strong></p>
+<ol>
+<li>能不碰系统级设置就不碰；优先给单个进程传参数。</li>
+<li>生命周期要和用户看得见的东西（窗口）绑定。</li>
+<li>每一个"恢复原状"都要在目标机器上实测一轮 on→off 并比对。</li>
+<li><code>osacompile</code> 的图标：删 <code>Assets.car</code>、去 <code>CFBundleIconName</code>、<code>codesign --force --deep -s -</code>。</li>
+</ol>
+<hr />
+<h2 id="八-结语">八、结语</h2>
+<p>这次最大的收获不是修好了一个 VPN。是清楚地看到了一种新的工作形态：<strong>人提供意图、约束和叫停，agent 提供并行执行、外置记忆和逐步验证。</strong> 十一句话，三台机器，一个小时，交付物是朋友能双击的东西。</p>
+<p>三年前同样的下午，结局大概率是："我把 proto 改成 udp 了，你回家再试试。"</p>
+</article>
+</body>
+</html>
