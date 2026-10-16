@@ -17,9 +17,4 @@
 &lt;/blockquote&gt;</description></item><item><title>家庭网络分层拓扑：从远端笔记本到双出口的完整链路</title><link>https://jiwenkang.com/posts/2026/home-network-topology/</link><pubDate>Sun, 09 Aug 2026 00:00:00 +0000</pubDate><guid>https://jiwenkang.com/posts/2026/home-network-topology/</guid><description>&lt;blockquote&gt;
 &lt;p&gt;上一篇&lt;a href="https://jiwenkang.com/posts/2026/openwrt-dual-egress/"&gt;《OpenWrt 双出口分流》&lt;/a&gt;讲的是&lt;strong&gt;旁路网关内部&lt;/strong&gt;怎么做第二出口。这一篇把镜头拉远，讲整张网络的&lt;strong&gt;分层拓扑&lt;/strong&gt;：一台远端的公司笔记本，是怎么穿过 NAS 的 VPN、被两段策略路由接力、最终从境外出口上网的；以及家里每一类设备各自走哪条路、为什么。&lt;/p&gt;
 &lt;p&gt;文中所有公网 IP、商业服务商品牌、个人域名与主机名均已抹去，只保留可复用的结构。&lt;/p&gt;
-&lt;/blockquote&gt;</description></item><item><title>年少的失望</title><link>https://jiwenkang.com/posts/2024/youth-disappointment/</link><pubDate>Sun, 15 Sep 2024 00:00:00 +0000</pubDate><guid>https://jiwenkang.com/posts/2024/youth-disappointment/</guid><description>&lt;h2 id="我在中国共产党执政期经历过的所有不公痛苦和仿徨"&gt;我在中国共产党执政期经历过的所有不公、痛苦和仿徨&lt;/h2&gt;
-&lt;h2 id="前言"&gt;前言：&lt;/h2&gt;
-&lt;p&gt;本人所在的国家是一党专政，极度集权的国家。得益于本人所在的行业和公司是全球龙头，鄙人想再此列出所思所想所感，所经历的一切。大致从身体和精神方面撰写本文。&lt;/p&gt;
-&lt;p&gt;以下内容使用&lt;strong&gt;第一人称&lt;/strong&gt;视角。本人保证所述内容 100% 真实，本人对所写内容负全部责任。&lt;/p&gt;
-&lt;h2 id="一身体"&gt;一、身体&lt;/h2&gt;
-&lt;p&gt;身体篇，主要从中国三年疫情出发。这里主要抨击政府，门面上自愿接种疫苗，实际情况是静默强制接种。&lt;/p&gt;</description></item></channel></rss>
+&lt;/blockquote&gt;</description></item></channel></rss>
