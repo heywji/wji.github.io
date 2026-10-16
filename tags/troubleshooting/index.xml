@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Troubleshooting on Wenkang's BLOG</title><link>https://jiwenkang.com/tags/troubleshooting/</link><description>Recent content in Troubleshooting on Wenkang's BLOG</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sun, 20 Sep 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://jiwenkang.com/tags/troubleshooting/index.xml" rel="self" type="application/rss+xml"/><item><title>远程给朋友修 VPN：有了 AI 之后，一次运维排障是怎么进行的</title><link>https://jiwenkang.com/posts/2026/ai-assisted-vpn-troubleshooting/</link><pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate><guid>https://jiwenkang.com/posts/2026/ai-assisted-vpn-troubleshooting/</guid><description>&lt;blockquote&gt;
+&lt;p&gt;朋友坐在我家客厅，MacBook 上的 OpenVPN Connect 死活连不上我 NAS 的 VPN。我没碰她的电脑，只把一条 &lt;code&gt;ssh&lt;/code&gt; 命令丢给了 AI agent（Claude Code）。&lt;/p&gt;
+&lt;p&gt;一个小时后：VPN 通了；她的设备在 NAS 上有了专属的出口策略；桌面上多了三个带图标的小程序，双击就能用。&lt;/p&gt;
+&lt;p&gt;这篇文章记两件事：&lt;strong&gt;故障本身是怎么一层层剥开的&lt;/strong&gt;，以及&lt;strong&gt;有了 AI 之后，这类工作和以前到底哪里不一样了&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;文中所有公网 IP、密码、商业服务商品牌、个人域名与真实用户名均已抹去或改写，只保留可复用的结构。内网地址与真实环境一致（&lt;code&gt;192.168.1.0/24&lt;/code&gt;，网段约定同&lt;a href="https://jiwenkang.com/posts/2026/home-network-topology/"&gt;前两篇&lt;/a&gt;），VPN 段记作 &lt;code&gt;172.x.y.0/24&lt;/code&gt;，对外端口记作 &lt;code&gt;&amp;lt;VPN端口&amp;gt;&lt;/code&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;</description></item><item><title>家庭网络分层拓扑（二）：一条策略路由如何让 VPN 网关人间蒸发</title><link>https://jiwenkang.com/posts/2026/vpn-gateway-vanished/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://jiwenkang.com/posts/2026/vpn-gateway-vanished/</guid><description>&lt;blockquote&gt;
+&lt;p&gt;上一篇&lt;a href="https://jiwenkang.com/posts/2026/home-network-topology/"&gt;《家庭网络分层拓扑：从远端笔记本到双出口的完整链路》&lt;/a&gt;讲了这套拓扑&lt;strong&gt;该怎么搭&lt;/strong&gt;。这一篇讲它&lt;strong&gt;怎么坏的&lt;/strong&gt;——一个只错了一行、却让人绕了整整一晚的故障。&lt;/p&gt;
+&lt;p&gt;最讽刺的地方在于：&lt;strong&gt;上一篇里已经写对了那一行，落地时却没抄进去。&lt;/strong&gt; 而上一篇紧接着的另一句解释，恰好让那一行看起来可以省。&lt;/p&gt;
+&lt;p&gt;文中所有公网 IP、商业服务商品牌、个人域名与主机名均已抹去，只保留可复用的结构。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id="一tldr"&gt;一、TL;DR&lt;/h2&gt;
+&lt;p&gt;VPN 客户端可以正常上网、可以访问家里任何一台内网机器，唯独&lt;strong&gt;访问不了 VPN 网关 &lt;code&gt;172.x.y.1&lt;/code&gt; 本身&lt;/strong&gt;——ping 不通，全端口静默。&lt;/p&gt;</description></item></channel></rss>
